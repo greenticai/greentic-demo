@@ -1,7 +1,11 @@
 use std::collections::HashMap;
 
 use anyhow::{Context, Result};
-use greentic_telemetry::{OtlpConfig, init_otlp};
+use greentic_telemetry::{
+    TelemetryConfig as OtelConfig,
+    export::{Compression, ExportConfig, ExportMode, Sampling},
+    init_telemetry_from_config,
+};
 use serde::Deserialize;
 
 use crate::config::{TelemetryConfig, TelemetrySource};
@@ -13,9 +17,33 @@ struct TelemetryPayload {
     #[serde(default)]
     service_name: Option<String>,
     #[serde(default)]
-    sampling: Option<f64>,
+    sampling: Option<SamplingPayload>,
     #[serde(default)]
     otlp: Option<OtlpPayload>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+enum SamplingPayload {
+    Ratio { ratio: f64 },
+    Legacy(f64),
+}
+
+impl SamplingPayload {
+    fn to_sampling(&self) -> Sampling {
+        let ratio = match self {
+            SamplingPayload::Ratio { ratio } | SamplingPayload::Legacy(ratio) => *ratio,
+        };
+        Sampling::TraceIdRatio(ratio)
+    }
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, Default)]
+#[serde(rename_all = "lowercase")]
+enum OtlpProtocol {
+    Http,
+    #[default]
+    Grpc,
 }
 
 #[derive(Debug, Deserialize, Default)]
@@ -23,7 +51,11 @@ struct OtlpPayload {
     #[serde(default)]
     endpoint: Option<String>,
     #[serde(default)]
-    headers: Option<HashMap<String, String>>,
+    headers: HashMap<String, String>,
+    #[serde(default)]
+    protocol: Option<OtlpProtocol>,
+    #[serde(default)]
+    compression: Option<String>,
 }
 
 pub fn init(config: &TelemetryConfig) -> Result<Option<TelemetryHandle>> {
@@ -40,31 +72,18 @@ pub fn init(config: &TelemetryConfig) -> Result<Option<TelemetryHandle>> {
 
             let service_name = settings
                 .service_name
+                .clone()
                 .unwrap_or_else(|| "greentic-demo".to_string());
 
-            if let Some(otlp) = settings.otlp.as_ref().and_then(|o| o.headers.as_ref()) {
-                let header_str = otlp
-                    .iter()
-                    .map(|(k, v)| format!("{k}={v}"))
-                    .collect::<Vec<_>>()
-                    .join(",");
-                if !header_str.is_empty() {
-                    // SAFETY: setting process env vars is safe within this process.
-                    unsafe {
-                        std::env::set_var("OTEL_EXPORTER_OTLP_HEADERS", header_str);
-                    }
-                }
-            }
+            let export = build_export_config(&settings)?;
 
-            init_otlp(
-                OtlpConfig {
+            init_telemetry_from_config(
+                OtelConfig {
                     service_name: service_name.clone(),
-                    endpoint: settings.otlp.and_then(|o| o.endpoint),
-                    sampling_rate: settings.sampling,
                 },
-                Vec::new(),
+                export,
             )
-            .with_context(|| "failed to initialize greentic telemetry")?;
+            .with_context(|| "failed to initialize greentic telemetry pipeline")?;
 
             tracing::info!(
                 service = %service_name,
@@ -75,4 +94,41 @@ pub fn init(config: &TelemetryConfig) -> Result<Option<TelemetryHandle>> {
             Ok(Some(TelemetryHandle))
         }
     }
+}
+
+fn build_export_config(settings: &TelemetryPayload) -> Result<ExportConfig> {
+    let sampling = settings
+        .sampling
+        .as_ref()
+        .map(SamplingPayload::to_sampling)
+        .unwrap_or(Sampling::Parent);
+
+    let Some(otlp) = settings.otlp.as_ref() else {
+        let mut export = ExportConfig::json_default();
+        export.sampling = sampling;
+        return Ok(export);
+    };
+
+    let compression = otlp
+        .compression
+        .as_deref()
+        .map(|c| c.to_ascii_lowercase())
+        .and_then(|c| match c.as_str() {
+            "gzip" => Some(Compression::Gzip),
+            other => {
+                tracing::warn!(compression = %other, "unsupported OTLP compression, ignoring");
+                None
+            }
+        });
+
+    Ok(ExportConfig {
+        mode: match otlp.protocol.unwrap_or_default() {
+            OtlpProtocol::Grpc => ExportMode::OtlpGrpc,
+            OtlpProtocol::Http => ExportMode::OtlpHttp,
+        },
+        endpoint: otlp.endpoint.clone(),
+        headers: otlp.headers.clone(),
+        sampling,
+        compression,
+    })
 }

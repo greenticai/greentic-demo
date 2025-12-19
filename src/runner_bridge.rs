@@ -57,6 +57,7 @@ impl RunnerBridge {
         let wasi_policy = Arc::new(RunnerWasiPolicy::default());
         let secrets_backend = SecretsBackend::from_env(std::env::var("SECRETS_BACKEND").ok())?;
         let secrets_manager = secrets_backend.build_manager()?;
+        let oauth_config = config.oauth_broker_config();
 
         let pack_runtime = Arc::new(
             PackRuntime::load(
@@ -68,6 +69,7 @@ impl RunnerBridge {
                 Some(Arc::clone(&state_store)),
                 Arc::clone(&wasi_policy),
                 Arc::clone(&secrets_manager),
+                oauth_config,
                 false,
             )
             .await
@@ -111,7 +113,7 @@ impl RunnerBridge {
 
         let payload = activity_to_flow_input(&activity)?;
         let selection = select_flow(&runtime, &activity);
-        let retry_cfg = runtime.config.mcp_retry_config();
+        let retry_cfg = runtime.config.retry_config();
         let ctx = FlowContext {
             tenant: &runtime.tenant,
             flow_id: selection.flow_id.as_str(),

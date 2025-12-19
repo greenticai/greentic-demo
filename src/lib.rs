@@ -7,6 +7,7 @@ pub mod loader;
 pub mod logging;
 #[cfg(feature = "runner-shim")]
 pub mod nats_bridge;
+pub mod path_safety;
 #[cfg(feature = "runner-shim")]
 pub mod runner_bridge;
 #[cfg(any(feature = "runner-shim", feature = "use-runner-api"))]

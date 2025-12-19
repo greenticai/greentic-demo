@@ -1,6 +1,7 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 
+use crate::path_safety::normalize_under_root;
 use anyhow::{Context, Result};
 
 #[derive(Debug, Clone)]
@@ -11,9 +12,12 @@ pub struct TenantPack {
 }
 
 pub fn load_packs(packs_dir: &Path) -> Result<Vec<TenantPack>> {
+    let root = packs_dir
+        .canonicalize()
+        .with_context(|| format!("packs directory {} does not exist", packs_dir.display()))?;
     let mut packs = Vec::new();
-    let entries = fs::read_dir(packs_dir)
-        .with_context(|| format!("packs directory {packs_dir:?} does not exist"))?;
+    let entries =
+        fs::read_dir(&root).with_context(|| format!("packs directory {root:?} does not exist"))?;
 
     for entry in entries {
         let entry = match entry {
@@ -24,18 +28,25 @@ pub fn load_packs(packs_dir: &Path) -> Result<Vec<TenantPack>> {
             }
         };
 
-        let path = entry.path();
-        if !path.is_dir() {
-            continue;
-        }
-
-        let tenant_name = match path.file_name().and_then(|n| n.to_str()) {
-            Some(name) => name.to_string(),
-            None => {
-                tracing::warn!(path = ?path, "unable to derive tenant name; skipping");
+        let tenant_name = match entry.file_name().into_string() {
+            Ok(name) => name,
+            Err(os) => {
+                tracing::warn!(entry = ?os, "unable to derive tenant name; skipping");
                 continue;
             }
         };
+
+        let path = match normalize_under_root(&root, Path::new(&tenant_name)) {
+            Ok(path) => path,
+            Err(err) => {
+                tracing::warn!(tenant = %tenant_name, error = %err, "skipping pack outside root");
+                continue;
+            }
+        };
+
+        if !path.is_dir() {
+            continue;
+        }
 
         let index_path = path.join("index.ygtc");
         if !index_path.exists() {
