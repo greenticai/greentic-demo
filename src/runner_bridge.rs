@@ -3,7 +3,7 @@ use std::sync::Arc;
 
 use anyhow::{Context, Result, anyhow, bail};
 use greentic_runner_host::config::HostConfig;
-use greentic_runner_host::pack::PackRuntime;
+use greentic_runner_host::pack::{ComponentResolution, PackRuntime};
 use greentic_runner_host::runner::engine::{FlowContext, FlowEngine, FlowExecution, RetryConfig};
 use greentic_runner_host::secrets::SecretsBackend;
 use serde_json::{Value, json};
@@ -71,6 +71,7 @@ impl RunnerBridge {
                 Arc::clone(&secrets_manager),
                 oauth_config,
                 false,
+                ComponentResolution::default(),
             )
             .await
             .with_context(|| format!("failed to load pack for {}", pack.tenant))?,

@@ -40,7 +40,7 @@ This target checks for `cloudflared`, sources `.env`, and runs `cloudflared tunn
 
 ## Configuration Surface
 
-`cmd/greentic-demo/main.rs` converts env vars into a stable `RunnerConfig`. The key knobs are:
+`cmd/greentic-demo/main.rs` converts env vars into a stable `RunnerConfig`. You can also pass CLI flags to override the environment. The key knobs are:
 
 | Variable | Description | Default |
 | --- | --- | --- |
@@ -55,6 +55,23 @@ This target checks for `cloudflared`, sources `.env`, and runs `cloudflared tunn
 | `PACK_PUBLIC_KEY` | Optional Ed25519 key to verify signed packs | unset |
 
 Additional runner features (telemetry presets, secrets bootstrap, admin APIs) will be surfaced directly through this config once the corresponding runner PRs land; the shim already has placeholders so the eventual cut-over is a one-liner re-export.
+
+## CLI Options
+
+CLI flags override the env vars above when provided:
+
+| Flag | Env var |
+| --- | --- |
+| `--packs-dir` | `PACKS_DIR` |
+| `--port` | `PORT` |
+| `--secrets-backend` | `SECRETS_BACKEND` |
+| `--pack-source` | `PACK_SOURCE` |
+| `--pack-index-url` | `PACK_INDEX_URL` |
+| `--pack-cache-dir` | `PACK_CACHE_DIR` |
+| `--pack-public-key` | `PACK_PUBLIC_KEY` |
+| `--pack-refresh-interval` | `PACK_REFRESH_INTERVAL` |
+| `--pack-refresh-interval-secs` | `PACK_REFRESH_INTERVAL_SECS` |
+| `--tenant-resolver` | `TENANT_RESOLVER` |
 
 ## Development Notes
 
