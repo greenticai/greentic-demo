@@ -28,6 +28,7 @@ struct TenantRuntime {
     config: Arc<HostConfig>,
     engine: Arc<FlowEngine>,
     messaging_flow_id: String,
+    pack_id: String,
 }
 
 impl RunnerBridge {
@@ -89,11 +90,13 @@ impl RunnerBridge {
             .id
             .clone();
 
+        let pack_id = pack_runtime.metadata().pack_id.clone();
         let runtime = Arc::new(TenantRuntime {
             tenant: pack.tenant.clone(),
             config,
             engine,
             messaging_flow_id: messaging_flow,
+            pack_id,
         });
 
         self.tenants
@@ -117,6 +120,7 @@ impl RunnerBridge {
         let retry_cfg = runtime.config.retry_config();
         let ctx = FlowContext {
             tenant: &runtime.tenant,
+            pack_id: &runtime.pack_id,
             flow_id: selection.flow_id.as_str(),
             node_id: selection.node.as_deref(),
             tool: None,
@@ -124,6 +128,7 @@ impl RunnerBridge {
             session_id: None,
             provider_id: None,
             retry_config: RetryConfig::from(retry_cfg),
+            attempt: 0,
             observer: None,
             mocks: None,
         };
