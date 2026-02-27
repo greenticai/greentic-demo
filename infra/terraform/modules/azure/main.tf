@@ -34,7 +34,7 @@ resource "azurerm_federated_identity_credential" "github" {
   parent_id           = azurerm_user_assigned_identity.ci.id
   audience            = ["api://AzureADTokenExchange"]
   issuer              = "https://token.actions.githubusercontent.com"
-  subject             = "repo:greentic-ai/greentic-demo:ref:refs/heads/main"
+  subject             = "repo:greenticai/greentic-demo:ref:refs/heads/main"
 }
 
 resource "azurerm_container_app" "runner" {
@@ -105,3 +105,4 @@ resource "azurerm_container_app" "runner" {
     identity_ids = [azurerm_user_assigned_identity.ci.id]
   }
 }
+

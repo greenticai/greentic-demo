@@ -5,7 +5,7 @@ edition = "2024"
 license = "MIT"
 description = "NATS-to-Greentic runner bridge that powers the greentic-demo messaging flow."
 homepage = "https://greentic.ai"
-repository = "https://github.com/greentic-ai/greentic-demo"
+repository = "https://github.com/greenticai/greentic-demo"
 documentation = "https://docs.greentic.ai"
 readme = "README.md"
 keywords = ["greentic", "bot", "nats", "runner"]
@@ -48,3 +48,4 @@ tokio = { version = "1.37", features = ["macros", "rt-multi-thread"] }
 default = ["use-runner-api"]
 runner-shim = []
 use-runner-api = []
+

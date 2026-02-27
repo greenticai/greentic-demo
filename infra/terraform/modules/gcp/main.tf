@@ -39,7 +39,7 @@ resource "google_service_account_iam_binding" "runner_wi" {
   service_account_id = google_service_account.runner.id
   role               = "roles/iam.workloadIdentityUser"
   members = [
-    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/greentic-ai/greentic-demo"
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/greenticai/greentic-demo"
   ]
 }
 
@@ -84,3 +84,4 @@ resource "google_cloud_run_service" "runner" {
     latest_revision = true
   }
 }
+
