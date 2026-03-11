@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "ci_assume" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:greentic-ai/*:ref:refs/heads/*"]
+      values   = ["repo:greenticai/*:ref:refs/heads/*"]
     }
     condition {
       test     = "StringEquals"
@@ -130,3 +130,4 @@ resource "aws_apprunner_observability_configuration" "otel" {
     vendor = "AWSXRAY"
   }
 }
+

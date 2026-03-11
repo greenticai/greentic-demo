@@ -22,8 +22,8 @@ Thin bootstrap that wires environment variables into `greentic-runner-host`. All
 The multi-stage `Dockerfile` builds a MUSL binary and copies it into `gcr.io/distroless/static:nonroot`, keeping the final image around 25–30 MB. Targets cover the common flow:
 
 ```bash
-make docker-build DOCKER_IMAGE=ghcr.io/greentic-ai/greentic-demo:local
-make docker-run   DOCKER_IMAGE=ghcr.io/greentic-ai/greentic-demo:local
+make docker-build DOCKER_IMAGE=ghcr.io/greenticai/greentic-demo:local
+make docker-run   DOCKER_IMAGE=ghcr.io/greenticai/greentic-demo:local
 ```
 
 `docker-run` reads the current `.env` file and publishes `${PORT:-8080}` by default.
@@ -91,3 +91,4 @@ CLI flags override the env vars above when provided:
   - `cargo build --release --target wasm32-wasip1`
   - copy `target/wasm32-wasip1/release/stub-deploy-component.wasm` over `examples/deployment/generic-deploy.gtpack/components/greentic.deploy.generic.iac.wasm`
 - Discovery/run: the default `PACK_INDEX_URL` in `.env.example` already points to `./examples/index.json`, which now includes the deployment demo under tenant `deployment-demo`. To run it locally, set `TENANT_RESOLVER=env` and `TENANT=deployment-demo` (or use a host/header resolver that maps to that tenant) before starting the runner.
+
