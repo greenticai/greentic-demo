@@ -1,0 +1,18 @@
+{
+  "bundle_source": "crates/redbutton-demo/bundle",
+  "env": "dev",
+  "greentic_setup_version": "1.0.0",
+  "platform_setup": {
+    "static_routes": {
+      "default_route_prefix_policy": "pack_declared",
+      "public_surface_policy": "disabled",
+      "public_web_enabled": false,
+      "tenant_path_policy": "pack_declared"
+    }
+  },
+  "setup_answers": {
+    "greentic.events.webhook": {}
+  },
+  "team": null,
+  "tenant": "default"
+}

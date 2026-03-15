@@ -2,9 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [main, master]
   pull_request:
-    branches: [ master ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -22,16 +21,14 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Cache cargo registry
+      - name: Cache cargo state
         uses: actions/cache@v4
         with:
           path: |
             ${{ env.CARGO_HOME }}/registry
             ${{ env.CARGO_HOME }}/git
             ${{ env.CARGO_TARGET_DIR }}
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock', '**/Cargo.toml') }}
 
       - name: Run local checks
-        run: |
-          chmod +x ci/local_check.sh
-          ci/local_check.sh
+        run: ci/local_check.sh

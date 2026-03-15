@@ -1,0 +1,4 @@
+_ = forbidden
+public-deployer-aws-vm = public
+redbutton-demo-pack = public
+packs/redbutton-demo.pack = public

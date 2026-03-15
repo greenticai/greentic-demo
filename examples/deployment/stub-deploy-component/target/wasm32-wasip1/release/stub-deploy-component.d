@@ -1,1 +1,0 @@
-/Users/maarten/Documents/GitHub/agentic/greentic-demo/examples/deployment/stub-deploy-component/target/wasm32-wasip1/release/stub-deploy-component.wasm: /Users/maarten/Documents/GitHub/agentic/greentic-demo/examples/deployment/stub-deploy-component/src/main.rs

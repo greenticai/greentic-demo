@@ -1,0 +1,9 @@
+[package]
+name = "redbutton-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic red button demo bundle with webhook, random branch selection, audio playback planning, and Better Stack incidents."
+
+[lib]
+path = "src/lib.rs"

@@ -1,41 +1,103 @@
-name: Publish greentic-demo
+name: Publish Demo Bundles
 
 on:
   push:
-    branches:
-      - master
-      - main
-  release:
-    types: [published]
+    branches: [main, master]
+    tags:
+      - "v*"
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: "Run cargo publish with --dry-run"
-        required: false
-        default: "false"
 
-env:
-  CARGO_TERM_COLOR: always
+permissions:
+  contents: write
+  packages: write
 
 jobs:
-  publish:
+  publish-components:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
 
-      - name: Install Rust toolchain
+      - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.91.0
 
-      - name: Cargo publish
+      - name: Install cargo-component and wkg
+        run: cargo install --locked cargo-component wkg
+
+      - name: Install ORAS
+        uses: oras-project/setup-oras@v1
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | oras login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Build and publish components
         env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true' }}
+          OWNER: ${{ github.repository_owner }}
+          REF_NAME: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
         run: |
-          if [ "${DRY_RUN}" = "true" ]; then
-            cargo publish --locked --dry-run
+          set -euo pipefail
+          mkdir -p .artifacts
+          while IFS= read -r dir; do
+            component_name="$(basename "$dir")"
+            package_name="$(sed -n 's/^name = "\(.*\)"/\1/p' "$dir/Cargo.toml" | head -n1)"
+            cargo component build --release --target wasm32-wasip2 --manifest-path "$dir/Cargo.toml"
+            artifact="target/wasm32-wasip1/release/${package_name//-/_}.wasm"
+            sha_ref="oci://ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${SHA}"
+            wkg oci push "$sha_ref" "$artifact"
+            echo "${component_name}=${sha_ref}" >> .artifacts/component-refs.txt
+            if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+              tag_ref="oci://ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${REF_NAME}"
+              wkg oci push "$tag_ref" "$artifact"
+              echo "${component_name}_tag=${tag_ref}" >> .artifacts/component-refs.txt
+            elif [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
+              latest_ref="oci://ghcr.io/${OWNER}/greentic-demo-components/${component_name}:latest"
+              wkg oci push "$latest_ref" "$artifact"
+              echo "${component_name}_latest=${latest_ref}" >> .artifacts/component-refs.txt
+            fi
+          done < <(find crates -mindepth 2 -maxdepth 2 -type d \( -name 'component-*' -o -name 'greentic-*' \) | sort)
+
+      - name: Upload component refs
+        uses: actions/upload-artifact@v4
+        with:
+          name: component-refs
+          path: .artifacts/component-refs.txt
+          if-no-files-found: error
+
+  publish-demos:
+    needs: publish-components
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Package demos
+        run: scripts/package_demos.sh
+
+      - name: Detect bundles
+        id: bundles
+        run: |
+          shopt -s nullglob
+          bundles=(demos/*.gtbundle)
+          if [ ${#bundles[@]} -eq 0 ]; then
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "No demo bundles found. Skipping publish steps."
           else
-            cargo publish --locked
+            echo "found=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Upload workflow artifact
+        if: steps.bundles.outputs.found == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-bundles
+          path: demos/*.gtbundle
+          if-no-files-found: error
+
+      - name: Attach bundles to release
+        if: steps.bundles.outputs.found == 'true' && startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: demos/*.gtbundle

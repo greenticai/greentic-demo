@@ -1,8 +1,6 @@
 /target
 /.target
 /.cargo-home
-/env/.env
-/.env
+/demos/*.gtbundle
 .DS_Store
-__pycache__/
-tests/__pycache__/
+.greentic/

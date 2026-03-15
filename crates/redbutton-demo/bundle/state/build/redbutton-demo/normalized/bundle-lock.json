@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "bundle_id": "redbutton-demo",
+  "requested_mode": "create",
+  "execution": "execute",
+  "cache_policy": "workspace-local",
+  "tool_version": "0.4.10",
+  "build_format_version": "bundle-lock-v1",
+  "workspace_root": "bundle.yaml",
+  "lock_file": "bundle.lock.json",
+  "catalogs": [],
+  "app_packs": [
+    {
+      "reference": "packs/redbutton-demo.pack"
+    },
+    {
+      "reference": "public-deployer-aws-vm"
+    }
+  ],
+  "extension_providers": [
+    {
+      "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:latest"
+    }
+  ],
+  "setup_state_files": []
+}

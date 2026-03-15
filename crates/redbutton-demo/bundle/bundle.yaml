@@ -1,0 +1,22 @@
+schema_version: 1
+bundle_id: redbutton-demo
+bundle_name: redbutton-demo
+locale: en-GB
+mode: create
+advanced_setup: false
+app_packs:
+  - packs/redbutton-demo.pack
+  - public-deployer-aws-vm
+app_pack_mappings:
+  - reference: packs/redbutton-demo.pack
+    scope: global
+  - reference: public-deployer-aws-vm
+    scope: global
+extension_providers:
+  - oci://ghcr.io/greenticai/packs/events/events-webhook:latest
+remote_catalogs: []
+hooks: []
+subscriptions: []
+capabilities: []
+setup_execution_intent: false
+export_intent: false

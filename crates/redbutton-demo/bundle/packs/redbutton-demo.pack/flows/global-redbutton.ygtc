@@ -1,0 +1,59 @@
+id: global_redbutton
+title: Global Red Button
+description: Handle a global webhook event by selecting a random demo branch, preparing audio playback, optionally posting to a demo HTTP endpoint, and creating a Better Stack incident
+type: event
+start: choose_route
+parameters: {}
+tags: []
+schema_version: 2
+entrypoints: {}
+nodes:
+  choose_route:
+    component-random.select-route:
+      routes:
+        - route: branch-a
+          audio_url: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
+          incident_name: Red button branch A
+          incident_summary: Red button branch A triggered
+        - route: branch-b
+          audio_url: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3
+          incident_name: Red button branch B
+          incident_summary: Red button branch B triggered
+        - route: branch-c
+          audio_url: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3
+          incident_name: Red button branch C
+          incident_summary: Red button branch C triggered
+          http_endpoint: https://httpbin.org/post
+      event:
+        source: redbutton
+    routing:
+      - to: play_audio
+  play_audio:
+    greentic-http2play.play-url:
+      audio_url: "{{ choose_route.audio_url }}"
+      route: "{{ choose_route.route }}"
+    routing:
+      - to: notify_http
+  notify_http:
+    component-http.post-json:
+      url: "{{ choose_route.http_endpoint }}"
+      method: POST
+      body:
+        route: "{{ choose_route.route }}"
+        event: "{{ event }}"
+      ignore_missing_url: true
+    routing:
+      - to: create_incident
+  create_incident:
+    component-betterstack-incident.create-incident:
+      name: "{{ choose_route.incident_name }}"
+      summary: "{{ choose_route.incident_summary }}"
+      description: Red button webhook received and processed.
+      email: true
+      metadata:
+        Selected Route:
+          - value: "{{ choose_route.route }}"
+        Audio URL:
+          - value: "{{ choose_route.audio_url }}"
+    routing:
+      - out: true

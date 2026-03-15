@@ -1,0 +1,84 @@
+{
+  "wizard_id": "greentic-dev.wizard.launcher.main",
+  "schema_id": "greentic-dev.launcher.main",
+  "schema_version": "1.0.0",
+  "locale": "en-GB",
+  "answers": {
+    "selected_action": "bundle",
+    "delegate_answer_document": {
+      "wizard_id": "greentic-bundle.wizard.run",
+      "schema_id": "greentic-bundle.wizard.answers",
+      "schema_version": "1.0.0",
+      "locale": "en-GB",
+      "answers": {
+        "access_rules": [
+          {
+            "policy": "public",
+            "rule_path": "public-deployer-aws-vm",
+            "tenant": "default"
+          },
+          {
+            "policy": "public",
+            "rule_path": "redbutton-demo-pack",
+            "tenant": "default"
+          }
+        ],
+        "advanced_setup": false,
+        "app_pack_entries": [
+          {
+            "detected_kind": "local_dir",
+            "display_name": "Redbutton Demo Pack",
+            "mapping": {
+              "scope": "global"
+            },
+            "pack_id": "redbutton-demo-pack",
+            "reference": "packs/redbutton-demo.pack"
+          },
+          {
+            "detected_kind": "local_file",
+            "display_name": "Public Deployer Aws Vm",
+            "mapping": {
+              "scope": "global"
+            },
+            "pack_id": "public-deployer-aws-vm",
+            "reference": "public-deployer-aws-vm"
+          }
+        ],
+        "app_packs": [
+          "packs/redbutton-demo.pack",
+          "public-deployer-aws-vm"
+        ],
+        "bundle_id": "redbutton-demo",
+        "bundle_name": "redbutton-demo",
+        "export_intent": false,
+        "extension_provider_entries": [
+          {
+            "detected_kind": "oci",
+            "display_name": "Greentic Events Webhook",
+            "provider_id": "greentic.events.webhook",
+            "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
+            "version": "latest"
+          }
+        ],
+        "extension_providers": [
+          "oci://ghcr.io/greenticai/packs/events/events-webhook:latest"
+        ],
+        "mode": "create",
+        "output_dir": "crates/redbutton-demo/bundle",
+        "remote_catalogs": [],
+        "setup_answers": {},
+        "setup_execution_intent": false,
+        "setup_specs": {}
+      },
+      "locks": {
+        "cache_policy": "workspace-local",
+        "catalogs": [],
+        "execution": "execute",
+        "lock_file": "bundle.lock.json",
+        "requested_mode": "create",
+        "setup_state_files": [],
+        "workspace_root": "bundle.yaml"
+      }
+    }
+  }
+}

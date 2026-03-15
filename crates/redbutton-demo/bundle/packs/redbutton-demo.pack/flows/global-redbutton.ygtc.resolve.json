@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "flow": "global-redbutton.ygtc",
+  "nodes": {
+    "choose_route": {
+      "source": {
+        "kind": "local",
+        "path": "file://../components/component-random/component.wasm"
+      }
+    },
+    "play_audio": {
+      "source": {
+        "kind": "local",
+        "path": "file://../components/greentic-http2play/component.wasm"
+      }
+    },
+    "notify_http": {
+      "source": {
+        "kind": "local",
+        "path": "file://../components/component-http/component.wasm"
+      }
+    },
+    "create_incident": {
+      "source": {
+        "kind": "local",
+        "path": "file://../components/component-betterstack-incident/component.wasm"
+      }
+    }
+  }
+}
