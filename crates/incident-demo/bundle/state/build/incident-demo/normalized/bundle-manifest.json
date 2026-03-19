@@ -1,0 +1,37 @@
+{
+  "format_version": "gtbundle-v1",
+  "bundle_id": "incident-demo",
+  "bundle_name": "incident-demo",
+  "requested_mode": "create",
+  "locale": "en-GB",
+  "artifact_extension": ".gtbundle",
+  "generated_resolved_files": [
+    "resolved/default.yaml"
+  ],
+  "generated_setup_files": [],
+  "app_packs": [
+    "packs/incident-demo.pack"
+  ],
+  "extension_providers": [
+    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+    "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest"
+  ],
+  "catalogs": [],
+  "hooks": [],
+  "subscriptions": [],
+  "capabilities": [],
+  "resolved_targets": [
+    {
+      "path": "resolved/default.yaml",
+      "tenant": "default",
+      "default_policy": "forbidden",
+      "tenant_gmap": "tenants/default/tenant.gmap",
+      "app_pack_policies": [
+        {
+          "reference": "packs/incident-demo.pack",
+          "policy": "public"
+        }
+      ]
+    }
+  ]
+}

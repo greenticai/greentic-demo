@@ -1,0 +1,9 @@
+[package]
+name = "incident-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic incident demo bundle with WebChat/WebEx messaging, adaptive cards, and Better Stack incident creation."
+
+[lib]
+path = "src/lib.rs"

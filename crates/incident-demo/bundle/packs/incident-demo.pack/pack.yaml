@@ -1,0 +1,72 @@
+pack_id: incident-demo.pack
+version: 0.1.0
+kind: application
+publisher: Greentic
+components:
+- id: component-adaptive-card
+  version: 0.1.18
+  world: greentic:component/component-v0-v6-v0@0.6.0
+  supports:
+  - messaging
+  profiles:
+    default: stateless
+    supported:
+    - stateless
+  capabilities:
+    wasi:
+      random: true
+      clocks: true
+      filesystem:
+        mode: read_only
+        mounts:
+        - guest_path: .
+          host_class: cwd
+          name: workspace
+    host:
+      messaging:
+        inbound: true
+        outbound: true
+      secrets:
+        required: []
+      state:
+        delete: true
+        read: true
+        write: true
+      telemetry:
+        scope: node
+  wasm: components/component-adaptive-card/component.wasm
+- id: component-betterstack-incident
+  version: 0.1.0
+  world: root:component/root
+  supports:
+  - messaging
+  - event
+  profiles:
+    default: default
+    supported:
+    - default
+  capabilities:
+    wasi:
+      random: true
+      clocks: true
+    host:
+      secrets:
+        required:
+        - key: betterstack_token
+          required: true
+      http:
+        client: true
+        server: false
+  wasm: components/component-betterstack-incident/component.wasm
+dependencies: []
+flows:
+- id: incident_create
+  file: flows/incident-create.ygtc
+  tags:
+  - default
+  - messaging
+  entrypoints:
+  - default
+assets:
+- path: assets/cards/create-incident.json
+- path: assets/cards/incident-result.json

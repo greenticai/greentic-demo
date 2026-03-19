@@ -1,0 +1,25 @@
+{
+  "bundle_source": "crates/incident-demo/bundle",
+  "env": "dev",
+  "greentic_setup_version": "1.0.0",
+  "platform_setup": {
+    "static_routes": {
+      "default_route_prefix_policy": "pack_declared",
+      "public_surface_policy": "disabled",
+      "public_web_enabled": false,
+      "tenant_path_policy": "pack_declared"
+    }
+  },
+  "setup_answers": {
+    "messaging-webchat": {
+      "ingress_path": "/webchat",
+      "public_base_url": "https://some-helicopter-jake-pictures.trycloudflare.com"
+    },
+    "messaging-webex": {
+      "bot_token": "MDgwNzIyYjktZWNmNy00ODZhLWEyMTUtZmI2NDUxNzIxY2VmMjUzNTc1NDItMjNm_P0A1_bdd2aed2-da17-481d-bd6f-b43037ee90b7",
+      "public_base_url": "https://some-helicopter-jake-pictures.trycloudflare.com"
+    }
+  },
+  "team": null,
+  "tenant": "default"
+}
