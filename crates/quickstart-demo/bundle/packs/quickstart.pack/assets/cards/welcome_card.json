@@ -1,0 +1,38 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "{{ greeting }}",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "TextBlock",
+      "text": "This is the Greentic quickstart demo. Choose an action below to get started.",
+      "wrap": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Platform", "value": "Greentic" },
+        { "title": "Demo", "value": "Quickstart" },
+        { "title": "Components", "value": "Adaptive Card" }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "About Greentic",
+      "verb": "about"
+    },
+    {
+      "type": "Action.Execute",
+      "title": "Echo Message",
+      "verb": "echo"
+    }
+  ]
+}

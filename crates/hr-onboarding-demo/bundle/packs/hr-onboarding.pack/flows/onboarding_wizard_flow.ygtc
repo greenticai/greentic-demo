@@ -1,0 +1,211 @@
+id: onboarding_wizard_flow
+title: Employee Onboarding Wizard
+description: Step-by-step employee information collection and registration
+type: messaging
+start: check_existing_employee
+schema_version: 2
+tags:
+  - hr
+  - onboarding
+  - wizard
+  - employee-registration
+
+parameters:
+  company_name: "Acme Corp"
+  default_department: "Engineering"
+  onboarding_checklist_version: "v2"
+
+nodes:
+  # Check if employee already exists in state
+  check_existing_employee:
+    state.get:
+      key: "onboarding_state"
+    routing:
+      - condition: state.onboarding_state.employee_id != null
+        to: already_registered
+      - to: show_employee_form
+
+  # Employee already registered
+  already_registered:
+    emit.response:
+      text: "An employee record already exists for this session. Use the main menu to check progress or reset onboarding."
+    routing: out
+
+  # Show employee information form
+  show_employee_form:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: cards/employee_form_card.json
+          template_params:
+            company_name: parameters.company_name
+            default_department: parameters.default_department
+        mode: renderAndValidate
+    routing:
+      - condition: response.action == "submit_employee"
+        to: validate_employee_data
+      - condition: response.action == "cancel"
+        to: cancel
+      - to: show_employee_form
+
+  # Validate submitted employee data
+  validate_employee_data:
+    routing:
+      - condition: "{{in.input.full_name == ''}}"
+        to: validation_error
+      - condition: "{{in.input.full_name == null}}"
+        to: validation_error
+      - to: check_email_provided
+
+  # Check email is provided
+  check_email_provided:
+    routing:
+      - condition: "{{in.input.email == ''}}"
+        to: validation_error
+      - condition: "{{in.input.email == null}}"
+        to: validation_error
+      - to: create_employee
+
+  # Validation error
+  validation_error:
+    emit.response:
+      text: "Please fill in all required fields (Full Name and Email are required)."
+    routing:
+      - to: show_employee_form
+
+  # Create employee record via MCP
+  create_employee:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: hr_create_employee
+        arguments:
+          full_name: "{{in.input.full_name}}"
+          email: "{{in.input.email}}"
+          department: "{{in.input.department}}"
+          role: "{{in.input.role}}"
+          start_date: "{{in.input.start_date}}"
+          manager_name: "{{in.input.manager_name}}"
+    routing:
+      - condition: prev.success == true
+        to: save_employee_state
+      - to: create_error
+
+  # Save employee data to state
+  save_employee_state:
+    state.set:
+      key: "onboarding_state"
+      value:
+        employee_id: "{{create_employee.payload.employee_id}}"
+        employee_name: "{{in.input.full_name}}"
+        email: "{{in.input.email}}"
+        department: "{{in.input.department}}"
+        role: "{{in.input.role}}"
+        start_date: "{{in.input.start_date}}"
+        manager_name: "{{in.input.manager_name}}"
+        progress_percent: 10
+        wizard_complete: true
+        documents_complete: false
+        access_complete: false
+    routing:
+      - to: fetch_checklist
+
+  # Fetch onboarding checklist for role/department
+  fetch_checklist:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: hr_get_checklist
+        arguments:
+          employee_id: "{{create_employee.payload.employee_id}}"
+          department: "{{in.input.department}}"
+          role: "{{in.input.role}}"
+          checklist_version: parameters.onboarding_checklist_version
+    routing:
+      - condition: prev.success == true
+        to: save_checklist
+      - to: checklist_error
+
+  # Save checklist to state
+  save_checklist:
+    state.set:
+      key: "onboarding_checklist"
+      value: "{{prev.payload}}"
+    routing:
+      - to: show_checklist
+
+  # Show onboarding checklist
+  show_checklist:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: cards/onboarding_checklist_card.json
+          template_params:
+            employee_name: "{{in.input.full_name}}"
+            department: "{{in.input.department}}"
+            checklist_items: "fetch_checklist.payload.checklist_items"
+            progress_percent: "10"
+            completed_count: "1"
+            total_count: "fetch_checklist.payload.total_count"
+        mode: renderAndValidate
+    routing:
+      - condition: response.action == "upload_documents"
+        to: redirect_documents
+      - condition: response.action == "request_access"
+        to: redirect_access
+      - condition: response.action == "back"
+        to: wizard_complete
+      - to: wizard_complete
+
+  # Redirect to document collection flow
+  redirect_documents:
+    emit.response:
+      text: "Redirecting to document collection..."
+      metadata:
+        flow_redirect: document_collection_flow
+    routing: out
+
+  # Redirect to access provisioning flow
+  redirect_access:
+    emit.response:
+      text: "Redirecting to access provisioning..."
+      metadata:
+        flow_redirect: access_provisioning_flow
+    routing: out
+
+  # Wizard complete
+  wizard_complete:
+    emit.response:
+      text: |
+        Employee registration complete!
+
+        Next steps:
+        1. Upload required documents
+        2. Request system access
+        3. Complete onboarding checklist items
+
+        Return to the main menu to continue.
+    routing: out
+
+  # Create employee error
+  create_error:
+    emit.response:
+      text: "Failed to create employee record. Please check your information and try again."
+    routing:
+      - to: show_employee_form
+
+  # Checklist fetch error
+  checklist_error:
+    emit.response:
+      text: "Employee created successfully, but unable to fetch the onboarding checklist. Please check progress from the main menu."
+    routing: out
+
+  # Cancel
+  cancel:
+    emit.response:
+      text: "Onboarding wizard cancelled."
+    routing: out

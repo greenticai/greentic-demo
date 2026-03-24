@@ -1,0 +1,9 @@
+[package]
+name = "quickstart-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic quickstart demo bundle with a welcome card and simple menu interactions."
+
+[lib]
+path = "src/lib.rs"

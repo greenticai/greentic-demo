@@ -1,0 +1,142 @@
+id: create_ticket_flow
+title: Create Jira Ticket Flow
+description: Create new Jira issues with priority, category, and description via MCP
+type: messaging
+start: check_token
+schema_version: 2
+tags:
+  - helpdesk
+  - jira
+  - ticket-creation
+
+parameters:
+  jira_project_key: "ITSM"
+  default_issue_type: "Task"
+
+nodes:
+  # Check if token exists
+  check_token:
+    state.get:
+      key: "jira_oauth_token"
+    routing:
+      - condition: prev.value != null
+        to: show_create_form
+      - to: no_token
+
+  # No token available
+  no_token:
+    emit.response:
+      text: "Please connect to Jira first."
+      metadata:
+        require_oauth: true
+        provider: jira
+    routing: out
+
+  # Show create ticket form
+  show_create_form:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: cards/create_ticket_card.json
+          template_params:
+            project_key: parameters.jira_project_key
+        mode: renderAndValidate
+    routing:
+      - condition: response.action == "submit_ticket"
+        to: validate_input
+      - condition: response.action == "cancel"
+        to: cancelled
+      - to: cancelled
+
+  # Validate required fields
+  validate_input:
+    routing:
+      - condition: "{{in.input.ticket_summary == ''}}"
+        to: validation_error
+      - condition: "{{in.input.ticket_summary == null}}"
+        to: validation_error
+      - to: create_issue
+
+  # Validation error
+  validation_error:
+    emit.response:
+      text: "Summary is required. Please fill in all required fields."
+    routing:
+      - to: show_create_form
+
+  # Create Jira issue via MCP
+  create_issue:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: jira_create_issue
+        arguments:
+          oauth_token: "{{state.jira_oauth_token}}"
+          project_key: parameters.jira_project_key
+          summary: "{{in.input.ticket_summary}}"
+          description: "{{in.input.ticket_description}}"
+          issue_type: "{{in.input.issue_type}}"
+          priority: "{{in.input.priority}}"
+          labels:
+            - "{{in.input.category}}"
+            - "helpdesk"
+    routing:
+      - condition: prev.success == true
+        to: show_confirmation
+      - to: create_error
+
+  # Show confirmation with ticket details
+  show_confirmation:
+    emit.response:
+      text: |
+        Ticket created successfully!
+
+        Key: {{prev.payload.key}}
+        Summary: {{in.input.ticket_summary}}
+        Priority: {{in.input.priority}}
+        Category: {{in.input.category}}
+        Type: {{in.input.issue_type}}
+
+        Your ticket has been assigned to the {{in.input.category}} support queue.
+        You will be notified when there are updates.
+      metadata:
+        ticket_key: "{{prev.payload.key}}"
+        ticket_url: "{{prev.payload.self}}"
+    routing:
+      - to: ask_followup
+
+  # Ask if user wants to do anything else
+  ask_followup:
+    emit.response:
+      text: "Would you like to create another ticket or return to the main menu?"
+    routing:
+      - condition: response.action == "create_another"
+        to: show_create_form
+      - to: done
+
+  # Create error
+  create_error:
+    emit.response:
+      text: |
+        Failed to create ticket in Jira. This could be due to:
+        - Invalid project key or issue type
+        - Insufficient permissions
+        - Network connectivity issues
+
+        Please try again or contact your administrator.
+    routing:
+      - to: show_create_form
+
+  # Cancelled
+  cancelled:
+    emit.response:
+      text: "Ticket creation cancelled."
+    routing: out
+
+  # Done
+  done:
+    emit.response:
+      text: "Ticket flow completed. Returning to main menu."
+    routing: out
