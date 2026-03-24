@@ -1,0 +1,9 @@
+[package]
+name = "supply-chain-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic Supply Chain demo bundle with stock monitoring, order tracking, and reorder management."
+
+[lib]
+path = "src/lib.rs"

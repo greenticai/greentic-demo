@@ -1,0 +1,9 @@
+[package]
+name = "sales-crm-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic Sales CRM demo bundle with Salesforce OAuth, lead qualification, pipeline, and deal tracking."
+
+[lib]
+path = "src/lib.rs"
