@@ -1,34 +1,32 @@
 # Security Fix Report
 
 Date (UTC): 2026-03-24
-Branch: feat/quickstart-i18n-cards
 
 ## Inputs Reviewed
 - Security alerts JSON: `{"dependabot": [], "code_scanning": []}`
-- Dependabot alerts file: `[]`
-- Code scanning alerts file: `[]`
 - New PR dependency vulnerabilities: `[]`
+- Repository alert files:
+  - `dependabot-alerts.json`: `[]`
+  - `code-scanning-alerts.json`: `[]`
+  - `pr-vulnerable-changes.json`: `[]`
 
-## PR Dependency Change Check
-Reviewed dependency manifests/lockfiles in this repository (Rust):
+## PR Dependency Vulnerability Check
+Reviewed dependency manifests and lockfiles for new vulnerable changes:
 - `Cargo.toml`
 - `Cargo.lock`
 - `crates/**/Cargo.toml`
 - `crates/**/Cargo.lock`
 
 Result:
-- No dependency-file changes detected in this branch via `git diff --name-only` for the files above.
-- No new PR dependency vulnerabilities were provided.
+- No dependency-file diffs detected in this PR scope (`git diff --name-only` returned no changes for files above).
+- No new PR dependency vulnerabilities were reported.
 
 ## Remediation Actions
-- No vulnerable dependencies or code-scanning findings were present.
-- No code or dependency changes were required.
-
-## Additional Verification
-- `cargo-audit` is not installed in this CI environment.
-- Invoking `cargo` in this runner fails due to a read-only rustup temp path, so an in-environment advisory DB scan could not be executed.
+- No Dependabot or code scanning findings were present.
+- No vulnerable dependency entries were provided.
+- No code or dependency fixes were required.
 
 ## Final Status
 - Security review completed.
 - Vulnerabilities fixed: `0`
-- Residual known vulnerabilities from provided inputs: `0`
+- Remaining known vulnerabilities from provided inputs: `0`
