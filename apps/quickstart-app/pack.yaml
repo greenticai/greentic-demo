@@ -1,0 +1,118 @@
+pack_id: quickstart-app
+version: 0.1.0
+kind: application
+publisher: BimaPangestu28
+components:
+- id: component-events2msg
+  version: 0.1.0
+  world: greentic:component/component@0.6.0
+  supports:
+  - messaging
+  profiles:
+    default: stateless
+    supported:
+    - stateless
+  capabilities:
+    wasi:
+      random: false
+      clocks: false
+    host: {}
+  wasm: components/component-events2msg.wasm
+- id: component-msg2events
+  version: 0.1.0
+  world: greentic:component/component@0.6.0
+  supports:
+  - messaging
+  profiles:
+    default: stateless
+    supported:
+    - stateless
+  capabilities:
+    wasi:
+      random: false
+      clocks: false
+    host: {}
+  wasm: components/component-msg2events.wasm
+dependencies: []
+flows:
+- id: on_event
+  file: flows/on_event.ygtc
+  tags:
+  - events
+  entrypoints:
+  - webhook
+- id: on_message
+  file: flows/on_message.ygtc
+  tags:
+  - messaging
+  - default
+  entrypoints:
+  - default
+assets:
+- path: assets/i18n/ar.json
+- path: assets/i18n/ar-AE.json
+- path: assets/i18n/ar-DZ.json
+- path: assets/i18n/ar-EG.json
+- path: assets/i18n/ar-IQ.json
+- path: assets/i18n/ar-MA.json
+- path: assets/i18n/ar-SA.json
+- path: assets/i18n/ar-SD.json
+- path: assets/i18n/ar-SY.json
+- path: assets/i18n/ar-TN.json
+- path: assets/i18n/ay.json
+- path: assets/i18n/bg.json
+- path: assets/i18n/bn.json
+- path: assets/i18n/cs.json
+- path: assets/i18n/da.json
+- path: assets/i18n/de.json
+- path: assets/i18n/el.json
+- path: assets/i18n/en.json
+- path: assets/i18n/en-GB.json
+- path: assets/i18n/es.json
+- path: assets/i18n/et.json
+- path: assets/i18n/fa.json
+- path: assets/i18n/fi.json
+- path: assets/i18n/fr.json
+- path: assets/i18n/gn.json
+- path: assets/i18n/gu.json
+- path: assets/i18n/hi.json
+- path: assets/i18n/hr.json
+- path: assets/i18n/ht.json
+- path: assets/i18n/hu.json
+- path: assets/i18n/id.json
+- path: assets/i18n/it.json
+- path: assets/i18n/ja.json
+- path: assets/i18n/km.json
+- path: assets/i18n/kn.json
+- path: assets/i18n/ko.json
+- path: assets/i18n/lo.json
+- path: assets/i18n/lt.json
+- path: assets/i18n/lv.json
+- path: assets/i18n/ml.json
+- path: assets/i18n/mr.json
+- path: assets/i18n/ms.json
+- path: assets/i18n/my.json
+- path: assets/i18n/nah.json
+- path: assets/i18n/ne.json
+- path: assets/i18n/nl.json
+- path: assets/i18n/no.json
+- path: assets/i18n/pa.json
+- path: assets/i18n/pl.json
+- path: assets/i18n/pt.json
+- path: assets/i18n/qu.json
+- path: assets/i18n/ro.json
+- path: assets/i18n/ru.json
+- path: assets/i18n/si.json
+- path: assets/i18n/sk.json
+- path: assets/i18n/sr.json
+- path: assets/i18n/sv.json
+- path: assets/i18n/ta.json
+- path: assets/i18n/te.json
+- path: assets/i18n/th.json
+- path: assets/i18n/tl.json
+- path: assets/i18n/tr.json
+- path: assets/i18n/uk.json
+- path: assets/i18n/ur.json
+- path: assets/i18n/vi.json
+- path: assets/i18n/zh.json
+- path: assets/i18n/locales.json

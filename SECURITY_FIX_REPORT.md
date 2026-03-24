@@ -1,35 +1,32 @@
 # Security Fix Report
 
 Date (UTC): 2026-03-24
-Branch: feat/industrial-demo-packs
 
 ## Inputs Reviewed
 - Security alerts JSON: `{"dependabot": [], "code_scanning": []}`
-- Dependabot alerts file (`dependabot-alerts.json`): `[]`
-- Code scanning alerts file (`code-scanning-alerts.json`): `[]`
 - New PR dependency vulnerabilities: `[]`
+- Repository alert files:
+  - `dependabot-alerts.json`: `[]`
+  - `code-scanning-alerts.json`: `[]`
+  - `pr-vulnerable-changes.json`: `[]`
 
-## PR Dependency Change Check
-Checked current PR diff for dependency file changes.
-
-Files reviewed:
+## PR Dependency Vulnerability Check
+Reviewed dependency manifests and lockfiles for new vulnerable changes:
 - `Cargo.toml`
 - `Cargo.lock`
 - `crates/**/Cargo.toml`
 - `crates/**/Cargo.lock`
 
 Result:
-- `git diff --name-only` shows only `pr-comment.md` modified.
-- No dependency manifests or lockfiles changed in this PR.
-- No new PR dependency vulnerabilities were provided.
+- No dependency-file diffs detected in this PR scope (`git diff --name-only` returned no changes for files above).
+- No new PR dependency vulnerabilities were reported.
 
 ## Remediation Actions
-- No Dependabot alerts to remediate.
-- No code scanning alerts to remediate.
-- No dependency vulnerabilities introduced by PR changes.
-- No code or dependency updates were required.
+- No Dependabot or code scanning findings were present.
+- No vulnerable dependency entries were provided.
+- No code or dependency fixes were required.
 
 ## Final Status
 - Security review completed.
 - Vulnerabilities fixed: `0`
-- Residual known vulnerabilities from provided inputs: `0`
+- Remaining known vulnerabilities from provided inputs: `0`
