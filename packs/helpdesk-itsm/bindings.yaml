@@ -1,0 +1,52 @@
+# Tenant bindings for IT Helpdesk ITSM Demo
+# This file configures the pack for a specific tenant
+
+tenant: helpdesk-demo
+team: default
+environment: dev
+
+# Pack reference
+pack:
+  id: greentic.helpdesk-itsm.demo
+  source: local
+  path: ./
+
+# OAuth broker configuration
+oauth:
+  provider: jira
+  client_id: "${JIRA_CLIENT_ID}"
+  client_secret: "${JIRA_CLIENT_SECRET}"
+  redirect_uri: "{api_base}/oauth/callback/{tenant}/jira"
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - read:jira-user
+
+# MCP tool store configuration
+mcp:
+  store:
+    kind: http-single
+    name: helpdesk_tools
+    # Jira and KB MCP tools WASM component URL
+    url: "${MCP_HELPDESK_TOOLS_URL:-https://github.com/greenticai/greentic-packs/raw/main/mcp/helpdesk_tools.wasm}"
+  security:
+    require_signature: false
+  runtime:
+    max_memory_mb: 128
+    timeout_ms: 30000
+    fuel: 100000000
+
+# State configuration
+state:
+  backend: memory
+  ttl_seconds: 3600
+
+# Messaging routes
+routes:
+  messaging:
+    default: on_message
+  oauth:
+    callback: jira_oauth_flow
+  events:
+    webhook: on_event
+    jira: on_event

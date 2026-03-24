@@ -1,0 +1,119 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Image",
+                  "url": "https://img.icons8.com/fluency/96/person-male.png",
+                  "size": "Medium"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "size": "Large",
+                  "weight": "Bolder",
+                  "text": "{{company_name}} - HR Onboarding"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Welcome to the employee onboarding assistant",
+                  "isSubtle": true,
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "isVisible": "{{has_onboarding}}",
+      "style": "accent",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Current Onboarding: {{employee_name}}"
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Progress: {{progress_percent}}%",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "wrap": true,
+      "text": "What would you like to do?",
+      "spacing": "Medium"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Start Onboarding",
+      "style": "positive",
+      "data": {
+        "action_id": "start_onboarding"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Check Progress",
+      "data": {
+        "action_id": "check_progress"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Upload Documents",
+      "data": {
+        "action_id": "upload_documents"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Request Access",
+      "data": {
+        "action_id": "request_access"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Reset Onboarding",
+      "style": "destructive",
+      "data": {
+        "action_id": "reset_onboarding"
+      }
+    }
+  ]
+}

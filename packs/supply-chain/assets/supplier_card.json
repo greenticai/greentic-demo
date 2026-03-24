@@ -1,0 +1,149 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Supplier Directory"
+    },
+    {
+      "type": "TextBlock",
+      "text": "{{total_suppliers}} registered suppliers",
+      "isSubtle": true
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "$data": "{{suppliers}}",
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "3",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "{{supplier_name}}",
+                      "weight": "Bolder"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "{{contact_email}} | {{contact_phone}}",
+                      "isSubtle": true,
+                      "size": "Small",
+                      "spacing": "None"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "Categories: {{categories}}",
+                      "isSubtle": true,
+                      "size": "Small",
+                      "spacing": "None",
+                      "wrap": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "verticalContentAlignment": "Center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "{{rating}}/5",
+                      "weight": "Bolder",
+                      "horizontalAlignment": "Center",
+                      "color": "{{rating_color}}"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "Rating",
+                      "size": "Small",
+                      "isSubtle": true,
+                      "horizontalAlignment": "Center",
+                      "spacing": "None"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "2",
+                  "verticalContentAlignment": "Center",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Last Order",
+                      "size": "Small",
+                      "isSubtle": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "{{last_order_date}}",
+                      "size": "Small",
+                      "spacing": "None"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "Avg. Lead: {{avg_lead_days}} days",
+                      "size": "Small",
+                      "isSubtle": true,
+                      "spacing": "None"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ActionSet",
+              "actions": [
+                {
+                  "type": "Action.Submit",
+                  "title": "Send RFQ",
+                  "style": "positive",
+                  "data": {
+                    "action_id": "send_rfq",
+                    "supplier_id": "{{supplier_id}}",
+                    "supplier_name": "{{supplier_name}}"
+                  }
+                },
+                {
+                  "type": "Action.Submit",
+                  "title": "View History",
+                  "data": {
+                    "action_id": "view_history",
+                    "supplier_id": "{{supplier_id}}"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Refresh",
+      "data": {
+        "action_id": "refresh"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Back",
+      "data": {
+        "action_id": "back"
+      }
+    }
+  ]
+}

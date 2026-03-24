@@ -1,0 +1,126 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "Container",
+      "style": "good",
+      "items": [
+        {
+          "type": "TextBlock",
+          "size": "Large",
+          "weight": "Bolder",
+          "text": "Onboarding Complete!",
+          "horizontalAlignment": "Center",
+          "color": "Good"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Congratulations, {{employee_name}}! Your onboarding is now complete.",
+          "wrap": true,
+          "horizontalAlignment": "Center"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Onboarding Summary"
+        },
+        {
+          "type": "FactSet",
+          "facts": [
+            {
+              "title": "Employee",
+              "value": "{{employee_name}}"
+            },
+            {
+              "title": "Department",
+              "value": "{{department}}"
+            },
+            {
+              "title": "Role",
+              "value": "{{role}}"
+            },
+            {
+              "title": "Start Date",
+              "value": "{{start_date}}"
+            },
+            {
+              "title": "Manager",
+              "value": "{{manager_name}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "spacing": "Small",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Completed Steps"
+        },
+        {
+          "type": "FactSet",
+          "facts": [
+            {
+              "title": "Employee Registration",
+              "value": "Complete"
+            },
+            {
+              "title": "Document Submission",
+              "value": "Complete"
+            },
+            {
+              "title": "Access Provisioning",
+              "value": "Complete"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Next Steps"
+        },
+        {
+          "type": "TextBlock",
+          "wrap": true,
+          "text": "1. Check your email for account activation links\n2. Set up your development environment\n3. Meet your team and manager\n4. Review the employee handbook\n5. Complete any department-specific training"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "If you need any help, contact HR at hr@acmecorp.com",
+      "isSubtle": true,
+      "wrap": true,
+      "spacing": "Medium",
+      "size": "Small"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Back to Menu",
+      "data": {
+        "action_id": "back"
+      }
+    }
+  ]
+}

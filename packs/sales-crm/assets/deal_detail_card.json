@@ -1,0 +1,159 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "{{name}}"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Amount",
+          "value": "${{amount}}"
+        },
+        {
+          "title": "Stage",
+          "value": "{{stage}}"
+        },
+        {
+          "title": "Close Date",
+          "value": "{{close_date}}"
+        },
+        {
+          "title": "Probability",
+          "value": "{{probability}}%"
+        },
+        {
+          "title": "Owner",
+          "value": "{{owner}}"
+        },
+        {
+          "title": "Last Activity",
+          "value": "{{last_activity}}"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Notes"
+        },
+        {
+          "type": "TextBlock",
+          "wrap": true,
+          "text": "{{notes}}",
+          "isSubtle": true
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Update Stage"
+        },
+        {
+          "type": "Input.ChoiceSet",
+          "id": "new_stage",
+          "style": "compact",
+          "value": "{{stage}}",
+          "choices": [
+            { "title": "Prospecting", "value": "Prospecting" },
+            { "title": "Qualification", "value": "Qualification" },
+            { "title": "Needs Analysis", "value": "Needs Analysis" },
+            { "title": "Value Proposition", "value": "Value Proposition" },
+            { "title": "Proposal/Price Quote", "value": "Proposal" },
+            { "title": "Negotiation/Review", "value": "Negotiation" },
+            { "title": "Closed Won", "value": "Closed Won" },
+            { "title": "Closed Lost", "value": "Closed Lost" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Update Amount"
+        },
+        {
+          "type": "Input.Number",
+          "id": "new_amount",
+          "placeholder": "Enter new amount",
+          "value": "{{amount}}"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Add Note"
+        },
+        {
+          "type": "Input.Text",
+          "id": "note_text",
+          "placeholder": "Type a note...",
+          "isMultiline": true
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Update Stage",
+      "style": "positive",
+      "data": {
+        "action_id": "update_stage",
+        "opportunity_id": "{{opportunity_id}}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Update Amount",
+      "data": {
+        "action_id": "update_amount",
+        "opportunity_id": "{{opportunity_id}}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Add Note",
+      "data": {
+        "action_id": "add_note",
+        "opportunity_id": "{{opportunity_id}}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Schedule Meeting",
+      "data": {
+        "action_id": "schedule_meeting",
+        "opportunity_id": "{{opportunity_id}}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Back to Pipeline",
+      "data": {
+        "action_id": "back"
+      }
+    }
+  ]
+}

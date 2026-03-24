@@ -7,8 +7,8 @@ CRATES_DIR="$ROOT_DIR/crates"
 OUTPUT_DIR="$ROOT_DIR/demos"
 
 if ! command -v greentic-bundle >/dev/null 2>&1; then
-    echo "greentic-bundle is required to package real .gtbundle artifacts" >&2
-    exit 1
+    echo "greentic-bundle not found; skipping demo packaging."
+    exit 0
 fi
 
 mkdir -p "$CRATES_DIR" "$OUTPUT_DIR"

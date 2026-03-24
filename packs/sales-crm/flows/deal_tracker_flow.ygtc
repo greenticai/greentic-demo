@@ -1,0 +1,254 @@
+id: deal_tracker_flow
+title: Deal Tracker & Pipeline Flow
+description: View sales pipeline, track deals, update stages and amounts via Salesforce
+type: messaging
+start: check_token
+
+parameters:
+  pipeline_stages:
+    - Prospecting
+    - Qualification
+    - Proposal
+    - Negotiation
+    - Closed Won
+
+nodes:
+  # Check if Salesforce token exists
+  check_token:
+    state.get:
+      key: "salesforce_oauth_token"
+    routing:
+      - when: "state.salesforce_oauth_token != null"
+        to: fetch_pipeline
+      - to: no_token
+
+  # No token available
+  no_token:
+    emit.response:
+      text: "Please connect to Salesforce first."
+      metadata:
+        require_oauth: true
+        provider: salesforce
+    routing: out
+
+  # Fetch pipeline opportunities from Salesforce
+  fetch_pipeline:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_get_pipeline
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+    routing:
+      - when: "fetch_pipeline.success == true"
+        to: show_pipeline
+      - to: fetch_error
+
+  # Show pipeline card with stages
+  show_pipeline:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: pipeline_card.json
+          template_params:
+            stages: "fetch_pipeline.payload.stages"
+            total_value: "fetch_pipeline.payload.total_value"
+            deal_count: "fetch_pipeline.payload.deal_count"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'view_deal'"
+        to: fetch_deal_detail
+      - when: "input.action_id == 'refresh'"
+        to: fetch_pipeline
+      - when: "input.action_id == 'back'"
+        to: done
+      - to: done
+
+  # Fetch deal/opportunity details
+  fetch_deal_detail:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_get_opportunity
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          opportunity_id: "input.opportunity_id"
+    routing:
+      - when: "fetch_deal_detail.success == true"
+        to: show_deal_detail
+      - to: fetch_error
+
+  # Show deal detail card
+  show_deal_detail:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: deal_detail_card.json
+          template_params:
+            name: "fetch_deal_detail.payload.name"
+            amount: "fetch_deal_detail.payload.amount"
+            stage: "fetch_deal_detail.payload.stage"
+            close_date: "fetch_deal_detail.payload.close_date"
+            probability: "fetch_deal_detail.payload.probability"
+            owner: "fetch_deal_detail.payload.owner"
+            last_activity: "fetch_deal_detail.payload.last_activity"
+            notes: "fetch_deal_detail.payload.notes"
+            opportunity_id: "fetch_deal_detail.payload.id"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'update_stage'"
+        to: update_stage
+      - when: "input.action_id == 'update_amount'"
+        to: update_amount
+      - when: "input.action_id == 'add_note'"
+        to: add_note
+      - when: "input.action_id == 'schedule_meeting'"
+        to: schedule_deal_meeting
+      - when: "input.action_id == 'back'"
+        to: fetch_pipeline
+      - to: fetch_pipeline
+
+  # Update opportunity stage
+  update_stage:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_update_opportunity
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          opportunity_id: "input.opportunity_id"
+          stage: "input.new_stage"
+    routing:
+      - when: "update_stage.success == true"
+        to: stage_updated
+      - to: update_error
+
+  # Confirm stage update
+  stage_updated:
+    emit.response:
+      text: "Deal stage updated to {{input.new_stage}}."
+    routing:
+      - to: fetch_deal_detail
+
+  # Update opportunity amount
+  update_amount:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_update_opportunity
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          opportunity_id: "input.opportunity_id"
+          amount: "input.new_amount"
+    routing:
+      - when: "update_amount.success == true"
+        to: amount_updated
+      - to: update_error
+
+  # Confirm amount update
+  amount_updated:
+    emit.response:
+      text: "Deal amount updated to ${{input.new_amount}}."
+    routing:
+      - to: fetch_deal_detail
+
+  # Add note to opportunity
+  add_note:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_update_opportunity
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          opportunity_id: "input.opportunity_id"
+          notes: "input.note_text"
+    routing:
+      - when: "add_note.success == true"
+        to: note_added
+      - to: update_error
+
+  # Confirm note added
+  note_added:
+    emit.response:
+      text: "Note added to deal."
+    routing:
+      - to: fetch_deal_detail
+
+  # Schedule meeting for this deal
+  schedule_deal_meeting:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: meeting_card.json
+          template_params:
+            prefill_contact: "fetch_deal_detail.payload.contact_name"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'schedule_meeting'"
+        to: create_deal_task
+      - when: "input.action_id == 'back'"
+        to: show_deal_detail
+      - to: show_deal_detail
+
+  # Create task for deal meeting
+  create_deal_task:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_create_task
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          subject: "input.meeting_subject"
+          what_id: "input.opportunity_id"
+          activity_date: "input.meeting_date"
+          activity_time: "input.meeting_time"
+          duration_minutes: "input.duration"
+          meeting_type: "input.meeting_type"
+          description: "input.meeting_notes"
+    routing:
+      - when: "create_deal_task.success == true"
+        to: deal_meeting_created
+      - to: meeting_error
+
+  # Confirm deal meeting created
+  deal_meeting_created:
+    emit.response:
+      text: "Meeting scheduled for {{create_deal_task.payload.activity_date}}."
+    routing:
+      - to: fetch_deal_detail
+
+  # Meeting creation error
+  meeting_error:
+    emit.response:
+      text: "Could not schedule meeting. Please try again."
+    routing:
+      - to: show_deal_detail
+
+  # Fetch error
+  fetch_error:
+    emit.response:
+      text: "Failed to fetch data from Salesforce. Please try again."
+    routing:
+      - to: done
+
+  # Update error
+  update_error:
+    emit.response:
+      text: "Failed to update deal. Please try again."
+    routing:
+      - to: fetch_deal_detail
+
+  # Done
+  done:
+    emit.response:
+      text: "Returning to main menu."
+    routing: out

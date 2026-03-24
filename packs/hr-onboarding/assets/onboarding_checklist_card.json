@@ -1,0 +1,124 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Onboarding Checklist"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "{{employee_name}} - {{department}}",
+              "isSubtle": true
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "{{completed_count}}/{{total_count}} Complete",
+              "weight": "Bolder",
+              "color": "Good"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Progress: {{progress_percent}}%",
+      "spacing": "Small"
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "items": [
+        {
+          "$data": "{{checklist_items}}",
+          "type": "ColumnSet",
+          "spacing": "Small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{status_icon}}",
+                  "size": "Medium"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{title}}",
+                  "weight": "Bolder"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "{{description}}",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "size": "Small"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{status}}",
+                  "isSubtle": true,
+                  "size": "Small"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Upload Documents",
+      "style": "positive",
+      "data": {
+        "action_id": "upload_documents"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Request Access",
+      "data": {
+        "action_id": "request_access"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Back to Menu",
+      "data": {
+        "action_id": "back"
+      }
+    }
+  ]
+}

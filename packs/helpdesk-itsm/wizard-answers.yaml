@@ -1,0 +1,43 @@
+# Wizard answers for IT Helpdesk ITSM Demo Bundle
+# Use with: gtc wizard --answers wizard-answers.yaml
+
+schema_id: greentic-bundle.wizard.answers
+schema_version: "1.0.0"
+wizard_id: greentic-bundle.wizard.run
+locale: en
+
+answers:
+  mode: create
+  bundle_id: helpdesk-itsm
+  bundle_name: "IT Helpdesk ITSM Demo"
+  output_dir: "./helpdesk-itsm"
+
+  # App packs to include
+  app_packs:
+    - "./packs/helpdesk-itsm"
+
+  # Extension providers from OCI registry
+  extension_providers:
+    # Messaging providers
+    - "oci://ghcr.io/greenticai/greentic-packs/messaging-webchat-gui:latest"
+    - "oci://ghcr.io/greenticai/greentic-packs/messaging-slack:latest"
+    - "oci://ghcr.io/greenticai/greentic-packs/messaging-teams:latest"
+    # State provider
+    - "oci://ghcr.io/greenticai/greentic-packs/state-memory:latest"
+    # msg2events and events2msg components
+    - "oci://ghcr.io/greenticai/component/component-msg2events:latest"
+    - "oci://ghcr.io/greenticai/component/component-events2msg:latest"
+
+  # OAuth capability pack
+  capability_packs:
+    - "oci://ghcr.io/greenticai/greentic-packs/oauth-broker:latest"
+
+  # Remote catalogs (optional)
+  remote_catalogs: []
+
+  # Advanced setup
+  advanced_setup: true
+  export_intent: false
+  setup_execution_intent: true
+
+locks: {}

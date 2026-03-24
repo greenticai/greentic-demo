@@ -1,0 +1,51 @@
+# Tenant bindings for Sales CRM Assistant Demo
+# This file configures the pack for a specific tenant
+
+tenant: sales-crm-demo
+team: default
+environment: dev
+
+# Pack reference
+pack:
+  id: greentic.sales-crm.demo
+  source: local
+  path: ./
+
+# OAuth broker configuration
+oauth:
+  provider: salesforce
+  client_id: "${SALESFORCE_CLIENT_ID}"
+  client_secret: "${SALESFORCE_CLIENT_SECRET}"
+  redirect_uri: "{api_base}/oauth/callback/{tenant}/salesforce"
+  scopes:
+    - api
+    - refresh_token
+
+# MCP tool store configuration
+mcp:
+  store:
+    kind: http-single
+    name: crm_tools
+    # Salesforce CRM MCP tools WASM component URL
+    url: "${MCP_CRM_TOOLS_URL:-https://github.com/greenticai/greentic-packs/raw/main/mcp/crm_tools.wasm}"
+  security:
+    require_signature: false
+  runtime:
+    max_memory_mb: 128
+    timeout_ms: 30000
+    fuel: 100000000
+
+# State configuration
+state:
+  backend: memory
+  ttl_seconds: 3600
+
+# Messaging routes
+routes:
+  messaging:
+    default: on_message
+  oauth:
+    callback: salesforce_oauth_flow
+  events:
+    webhook: on_event
+    salesforce: on_event
