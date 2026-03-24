@@ -1,0 +1,23 @@
+id: on_message
+title: Message to Event Demo
+description: Demo flow showing msg2events component integration
+type: messaging
+start: extract_event
+
+nodes:
+  extract_event:
+    component.exec:
+      component: component-msg2events
+      operation: extract
+      message: "{{in.input}}"
+      source_provider: webchat
+    routing:
+      - next: echo_result
+
+  echo_result:
+    emit.response:
+      messages:
+        - type: text
+          text: "Received: {{in.input.text}}\n\nExtracted event:\n- Type: {{prev.event.event_type}}\n- Source: {{prev.event.source.provider}}\n- Data: {{prev.event.data}}"
+    routing:
+      - out: true

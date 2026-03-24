@@ -1,0 +1,24 @@
+id: on_event
+title: Event to Message Demo
+description: Demo flow showing events2msg component integration
+type: events
+start: route_to_messaging
+
+nodes:
+  route_to_messaging:
+    component.exec:
+      component: component-events2msg
+      operation: route
+      event: "{{in}}"
+      target_provider: webchat
+      message_template: "Event: {{event_type}} - {{data}}"
+    routing:
+      - next: send_response
+
+  send_response:
+    emit.response:
+      messages:
+        - type: text
+          text: "Processed event: {{in.event_type}}\nRouted to: {{prev.provider}}\nNATS subject: {{prev.nats_subject}}"
+    routing:
+      - out: true

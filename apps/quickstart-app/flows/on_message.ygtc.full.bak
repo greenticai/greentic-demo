@@ -1,0 +1,654 @@
+id: on_message
+title: Greentic Demo Hub
+description: Combined demo - msg2events, events2msg, OAuth card, GitHub MCP
+type: messaging
+start: show_menu
+
+parameters:
+  oauth_provider: github
+  github_token: ""
+
+nodes:
+  # ============================================
+  # Main Menu
+  # ============================================
+  show_menu:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Large
+                weight: Bolder
+                text: "🚀 Greentic Demo Hub"
+              - type: TextBlock
+                wrap: true
+                text: "Pilih demo yang ingin dicoba:"
+              - type: ColumnSet
+                columns:
+                  - type: Column
+                    width: auto
+                    items:
+                      - type: TextBlock
+                        text: "📨"
+                        size: ExtraLarge
+                  - type: Column
+                    width: stretch
+                    items:
+                      - type: TextBlock
+                        text: "msg2events"
+                        weight: Bolder
+                      - type: TextBlock
+                        text: "Convert chat message to event format"
+                        size: Small
+                        isSubtle: true
+                        wrap: true
+              - type: ColumnSet
+                columns:
+                  - type: Column
+                    width: auto
+                    items:
+                      - type: TextBlock
+                        text: "📢"
+                        size: ExtraLarge
+                  - type: Column
+                    width: stretch
+                    items:
+                      - type: TextBlock
+                        text: "events2msg"
+                        weight: Bolder
+                      - type: TextBlock
+                        text: "Send notification from webhook event"
+                        size: Small
+                        isSubtle: true
+                        wrap: true
+              - type: ColumnSet
+                columns:
+                  - type: Column
+                    width: auto
+                    items:
+                      - type: TextBlock
+                        text: "🔐"
+                        size: ExtraLarge
+                  - type: Column
+                    width: stretch
+                    items:
+                      - type: TextBlock
+                        text: "OAuth Card"
+                        weight: Bolder
+                      - type: TextBlock
+                        text: "Demo OAuth sign-in flow with adaptive card"
+                        size: Small
+                        isSubtle: true
+                        wrap: true
+              - type: ColumnSet
+                columns:
+                  - type: Column
+                    width: auto
+                    items:
+                      - type: TextBlock
+                        text: "🐙"
+                        size: ExtraLarge
+                  - type: Column
+                    width: stretch
+                    items:
+                      - type: TextBlock
+                        text: "GitHub MCP"
+                        weight: Bolder
+                      - type: TextBlock
+                        text: "Call GitHub API via MCP tools"
+                        size: Small
+                        isSubtle: true
+                        wrap: true
+            actions:
+              - type: Action.Submit
+                title: "1. msg2events"
+                style: positive
+                data:
+                  action_id: demo_msg2events
+              - type: Action.Submit
+                title: "2. events2msg"
+                data:
+                  action_id: demo_events2msg
+              - type: Action.Submit
+                title: "3. OAuth Card"
+                data:
+                  action_id: demo_oauth
+              - type: Action.Submit
+                title: "4. GitHub MCP"
+                data:
+                  action_id: demo_github
+    routing:
+      - to: route_menu
+
+  route_menu:
+    match:
+      input: in.metadata.action_id
+      cases:
+        - value: "demo_msg2events"
+          to: demo_msg2events_start
+        - value: "demo_events2msg"
+          to: demo_events2msg_info
+        - value: "demo_oauth"
+          to: demo_oauth_card
+        - value: "demo_github"
+          to: demo_github_form
+        - value: "back_menu"
+          to: show_menu
+      default:
+        to: handle_text_input
+
+  # Handle free text input - use msg2events
+  handle_text_input:
+    component:
+      id: component-msg2events
+      op: extract
+      input:
+        message: "{{in.text}}"
+        source_provider: "{{in.provider}}"
+        metadata:
+          channel_id: "{{in.channel_id}}"
+          user_id: "{{in.user_id}}"
+    routing:
+      - to: show_text_result
+
+  show_text_result:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                text: "📨 Message Received"
+              - type: FactSet
+                facts:
+                  - title: "Text"
+                    value: "{{in.text}}"
+                  - title: "Provider"
+                    value: "{{in.provider}}"
+              - type: TextBlock
+                wrap: true
+                isSubtle: true
+                text: "Ketik pesan atau pilih demo dari menu"
+            actions:
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_menu
+
+  # ============================================
+  # Demo 1: msg2events
+  # ============================================
+  demo_msg2events_start:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                color: Accent
+                text: "📨 msg2events Demo"
+              - type: TextBlock
+                wrap: true
+                text: "Ketik pesan untuk di-convert ke event format:"
+              - type: Input.Text
+                id: user_message
+                placeholder: "Contoh: Hello World!"
+                isMultiline: false
+            actions:
+              - type: Action.Submit
+                title: "Convert to Event"
+                style: positive
+                data:
+                  action_id: convert_msg
+              - type: Action.Submit
+                title: "← Back"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_msg2events
+
+  route_msg2events:
+    match:
+      input: in.metadata.action_id
+      cases:
+        - value: "convert_msg"
+          to: convert_message_to_event
+        - value: "back_menu"
+          to: show_menu
+      default:
+        to: show_menu
+
+  convert_message_to_event:
+    component:
+      id: component-msg2events
+      op: extract
+      input:
+        message: "{{in.metadata.user_message}}"
+        source_provider: "{{in.provider}}"
+        metadata:
+          channel_id: "{{in.channel_id}}"
+          conversation_id: "{{in.conversation_id}}"
+          user_id: "{{in.user_id}}"
+          demo: "msg2events"
+    routing:
+      - to: show_msg2events_result
+
+  show_msg2events_result:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                color: Good
+                text: "✅ Message Converted to Event"
+              - type: FactSet
+                facts:
+                  - title: "Original Message"
+                    value: "{{in.metadata.user_message}}"
+                  - title: "Provider"
+                    value: "{{in.provider}}"
+              - type: TextBlock
+                text: "Extracted Event:"
+                weight: Bolder
+              - type: Container
+                style: emphasis
+                items:
+                  - type: TextBlock
+                    wrap: true
+                    fontType: Monospace
+                    size: Small
+                    text: "{{node.convert_message_to_event.output}}"
+            actions:
+              - type: Action.Submit
+                title: "Try Again"
+                data:
+                  action_id: demo_msg2events
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_menu
+
+  # ============================================
+  # Demo 2: events2msg
+  # ============================================
+  demo_events2msg_info:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                color: Warning
+                text: "📢 events2msg Demo"
+              - type: TextBlock
+                wrap: true
+                text: "Demo ini menerima webhook dan mengirim notifikasi ke chat."
+              - type: TextBlock
+                wrap: true
+                weight: Bolder
+                text: "Cara test:"
+              - type: TextBlock
+                wrap: true
+                fontType: Monospace
+                size: Small
+                text: "curl -X POST http://localhost:8080/events/webhook -H 'Content-Type: application/json' -d '{\"event_type\":\"alert\",\"title\":\"Test Alert\",\"message\":\"Hello from webhook!\",\"conversation_id\":\"{{in.conversation_id}}\"}'"
+              - type: TextBlock
+                wrap: true
+                isSubtle: true
+                text: "Copy command di atas dan jalankan di terminal. Notifikasi akan muncul di chat ini."
+              - type: Container
+                style: emphasis
+                items:
+                  - type: FactSet
+                    facts:
+                      - title: "Conversation ID"
+                        value: "{{in.conversation_id}}"
+                      - title: "Provider"
+                        value: "{{in.provider}}"
+            actions:
+              - type: Action.Submit
+                title: "Simulate Event"
+                style: positive
+                data:
+                  action_id: simulate_event
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_events2msg
+
+  route_events2msg:
+    match:
+      input: in.metadata.action_id
+      cases:
+        - value: "simulate_event"
+          to: simulate_events2msg
+        - value: "back_menu"
+          to: show_menu
+      default:
+        to: show_menu
+
+  simulate_events2msg:
+    component:
+      id: component-events2msg
+      op: route
+      input:
+        event:
+          type: "notification"
+          title: "Simulated Event"
+          message: "This is a simulated event from the demo"
+          timestamp: "{{now}}"
+        target_provider: "{{in.provider}}"
+        channel_id: "{{in.channel_id}}"
+        env: "{{ctx.env}}"
+        tenant: "{{ctx.tenant}}"
+        team: "{{ctx.team}}"
+    routing:
+      - to: show_events2msg_result
+
+  show_events2msg_result:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                color: Good
+                text: "✅ Event Routed to Messaging"
+              - type: TextBlock
+                wrap: true
+                text: "events2msg converted the event to messaging format:"
+              - type: Container
+                style: emphasis
+                items:
+                  - type: TextBlock
+                    wrap: true
+                    fontType: Monospace
+                    size: Small
+                    text: "{{node.simulate_events2msg.output}}"
+            actions:
+              - type: Action.Submit
+                title: "Try Again"
+                data:
+                  action_id: demo_events2msg
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_menu
+
+  # ============================================
+  # Demo 3: OAuth Card
+  # ============================================
+  demo_oauth_card:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                text: "🔐 OAuth Sign-In Required"
+              - type: Image
+                url: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                size: Small
+                horizontalAlignment: Center
+              - type: TextBlock
+                wrap: true
+                horizontalAlignment: Center
+                text: "Connect your GitHub account to continue"
+              - type: FactSet
+                facts:
+                  - title: "Provider"
+                    value: "GitHub"
+                  - title: "Scopes"
+                    value: "repo, user"
+              - type: TextBlock
+                wrap: true
+                isSubtle: true
+                size: Small
+                text: "In production, this would redirect to GitHub OAuth consent page."
+            actions:
+              - type: Action.Submit
+                title: "🔗 Connect with GitHub"
+                style: positive
+                data:
+                  action_id: oauth_connect
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_oauth
+
+  route_oauth:
+    match:
+      input: in.metadata.action_id
+      cases:
+        - value: "oauth_connect"
+          to: oauth_callback
+        - value: "back_menu"
+          to: show_menu
+      default:
+        to: show_menu
+
+  oauth_callback:
+    set:
+      oauth_token: "gho_simulated_token_12345"
+      oauth_user: "demo-user"
+      oauth_provider: "github"
+    routing:
+      - to: show_oauth_success
+
+  show_oauth_success:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                color: Good
+                text: "✅ GitHub Connected!"
+              - type: FactSet
+                facts:
+                  - title: "Provider"
+                    value: "{{state.oauth_provider}}"
+                  - title: "User"
+                    value: "{{state.oauth_user}}"
+                  - title: "Token"
+                    value: "{{state.oauth_token | truncate: 20}}..."
+              - type: TextBlock
+                wrap: true
+                isSubtle: true
+                text: "OAuth token stored in session. You can now use GitHub MCP tools."
+            actions:
+              - type: Action.Submit
+                title: "→ Try GitHub MCP"
+                style: positive
+                data:
+                  action_id: demo_github
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_menu
+
+  # ============================================
+  # Demo 4: GitHub MCP
+  # ============================================
+  demo_github_form:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                text: "🐙 GitHub MCP Demo"
+              - type: TextBlock
+                wrap: true
+                text: "Call GitHub API using MCP tools"
+              - type: Input.ChoiceSet
+                id: github_action
+                label: "Select Action"
+                value: "get_user"
+                choices:
+                  - title: "Get User Info"
+                    value: "get_user"
+                  - title: "List Repos"
+                    value: "list_repos"
+                  - title: "Get Repo Info"
+                    value: "get_repo"
+              - type: Input.Text
+                id: github_username
+                label: "GitHub Username"
+                placeholder: "e.g., octocat"
+                value: "greenticai"
+              - type: Input.Text
+                id: github_repo
+                label: "Repository (for repo actions)"
+                placeholder: "e.g., greentic-pack"
+                value: "greentic-pack"
+            actions:
+              - type: Action.Submit
+                title: "🚀 Call GitHub API"
+                style: positive
+                data:
+                  action_id: call_github
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_github
+
+  route_github:
+    match:
+      input: in.metadata.action_id
+      cases:
+        - value: "call_github"
+          to: call_github_mcp
+        - value: "back_menu"
+          to: show_menu
+      default:
+        to: show_menu
+
+  call_github_mcp:
+    set:
+      github_action: "{{in.metadata.github_action}}"
+      github_username: "{{in.metadata.github_username}}"
+      github_repo: "{{in.metadata.github_repo}}"
+      # Simulated MCP result (in production, this would call actual MCP)
+      mcp_result:
+        action: "{{in.metadata.github_action}}"
+        user: "{{in.metadata.github_username}}"
+        repo: "{{in.metadata.github_repo}}"
+        status: "success"
+        data:
+          login: "{{in.metadata.github_username}}"
+          type: "Organization"
+          public_repos: 42
+          followers: 100
+    routing:
+      - to: show_github_result
+
+  show_github_result:
+    emit.response:
+      messages:
+        - type: adaptive_card
+          card:
+            $schema: "http://adaptivecards.io/schemas/adaptive-card.json"
+            type: AdaptiveCard
+            version: "1.3"
+            body:
+              - type: TextBlock
+                size: Medium
+                weight: Bolder
+                color: Good
+                text: "✅ GitHub API Result"
+              - type: FactSet
+                facts:
+                  - title: "Action"
+                    value: "{{state.github_action}}"
+                  - title: "Username"
+                    value: "{{state.github_username}}"
+                  - title: "Repository"
+                    value: "{{state.github_repo}}"
+              - type: TextBlock
+                text: "MCP Response:"
+                weight: Bolder
+              - type: Container
+                style: emphasis
+                items:
+                  - type: TextBlock
+                    wrap: true
+                    fontType: Monospace
+                    size: Small
+                    text: "{{state.mcp_result | json}}"
+              - type: TextBlock
+                wrap: true
+                isSubtle: true
+                size: Small
+                text: "Note: This is simulated. In production, this calls actual GitHub MCP tools."
+            actions:
+              - type: Action.Submit
+                title: "Try Again"
+                data:
+                  action_id: demo_github
+              - type: Action.Submit
+                title: "← Back to Menu"
+                data:
+                  action_id: back_menu
+    routing:
+      - to: route_menu

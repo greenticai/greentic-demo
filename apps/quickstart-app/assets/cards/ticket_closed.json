@@ -1,0 +1,74 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "greentic": {
+    "cardId": "ticket_closed",
+    "flow": "on_event"
+  },
+  "body": [
+    {
+      "type": "Container",
+      "style": "default",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "$t(quickstart_app.ticket_closed.body_0.items_0.columns_0.items_0.text)",
+                  "size": "ExtraLarge"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "$t(quickstart_app.ticket_closed.body_0.items_0.columns_1.items_0.text)",
+                  "size": "Large",
+                  "weight": "Bolder"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "$t(quickstart_app.ticket_closed.body_1.facts_0_title)",
+          "value": "{{input.event.payload.ticket_id}}"
+        },
+        {
+          "title": "$t(quickstart_app.ticket_closed.body_1.facts_1_title)",
+          "value": "$t(quickstart_app.ticket_closed.body_1.facts_1_value)"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "$t(quickstart_app.ticket_closed.body_2.text)",
+      "wrap": true,
+      "spacing": "Medium"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "$t(quickstart_app.ticket_closed.actions_0.title)",
+      "data": {
+        "action": "create_ticket"
+      }
+    }
+  ]
+}

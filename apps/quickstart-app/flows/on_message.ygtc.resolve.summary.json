@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "flow": "on_message.ygtc",
+  "nodes": {
+    "extract_event": {
+      "component_id": "component-msg2events",
+      "source": {
+        "kind": "local",
+        "path": "../../../packs/component-msg2events/components/component-msg2events.wasm"
+      },
+      "digest": "sha256:d1828db40796161febf23905125d595ab3b16d19b2fd30a629ce6081aee0a810"
+    }
+  }
+}

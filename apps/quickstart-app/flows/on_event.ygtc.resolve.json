@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "flow": "on_event.ygtc",
+  "nodes": {
+    "route_to_messaging": {
+      "source": {
+        "kind": "local",
+        "path": "../components/component-events2msg.wasm",
+        "digest": "sha256:666d813f32ca5e4c0c835aebf82e2535b8791da2d9b94ec80d97f3cf6657530e"
+      },
+      "mode": "pinned"
+    }
+  }
+}
