@@ -3,6 +3,11 @@ title: Salesforce OAuth Connection Flow
 description: Handle Salesforce OAuth authorization and token management
 type: messaging
 start: show_connect_card
+schema_version: 2
+tags:
+  - oauth
+  - salesforce
+  - authentication
 
 parameters:
   oauth_provider: salesforce
@@ -17,13 +22,13 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: salesforce_connect_card.json
+          asset_path: cards/salesforce_connect_card.json
           template_params:
             provider: parameters.oauth_provider
             scopes: parameters.oauth_scopes
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'connect_salesforce'"
+      - condition: response.action == "connect_salesforce"
         to: initiate_oauth
       - to: cancel
 
@@ -34,7 +39,7 @@ nodes:
       scopes: parameters.oauth_scopes
       redirect_uri: "{api_base}/oauth/callback/{tenant}/salesforce"
     routing:
-      - when: "oauth.authorization_url != null"
+      - condition: oauth.authorization_url != null
         to: redirect_user
       - to: oauth_error
 
@@ -43,8 +48,8 @@ nodes:
     emit.response:
       text: "Please authorize with Salesforce"
       metadata:
-        redirect_url: "oauth.authorization_url"
-        oauth_state: "oauth.state"
+        redirect_url: "{{oauth.authorization_url}}"
+        oauth_state: "{{oauth.state}}"
     routing:
       - to: wait_callback
 
@@ -54,7 +59,7 @@ nodes:
       provider: parameters.oauth_provider
       timeout_seconds: 300
     routing:
-      - when: "oauth.success == true"
+      - condition: oauth.success == true
         to: exchange_token
       - to: oauth_timeout
 
@@ -62,9 +67,9 @@ nodes:
   exchange_token:
     oauth.token_exchange:
       provider: parameters.oauth_provider
-      code: "oauth.code"
+      code: "{{oauth.code}}"
     routing:
-      - when: "oauth.access_token != null"
+      - condition: oauth.access_token != null
         to: save_token
       - to: token_error
 
@@ -72,7 +77,7 @@ nodes:
   save_token:
     state.set:
       key: "salesforce_oauth_token"
-      value: "oauth.access_token"
+      value: "{{oauth.access_token}}"
     routing:
       - to: save_instance_url
 
@@ -80,7 +85,7 @@ nodes:
   save_instance_url:
     state.set:
       key: "salesforce_instance_url"
-      value: "oauth.instance_url"
+      value: "{{oauth.instance_url}}"
     routing:
       - to: fetch_user_info
 
@@ -92,10 +97,10 @@ nodes:
       input:
         tool: sf_search
         arguments:
-          oauth_token: "state.salesforce_oauth_token"
+          oauth_token: "{{state.salesforce_oauth_token}}"
           query: "SELECT Id, Name, Email, Username FROM User WHERE Id = :userId"
     routing:
-      - when: "fetch_user_info.payload.records[0].Name != null"
+      - condition: prev.payload.records[0].Name != null
         to: save_user_info
       - to: success
 
@@ -103,7 +108,7 @@ nodes:
   save_user_info:
     state.set:
       key: "salesforce_username"
-      value: "fetch_user_info.payload.records[0].Name"
+      value: "{{prev.payload.records[0].Name}}"
     routing:
       - to: success
 

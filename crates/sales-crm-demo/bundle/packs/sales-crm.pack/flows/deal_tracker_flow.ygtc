@@ -3,6 +3,11 @@ title: Deal Tracker & Pipeline Flow
 description: View sales pipeline, track deals, update stages and amounts via Salesforce
 type: messaging
 start: check_token
+schema_version: 2
+tags:
+  - sales
+  - pipeline
+  - deals
 
 parameters:
   pipeline_stages:
@@ -18,7 +23,7 @@ nodes:
     state.get:
       key: "salesforce_oauth_token"
     routing:
-      - when: "state.salesforce_oauth_token != null"
+      - condition: prev.value != null
         to: fetch_pipeline
       - to: no_token
 
@@ -39,9 +44,9 @@ nodes:
       input:
         tool: sf_get_pipeline
         arguments:
-          oauth_token: "state.salesforce_oauth_token"
+          oauth_token: "{{state.salesforce_oauth_token}}"
     routing:
-      - when: "fetch_pipeline.success == true"
+      - condition: prev.success == true
         to: show_pipeline
       - to: fetch_error
 
@@ -51,18 +56,18 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: pipeline_card.json
+          asset_path: cards/pipeline_card.json
           template_params:
-            stages: "fetch_pipeline.payload.stages"
-            total_value: "fetch_pipeline.payload.total_value"
-            deal_count: "fetch_pipeline.payload.deal_count"
+            stages: "prev.payload.stages"
+            total_value: "prev.payload.total_value"
+            deal_count: "prev.payload.deal_count"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'view_deal'"
+      - condition: response.action == "view_deal"
         to: fetch_deal_detail
-      - when: "input.action_id == 'refresh'"
+      - condition: response.action == "refresh"
         to: fetch_pipeline
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: done
 
@@ -74,10 +79,10 @@ nodes:
       input:
         tool: sf_get_opportunity
         arguments:
-          oauth_token: "state.salesforce_oauth_token"
-          opportunity_id: "input.opportunity_id"
+          oauth_token: "{{state.salesforce_oauth_token}}"
+          opportunity_id: "{{in.input.opportunity_id}}"
     routing:
-      - when: "fetch_deal_detail.success == true"
+      - condition: prev.success == true
         to: show_deal_detail
       - to: fetch_error
 
@@ -87,28 +92,28 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: deal_detail_card.json
+          asset_path: cards/deal_detail_card.json
           template_params:
-            name: "fetch_deal_detail.payload.name"
-            amount: "fetch_deal_detail.payload.amount"
-            stage: "fetch_deal_detail.payload.stage"
-            close_date: "fetch_deal_detail.payload.close_date"
-            probability: "fetch_deal_detail.payload.probability"
-            owner: "fetch_deal_detail.payload.owner"
-            last_activity: "fetch_deal_detail.payload.last_activity"
-            notes: "fetch_deal_detail.payload.notes"
-            opportunity_id: "fetch_deal_detail.payload.id"
+            name: "prev.payload.name"
+            amount: "prev.payload.amount"
+            stage: "prev.payload.stage"
+            close_date: "prev.payload.close_date"
+            probability: "prev.payload.probability"
+            owner: "prev.payload.owner"
+            last_activity: "prev.payload.last_activity"
+            notes: "prev.payload.notes"
+            opportunity_id: "prev.payload.id"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'update_stage'"
+      - condition: response.action == "update_stage"
         to: update_stage
-      - when: "input.action_id == 'update_amount'"
+      - condition: response.action == "update_amount"
         to: update_amount
-      - when: "input.action_id == 'add_note'"
+      - condition: response.action == "add_note"
         to: add_note
-      - when: "input.action_id == 'schedule_meeting'"
+      - condition: response.action == "schedule_meeting"
         to: schedule_deal_meeting
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: fetch_pipeline
       - to: fetch_pipeline
 
@@ -120,18 +125,18 @@ nodes:
       input:
         tool: sf_update_opportunity
         arguments:
-          oauth_token: "state.salesforce_oauth_token"
-          opportunity_id: "input.opportunity_id"
-          stage: "input.new_stage"
+          oauth_token: "{{state.salesforce_oauth_token}}"
+          opportunity_id: "{{in.input.opportunity_id}}"
+          stage: "{{in.input.new_stage}}"
     routing:
-      - when: "update_stage.success == true"
+      - condition: prev.success == true
         to: stage_updated
       - to: update_error
 
   # Confirm stage update
   stage_updated:
     emit.response:
-      text: "Deal stage updated to {{input.new_stage}}."
+      text: "Deal stage updated to {{in.input.new_stage}}."
     routing:
       - to: fetch_deal_detail
 
@@ -143,18 +148,18 @@ nodes:
       input:
         tool: sf_update_opportunity
         arguments:
-          oauth_token: "state.salesforce_oauth_token"
-          opportunity_id: "input.opportunity_id"
-          amount: "input.new_amount"
+          oauth_token: "{{state.salesforce_oauth_token}}"
+          opportunity_id: "{{in.input.opportunity_id}}"
+          amount: "{{in.input.new_amount}}"
     routing:
-      - when: "update_amount.success == true"
+      - condition: prev.success == true
         to: amount_updated
       - to: update_error
 
   # Confirm amount update
   amount_updated:
     emit.response:
-      text: "Deal amount updated to ${{input.new_amount}}."
+      text: "Deal amount updated to ${{in.input.new_amount}}."
     routing:
       - to: fetch_deal_detail
 
@@ -166,11 +171,11 @@ nodes:
       input:
         tool: sf_update_opportunity
         arguments:
-          oauth_token: "state.salesforce_oauth_token"
-          opportunity_id: "input.opportunity_id"
-          notes: "input.note_text"
+          oauth_token: "{{state.salesforce_oauth_token}}"
+          opportunity_id: "{{in.input.opportunity_id}}"
+          notes: "{{in.input.note_text}}"
     routing:
-      - when: "add_note.success == true"
+      - condition: prev.success == true
         to: note_added
       - to: update_error
 
@@ -187,14 +192,14 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: meeting_card.json
+          asset_path: cards/meeting_card.json
           template_params:
-            prefill_contact: "fetch_deal_detail.payload.contact_name"
+            prefill_contact: "prev.payload.contact_name"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'schedule_meeting'"
+      - condition: response.action == "schedule_meeting"
         to: create_deal_task
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_deal_detail
       - to: show_deal_detail
 
@@ -206,23 +211,23 @@ nodes:
       input:
         tool: sf_create_task
         arguments:
-          oauth_token: "state.salesforce_oauth_token"
-          subject: "input.meeting_subject"
-          what_id: "input.opportunity_id"
-          activity_date: "input.meeting_date"
-          activity_time: "input.meeting_time"
-          duration_minutes: "input.duration"
-          meeting_type: "input.meeting_type"
-          description: "input.meeting_notes"
+          oauth_token: "{{state.salesforce_oauth_token}}"
+          subject: "{{in.input.meeting_subject}}"
+          what_id: "{{in.input.opportunity_id}}"
+          activity_date: "{{in.input.meeting_date}}"
+          activity_time: "{{in.input.meeting_time}}"
+          duration_minutes: "{{in.input.duration}}"
+          meeting_type: "{{in.input.meeting_type}}"
+          description: "{{in.input.meeting_notes}}"
     routing:
-      - when: "create_deal_task.success == true"
+      - condition: prev.success == true
         to: deal_meeting_created
       - to: meeting_error
 
   # Confirm deal meeting created
   deal_meeting_created:
     emit.response:
-      text: "Meeting scheduled for {{create_deal_task.payload.activity_date}}."
+      text: "Meeting scheduled for {{prev.payload.activity_date}}."
     routing:
       - to: fetch_deal_detail
 

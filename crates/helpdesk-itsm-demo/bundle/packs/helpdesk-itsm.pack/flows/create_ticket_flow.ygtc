@@ -3,6 +3,11 @@ title: Create Jira Ticket Flow
 description: Create new Jira issues with priority, category, and description via MCP
 type: messaging
 start: check_token
+schema_version: 2
+tags:
+  - helpdesk
+  - jira
+  - ticket-creation
 
 parameters:
   jira_project_key: "ITSM"
@@ -14,7 +19,7 @@ nodes:
     state.get:
       key: "jira_oauth_token"
     routing:
-      - when: "state.jira_oauth_token != null"
+      - condition: prev.value != null
         to: show_create_form
       - to: no_token
 
@@ -33,27 +38,25 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: create_ticket_card.json
+          asset_path: cards/create_ticket_card.json
           template_params:
             project_key: parameters.jira_project_key
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'submit_ticket'"
+      - condition: response.action == "submit_ticket"
         to: validate_input
-      - when: "input.action_id == 'cancel'"
+      - condition: response.action == "cancel"
         to: cancelled
       - to: cancelled
 
   # Validate required fields
   validate_input:
-    switch:
-      value: "input.ticket_summary"
-      cases:
-        - match: ""
-          to: validation_error
-        - match: null
-          to: validation_error
-      default: create_issue
+    routing:
+      - condition: "{{in.input.ticket_summary == ''}}"
+        to: validation_error
+      - condition: "{{in.input.ticket_summary == null}}"
+        to: validation_error
+      - to: create_issue
 
   # Validation error
   validation_error:
@@ -70,17 +73,17 @@ nodes:
       input:
         tool: jira_create_issue
         arguments:
-          oauth_token: "state.jira_oauth_token"
+          oauth_token: "{{state.jira_oauth_token}}"
           project_key: parameters.jira_project_key
-          summary: "input.ticket_summary"
-          description: "input.ticket_description"
-          issue_type: "input.issue_type"
-          priority: "input.priority"
+          summary: "{{in.input.ticket_summary}}"
+          description: "{{in.input.ticket_description}}"
+          issue_type: "{{in.input.issue_type}}"
+          priority: "{{in.input.priority}}"
           labels:
-            - "input.category"
+            - "{{in.input.category}}"
             - "helpdesk"
     routing:
-      - when: "create_issue.success == true"
+      - condition: prev.success == true
         to: show_confirmation
       - to: create_error
 
@@ -90,17 +93,17 @@ nodes:
       text: |
         Ticket created successfully!
 
-        Key: {{create_issue.payload.key}}
-        Summary: {{input.ticket_summary}}
-        Priority: {{input.priority}}
-        Category: {{input.category}}
-        Type: {{input.issue_type}}
+        Key: {{prev.payload.key}}
+        Summary: {{in.input.ticket_summary}}
+        Priority: {{in.input.priority}}
+        Category: {{in.input.category}}
+        Type: {{in.input.issue_type}}
 
-        Your ticket has been assigned to the {{input.category}} support queue.
+        Your ticket has been assigned to the {{in.input.category}} support queue.
         You will be notified when there are updates.
       metadata:
-        ticket_key: "create_issue.payload.key"
-        ticket_url: "create_issue.payload.self"
+        ticket_key: "{{prev.payload.key}}"
+        ticket_url: "{{prev.payload.self}}"
     routing:
       - to: ask_followup
 
@@ -109,7 +112,7 @@ nodes:
     emit.response:
       text: "Would you like to create another ticket or return to the main menu?"
     routing:
-      - when: "input.action_id == 'create_another'"
+      - condition: response.action == "create_another"
         to: show_create_form
       - to: done
 

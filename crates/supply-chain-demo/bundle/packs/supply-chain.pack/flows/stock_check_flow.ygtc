@@ -3,6 +3,11 @@ title: Stock Check Flow
 description: Search and view current stock levels by SKU, category, or warehouse
 type: messaging
 start: check_prefill
+schema_version: 2
+tags:
+  - inventory
+  - stock
+  - supply-chain
 
 parameters:
   low_stock_threshold: 10
@@ -15,7 +20,7 @@ nodes:
     state.get:
       key: "selected_sku"
     routing:
-      - when: "state.selected_sku != null"
+      - condition: prev.value != null
         to: get_item_detail
       - to: show_search_form
 
@@ -25,7 +30,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: stock_status_card.json
+          asset_path: cards/stock_status_card.json
           template_params:
             items: []
             search_mode: true
@@ -33,13 +38,13 @@ nodes:
             default_warehouse: parameters.default_warehouse
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'search_stock'"
+      - condition: response.action == "search_stock"
         to: execute_search
-      - when: "input.action_id == 'browse_category'"
+      - condition: response.action == "browse_category"
         to: browse_by_category
-      - when: "input.action_id == 'view_all_low_stock'"
+      - condition: response.action == "view_all_low_stock"
         to: get_low_stock_items
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: done
 
@@ -51,12 +56,12 @@ nodes:
       input:
         tool: inventory_search_products
         arguments:
-          query: "input.search_query"
-          category: "input.category_filter"
-          warehouse: "input.warehouse_filter"
+          query: "{{in.input.search_query}}"
+          category: "{{in.input.category_filter}}"
+          warehouse: "{{in.input.warehouse_filter}}"
           limit: parameters.items_per_page
     routing:
-      - when: "execute_search.success == true"
+      - condition: prev.success == true
         to: show_search_results
       - to: search_error
 
@@ -68,11 +73,11 @@ nodes:
       input:
         tool: inventory_search_products
         arguments:
-          category: "input.category"
-          warehouse: "input.warehouse_filter"
+          category: "{{in.input.category}}"
+          warehouse: "{{in.input.warehouse_filter}}"
           limit: parameters.items_per_page
     routing:
-      - when: "browse_by_category.success == true"
+      - condition: prev.success == true
         to: show_search_results
       - to: search_error
 
@@ -82,21 +87,21 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: stock_status_card.json
+          asset_path: cards/stock_status_card.json
           template_params:
-            items: "execute_search.payload.products"
-            total_results: "execute_search.payload.total_count"
+            items: "prev.payload.products"
+            total_results: "prev.payload.total_count"
             search_mode: false
-            search_query: "input.search_query"
+            search_query: "{{in.input.search_query}}"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'view_item'"
+      - condition: response.action == "view_item"
         to: save_selected_sku
-      - when: "input.action_id == 'search_stock'"
+      - condition: response.action == "search_stock"
         to: execute_search
-      - when: "input.action_id == 'reorder_item'"
+      - condition: response.action == "reorder_item"
         to: initiate_reorder
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_search_form
       - to: done
 
@@ -104,7 +109,7 @@ nodes:
   save_selected_sku:
     state.set:
       key: "selected_sku"
-      value: "input.sku"
+      value: "{{in.input.sku}}"
     routing:
       - to: get_item_detail
 
@@ -116,9 +121,9 @@ nodes:
       input:
         tool: inventory_check_stock
         arguments:
-          sku: "state.selected_sku"
+          sku: "{{state.selected_sku}}"
     routing:
-      - when: "get_item_detail.success == true"
+      - condition: prev.success == true
         to: show_item_detail
       - to: item_not_found
 
@@ -128,18 +133,18 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: stock_status_card.json
+          asset_path: cards/stock_status_card.json
           template_params:
-            item: "get_item_detail.payload"
+            item: "prev.payload"
             view_mode: "detail"
             low_stock_threshold: parameters.low_stock_threshold
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'reorder_item'"
+      - condition: response.action == "reorder_item"
         to: initiate_reorder
-      - when: "input.action_id == 'view_history'"
+      - condition: response.action == "view_history"
         to: view_stock_history
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: clear_selected_sku
       - to: done
 
@@ -151,10 +156,10 @@ nodes:
       input:
         tool: inventory_check_stock
         arguments:
-          sku: "state.selected_sku"
+          sku: "{{state.selected_sku}}"
           include_history: true
     routing:
-      - when: "view_stock_history.success == true"
+      - condition: prev.success == true
         to: show_stock_history
       - to: search_error
 
@@ -162,13 +167,13 @@ nodes:
   show_stock_history:
     emit.response:
       text: |
-        Stock Movement History - {{view_stock_history.payload.product_name}} ({{state.selected_sku}})
+        Stock Movement History - {{prev.payload.product_name}} ({{state.selected_sku}})
 
         Recent movements:
-        {{view_stock_history.payload.history_summary}}
+        {{prev.payload.history_summary}}
 
-        Current Level: {{view_stock_history.payload.current_quantity}} units
-        30-Day Average: {{view_stock_history.payload.avg_daily_usage}} units/day
+        Current Level: {{prev.payload.current_quantity}} units
+        30-Day Average: {{prev.payload.avg_daily_usage}} units/day
     routing:
       - to: show_item_detail
 
@@ -189,7 +194,7 @@ nodes:
         arguments:
           threshold: parameters.low_stock_threshold
     routing:
-      - when: "get_low_stock_items.success == true"
+      - condition: prev.success == true
         to: show_low_stock_results
       - to: search_error
 
@@ -199,16 +204,16 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: alert_card.json
+          asset_path: cards/alert_card.json
           template_params:
-            items: "get_low_stock_items.payload.items"
-            total_alerts: "get_low_stock_items.payload.total_count"
+            items: "prev.payload.items"
+            total_alerts: "prev.payload.total_count"
             threshold: parameters.low_stock_threshold
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'quick_reorder'"
+      - condition: response.action == "quick_reorder"
         to: initiate_reorder
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_search_form
       - to: done
 
@@ -216,7 +221,7 @@ nodes:
   initiate_reorder:
     state.set:
       key: "reorder_sku"
-      value: "input.sku"
+      value: "{{in.input.sku}}"
     routing:
       - to: reorder_redirect
 
@@ -226,7 +231,7 @@ nodes:
       text: "Redirecting to reorder form for SKU: {{state.reorder_sku}}"
       metadata:
         redirect_flow: reorder_flow
-        sku: "state.reorder_sku"
+        sku: "{{state.reorder_sku}}"
     routing: out
 
   # Item not found

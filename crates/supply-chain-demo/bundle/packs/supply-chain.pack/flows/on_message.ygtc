@@ -3,6 +3,11 @@ title: Supply Chain - Message Handler
 description: Entry point for messaging - shows dashboard and routes to inventory, orders, and reorder flows
 type: messaging
 start: load_dashboard_metrics
+schema_version: 2
+tags:
+  - messaging
+  - supply-chain
+  - entry-point
 
 parameters:
   low_stock_threshold: 10
@@ -39,9 +44,9 @@ nodes:
     state.set:
       key: "dashboard_metrics"
       value:
-        low_stock_count: "load_dashboard_metrics.payload.total_count"
-        pending_orders: "load_pending_orders.payload.total_count"
-        total_skus: "load_dashboard_metrics.payload.total_skus"
+        low_stock_count: "{{prev.payload.total_count}}"
+        pending_orders: "{{prev.payload.total_count}}"
+        total_skus: "{{prev.payload.total_skus}}"
     routing:
       - to: show_welcome
 
@@ -51,7 +56,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: welcome_card.json
+          asset_path: cards/welcome_card.json
           template_params:
             total_skus: "state.dashboard_metrics.total_skus"
             low_stock_count: "state.dashboard_metrics.low_stock_count"
@@ -59,15 +64,15 @@ nodes:
             currency: parameters.currency
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'check_stock'"
+      - condition: response.action == "check_stock"
         to: route_stock_check
-      - when: "input.action_id == 'track_orders'"
+      - condition: response.action == "track_orders"
         to: route_order_tracking
-      - when: "input.action_id == 'low_stock_alerts'"
+      - condition: response.action == "low_stock_alerts"
         to: route_low_stock_alerts
-      - when: "input.action_id == 'create_reorder'"
+      - condition: response.action == "create_reorder"
         to: route_reorder
-      - when: "input.action_id == 'supplier_directory'"
+      - condition: response.action == "supplier_directory"
         to: route_supplier_directory
       - to: show_help
 
@@ -85,16 +90,16 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: stock_status_card.json
+          asset_path: cards/stock_status_card.json
           template_params:
             items: []
             search_mode: true
             search_query: ""
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'search_stock'"
+      - condition: response.action == "search_stock"
         to: execute_stock_search
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: load_dashboard_metrics
       - to: show_welcome
 
@@ -106,11 +111,11 @@ nodes:
       input:
         tool: inventory_search_products
         arguments:
-          query: "input.search_query"
-          category: "input.category_filter"
-          warehouse: "input.warehouse_filter"
+          query: "{{in.input.search_query}}"
+          category: "{{in.input.category_filter}}"
+          warehouse: "{{in.input.warehouse_filter}}"
     routing:
-      - when: "execute_stock_search.success == true"
+      - condition: prev.success == true
         to: show_stock_results
       - to: stock_search_error
 
@@ -120,19 +125,19 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: stock_status_card.json
+          asset_path: cards/stock_status_card.json
           template_params:
-            items: "execute_stock_search.payload.products"
-            total_results: "execute_stock_search.payload.total_count"
+            items: "prev.payload.products"
+            total_results: "prev.payload.total_count"
             search_mode: false
-            search_query: "input.search_query"
+            search_query: "{{in.input.search_query}}"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'search_stock'"
+      - condition: response.action == "search_stock"
         to: execute_stock_search
-      - when: "input.action_id == 'reorder_item'"
+      - condition: response.action == "reorder_item"
         to: quick_reorder_from_stock
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_welcome
       - to: done
 
@@ -140,7 +145,7 @@ nodes:
   quick_reorder_from_stock:
     state.set:
       key: "reorder_sku"
-      value: "input.sku"
+      value: "{{in.input.sku}}"
     routing:
       - to: route_reorder
 
@@ -170,7 +175,7 @@ nodes:
           limit: 10
           sort: created_desc
     routing:
-      - when: "order_list_recent.success == true"
+      - condition: prev.success == true
         to: show_order_list
       - to: order_tracking_error
 
@@ -180,18 +185,18 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: order_tracking_card.json
+          asset_path: cards/order_tracking_card.json
           template_params:
-            orders: "order_list_recent.payload.orders"
-            total_orders: "order_list_recent.payload.total_count"
+            orders: "prev.payload.orders"
+            total_orders: "prev.payload.total_count"
             view_mode: "list"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'view_order'"
+      - condition: response.action == "view_order"
         to: get_order_detail
-      - when: "input.action_id == 'search_order'"
+      - condition: response.action == "search_order"
         to: search_order_by_id
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: load_dashboard_metrics
       - to: done
 
@@ -203,9 +208,9 @@ nodes:
       input:
         tool: order_get_status
         arguments:
-          order_id: "input.order_id"
+          order_id: "{{in.input.order_id}}"
     routing:
-      - when: "search_order_by_id.success == true"
+      - condition: prev.success == true
         to: show_order_detail
       - to: order_not_found
 
@@ -217,9 +222,9 @@ nodes:
       input:
         tool: order_get_status
         arguments:
-          order_id: "input.order_id"
+          order_id: "{{in.input.order_id}}"
     routing:
-      - when: "get_order_detail.success == true"
+      - condition: prev.success == true
         to: show_order_detail
       - to: order_tracking_error
 
@@ -229,15 +234,15 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: order_tracking_card.json
+          asset_path: cards/order_tracking_card.json
           template_params:
-            order: "get_order_detail.payload"
+            order: "prev.payload"
             view_mode: "detail"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'contact_supplier'"
+      - condition: response.action == "contact_supplier"
         to: route_contact_supplier
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: order_list_recent
       - to: done
 
@@ -245,7 +250,7 @@ nodes:
   route_contact_supplier:
     state.set:
       key: "contact_supplier_id"
-      value: "input.supplier_id"
+      value: "{{in.input.supplier_id}}"
     routing:
       - to: route_supplier_directory
 
@@ -273,7 +278,7 @@ nodes:
         arguments:
           threshold: parameters.low_stock_threshold
     routing:
-      - when: "route_low_stock_alerts.success == true"
+      - condition: prev.success == true
         to: show_low_stock_alerts
       - to: alert_error
 
@@ -283,18 +288,18 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: alert_card.json
+          asset_path: cards/alert_card.json
           template_params:
-            items: "route_low_stock_alerts.payload.items"
-            total_alerts: "route_low_stock_alerts.payload.total_count"
+            items: "prev.payload.items"
+            total_alerts: "prev.payload.total_count"
             threshold: parameters.low_stock_threshold
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'quick_reorder'"
+      - condition: response.action == "quick_reorder"
         to: quick_reorder_from_alert
-      - when: "input.action_id == 'reorder_all'"
+      - condition: response.action == "reorder_all"
         to: reorder_all_low_stock
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: load_dashboard_metrics
       - to: done
 
@@ -302,7 +307,7 @@ nodes:
   quick_reorder_from_alert:
     state.set:
       key: "reorder_sku"
-      value: "input.sku"
+      value: "{{in.input.sku}}"
     routing:
       - to: route_reorder
 
@@ -335,29 +340,25 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: reorder_card.json
+          asset_path: cards/reorder_card.json
           template_params:
             prefill_sku: "state.reorder_sku"
             currency: parameters.currency
             lead_days: parameters.reorder_lead_days
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'submit_reorder'"
+      - condition: response.action == "submit_reorder"
         to: validate_reorder
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: load_dashboard_metrics
       - to: done
 
   # Validate reorder input
   validate_reorder:
-    switch:
-      value: "input.quantity"
-      cases:
-        - match: null
-          to: reorder_validation_error
-        - match: "0"
-          to: reorder_validation_error
-      default: create_reorder_request
+    routing:
+      - condition: "{{in.input.quantity == null || in.input.quantity == '0'}}"
+        to: reorder_validation_error
+      - to: create_reorder_request
 
   # Reorder validation error
   reorder_validation_error:
@@ -374,14 +375,14 @@ nodes:
       input:
         tool: reorder_create
         arguments:
-          sku: "input.product_sku"
-          quantity: "input.quantity"
-          supplier_id: "input.supplier_id"
-          urgency: "input.urgency"
-          delivery_date: "input.delivery_date"
-          notes: "input.notes"
+          sku: "{{in.input.product_sku}}"
+          quantity: "{{in.input.quantity}}"
+          supplier_id: "{{in.input.supplier_id}}"
+          urgency: "{{in.input.urgency}}"
+          delivery_date: "{{in.input.delivery_date}}"
+          notes: "{{in.input.notes}}"
     routing:
-      - when: "create_reorder_request.success == true"
+      - condition: prev.success == true
         to: reorder_success
       - to: reorder_error
 
@@ -391,10 +392,10 @@ nodes:
       text: |
         Reorder request created successfully!
 
-        Order ID: {{create_reorder_request.payload.order_id}}
-        SKU: {{create_reorder_request.payload.sku}}
-        Quantity: {{create_reorder_request.payload.quantity}}
-        Estimated Delivery: {{create_reorder_request.payload.estimated_delivery}}
+        Order ID: {{prev.payload.order_id}}
+        SKU: {{prev.payload.sku}}
+        Quantity: {{prev.payload.quantity}}
+        Estimated Delivery: {{prev.payload.estimated_delivery}}
 
         The request has been sent for approval.
     routing:
@@ -424,7 +425,7 @@ nodes:
         arguments:
           limit: 20
     routing:
-      - when: "route_supplier_directory.success == true"
+      - condition: prev.success == true
         to: show_supplier_directory
       - to: supplier_error
 
@@ -434,17 +435,17 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: supplier_card.json
+          asset_path: cards/supplier_card.json
           template_params:
-            suppliers: "route_supplier_directory.payload.suppliers"
-            total_suppliers: "route_supplier_directory.payload.total_count"
+            suppliers: "prev.payload.suppliers"
+            total_suppliers: "prev.payload.total_count"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'send_rfq'"
+      - condition: response.action == "send_rfq"
         to: send_rfq
-      - when: "input.action_id == 'view_history'"
+      - condition: response.action == "view_history"
         to: view_supplier_history
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: load_dashboard_metrics
       - to: done
 
@@ -456,11 +457,11 @@ nodes:
       input:
         tool: supplier_send_rfq
         arguments:
-          supplier_id: "input.supplier_id"
-          items: "input.rfq_items"
-          message: "input.rfq_message"
+          supplier_id: "{{in.input.supplier_id}}"
+          items: "{{in.input.rfq_items}}"
+          message: "{{in.input.rfq_message}}"
     routing:
-      - when: "send_rfq.success == true"
+      - condition: prev.success == true
         to: rfq_sent
       - to: rfq_error
 
@@ -470,9 +471,9 @@ nodes:
       text: |
         Request for Quote sent successfully!
 
-        RFQ ID: {{send_rfq.payload.rfq_id}}
-        Supplier: {{send_rfq.payload.supplier_name}}
-        Expected Response: {{send_rfq.payload.expected_response_date}}
+        RFQ ID: {{prev.payload.rfq_id}}
+        Supplier: {{prev.payload.supplier_name}}
+        Expected Response: {{prev.payload.expected_response_date}}
     routing:
       - to: show_supplier_directory
 
@@ -491,10 +492,10 @@ nodes:
       input:
         tool: order_list
         arguments:
-          supplier_id: "input.supplier_id"
+          supplier_id: "{{in.input.supplier_id}}"
           limit: 10
     routing:
-      - when: "view_supplier_history.success == true"
+      - condition: prev.success == true
         to: show_supplier_history
       - to: supplier_error
 
@@ -504,14 +505,14 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: order_tracking_card.json
+          asset_path: cards/order_tracking_card.json
           template_params:
-            orders: "view_supplier_history.payload.orders"
-            total_orders: "view_supplier_history.payload.total_count"
+            orders: "prev.payload.orders"
+            total_orders: "prev.payload.total_count"
             view_mode: "supplier_history"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: route_supplier_directory
       - to: done
 

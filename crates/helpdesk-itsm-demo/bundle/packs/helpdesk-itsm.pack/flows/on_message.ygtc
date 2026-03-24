@@ -3,6 +3,11 @@ title: IT Helpdesk ITSM - Message Handler
 description: Entry point for messaging - routes to Jira OAuth, ticket management, and knowledge base flows
 type: messaging
 start: check_auth
+schema_version: 2
+tags:
+  - helpdesk
+  - itsm
+  - jira
 
 parameters:
   oauth_provider: jira
@@ -14,7 +19,7 @@ nodes:
     state.get:
       key: "jira_oauth_token"
     routing:
-      - when: "state.jira_oauth_token != null"
+      - condition: prev.value != null
         to: show_welcome
       - to: request_oauth
 
@@ -24,12 +29,12 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: jira_connect_card.json
+          asset_path: cards/jira_connect_card.json
           template_params:
             provider: parameters.oauth_provider
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'connect_jira'"
+      - condition: response.action == "connect_jira"
         to: start_oauth
       - to: show_help
 
@@ -42,7 +47,7 @@ nodes:
         - write:jira-work
         - read:jira-user
     routing:
-      - when: "oauth.success == true"
+      - condition: oauth.success == true
         to: save_token
       - to: oauth_failed
 
@@ -50,7 +55,7 @@ nodes:
   save_token:
     state.set:
       key: "jira_oauth_token"
-      value: "oauth.access_token"
+      value: "{{prev.access_token}}"
     routing:
       - to: show_welcome
 
@@ -67,21 +72,21 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: welcome_card.json
+          asset_path: cards/welcome_card.json
           template_params:
             display_name: "state.jira_display_name"
             project_key: parameters.jira_project_key
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'create_ticket'"
+      - condition: response.action == "create_ticket"
         to: create_ticket
-      - when: "input.action_id == 'check_status'"
+      - condition: response.action == "check_status"
         to: check_ticket_status
-      - when: "input.action_id == 'search_kb'"
+      - condition: response.action == "search_kb"
         to: search_knowledge_base
-      - when: "input.action_id == 'my_tickets'"
+      - condition: response.action == "my_tickets"
         to: list_my_tickets
-      - when: "input.action_id == 'disconnect'"
+      - condition: response.action == "disconnect"
         to: disconnect
       - to: show_help
 
@@ -91,14 +96,14 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: create_ticket_card.json
+          asset_path: cards/create_ticket_card.json
           template_params:
             project_key: parameters.jira_project_key
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'submit_ticket'"
+      - condition: response.action == "submit_ticket"
         to: submit_new_ticket
-      - when: "input.action_id == 'cancel'"
+      - condition: response.action == "cancel"
         to: show_welcome
       - to: show_welcome
 
@@ -110,15 +115,15 @@ nodes:
       input:
         tool: jira_create_issue
         arguments:
-          oauth_token: "state.jira_oauth_token"
+          oauth_token: "{{state.jira_oauth_token}}"
           project_key: parameters.jira_project_key
-          summary: "input.ticket_summary"
-          description: "input.ticket_description"
-          issue_type: "input.issue_type"
-          priority: "input.priority"
-          labels: "input.category"
+          summary: "{{in.input.ticket_summary}}"
+          description: "{{in.input.ticket_description}}"
+          issue_type: "{{in.input.issue_type}}"
+          priority: "{{in.input.priority}}"
+          labels: "{{in.input.category}}"
     routing:
-      - when: "submit_new_ticket.success == true"
+      - condition: prev.success == true
         to: ticket_created_success
       - to: ticket_create_error
 
@@ -128,10 +133,10 @@ nodes:
       text: |
         Ticket created successfully!
 
-        Key: {{submit_new_ticket.payload.key}}
-        Summary: {{submit_new_ticket.payload.fields.summary}}
-        Status: {{submit_new_ticket.payload.fields.status.name}}
-        Priority: {{submit_new_ticket.payload.fields.priority.name}}
+        Key: {{prev.payload.key}}
+        Summary: {{prev.payload.fields.summary}}
+        Status: {{prev.payload.fields.status.name}}
+        Priority: {{prev.payload.fields.priority.name}}
 
         You can track this ticket using the Check Status option.
     routing:
@@ -158,10 +163,10 @@ nodes:
       input:
         tool: jira_get_issue
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          issue_key: "input.text"
+          oauth_token: "{{state.jira_oauth_token}}"
+          issue_key: "{{in.input.text}}"
     routing:
-      - when: "fetch_ticket_status.success == true"
+      - condition: prev.success == true
         to: show_ticket_status
       - to: ticket_not_found
 
@@ -171,7 +176,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: ticket_status_card.json
+          asset_path: cards/ticket_status_card.json
           template_params:
             issue_key: "fetch_ticket_status.payload.key"
             summary: "fetch_ticket_status.payload.fields.summary"
@@ -185,11 +190,11 @@ nodes:
             description: "fetch_ticket_status.payload.fields.description"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'add_comment'"
+      - condition: response.action == "add_comment"
         to: add_comment
-      - when: "input.action_id == 'escalate'"
+      - condition: response.action == "escalate"
         to: escalate_ticket
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_welcome
       - to: show_welcome
 
@@ -214,11 +219,11 @@ nodes:
       input:
         tool: jira_add_comment
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          issue_key: "fetch_ticket_status.payload.key"
-          body: "input.text"
+          oauth_token: "{{state.jira_oauth_token}}"
+          issue_key: "{{fetch_ticket_status.payload.key}}"
+          body: "{{in.input.text}}"
     routing:
-      - when: "submit_comment.success == true"
+      - condition: prev.success == true
         to: comment_added
       - to: comment_error
 
@@ -240,15 +245,15 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: escalation_card.json
+          asset_path: cards/escalation_card.json
           template_params:
             issue_key: "fetch_ticket_status.payload.key"
             current_priority: "fetch_ticket_status.payload.fields.priority.name"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'confirm_escalation'"
+      - condition: response.action == "confirm_escalation"
         to: submit_escalation
-      - when: "input.action_id == 'cancel'"
+      - condition: response.action == "cancel"
         to: show_welcome
       - to: show_welcome
 
@@ -260,15 +265,15 @@ nodes:
       input:
         tool: jira_update_issue
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          issue_key: "fetch_ticket_status.payload.key"
+          oauth_token: "{{state.jira_oauth_token}}"
+          issue_key: "{{fetch_ticket_status.payload.key}}"
           fields:
             priority:
-              name: "input.escalation_priority"
+              name: "{{in.input.escalation_priority}}"
             labels:
               - "escalated"
     routing:
-      - when: "submit_escalation.success == true"
+      - condition: prev.success == true
         to: escalation_comment
       - to: escalation_error
 
@@ -280,9 +285,9 @@ nodes:
       input:
         tool: jira_add_comment
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          issue_key: "fetch_ticket_status.payload.key"
-          body: "Escalated to {{input.escalation_priority}}. Reason: {{input.escalation_reason}}"
+          oauth_token: "{{state.jira_oauth_token}}"
+          issue_key: "{{fetch_ticket_status.payload.key}}"
+          body: "Escalated to {{in.input.escalation_priority}}. Reason: {{in.input.escalation_reason}}"
     routing:
       - to: escalation_success
 
@@ -291,8 +296,8 @@ nodes:
       text: |
         Ticket {{fetch_ticket_status.payload.key}} has been escalated.
 
-        New Priority: {{input.escalation_priority}}
-        Reason: {{input.escalation_reason}}
+        New Priority: {{in.input.escalation_priority}}
+        Reason: {{in.input.escalation_reason}}
     routing:
       - to: show_welcome
 
@@ -310,11 +315,11 @@ nodes:
       input:
         tool: jira_search
         arguments:
-          oauth_token: "state.jira_oauth_token"
+          oauth_token: "{{state.jira_oauth_token}}"
           jql: "reporter = currentUser() AND project = {{parameters.jira_project_key}} ORDER BY updated DESC"
           max_results: 10
     routing:
-      - when: "list_my_tickets.success == true"
+      - condition: prev.success == true
         to: show_my_tickets
       - to: my_tickets_error
 
@@ -323,16 +328,16 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: ticket_status_card.json
+          asset_path: cards/ticket_status_card.json
           template_params:
             issues: "list_my_tickets.payload.issues"
             total: "list_my_tickets.payload.total"
             view_mode: "list"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'view_ticket'"
+      - condition: response.action == "view_ticket"
         to: view_selected_ticket
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_welcome
       - to: show_welcome
 
@@ -343,10 +348,10 @@ nodes:
       input:
         tool: jira_get_issue
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          issue_key: "input.issue_key"
+          oauth_token: "{{state.jira_oauth_token}}"
+          issue_key: "{{in.input.issue_key}}"
     routing:
-      - when: "view_selected_ticket.success == true"
+      - condition: prev.success == true
         to: show_ticket_detail
       - to: ticket_not_found
 
@@ -355,7 +360,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: ticket_status_card.json
+          asset_path: cards/ticket_status_card.json
           template_params:
             issue_key: "view_selected_ticket.payload.key"
             summary: "view_selected_ticket.payload.fields.summary"
@@ -369,11 +374,11 @@ nodes:
             description: "view_selected_ticket.payload.fields.description"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'add_comment'"
+      - condition: response.action == "add_comment"
         to: add_comment
-      - when: "input.action_id == 'escalate'"
+      - condition: response.action == "escalate"
         to: escalate_ticket
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_welcome
       - to: show_welcome
 
@@ -397,11 +402,11 @@ nodes:
       input:
         tool: kb_search
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          query: "input.text"
+          oauth_token: "{{state.jira_oauth_token}}"
+          query: "{{in.input.text}}"
           max_results: 10
     routing:
-      - when: "execute_kb_search.success == true"
+      - condition: prev.success == true
         to: show_kb_results
       - to: kb_search_error
 
@@ -410,20 +415,20 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: kb_results_card.json
+          asset_path: cards/kb_results_card.json
           template_params:
-            query: "input.text"
+            query: "{{in.input.text}}"
             articles: "execute_kb_search.payload.articles"
             total_results: "execute_kb_search.payload.total"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'view_article'"
+      - condition: response.action == "view_article"
         to: view_kb_article
-      - when: "input.action_id == 'search_again'"
+      - condition: response.action == "search_again"
         to: search_knowledge_base
-      - when: "input.action_id == 'create_ticket'"
+      - condition: response.action == "create_ticket"
         to: create_ticket
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_welcome
       - to: show_welcome
 
@@ -435,23 +440,23 @@ nodes:
       input:
         tool: kb_search
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          article_id: "input.article_id"
+          oauth_token: "{{state.jira_oauth_token}}"
+          article_id: "{{in.input.article_id}}"
     routing:
-      - when: "view_kb_article.success == true"
+      - condition: prev.success == true
         to: show_article_detail
       - to: kb_search_error
 
   show_article_detail:
     emit.response:
       text: |
-        **{{view_kb_article.payload.title}}**
+        **{{prev.payload.title}}**
 
-        {{view_kb_article.payload.body}}
+        {{prev.payload.body}}
 
         ---
-        Last updated: {{view_kb_article.payload.updated}}
-        Category: {{view_kb_article.payload.category}}
+        Last updated: {{prev.payload.updated}}
+        Category: {{prev.payload.category}}
 
         Did this article help? If not, you can create a support ticket.
     routing:
