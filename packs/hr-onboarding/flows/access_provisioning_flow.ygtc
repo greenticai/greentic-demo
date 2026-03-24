@@ -1,0 +1,228 @@
+id: access_provisioning_flow
+title: Access Provisioning Flow
+description: Request and track system access for new employees
+type: messaging
+start: check_employee_exists
+
+parameters:
+  available_systems:
+    - corporate_email
+    - slack
+    - vpn
+    - github
+    - jira
+    - building_access
+
+nodes:
+  # Verify employee record exists
+  check_employee_exists:
+    state.get:
+      key: "onboarding_state"
+    routing:
+      - when: "state.onboarding_state.employee_id != null"
+        to: fetch_access_status
+      - to: no_employee
+
+  # No employee record found
+  no_employee:
+    emit.response:
+      text: "No active onboarding found. Please complete the onboarding wizard first."
+      metadata:
+        flow_redirect: onboarding_wizard_flow
+    routing: out
+
+  # Fetch current access provisioning status via MCP
+  fetch_access_status:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: hr_get_access_status
+        arguments:
+          employee_id: "state.onboarding_state.employee_id"
+    routing:
+      - when: "fetch_access_status.success == true"
+        to: show_access_card
+      - to: status_error
+
+  # Show access request card
+  show_access_card:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: access_request_card.json
+          template_params:
+            employee_name: "state.onboarding_state.employee_name"
+            department: "state.onboarding_state.department"
+            role: "state.onboarding_state.role"
+            access_items: "fetch_access_status.payload.access_items"
+            provisioned_count: "fetch_access_status.payload.provisioned_count"
+            total_count: "fetch_access_status.payload.total_count"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'submit_access_request'"
+        to: validate_access_request
+      - when: "input.action_id == 'back'"
+        to: done
+      - to: done
+
+  # Validate the access request
+  validate_access_request:
+    switch:
+      value: "input.selected_systems"
+      cases:
+        - match: null
+          to: no_selection
+        - match: ""
+          to: no_selection
+      default: provision_access
+
+  # No systems selected
+  no_selection:
+    emit.response:
+      text: "Please select at least one system to request access for."
+    routing:
+      - to: show_access_card
+
+  # Provision access via MCP
+  provision_access:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: hr_provision_access
+        arguments:
+          employee_id: "state.onboarding_state.employee_id"
+          employee_name: "state.onboarding_state.employee_name"
+          email: "state.onboarding_state.email"
+          department: "state.onboarding_state.department"
+          role: "state.onboarding_state.role"
+          systems:
+            corporate_email: "input.corporate_email"
+            slack: "input.slack"
+            vpn: "input.vpn"
+            github: "input.github"
+            jira: "input.jira"
+            building_access: "input.building_access"
+    routing:
+      - when: "provision_access.success == true"
+        to: show_provisioning_result
+      - to: provision_error
+
+  # Show provisioning result
+  show_provisioning_result:
+    emit.response:
+      text: |
+        Access provisioning requests submitted!
+
+        Provisioning Summary:
+        {{provision_access.payload.summary}}
+
+        Note: Some access requests may require manager approval. You will be notified once access is granted.
+    routing:
+      - to: update_checklist_access
+
+  # Update onboarding checklist for access progress
+  update_checklist_access:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: hr_update_checklist
+        arguments:
+          employee_id: "state.onboarding_state.employee_id"
+          checklist_item: "provision_access"
+          status: "in_progress"
+    routing:
+      - to: check_all_access_done
+
+  # Check if all access items are provisioned
+  check_all_access_done:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: hr_get_access_status
+        arguments:
+          employee_id: "state.onboarding_state.employee_id"
+    routing:
+      - when: "check_all_access_done.payload.all_provisioned == true"
+        to: all_access_complete
+      - to: access_in_progress
+
+  # All access provisioned
+  all_access_complete:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: hr_update_checklist
+        arguments:
+          employee_id: "state.onboarding_state.employee_id"
+          checklist_item: "provision_access"
+          status: "complete"
+    routing:
+      - to: save_access_complete
+
+  # Save access complete to state
+  save_access_complete:
+    state.set:
+      key: "onboarding_state.access_complete"
+      value: true
+    routing:
+      - to: check_onboarding_complete
+
+  # Access still in progress
+  access_in_progress:
+    emit.response:
+      text: "Some access requests are still being processed. Check back later for updates."
+    routing:
+      - to: check_onboarding_complete
+
+  # Check if all onboarding tasks are complete
+  check_onboarding_complete:
+    state.get:
+      key: "onboarding_state"
+    routing:
+      - when: "state.onboarding_state.wizard_complete == true && state.onboarding_state.documents_complete == true && state.onboarding_state.access_complete == true"
+        to: show_completion
+      - to: done
+
+  # Show completion card
+  show_completion:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: completion_card.json
+          template_params:
+            employee_name: "state.onboarding_state.employee_name"
+            department: "state.onboarding_state.department"
+            role: "state.onboarding_state.role"
+            start_date: "state.onboarding_state.start_date"
+            manager_name: "state.onboarding_state.manager_name"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'back'"
+        to: done
+      - to: done
+
+  # Provision error
+  provision_error:
+    emit.response:
+      text: "Failed to submit access provisioning request. Please try again."
+    routing:
+      - to: fetch_access_status
+
+  # Status fetch error
+  status_error:
+    emit.response:
+      text: "Unable to fetch access status. Please try again."
+    routing: out
+
+  # Done
+  done:
+    emit.response:
+      text: "Returning to main menu."
+    routing: out

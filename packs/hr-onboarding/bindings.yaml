@@ -1,0 +1,38 @@
+# Tenant bindings for HR Onboarding Demo
+# This file configures the pack for a specific tenant
+
+tenant: hr-onboarding-demo
+team: default
+environment: dev
+
+# Pack reference
+pack:
+  id: greentic.hr-onboarding.demo
+  source: local
+  path: ./
+
+# No OAuth section - uses MCP tools + state management only
+
+# MCP tool store configuration
+mcp:
+  store:
+    kind: http-single
+    name: hr_tools
+    # HR tools MCP WASM component URL
+    url: "${MCP_HR_TOOLS_URL:-https://github.com/greenticai/greentic-packs/raw/main/mcp/hr_tools.wasm}"
+  security:
+    require_signature: false
+  runtime:
+    max_memory_mb: 128
+    timeout_ms: 30000
+    fuel: 100000000
+
+# State configuration
+state:
+  backend: memory
+  ttl_seconds: 7200
+
+# Messaging routes
+routes:
+  messaging:
+    default: on_message

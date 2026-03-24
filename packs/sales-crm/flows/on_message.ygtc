@@ -1,0 +1,425 @@
+id: on_message
+title: Sales CRM Assistant - Message Handler
+description: Entry point for messaging - routes to Salesforce OAuth and CRM flows
+type: messaging
+start: check_auth
+
+parameters:
+  oauth_provider: salesforce
+
+nodes:
+  # Check if user has valid Salesforce OAuth token
+  check_auth:
+    state.get:
+      key: "salesforce_oauth_token"
+    routing:
+      - when: "state.salesforce_oauth_token != null"
+        to: show_welcome
+      - to: request_oauth
+
+  # Request OAuth connection
+  request_oauth:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: salesforce_connect_card.json
+          template_params:
+            provider: parameters.oauth_provider
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'connect_salesforce'"
+        to: start_oauth
+      - to: show_help
+
+  # Start OAuth flow
+  start_oauth:
+    oauth.authorize:
+      provider: parameters.oauth_provider
+      scopes:
+        - api
+        - refresh_token
+    routing:
+      - when: "oauth.success == true"
+        to: save_token
+      - to: oauth_failed
+
+  # Save OAuth token to state
+  save_token:
+    state.set:
+      key: "salesforce_oauth_token"
+      value: "oauth.access_token"
+    routing:
+      - to: show_welcome
+
+  # OAuth failed
+  oauth_failed:
+    emit.response:
+      text: "Salesforce connection failed. Please try again."
+    routing:
+      - to: request_oauth
+
+  # Show welcome card with CRM dashboard options
+  show_welcome:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: welcome_card.json
+          template_params:
+            username: "state.salesforce_username"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'new_lead'"
+        to: start_lead_flow
+      - when: "input.action_id == 'view_pipeline'"
+        to: start_pipeline_flow
+      - when: "input.action_id == 'my_deals'"
+        to: start_deals_flow
+      - when: "input.action_id == 'schedule_meeting'"
+        to: start_meeting_flow
+      - when: "input.action_id == 'disconnect'"
+        to: disconnect
+      - to: show_help
+
+  # Route to lead qualification flow
+  start_lead_flow:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: lead_form_card.json
+          template_params: {}
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'submit_lead'"
+        to: create_lead
+      - when: "input.action_id == 'back'"
+        to: show_welcome
+      - to: show_welcome
+
+  # Create lead via MCP
+  create_lead:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_create_lead
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          company: "input.company"
+          first_name: "input.first_name"
+          last_name: "input.last_name"
+          email: "input.email"
+          phone: "input.phone"
+          budget_range: "input.budget_range"
+          timeline: "input.timeline"
+          lead_source: "input.lead_source"
+    routing:
+      - when: "create_lead.success == true"
+        to: qualify_lead
+      - to: lead_error
+
+  # Qualify the lead via MCP
+  qualify_lead:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_qualify_lead
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          lead_id: "create_lead.payload.id"
+    routing:
+      - when: "qualify_lead.success == true"
+        to: show_qualification_result
+      - to: lead_error
+
+  # Show qualification result
+  show_qualification_result:
+    emit.response:
+      text: |
+        Lead created and qualified successfully!
+
+        Company: {{create_lead.payload.company}}
+        Contact: {{create_lead.payload.first_name}} {{create_lead.payload.last_name}}
+        Score: {{qualify_lead.payload.score}}/100
+        Rating: {{qualify_lead.payload.rating}}
+
+        What would you like to do next?
+    routing:
+      - to: show_welcome
+
+  # Lead creation error
+  lead_error:
+    emit.response:
+      text: "Failed to create or qualify lead. Please try again."
+    routing:
+      - to: show_welcome
+
+  # Route to pipeline view flow
+  start_pipeline_flow:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_get_pipeline
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+    routing:
+      - when: "start_pipeline_flow.success == true"
+        to: show_pipeline
+      - to: pipeline_error
+
+  # Show pipeline card
+  show_pipeline:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: pipeline_card.json
+          template_params:
+            stages: "start_pipeline_flow.payload.stages"
+            total_value: "start_pipeline_flow.payload.total_value"
+            deal_count: "start_pipeline_flow.payload.deal_count"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'view_deal'"
+        to: get_deal_detail
+      - when: "input.action_id == 'refresh'"
+        to: start_pipeline_flow
+      - when: "input.action_id == 'back'"
+        to: show_welcome
+      - to: show_welcome
+
+  # Pipeline fetch error
+  pipeline_error:
+    emit.response:
+      text: "Failed to fetch sales pipeline. Please try again."
+    routing:
+      - to: show_welcome
+
+  # Get deal details
+  get_deal_detail:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_get_opportunity
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          opportunity_id: "input.opportunity_id"
+    routing:
+      - when: "get_deal_detail.success == true"
+        to: show_deal_detail
+      - to: deal_error
+
+  # Show deal detail card
+  show_deal_detail:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: deal_detail_card.json
+          template_params:
+            name: "get_deal_detail.payload.name"
+            amount: "get_deal_detail.payload.amount"
+            stage: "get_deal_detail.payload.stage"
+            close_date: "get_deal_detail.payload.close_date"
+            probability: "get_deal_detail.payload.probability"
+            owner: "get_deal_detail.payload.owner"
+            last_activity: "get_deal_detail.payload.last_activity"
+            notes: "get_deal_detail.payload.notes"
+            opportunity_id: "get_deal_detail.payload.id"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'update_stage'"
+        to: update_deal
+      - when: "input.action_id == 'add_note'"
+        to: add_deal_note
+      - when: "input.action_id == 'back'"
+        to: start_pipeline_flow
+      - to: show_welcome
+
+  # Update deal stage/amount via MCP
+  update_deal:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_update_opportunity
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          opportunity_id: "input.opportunity_id"
+          stage: "input.new_stage"
+          amount: "input.new_amount"
+    routing:
+      - when: "update_deal.success == true"
+        to: deal_updated
+      - to: deal_error
+
+  # Confirm deal update
+  deal_updated:
+    emit.response:
+      text: "Deal updated successfully!"
+    routing:
+      - to: get_deal_detail
+
+  # Add note to deal
+  add_deal_note:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_update_opportunity
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          opportunity_id: "input.opportunity_id"
+          notes: "input.note_text"
+    routing:
+      - when: "add_deal_note.success == true"
+        to: note_added
+      - to: deal_error
+
+  # Confirm note added
+  note_added:
+    emit.response:
+      text: "Note added to deal."
+    routing:
+      - to: get_deal_detail
+
+  # Deal operation error
+  deal_error:
+    emit.response:
+      text: "Failed to update deal. Please try again."
+    routing:
+      - to: show_welcome
+
+  # Route to deals list (my deals)
+  start_deals_flow:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_search
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          query: "SELECT Id, Name, Amount, StageName, CloseDate FROM Opportunity WHERE OwnerId = :userId AND IsClosed = false ORDER BY CloseDate ASC"
+    routing:
+      - when: "start_deals_flow.success == true"
+        to: show_my_deals
+      - to: pipeline_error
+
+  # Show my deals in pipeline card format
+  show_my_deals:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: pipeline_card.json
+          template_params:
+            stages: "start_deals_flow.payload.stages"
+            total_value: "start_deals_flow.payload.total_value"
+            deal_count: "start_deals_flow.payload.deal_count"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'view_deal'"
+        to: get_deal_detail
+      - when: "input.action_id == 'back'"
+        to: show_welcome
+      - to: show_welcome
+
+  # Route to meeting scheduler
+  start_meeting_flow:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: meeting_card.json
+          template_params: {}
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'schedule_meeting'"
+        to: create_meeting
+      - when: "input.action_id == 'back'"
+        to: show_welcome
+      - to: show_welcome
+
+  # Create meeting via MCP
+  create_meeting:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: sf_create_task
+        arguments:
+          oauth_token: "state.salesforce_oauth_token"
+          subject: "input.meeting_subject"
+          contact_id: "input.contact_id"
+          activity_date: "input.meeting_date"
+          activity_time: "input.meeting_time"
+          duration_minutes: "input.duration"
+          meeting_type: "input.meeting_type"
+          description: "input.meeting_notes"
+    routing:
+      - when: "create_meeting.success == true"
+        to: meeting_created
+      - to: meeting_error
+
+  # Confirm meeting created
+  meeting_created:
+    emit.response:
+      text: |
+        Meeting scheduled successfully!
+
+        Subject: {{create_meeting.payload.subject}}
+        Date: {{create_meeting.payload.activity_date}}
+        Type: {{create_meeting.payload.meeting_type}}
+    routing:
+      - to: show_welcome
+
+  # Meeting creation error
+  meeting_error:
+    emit.response:
+      text: "Failed to schedule meeting. Please try again."
+    routing:
+      - to: start_meeting_flow
+
+  # Disconnect OAuth
+  disconnect:
+    state.delete:
+      key: "salesforce_oauth_token"
+    routing:
+      - to: disconnect_username
+
+  disconnect_username:
+    state.delete:
+      key: "salesforce_username"
+    routing:
+      - to: disconnected
+
+  disconnected:
+    emit.response:
+      text: "Disconnected from Salesforce. Send any message to reconnect."
+    routing: out
+
+  # Show help
+  show_help:
+    emit.response:
+      text: |
+        Sales CRM Assistant
+
+        Available features:
+        - New Lead: Capture and qualify sales leads
+        - Pipeline: View your sales pipeline by stage
+        - My Deals: Track your active opportunities
+        - Schedule Meeting: Book meetings with contacts
+
+        Connect to Salesforce to get started.
+    routing: out
+
+  # Done
+  done:
+    emit.response:
+      text: "Thank you for using Sales CRM Assistant!"
+    routing: out

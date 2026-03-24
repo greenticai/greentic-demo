@@ -1,0 +1,198 @@
+id: knowledge_base_flow
+title: Knowledge Base Search Flow
+description: Search internal knowledge base articles and display results
+type: messaging
+start: check_token
+
+parameters:
+  kb_max_results: 10
+
+nodes:
+  # Check if token exists
+  check_token:
+    state.get:
+      key: "jira_oauth_token"
+    routing:
+      - when: "state.jira_oauth_token != null"
+        to: prompt_search
+      - to: no_token
+
+  # No token available
+  no_token:
+    emit.response:
+      text: "Please connect to Jira first to access the knowledge base."
+      metadata:
+        require_oauth: true
+        provider: jira
+    routing: out
+
+  # Prompt user for search query
+  prompt_search:
+    emit.response:
+      text: |
+        Knowledge Base Search
+
+        Enter your question or keywords to search for solutions.
+        Examples: "VPN not connecting", "password reset", "printer setup"
+    routing:
+      - to: execute_search
+
+  # Execute KB search via MCP
+  execute_search:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: kb_search
+        arguments:
+          oauth_token: "state.jira_oauth_token"
+          query: "input.text"
+          max_results: parameters.kb_max_results
+    routing:
+      - when: "execute_search.success == true"
+        to: check_results
+      - to: search_error
+
+  # Check if results were found
+  check_results:
+    switch:
+      value: "execute_search.payload.total"
+      cases:
+        - match: "0"
+          to: no_results
+      default: show_results
+
+  # Show search results card
+  show_results:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: kb_results_card.json
+          template_params:
+            query: "input.text"
+            articles: "execute_search.payload.articles"
+            total_results: "execute_search.payload.total"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'view_article'"
+        to: fetch_article
+      - when: "input.action_id == 'search_again'"
+        to: prompt_search
+      - when: "input.action_id == 'create_ticket'"
+        to: suggest_ticket
+      - when: "input.action_id == 'back'"
+        to: done
+      - to: done
+
+  # Fetch full article content
+  fetch_article:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: kb_search
+        arguments:
+          oauth_token: "state.jira_oauth_token"
+          article_id: "input.article_id"
+    routing:
+      - when: "fetch_article.success == true"
+        to: show_article
+      - to: article_error
+
+  # Show full article content
+  show_article:
+    emit.response:
+      text: |
+        **{{fetch_article.payload.title}}**
+
+        Category: {{fetch_article.payload.category}}
+        Last Updated: {{fetch_article.payload.updated}}
+        Relevance: {{fetch_article.payload.relevance_score}}%
+
+        ---
+
+        {{fetch_article.payload.body}}
+
+        ---
+
+        Was this article helpful? If not, you can search again or create a support ticket.
+    routing:
+      - to: article_followup
+
+  # Ask followup after viewing article
+  article_followup:
+    emit.response:
+      text: "What would you like to do next?"
+    routing:
+      - when: "input.action_id == 'helpful'"
+        to: article_helpful
+      - when: "input.action_id == 'not_helpful'"
+        to: suggest_ticket
+      - when: "input.action_id == 'search_again'"
+        to: prompt_search
+      - to: done
+
+  # Article was helpful
+  article_helpful:
+    emit.response:
+      text: "Glad the article helped! Is there anything else I can help you with?"
+    routing:
+      - to: done
+
+  # Suggest creating a ticket when KB didn't help
+  suggest_ticket:
+    emit.response:
+      text: |
+        It looks like the knowledge base didn't have the answer you needed.
+
+        Would you like to create a support ticket? Our team will look into your issue.
+      metadata:
+        suggest_action: "create_ticket"
+    routing:
+      - to: done
+
+  # No results found
+  no_results:
+    emit.response:
+      text: |
+        No articles found matching your search.
+
+        Suggestions:
+        - Try different keywords
+        - Use broader search terms
+        - Check for typos
+
+        You can also create a support ticket if you need assistance.
+    routing:
+      - to: no_results_action
+
+  no_results_action:
+    emit.response:
+      text: "Would you like to search again or create a support ticket?"
+    routing:
+      - when: "input.action_id == 'search_again'"
+        to: prompt_search
+      - when: "input.action_id == 'create_ticket'"
+        to: done
+      - to: done
+
+  # Search error
+  search_error:
+    emit.response:
+      text: "Knowledge base search failed. Please try again with different keywords."
+    routing:
+      - to: prompt_search
+
+  # Article fetch error
+  article_error:
+    emit.response:
+      text: "Failed to load the article. Please try again."
+    routing:
+      - to: show_results
+
+  # Done
+  done:
+    emit.response:
+      text: "Knowledge base search completed."
+    routing: out

@@ -1,0 +1,39 @@
+# Wizard answers for HR Onboarding Demo Bundle
+# Use with: gtc wizard --answers wizard-answers.yaml
+
+schema_id: greentic-bundle.wizard.answers
+schema_version: "1.0.0"
+wizard_id: greentic-bundle.wizard.run
+locale: en
+
+answers:
+  mode: create
+  bundle_id: hr-onboarding
+  bundle_name: "HR Onboarding Demo"
+  output_dir: "./hr-onboarding"
+
+  # App packs to include
+  app_packs:
+    - "./packs/hr-onboarding"
+
+  # Extension providers from OCI registry
+  extension_providers:
+    # Messaging providers
+    - "oci://ghcr.io/greenticai/greentic-packs/messaging-webchat-gui:latest"
+    - "oci://ghcr.io/greenticai/greentic-packs/messaging-slack:latest"
+    - "oci://ghcr.io/greenticai/greentic-packs/messaging-teams:latest"
+    # State provider
+    - "oci://ghcr.io/greenticai/greentic-packs/state-memory:latest"
+
+  # No OAuth capability packs needed
+  capability_packs: []
+
+  # Remote catalogs (optional)
+  remote_catalogs: []
+
+  # Advanced setup
+  advanced_setup: true
+  export_intent: false
+  setup_execution_intent: true
+
+locks: {}

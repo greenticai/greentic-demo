@@ -1,0 +1,250 @@
+id: stock_check_flow
+title: Stock Check Flow
+description: Search and view current stock levels by SKU, category, or warehouse
+type: messaging
+start: check_prefill
+
+parameters:
+  low_stock_threshold: 10
+  items_per_page: 20
+  default_warehouse: "WH-001"
+
+nodes:
+  # Check if a SKU was pre-selected from another flow
+  check_prefill:
+    state.get:
+      key: "selected_sku"
+    routing:
+      - when: "state.selected_sku != null"
+        to: get_item_detail
+      - to: show_search_form
+
+  # Show stock search form
+  show_search_form:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: stock_status_card.json
+          template_params:
+            items: []
+            search_mode: true
+            search_query: ""
+            default_warehouse: parameters.default_warehouse
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'search_stock'"
+        to: execute_search
+      - when: "input.action_id == 'browse_category'"
+        to: browse_by_category
+      - when: "input.action_id == 'view_all_low_stock'"
+        to: get_low_stock_items
+      - when: "input.action_id == 'back'"
+        to: done
+      - to: done
+
+  # Execute stock search via MCP
+  execute_search:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: inventory_search_products
+        arguments:
+          query: "input.search_query"
+          category: "input.category_filter"
+          warehouse: "input.warehouse_filter"
+          limit: parameters.items_per_page
+    routing:
+      - when: "execute_search.success == true"
+        to: show_search_results
+      - to: search_error
+
+  # Browse stock by category
+  browse_by_category:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: inventory_search_products
+        arguments:
+          category: "input.category"
+          warehouse: "input.warehouse_filter"
+          limit: parameters.items_per_page
+    routing:
+      - when: "browse_by_category.success == true"
+        to: show_search_results
+      - to: search_error
+
+  # Show search results
+  show_search_results:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: stock_status_card.json
+          template_params:
+            items: "execute_search.payload.products"
+            total_results: "execute_search.payload.total_count"
+            search_mode: false
+            search_query: "input.search_query"
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'view_item'"
+        to: save_selected_sku
+      - when: "input.action_id == 'search_stock'"
+        to: execute_search
+      - when: "input.action_id == 'reorder_item'"
+        to: initiate_reorder
+      - when: "input.action_id == 'back'"
+        to: show_search_form
+      - to: done
+
+  # Save selected SKU for detail view
+  save_selected_sku:
+    state.set:
+      key: "selected_sku"
+      value: "input.sku"
+    routing:
+      - to: get_item_detail
+
+  # Get detailed stock info for a specific item
+  get_item_detail:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: inventory_check_stock
+        arguments:
+          sku: "state.selected_sku"
+    routing:
+      - when: "get_item_detail.success == true"
+        to: show_item_detail
+      - to: item_not_found
+
+  # Show item detail with stock breakdown by warehouse
+  show_item_detail:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: stock_status_card.json
+          template_params:
+            item: "get_item_detail.payload"
+            view_mode: "detail"
+            low_stock_threshold: parameters.low_stock_threshold
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'reorder_item'"
+        to: initiate_reorder
+      - when: "input.action_id == 'view_history'"
+        to: view_stock_history
+      - when: "input.action_id == 'back'"
+        to: clear_selected_sku
+      - to: done
+
+  # View stock movement history for item
+  view_stock_history:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: inventory_check_stock
+        arguments:
+          sku: "state.selected_sku"
+          include_history: true
+    routing:
+      - when: "view_stock_history.success == true"
+        to: show_stock_history
+      - to: search_error
+
+  # Show stock movement history
+  show_stock_history:
+    emit.response:
+      text: |
+        Stock Movement History - {{view_stock_history.payload.product_name}} ({{state.selected_sku}})
+
+        Recent movements:
+        {{view_stock_history.payload.history_summary}}
+
+        Current Level: {{view_stock_history.payload.current_quantity}} units
+        30-Day Average: {{view_stock_history.payload.avg_daily_usage}} units/day
+    routing:
+      - to: show_item_detail
+
+  # Clear selected SKU and go back to search
+  clear_selected_sku:
+    state.delete:
+      key: "selected_sku"
+    routing:
+      - to: show_search_form
+
+  # Get all low stock items
+  get_low_stock_items:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: inventory_get_low_stock
+        arguments:
+          threshold: parameters.low_stock_threshold
+    routing:
+      - when: "get_low_stock_items.success == true"
+        to: show_low_stock_results
+      - to: search_error
+
+  # Show low stock items
+  show_low_stock_results:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: alert_card.json
+          template_params:
+            items: "get_low_stock_items.payload.items"
+            total_alerts: "get_low_stock_items.payload.total_count"
+            threshold: parameters.low_stock_threshold
+        mode: renderAndValidate
+    routing:
+      - when: "input.action_id == 'quick_reorder'"
+        to: initiate_reorder
+      - when: "input.action_id == 'back'"
+        to: show_search_form
+      - to: done
+
+  # Initiate reorder from stock view
+  initiate_reorder:
+    state.set:
+      key: "reorder_sku"
+      value: "input.sku"
+    routing:
+      - to: reorder_redirect
+
+  # Redirect to reorder flow
+  reorder_redirect:
+    emit.response:
+      text: "Redirecting to reorder form for SKU: {{state.reorder_sku}}"
+      metadata:
+        redirect_flow: reorder_flow
+        sku: "state.reorder_sku"
+    routing: out
+
+  # Item not found
+  item_not_found:
+    emit.response:
+      text: "Item not found. Please check the SKU and try again."
+    routing:
+      - to: clear_selected_sku
+
+  # Search error
+  search_error:
+    emit.response:
+      text: "Failed to search inventory. Please try again."
+    routing:
+      - to: show_search_form
+
+  # Done
+  done:
+    emit.response:
+      text: "Stock check completed."
+    routing: out
