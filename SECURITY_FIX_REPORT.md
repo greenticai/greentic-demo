@@ -1,33 +1,32 @@
 # Security Fix Report
 
 Date (UTC): 2026-03-24
-Branch: feat/industrial-demo-packs
+Branch: feat/quickstart-i18n-cards
 
 ## Inputs Reviewed
 - Security alerts JSON: `{"dependabot": [], "code_scanning": []}`
-- Dependabot alerts file (`dependabot-alerts.json`): `[]`
-- Code scanning alerts file (`code-scanning-alerts.json`): `[]`
+- Dependabot alerts file: `[]`
+- Code scanning alerts file: `[]`
 - New PR dependency vulnerabilities: `[]`
 
 ## PR Dependency Change Check
-Checked current PR diff for dependency file changes.
-
-Files reviewed:
+Reviewed dependency manifests/lockfiles in this repository (Rust):
 - `Cargo.toml`
 - `Cargo.lock`
 - `crates/**/Cargo.toml`
 - `crates/**/Cargo.lock`
 
 Result:
-- `git diff --name-only` shows only `pr-comment.md` modified.
-- No dependency manifests or lockfiles changed in this PR.
+- No dependency-file changes detected in this branch via `git diff --name-only` for the files above.
 - No new PR dependency vulnerabilities were provided.
 
 ## Remediation Actions
-- No Dependabot alerts to remediate.
-- No code scanning alerts to remediate.
-- No dependency vulnerabilities introduced by PR changes.
-- No code or dependency updates were required.
+- No vulnerable dependencies or code-scanning findings were present.
+- No code or dependency changes were required.
+
+## Additional Verification
+- `cargo-audit` is not installed in this CI environment.
+- Invoking `cargo` in this runner fails due to a read-only rustup temp path, so an in-environment advisory DB scan could not be executed.
 
 ## Final Status
 - Security review completed.
