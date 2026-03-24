@@ -3,6 +3,12 @@ title: Employee Onboarding Wizard
 description: Step-by-step employee information collection and registration
 type: messaging
 start: check_existing_employee
+schema_version: 2
+tags:
+  - hr
+  - onboarding
+  - wizard
+  - employee-registration
 
 parameters:
   company_name: "Acme Corp"
@@ -15,7 +21,7 @@ nodes:
     state.get:
       key: "onboarding_state"
     routing:
-      - when: "state.onboarding_state.employee_id != null"
+      - condition: state.onboarding_state.employee_id != null
         to: already_registered
       - to: show_employee_form
 
@@ -31,39 +37,35 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: employee_form_card.json
+          asset_path: cards/employee_form_card.json
           template_params:
             company_name: parameters.company_name
             default_department: parameters.default_department
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'submit_employee'"
+      - condition: response.action == "submit_employee"
         to: validate_employee_data
-      - when: "input.action_id == 'cancel'"
+      - condition: response.action == "cancel"
         to: cancel
       - to: show_employee_form
 
   # Validate submitted employee data
   validate_employee_data:
-    switch:
-      value: "input.full_name"
-      cases:
-        - match: ""
-          to: validation_error
-        - match: null
-          to: validation_error
-      default: check_email_provided
+    routing:
+      - condition: "{{in.input.full_name == ''}}"
+        to: validation_error
+      - condition: "{{in.input.full_name == null}}"
+        to: validation_error
+      - to: check_email_provided
 
   # Check email is provided
   check_email_provided:
-    switch:
-      value: "input.email"
-      cases:
-        - match: ""
-          to: validation_error
-        - match: null
-          to: validation_error
-      default: create_employee
+    routing:
+      - condition: "{{in.input.email == ''}}"
+        to: validation_error
+      - condition: "{{in.input.email == null}}"
+        to: validation_error
+      - to: create_employee
 
   # Validation error
   validation_error:
@@ -80,14 +82,14 @@ nodes:
       input:
         tool: hr_create_employee
         arguments:
-          full_name: "input.full_name"
-          email: "input.email"
-          department: "input.department"
-          role: "input.role"
-          start_date: "input.start_date"
-          manager_name: "input.manager_name"
+          full_name: "{{in.input.full_name}}"
+          email: "{{in.input.email}}"
+          department: "{{in.input.department}}"
+          role: "{{in.input.role}}"
+          start_date: "{{in.input.start_date}}"
+          manager_name: "{{in.input.manager_name}}"
     routing:
-      - when: "create_employee.success == true"
+      - condition: prev.success == true
         to: save_employee_state
       - to: create_error
 
@@ -96,13 +98,13 @@ nodes:
     state.set:
       key: "onboarding_state"
       value:
-        employee_id: "create_employee.payload.employee_id"
-        employee_name: "input.full_name"
-        email: "input.email"
-        department: "input.department"
-        role: "input.role"
-        start_date: "input.start_date"
-        manager_name: "input.manager_name"
+        employee_id: "{{create_employee.payload.employee_id}}"
+        employee_name: "{{in.input.full_name}}"
+        email: "{{in.input.email}}"
+        department: "{{in.input.department}}"
+        role: "{{in.input.role}}"
+        start_date: "{{in.input.start_date}}"
+        manager_name: "{{in.input.manager_name}}"
         progress_percent: 10
         wizard_complete: true
         documents_complete: false
@@ -118,12 +120,12 @@ nodes:
       input:
         tool: hr_get_checklist
         arguments:
-          employee_id: "create_employee.payload.employee_id"
-          department: "input.department"
-          role: "input.role"
+          employee_id: "{{create_employee.payload.employee_id}}"
+          department: "{{in.input.department}}"
+          role: "{{in.input.role}}"
           checklist_version: parameters.onboarding_checklist_version
     routing:
-      - when: "fetch_checklist.success == true"
+      - condition: prev.success == true
         to: save_checklist
       - to: checklist_error
 
@@ -131,7 +133,7 @@ nodes:
   save_checklist:
     state.set:
       key: "onboarding_checklist"
-      value: "fetch_checklist.payload"
+      value: "{{prev.payload}}"
     routing:
       - to: show_checklist
 
@@ -141,21 +143,21 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: onboarding_checklist_card.json
+          asset_path: cards/onboarding_checklist_card.json
           template_params:
-            employee_name: "input.full_name"
-            department: "input.department"
+            employee_name: "{{in.input.full_name}}"
+            department: "{{in.input.department}}"
             checklist_items: "fetch_checklist.payload.checklist_items"
             progress_percent: "10"
             completed_count: "1"
             total_count: "fetch_checklist.payload.total_count"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'upload_documents'"
+      - condition: response.action == "upload_documents"
         to: redirect_documents
-      - when: "input.action_id == 'request_access'"
+      - condition: response.action == "request_access"
         to: redirect_access
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: wizard_complete
       - to: wizard_complete
 

@@ -3,6 +3,11 @@ title: Reorder Management Flow
 description: Create and manage reorder requests with approval workflow
 type: messaging
 start: check_reorder_context
+schema_version: 2
+tags:
+  - reorder
+  - procurement
+  - supply-chain
 
 parameters:
   low_stock_threshold: 10
@@ -15,7 +20,7 @@ nodes:
     state.get:
       key: "reorder_sku"
     routing:
-      - when: "state.reorder_sku != null"
+      - condition: prev.value != null
         to: load_item_for_reorder
       - to: load_low_stock_items
 
@@ -27,9 +32,9 @@ nodes:
       input:
         tool: inventory_check_stock
         arguments:
-          sku: "state.reorder_sku"
+          sku: "{{state.reorder_sku}}"
     routing:
-      - when: "load_item_for_reorder.success == true"
+      - condition: prev.success == true
         to: show_prefilled_reorder_form
       - to: item_load_error
 
@@ -39,21 +44,21 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: reorder_card.json
+          asset_path: cards/reorder_card.json
           template_params:
             prefill_sku: "state.reorder_sku"
-            prefill_product_name: "load_item_for_reorder.payload.product_name"
-            prefill_current_stock: "load_item_for_reorder.payload.quantity"
-            prefill_min_level: "load_item_for_reorder.payload.min_level"
-            suggested_quantity: "load_item_for_reorder.payload.suggested_reorder_qty"
-            preferred_supplier: "load_item_for_reorder.payload.preferred_supplier_id"
+            prefill_product_name: "prev.payload.product_name"
+            prefill_current_stock: "prev.payload.quantity"
+            prefill_min_level: "prev.payload.min_level"
+            suggested_quantity: "prev.payload.suggested_reorder_qty"
+            preferred_supplier: "prev.payload.preferred_supplier_id"
             currency: parameters.currency
             lead_days: parameters.reorder_lead_days
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'submit_reorder'"
+      - condition: response.action == "submit_reorder"
         to: validate_reorder_input
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: clear_reorder_context
       - to: done
 
@@ -67,7 +72,7 @@ nodes:
         arguments:
           threshold: parameters.low_stock_threshold
     routing:
-      - when: "load_low_stock_items.success == true"
+      - condition: prev.success == true
         to: show_low_stock_for_reorder
       - to: load_error
 
@@ -77,19 +82,19 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: alert_card.json
+          asset_path: cards/alert_card.json
           template_params:
-            items: "load_low_stock_items.payload.items"
-            total_alerts: "load_low_stock_items.payload.total_count"
+            items: "prev.payload.items"
+            total_alerts: "prev.payload.total_count"
             threshold: parameters.low_stock_threshold
             reorder_mode: true
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'quick_reorder'"
+      - condition: response.action == "quick_reorder"
         to: select_item_for_reorder
-      - when: "input.action_id == 'manual_reorder'"
+      - condition: response.action == "manual_reorder"
         to: show_empty_reorder_form
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: done
 
@@ -97,7 +102,7 @@ nodes:
   select_item_for_reorder:
     state.set:
       key: "reorder_sku"
-      value: "input.sku"
+      value: "{{in.input.sku}}"
     routing:
       - to: load_item_for_reorder
 
@@ -107,51 +112,29 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: reorder_card.json
+          asset_path: cards/reorder_card.json
           template_params:
             prefill_sku: ""
             currency: parameters.currency
             lead_days: parameters.reorder_lead_days
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'submit_reorder'"
+      - condition: response.action == "submit_reorder"
         to: validate_reorder_input
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: load_low_stock_items
       - to: done
 
   # Validate reorder form input
   validate_reorder_input:
-    switch:
-      value: "input.product_sku"
-      cases:
-        - match: null
-          to: validation_error_sku
-        - match: ""
-          to: validation_error_sku
-      default: validate_quantity
-
-  # Validate quantity
-  validate_quantity:
-    switch:
-      value: "input.quantity"
-      cases:
-        - match: null
-          to: validation_error_quantity
-        - match: "0"
-          to: validation_error_quantity
-      default: validate_supplier
-
-  # Validate supplier selection
-  validate_supplier:
-    switch:
-      value: "input.supplier_id"
-      cases:
-        - match: null
-          to: validation_error_supplier
-        - match: ""
-          to: validation_error_supplier
-      default: create_reorder
+    routing:
+      - condition: "{{in.input.product_sku == null || in.input.product_sku == ''}}"
+        to: validation_error_sku
+      - condition: "{{in.input.quantity == null || in.input.quantity == '0'}}"
+        to: validation_error_quantity
+      - condition: "{{in.input.supplier_id == null || in.input.supplier_id == ''}}"
+        to: validation_error_supplier
+      - to: create_reorder
 
   # Validation error messages
   validation_error_sku:
@@ -180,14 +163,14 @@ nodes:
       input:
         tool: reorder_create
         arguments:
-          sku: "input.product_sku"
-          quantity: "input.quantity"
-          supplier_id: "input.supplier_id"
-          urgency: "input.urgency"
-          delivery_date: "input.delivery_date"
-          notes: "input.notes"
+          sku: "{{in.input.product_sku}}"
+          quantity: "{{in.input.quantity}}"
+          supplier_id: "{{in.input.supplier_id}}"
+          urgency: "{{in.input.urgency}}"
+          delivery_date: "{{in.input.delivery_date}}"
+          notes: "{{in.input.notes}}"
     routing:
-      - when: "create_reorder.success == true"
+      - condition: prev.success == true
         to: save_reorder_result
       - to: reorder_creation_error
 
@@ -196,10 +179,10 @@ nodes:
     state.set:
       key: "last_reorder"
       value:
-        order_id: "create_reorder.payload.order_id"
-        sku: "create_reorder.payload.sku"
-        quantity: "create_reorder.payload.quantity"
-        status: "create_reorder.payload.status"
+        order_id: "{{prev.payload.order_id}}"
+        sku: "{{prev.payload.sku}}"
+        quantity: "{{prev.payload.quantity}}"
+        status: "{{prev.payload.status}}"
     routing:
       - to: show_reorder_confirmation
 
@@ -209,13 +192,13 @@ nodes:
       text: |
         Reorder Request Created Successfully!
 
-        Order ID: {{create_reorder.payload.order_id}}
-        Product: {{create_reorder.payload.product_name}}
-        SKU: {{create_reorder.payload.sku}}
-        Quantity: {{create_reorder.payload.quantity}} units
-        Supplier: {{create_reorder.payload.supplier_name}}
-        Urgency: {{create_reorder.payload.urgency}}
-        Est. Delivery: {{create_reorder.payload.estimated_delivery}}
+        Order ID: {{prev.payload.order_id}}
+        Product: {{prev.payload.product_name}}
+        SKU: {{prev.payload.sku}}
+        Quantity: {{prev.payload.quantity}} units
+        Supplier: {{prev.payload.supplier_name}}
+        Urgency: {{prev.payload.urgency}}
+        Est. Delivery: {{prev.payload.estimated_delivery}}
         Status: Pending Approval
 
         The request will be reviewed by the procurement team.
@@ -235,9 +218,9 @@ nodes:
           - id: back_to_dashboard
             label: "Back to Dashboard"
     routing:
-      - when: "input.action_id == 'create_another'"
+      - condition: response.action == "create_another"
         to: clear_and_restart
-      - when: "input.action_id == 'view_pending'"
+      - condition: response.action == "view_pending"
         to: list_pending_reorders
       - to: clear_reorder_context
 
@@ -252,7 +235,7 @@ nodes:
           status: pending_approval
           limit: 10
     routing:
-      - when: "list_pending_reorders.success == true"
+      - condition: prev.success == true
         to: show_pending_reorders
       - to: load_error
 
@@ -262,18 +245,18 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: order_tracking_card.json
+          asset_path: cards/order_tracking_card.json
           template_params:
-            orders: "list_pending_reorders.payload.orders"
-            total_orders: "list_pending_reorders.payload.total_count"
+            orders: "prev.payload.orders"
+            total_orders: "prev.payload.total_count"
             view_mode: "pending_approval"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'approve'"
+      - condition: response.action == "approve"
         to: approve_reorder
-      - when: "input.action_id == 'reject'"
+      - condition: response.action == "reject"
         to: reject_reorder
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: clear_reorder_context
       - to: done
 
@@ -285,11 +268,11 @@ nodes:
       input:
         tool: reorder_approve
         arguments:
-          order_id: "input.order_id"
+          order_id: "{{in.input.order_id}}"
           action: "approve"
-          notes: "input.approval_notes"
+          notes: "{{in.input.approval_notes}}"
     routing:
-      - when: "approve_reorder.success == true"
+      - condition: prev.success == true
         to: approval_success
       - to: approval_error
 
@@ -301,25 +284,25 @@ nodes:
       input:
         tool: reorder_approve
         arguments:
-          order_id: "input.order_id"
+          order_id: "{{in.input.order_id}}"
           action: "reject"
-          notes: "input.rejection_reason"
+          notes: "{{in.input.rejection_reason}}"
     routing:
-      - when: "reject_reorder.success == true"
+      - condition: prev.success == true
         to: rejection_success
       - to: approval_error
 
   # Approval success
   approval_success:
     emit.response:
-      text: "Reorder {{approve_reorder.payload.order_id}} has been approved. A purchase order will be created and sent to the supplier."
+      text: "Reorder {{prev.payload.order_id}} has been approved. A purchase order will be created and sent to the supplier."
     routing:
       - to: list_pending_reorders
 
   # Rejection success
   rejection_success:
     emit.response:
-      text: "Reorder {{reject_reorder.payload.order_id}} has been rejected. The requester will be notified."
+      text: "Reorder {{prev.payload.order_id}} has been rejected. The requester will be notified."
     routing:
       - to: list_pending_reorders
 

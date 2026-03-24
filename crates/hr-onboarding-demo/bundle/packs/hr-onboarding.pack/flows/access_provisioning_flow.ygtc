@@ -3,6 +3,12 @@ title: Access Provisioning Flow
 description: Request and track system access for new employees
 type: messaging
 start: check_employee_exists
+schema_version: 2
+tags:
+  - hr
+  - onboarding
+  - access-provisioning
+  - systems
 
 parameters:
   available_systems:
@@ -19,7 +25,7 @@ nodes:
     state.get:
       key: "onboarding_state"
     routing:
-      - when: "state.onboarding_state.employee_id != null"
+      - condition: state.onboarding_state.employee_id != null
         to: fetch_access_status
       - to: no_employee
 
@@ -39,9 +45,9 @@ nodes:
       input:
         tool: hr_get_access_status
         arguments:
-          employee_id: "state.onboarding_state.employee_id"
+          employee_id: "{{state.onboarding_state.employee_id}}"
     routing:
-      - when: "fetch_access_status.success == true"
+      - condition: prev.success == true
         to: show_access_card
       - to: status_error
 
@@ -51,7 +57,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: access_request_card.json
+          asset_path: cards/access_request_card.json
           template_params:
             employee_name: "state.onboarding_state.employee_name"
             department: "state.onboarding_state.department"
@@ -61,22 +67,20 @@ nodes:
             total_count: "fetch_access_status.payload.total_count"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'submit_access_request'"
+      - condition: response.action == "submit_access_request"
         to: validate_access_request
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: done
 
   # Validate the access request
   validate_access_request:
-    switch:
-      value: "input.selected_systems"
-      cases:
-        - match: null
-          to: no_selection
-        - match: ""
-          to: no_selection
-      default: provision_access
+    routing:
+      - condition: "{{in.input.selected_systems == null}}"
+        to: no_selection
+      - condition: "{{in.input.selected_systems == ''}}"
+        to: no_selection
+      - to: provision_access
 
   # No systems selected
   no_selection:
@@ -93,20 +97,20 @@ nodes:
       input:
         tool: hr_provision_access
         arguments:
-          employee_id: "state.onboarding_state.employee_id"
-          employee_name: "state.onboarding_state.employee_name"
-          email: "state.onboarding_state.email"
-          department: "state.onboarding_state.department"
-          role: "state.onboarding_state.role"
+          employee_id: "{{state.onboarding_state.employee_id}}"
+          employee_name: "{{state.onboarding_state.employee_name}}"
+          email: "{{state.onboarding_state.email}}"
+          department: "{{state.onboarding_state.department}}"
+          role: "{{state.onboarding_state.role}}"
           systems:
-            corporate_email: "input.corporate_email"
-            slack: "input.slack"
-            vpn: "input.vpn"
-            github: "input.github"
-            jira: "input.jira"
-            building_access: "input.building_access"
+            corporate_email: "{{in.input.corporate_email}}"
+            slack: "{{in.input.slack}}"
+            vpn: "{{in.input.vpn}}"
+            github: "{{in.input.github}}"
+            jira: "{{in.input.jira}}"
+            building_access: "{{in.input.building_access}}"
     routing:
-      - when: "provision_access.success == true"
+      - condition: prev.success == true
         to: show_provisioning_result
       - to: provision_error
 
@@ -117,7 +121,7 @@ nodes:
         Access provisioning requests submitted!
 
         Provisioning Summary:
-        {{provision_access.payload.summary}}
+        {{prev.payload.summary}}
 
         Note: Some access requests may require manager approval. You will be notified once access is granted.
     routing:
@@ -131,7 +135,7 @@ nodes:
       input:
         tool: hr_update_checklist
         arguments:
-          employee_id: "state.onboarding_state.employee_id"
+          employee_id: "{{state.onboarding_state.employee_id}}"
           checklist_item: "provision_access"
           status: "in_progress"
     routing:
@@ -145,9 +149,9 @@ nodes:
       input:
         tool: hr_get_access_status
         arguments:
-          employee_id: "state.onboarding_state.employee_id"
+          employee_id: "{{state.onboarding_state.employee_id}}"
     routing:
-      - when: "check_all_access_done.payload.all_provisioned == true"
+      - condition: prev.payload.all_provisioned == true
         to: all_access_complete
       - to: access_in_progress
 
@@ -159,7 +163,7 @@ nodes:
       input:
         tool: hr_update_checklist
         arguments:
-          employee_id: "state.onboarding_state.employee_id"
+          employee_id: "{{state.onboarding_state.employee_id}}"
           checklist_item: "provision_access"
           status: "complete"
     routing:
@@ -185,7 +189,7 @@ nodes:
     state.get:
       key: "onboarding_state"
     routing:
-      - when: "state.onboarding_state.wizard_complete == true && state.onboarding_state.documents_complete == true && state.onboarding_state.access_complete == true"
+      - condition: state.onboarding_state.wizard_complete == true && state.onboarding_state.documents_complete == true && state.onboarding_state.access_complete == true
         to: show_completion
       - to: done
 
@@ -195,7 +199,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: completion_card.json
+          asset_path: cards/completion_card.json
           template_params:
             employee_name: "state.onboarding_state.employee_name"
             department: "state.onboarding_state.department"
@@ -204,7 +208,7 @@ nodes:
             manager_name: "state.onboarding_state.manager_name"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: done
 

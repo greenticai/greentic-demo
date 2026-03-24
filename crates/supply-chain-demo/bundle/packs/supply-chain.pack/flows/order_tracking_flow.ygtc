@@ -3,6 +3,11 @@ title: Order Tracking Flow
 description: Track purchase orders and shipments with real-time status updates
 type: messaging
 start: choose_view
+schema_version: 2
+tags:
+  - orders
+  - tracking
+  - supply-chain
 
 parameters:
   items_per_page: 10
@@ -14,19 +19,19 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: order_tracking_card.json
+          asset_path: cards/order_tracking_card.json
           template_params:
             orders: []
             view_mode: "search"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'search_order'"
+      - condition: response.action == "search_order"
         to: search_by_order_id
-      - when: "input.action_id == 'list_recent'"
+      - condition: response.action == "list_recent"
         to: list_recent_orders
-      - when: "input.action_id == 'list_by_status'"
+      - condition: response.action == "list_by_status"
         to: list_by_status
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: list_recent_orders
 
@@ -38,9 +43,9 @@ nodes:
       input:
         tool: order_get_status
         arguments:
-          order_id: "input.order_id"
+          order_id: "{{in.input.order_id}}"
     routing:
-      - when: "search_by_order_id.success == true"
+      - condition: prev.success == true
         to: show_order_detail
       - to: order_not_found
 
@@ -55,7 +60,7 @@ nodes:
           limit: parameters.items_per_page
           sort: created_desc
     routing:
-      - when: "list_recent_orders.success == true"
+      - condition: prev.success == true
         to: show_order_list
       - to: list_error
 
@@ -67,11 +72,11 @@ nodes:
       input:
         tool: order_list
         arguments:
-          status: "input.status_filter"
+          status: "{{in.input.status_filter}}"
           limit: parameters.items_per_page
           sort: created_desc
     routing:
-      - when: "list_by_status.success == true"
+      - condition: prev.success == true
         to: show_order_list
       - to: list_error
 
@@ -81,20 +86,20 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: order_tracking_card.json
+          asset_path: cards/order_tracking_card.json
           template_params:
-            orders: "list_recent_orders.payload.orders"
-            total_orders: "list_recent_orders.payload.total_count"
+            orders: "prev.payload.orders"
+            total_orders: "prev.payload.total_count"
             view_mode: "list"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'view_order'"
+      - condition: response.action == "view_order"
         to: get_order_detail
-      - when: "input.action_id == 'search_order'"
+      - condition: response.action == "search_order"
         to: search_by_order_id
-      - when: "input.action_id == 'list_by_status'"
+      - condition: response.action == "list_by_status"
         to: list_by_status
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: done
 
@@ -106,9 +111,9 @@ nodes:
       input:
         tool: order_get_status
         arguments:
-          order_id: "input.order_id"
+          order_id: "{{in.input.order_id}}"
     routing:
-      - when: "get_order_detail.success == true"
+      - condition: prev.success == true
         to: save_order_context
       - to: order_not_found
 
@@ -117,9 +122,9 @@ nodes:
     state.set:
       key: "current_order"
       value:
-        order_id: "get_order_detail.payload.order_id"
-        supplier_id: "get_order_detail.payload.supplier_id"
-        supplier_name: "get_order_detail.payload.supplier_name"
+        order_id: "{{prev.payload.order_id}}"
+        supplier_id: "{{prev.payload.supplier_id}}"
+        supplier_name: "{{prev.payload.supplier_name}}"
     routing:
       - to: show_order_detail
 
@@ -129,17 +134,17 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: order_tracking_card.json
+          asset_path: cards/order_tracking_card.json
           template_params:
-            order: "get_order_detail.payload"
+            order: "prev.payload"
             view_mode: "detail"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'contact_supplier'"
+      - condition: response.action == "contact_supplier"
         to: contact_supplier
-      - when: "input.action_id == 'cancel_order'"
+      - condition: response.action == "cancel_order"
         to: confirm_cancel
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: list_recent_orders
       - to: done
 
@@ -151,12 +156,12 @@ nodes:
       input:
         tool: supplier_send_rfq
         arguments:
-          supplier_id: "state.current_order.supplier_id"
+          supplier_id: "{{state.current_order.supplier_id}}"
           items: []
-          message: "input.message"
-          reference_order: "state.current_order.order_id"
+          message: "{{in.input.message}}"
+          reference_order: "{{state.current_order.order_id}}"
     routing:
-      - when: "contact_supplier.success == true"
+      - condition: prev.success == true
         to: supplier_contacted
       - to: contact_error
 
@@ -186,9 +191,9 @@ nodes:
         This action cannot be undone. The supplier will be notified.
       metadata:
         confirm_action: cancel_order
-        order_id: "state.current_order.order_id"
+        order_id: "{{state.current_order.order_id}}"
     routing:
-      - when: "input.action_id == 'confirm_cancel'"
+      - condition: response.action == "confirm_cancel"
         to: cancel_order
       - to: show_order_detail
 

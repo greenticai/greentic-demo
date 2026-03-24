@@ -3,6 +3,11 @@ title: Knowledge Base Search Flow
 description: Search internal knowledge base articles and display results
 type: messaging
 start: check_token
+schema_version: 2
+tags:
+  - helpdesk
+  - knowledge-base
+  - search
 
 parameters:
   kb_max_results: 10
@@ -13,7 +18,7 @@ nodes:
     state.get:
       key: "jira_oauth_token"
     routing:
-      - when: "state.jira_oauth_token != null"
+      - condition: prev.value != null
         to: prompt_search
       - to: no_token
 
@@ -45,22 +50,20 @@ nodes:
       input:
         tool: kb_search
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          query: "input.text"
+          oauth_token: "{{state.jira_oauth_token}}"
+          query: "{{in.input.text}}"
           max_results: parameters.kb_max_results
     routing:
-      - when: "execute_search.success == true"
+      - condition: prev.success == true
         to: check_results
       - to: search_error
 
   # Check if results were found
   check_results:
-    switch:
-      value: "execute_search.payload.total"
-      cases:
-        - match: "0"
-          to: no_results
-      default: show_results
+    routing:
+      - condition: "{{prev.payload.total == 0}}"
+        to: no_results
+      - to: show_results
 
   # Show search results card
   show_results:
@@ -68,20 +71,20 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: kb_results_card.json
+          asset_path: cards/kb_results_card.json
           template_params:
-            query: "input.text"
+            query: "{{in.input.text}}"
             articles: "execute_search.payload.articles"
             total_results: "execute_search.payload.total"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'view_article'"
+      - condition: response.action == "view_article"
         to: fetch_article
-      - when: "input.action_id == 'search_again'"
+      - condition: response.action == "search_again"
         to: prompt_search
-      - when: "input.action_id == 'create_ticket'"
+      - condition: response.action == "create_ticket"
         to: suggest_ticket
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: done
       - to: done
 
@@ -93,10 +96,10 @@ nodes:
       input:
         tool: kb_search
         arguments:
-          oauth_token: "state.jira_oauth_token"
-          article_id: "input.article_id"
+          oauth_token: "{{state.jira_oauth_token}}"
+          article_id: "{{in.input.article_id}}"
     routing:
-      - when: "fetch_article.success == true"
+      - condition: prev.success == true
         to: show_article
       - to: article_error
 
@@ -104,15 +107,15 @@ nodes:
   show_article:
     emit.response:
       text: |
-        **{{fetch_article.payload.title}}**
+        **{{prev.payload.title}}**
 
-        Category: {{fetch_article.payload.category}}
-        Last Updated: {{fetch_article.payload.updated}}
-        Relevance: {{fetch_article.payload.relevance_score}}%
+        Category: {{prev.payload.category}}
+        Last Updated: {{prev.payload.updated}}
+        Relevance: {{prev.payload.relevance_score}}%
 
         ---
 
-        {{fetch_article.payload.body}}
+        {{prev.payload.body}}
 
         ---
 
@@ -125,11 +128,11 @@ nodes:
     emit.response:
       text: "What would you like to do next?"
     routing:
-      - when: "input.action_id == 'helpful'"
+      - condition: response.action == "helpful"
         to: article_helpful
-      - when: "input.action_id == 'not_helpful'"
+      - condition: response.action == "not_helpful"
         to: suggest_ticket
-      - when: "input.action_id == 'search_again'"
+      - condition: response.action == "search_again"
         to: prompt_search
       - to: done
 
@@ -171,9 +174,9 @@ nodes:
     emit.response:
       text: "Would you like to search again or create a support ticket?"
     routing:
-      - when: "input.action_id == 'search_again'"
+      - condition: response.action == "search_again"
         to: prompt_search
-      - when: "input.action_id == 'create_ticket'"
+      - condition: response.action == "create_ticket"
         to: done
       - to: done
 

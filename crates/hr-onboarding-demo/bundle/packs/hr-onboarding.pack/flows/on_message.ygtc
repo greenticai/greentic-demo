@@ -3,6 +3,11 @@ title: HR Onboarding - Message Handler
 description: Entry point for messaging - routes to onboarding wizard, documents, access, or progress flows
 type: messaging
 start: check_onboarding_state
+schema_version: 2
+tags:
+  - hr
+  - onboarding
+  - employee
 
 parameters:
   company_name: "Acme Corp"
@@ -13,26 +18,24 @@ nodes:
     state.get:
       key: "onboarding_state"
     routing:
-      - when: "state.onboarding_state != null"
+      - condition: prev.value != null
         to: check_input_action
       - to: show_welcome
 
   # Check if user submitted a card action
   check_input_action:
-    switch:
-      value: "input.action_id"
-      cases:
-        - match: "start_onboarding"
-          to: start_wizard
-        - match: "check_progress"
-          to: fetch_progress
-        - match: "upload_documents"
-          to: start_documents
-        - match: "request_access"
-          to: start_access
-        - match: "reset_onboarding"
-          to: reset_onboarding
-      default: show_welcome_with_progress
+    routing:
+      - condition: "{{in.input.action_id == 'start_onboarding'}}"
+        to: start_wizard
+      - condition: "{{in.input.action_id == 'check_progress'}}"
+        to: fetch_progress
+      - condition: "{{in.input.action_id == 'upload_documents'}}"
+        to: start_documents
+      - condition: "{{in.input.action_id == 'request_access'}}"
+        to: start_access
+      - condition: "{{in.input.action_id == 'reset_onboarding'}}"
+        to: reset_onboarding
+      - to: show_welcome_with_progress
 
   # Show welcome card for new users
   show_welcome:
@@ -40,14 +43,14 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: welcome_card.json
+          asset_path: cards/welcome_card.json
           template_params:
             company_name: parameters.company_name
             has_onboarding: "false"
             progress_percent: "0"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'start_onboarding'"
+      - condition: response.action == "start_onboarding"
         to: start_wizard
       - to: show_help
 
@@ -57,7 +60,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: welcome_card.json
+          asset_path: cards/welcome_card.json
           template_params:
             company_name: parameters.company_name
             has_onboarding: "true"
@@ -65,15 +68,15 @@ nodes:
             progress_percent: "state.onboarding_state.progress_percent"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'start_onboarding'"
+      - condition: response.action == "start_onboarding"
         to: start_wizard
-      - when: "input.action_id == 'check_progress'"
+      - condition: response.action == "check_progress"
         to: fetch_progress
-      - when: "input.action_id == 'upload_documents'"
+      - condition: response.action == "upload_documents"
         to: start_documents
-      - when: "input.action_id == 'request_access'"
+      - condition: response.action == "request_access"
         to: start_access
-      - when: "input.action_id == 'reset_onboarding'"
+      - condition: response.action == "reset_onboarding"
         to: reset_onboarding
       - to: show_help
 
@@ -93,9 +96,9 @@ nodes:
       input:
         tool: hr_get_onboarding_progress
         arguments:
-          employee_id: "state.onboarding_state.employee_id"
+          employee_id: "{{state.onboarding_state.employee_id}}"
     routing:
-      - when: "fetch_progress.success == true"
+      - condition: prev.success == true
         to: show_progress
       - to: progress_error
 
@@ -105,7 +108,7 @@ nodes:
       input:
         card_source: asset
         card_spec:
-          asset_path: onboarding_checklist_card.json
+          asset_path: cards/onboarding_checklist_card.json
           template_params:
             employee_name: "state.onboarding_state.employee_name"
             department: "state.onboarding_state.department"
@@ -115,11 +118,11 @@ nodes:
             total_count: "fetch_progress.payload.total_count"
         mode: renderAndValidate
     routing:
-      - when: "input.action_id == 'back'"
+      - condition: response.action == "back"
         to: show_welcome_with_progress
-      - when: "input.action_id == 'upload_documents'"
+      - condition: response.action == "upload_documents"
         to: start_documents
-      - when: "input.action_id == 'request_access'"
+      - condition: response.action == "request_access"
         to: start_access
       - to: done
 
