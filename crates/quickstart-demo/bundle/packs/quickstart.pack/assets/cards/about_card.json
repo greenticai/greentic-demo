@@ -1,0 +1,33 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "About Greentic",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Greentic is a WASM-component-based, multi-tenant platform for building and running AI-driven digital workers. It uses WebAssembly (WASI Preview 2) for sandboxed, portable execution.",
+      "wrap": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Runtime", "value": "Wasmtime (WASI P2)" },
+        { "title": "Messaging", "value": "NATS" },
+        { "title": "Version", "value": "{{ version }}" }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Back to menu",
+      "verb": "back"
+    }
+  ]
+}

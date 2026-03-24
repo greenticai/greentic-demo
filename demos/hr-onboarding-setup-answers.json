@@ -1,0 +1,16 @@
+{
+    "wizard_id": "greentic-dev.wizard.launcher.main",
+    "schema_id": "greentic-dev.launcher.main",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+        "selected_action": "setup",
+        "delegate_answer_document": {
+            "wizard_id": "greentic-bundle.wizard.setup",
+            "schema_id": "greentic-bundle.setup.answers",
+            "schema_version": "1.0.0",
+            "locale": "en-GB",
+            "answers": {}
+        }
+    }
+}

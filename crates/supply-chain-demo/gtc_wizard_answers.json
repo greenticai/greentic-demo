@@ -1,0 +1,41 @@
+{
+    "wizard_id": "greentic-dev.wizard.launcher.main",
+    "schema_id": "greentic-dev.launcher.main",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+        "selected_action": "bundle",
+        "delegate_answer_document": {
+            "wizard_id": "greentic-bundle.wizard.run",
+            "schema_id": "greentic-bundle.wizard.answers",
+            "schema_version": "1.0.0",
+            "locale": "en-GB",
+            "answers": {
+                "access_rules": [{"policy": "public", "rule_path": "supply-chain-pack", "tenant": "default"}],
+                "advanced_setup": false,
+                "app_pack_entries": [{"detected_kind": "local_dir", "display_name": "Supply Chain Demo Pack", "mapping": {"scope": "global"}, "pack_id": "supply-chain-pack", "reference": "packs/supply-chain.pack"}],
+                "app_packs": ["packs/supply-chain.pack"],
+                "bundle_id": "supply-chain-demo",
+                "bundle_name": "supply-chain-demo",
+                "export_intent": false,
+                "extension_provider_entries": [
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat (latest)", "provider_id": "greentic.messaging.webchat.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Slack (latest)", "provider_id": "greentic.messaging.slack.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Teams (latest)", "provider_id": "greentic.messaging.teams.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest", "version": "latest"}
+                ],
+                "extension_providers": [
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest"
+                ],
+                "mode": "create",
+                "output_dir": "crates/supply-chain-demo/bundle",
+                "remote_catalogs": [],
+                "setup_answers": {},
+                "setup_execution_intent": false,
+                "setup_specs": {}
+            },
+            "locks": {"cache_policy": "workspace-local", "catalogs": [], "execution": "execute", "lock_file": "bundle.lock.json", "requested_mode": "create", "setup_state_files": [], "workspace_root": "bundle.yaml"}
+        }
+    }
+}

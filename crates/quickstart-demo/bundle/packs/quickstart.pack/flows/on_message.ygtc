@@ -1,0 +1,78 @@
+id: on_message
+title: Quickstart - Message Handler
+description: Welcome card with simple menu interactions
+type: messaging
+start: render_welcome
+parameters: {}
+tags:
+  - messaging
+schema_version: 2
+entrypoints: {}
+
+nodes:
+  render_welcome:
+    component-adaptive-card.card:
+      node_id: welcome-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        greeting: "Welcome to Greentic!"
+      card_spec:
+        asset_path: assets/cards/welcome_card.json
+        template_params:
+          greeting: "Welcome to Greentic!"
+    routing:
+      - out: about
+        to: render_about
+      - out: echo
+        to: echo_message
+      - out: true
+
+  render_about:
+    component-adaptive-card.card:
+      node_id: about-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        version: "0.1.0"
+      card_spec:
+        asset_path: assets/cards/about_card.json
+        template_params:
+          version: "0.1.0"
+    routing:
+      - out: back
+        to: render_welcome
+      - out: true
+
+  echo_message:
+    component-adaptive-card.card:
+      node_id: echo-result
+      card_source: inline
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        echo_text: "{{ message.text }}"
+      card_spec:
+        card_body:
+          type: AdaptiveCard
+          version: "1.6"
+          body:
+            - type: TextBlock
+              text: "You said: {{ message.text }}"
+              wrap: true
+              weight: Bolder
+          actions:
+            - type: Action.Execute
+              title: Back to menu
+              verb: back
+        template_params:
+          echo_text: "{{ message.text }}"
+    routing:
+      - out: back
+        to: render_welcome
+      - out: true
