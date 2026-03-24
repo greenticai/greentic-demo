@@ -2,7 +2,7 @@ name: Publish Demo Bundles
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
     tags:
       - "v*"
   workflow_dispatch:
@@ -66,8 +66,46 @@ jobs:
           path: .artifacts/component-refs.txt
           if-no-files-found: error
 
+  publish-app-packs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install ORAS
+        uses: oras-project/setup-oras@v1
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | oras login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Publish app packs
+        env:
+          OWNER: ${{ github.repository_owner }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          while IFS= read -r pack_dir; do
+            pack_name="$(basename "$pack_dir" .pack)"
+            echo "Publishing ${pack_name}..."
+            cd "$pack_dir"
+            sha_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:${SHA}"
+            oras push "$sha_ref" .
+            echo "  -> ${sha_ref}"
+            if [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
+              latest_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:latest"
+              oras push "$latest_ref" .
+              echo "  -> ${latest_ref}"
+            fi
+            if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+              tag_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:${GITHUB_REF_NAME}"
+              oras push "$tag_ref" .
+              echo "  -> ${tag_ref}"
+            fi
+            cd - > /dev/null
+          done < <(find crates -path '*/bundle/packs/*.pack' -type d | sort)
+
   publish-demos:
-    needs: publish-components
+    needs: [publish-components, publish-app-packs]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
