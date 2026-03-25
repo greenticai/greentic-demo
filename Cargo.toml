@@ -5,8 +5,10 @@ members = [
 # WASM component sub-crates require greentic-interfaces WIT root and
 # wasm32-wasip2 target; they are built separately, not via workspace checks.
 exclude = [
-    "crates/*/component-*",
-    "crates/*/greentic-*",
+    "crates/redbutton-demo/component-betterstack-incident",
+    "crates/redbutton-demo/component-http",
+    "crates/redbutton-demo/component-random",
+    "crates/redbutton-demo/greentic-http2play",
 ]
 resolver = "3"
 
