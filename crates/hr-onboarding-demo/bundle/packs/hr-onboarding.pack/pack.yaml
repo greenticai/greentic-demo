@@ -83,6 +83,8 @@ assets:
   - path: assets/cards/document_upload_card.json
   - path: assets/cards/access_request_card.json
   - path: assets/cards/completion_card.json
+  - path: assets/i18n/en.json
+    tags: [i18n, default]
 
 # Secrets required for this pack
 secrets:

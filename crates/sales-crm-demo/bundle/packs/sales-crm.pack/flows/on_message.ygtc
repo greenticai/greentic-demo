@@ -11,6 +11,7 @@ tags:
 
 parameters:
   oauth_provider: salesforce
+  default_language: "en"
 
 nodes:
   # Check if user has valid Salesforce OAuth token
@@ -32,6 +33,9 @@ nodes:
           template_params:
             provider: parameters.oauth_provider
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "connect_salesforce"
         to: start_oauth
@@ -74,6 +78,9 @@ nodes:
           template_params:
             username: "state.salesforce_username"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "new_lead"
         to: start_lead_flow
@@ -96,6 +103,9 @@ nodes:
           asset_path: cards/lead_form_card.json
           template_params: {}
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_lead"
         to: create_lead
@@ -188,6 +198,9 @@ nodes:
             total_value: "prev.payload.total_value"
             deal_count: "prev.payload.deal_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_deal"
         to: get_deal_detail
@@ -237,6 +250,9 @@ nodes:
             notes: "prev.payload.notes"
             opportunity_id: "prev.payload.id"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "update_stage"
         to: update_deal
@@ -327,6 +343,9 @@ nodes:
             total_value: "prev.payload.total_value"
             deal_count: "prev.payload.deal_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_deal"
         to: get_deal_detail
@@ -343,6 +362,9 @@ nodes:
           asset_path: cards/meeting_card.json
           template_params: {}
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "schedule_meeting"
         to: create_meeting

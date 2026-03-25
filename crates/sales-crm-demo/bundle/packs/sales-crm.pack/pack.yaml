@@ -110,6 +110,8 @@ assets:
   - path: assets/cards/pipeline_card.json
   - path: assets/cards/deal_detail_card.json
   - path: assets/cards/meeting_card.json
+  - path: assets/i18n/en.json
+    tags: [i18n, default]
 
 # Secrets required for this pack
 secrets:

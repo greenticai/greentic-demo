@@ -12,6 +12,7 @@ tags:
 parameters:
   low_stock_threshold: 10
   currency: "USD"
+  default_language: "en"
 
 nodes:
   # Load current dashboard metrics from state
@@ -63,6 +64,9 @@ nodes:
             pending_orders: "state.dashboard_metrics.pending_orders"
             currency: parameters.currency
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "check_stock"
         to: route_stock_check
@@ -96,6 +100,9 @@ nodes:
             search_mode: true
             search_query: ""
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "search_stock"
         to: execute_stock_search
@@ -132,6 +139,9 @@ nodes:
             search_mode: false
             search_query: "{{in.input.search_query}}"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "search_stock"
         to: execute_stock_search
@@ -191,6 +201,9 @@ nodes:
             total_orders: "prev.payload.total_count"
             view_mode: "list"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_order"
         to: get_order_detail
@@ -239,6 +252,9 @@ nodes:
             order: "prev.payload"
             view_mode: "detail"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "contact_supplier"
         to: route_contact_supplier
@@ -294,6 +310,9 @@ nodes:
             total_alerts: "prev.payload.total_count"
             threshold: parameters.low_stock_threshold
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "quick_reorder"
         to: quick_reorder_from_alert
@@ -346,6 +365,9 @@ nodes:
             currency: parameters.currency
             lead_days: parameters.reorder_lead_days
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_reorder"
         to: validate_reorder
@@ -440,6 +462,9 @@ nodes:
             suppliers: "prev.payload.suppliers"
             total_suppliers: "prev.payload.total_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "send_rfq"
         to: send_rfq
@@ -511,6 +536,9 @@ nodes:
             total_orders: "prev.payload.total_count"
             view_mode: "supplier_history"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "back"
         to: route_supplier_directory

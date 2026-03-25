@@ -12,6 +12,7 @@ tags:
 parameters:
   jira_project_key: "ITSM"
   default_issue_type: "Task"
+  default_language: "en"
 
 nodes:
   # Check if token exists
@@ -42,6 +43,9 @@ nodes:
           template_params:
             project_key: parameters.jira_project_key
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_ticket"
         to: validate_input

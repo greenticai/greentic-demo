@@ -11,6 +11,7 @@ tags:
 
 parameters:
   qualification_threshold: 60
+  default_language: "en"
 
 nodes:
   # Check if Salesforce token exists
@@ -40,6 +41,9 @@ nodes:
           asset_path: cards/lead_form_card.json
           template_params: {}
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_lead"
         to: validate_lead
@@ -205,6 +209,9 @@ nodes:
           template_params:
             prefill_contact: "{{state.last_lead.first_name}} {{state.last_lead.last_name}}"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "schedule_meeting"
         to: create_follow_up_task

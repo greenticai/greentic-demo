@@ -3,7 +3,8 @@ title: Quickstart - Message Handler
 description: Welcome card with simple menu interactions
 type: messaging
 start: render_welcome
-parameters: {}
+parameters:
+  default_language: "en"
 tags:
   - messaging
 schema_version: 2
@@ -23,6 +24,9 @@ nodes:
         asset_path: assets/cards/welcome_card.json
         template_params:
           greeting: "Welcome to Greentic!"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
     routing:
       - out: about
         to: render_about
@@ -43,6 +47,9 @@ nodes:
         asset_path: assets/cards/about_card.json
         template_params:
           version: "0.1.0"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
     routing:
       - out: back
         to: render_welcome
@@ -72,6 +79,9 @@ nodes:
               verb: back
         template_params:
           echo_text: "{{ message.text }}"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
     routing:
       - out: back
         to: render_welcome

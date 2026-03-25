@@ -47,3 +47,5 @@ flows:
 assets:
   - path: assets/cards/welcome_card.json
   - path: assets/cards/about_card.json
+  - path: assets/i18n/en.json
+    tags: [i18n, default]

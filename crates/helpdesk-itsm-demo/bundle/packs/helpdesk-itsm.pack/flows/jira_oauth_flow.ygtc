@@ -15,6 +15,7 @@ parameters:
     - read:jira-work
     - write:jira-work
     - read:jira-user
+  default_language: "en"
 
 nodes:
   # Show OAuth connection card
@@ -28,6 +29,9 @@ nodes:
             provider: parameters.oauth_provider
             scopes: parameters.oauth_scopes
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "connect_jira"
         to: initiate_oauth
