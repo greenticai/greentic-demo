@@ -19,10 +19,10 @@
                 "bundle_name": "quickstart-demo",
                 "export_intent": false,
                 "extension_provider_entries": [
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat (latest)", "provider_id": "greentic.messaging.webchat.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest", "version": "latest"}
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat GUI (latest)", "provider_id": "greentic.messaging.webchat-gui.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest", "version": "latest"}
                 ],
                 "extension_providers": [
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest"
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest"
                 ],
                 "mode": "create",
                 "output_dir": "crates/quickstart-demo/bundle",
