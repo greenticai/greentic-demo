@@ -17,7 +17,7 @@ Input reviewed:
 - New PR dependency vulnerabilities: `[]`
 
 Repository checks performed:
-- Verified dependency manifests/lockfiles in repo (Cargo-based project).
+- Enumerated dependency manifests/lockfiles (Cargo-based project).
 - Checked dependency file changes in latest commit range:
   - `git diff --name-only HEAD~1..HEAD -- '*Cargo.toml' '*Cargo.lock' 'package.json' 'package-lock.json' 'pnpm-lock.yaml' 'yarn.lock' 'poetry.lock' 'requirements*.txt' 'Pipfile.lock' 'Gemfile.lock'`
 
