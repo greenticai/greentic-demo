@@ -18,6 +18,7 @@ parameters:
     - emergency_contact_form
     - direct_deposit_form
     - nda_agreement
+  default_language: "en"
 
 nodes:
   # Verify employee record exists
@@ -66,6 +67,9 @@ nodes:
             verified_count: "fetch_document_status.payload.verified_count"
             total_count: "fetch_document_status.payload.total_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "upload_government_id"
         to: submit_government_id

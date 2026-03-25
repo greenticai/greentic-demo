@@ -13,6 +13,7 @@ parameters:
   low_stock_threshold: 10
   items_per_page: 20
   default_warehouse: "WH-001"
+  default_language: "en"
 
 nodes:
   # Check if a SKU was pre-selected from another flow
@@ -37,6 +38,9 @@ nodes:
             search_query: ""
             default_warehouse: parameters.default_warehouse
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "search_stock"
         to: execute_search
@@ -94,6 +98,9 @@ nodes:
             search_mode: false
             search_query: "{{in.input.search_query}}"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_item"
         to: save_selected_sku
@@ -139,6 +146,9 @@ nodes:
             view_mode: "detail"
             low_stock_threshold: parameters.low_stock_threshold
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "reorder_item"
         to: initiate_reorder
@@ -210,6 +220,9 @@ nodes:
             total_alerts: "prev.payload.total_count"
             threshold: parameters.low_stock_threshold
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "quick_reorder"
         to: initiate_reorder

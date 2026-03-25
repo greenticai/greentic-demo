@@ -18,6 +18,7 @@ parameters:
     - github
     - jira
     - building_access
+  default_language: "en"
 
 nodes:
   # Verify employee record exists
@@ -66,6 +67,9 @@ nodes:
             provisioned_count: "fetch_access_status.payload.provisioned_count"
             total_count: "fetch_access_status.payload.total_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_access_request"
         to: validate_access_request
@@ -207,6 +211,9 @@ nodes:
             start_date: "state.onboarding_state.start_date"
             manager_name: "state.onboarding_state.manager_name"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "back"
         to: done

@@ -109,6 +109,8 @@ assets:
   - path: assets/cards/ticket_status_card.json
   - path: assets/cards/kb_results_card.json
   - path: assets/cards/escalation_card.json
+  - path: assets/i18n/en.json
+    tags: [i18n, default]
 
 # Secrets required for this pack
 secrets:

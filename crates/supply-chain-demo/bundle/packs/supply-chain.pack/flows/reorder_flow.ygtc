@@ -13,6 +13,7 @@ parameters:
   low_stock_threshold: 10
   reorder_lead_days: 7
   currency: "USD"
+  default_language: "en"
 
 nodes:
   # Check if a SKU was pre-selected for reorder
@@ -55,6 +56,9 @@ nodes:
             currency: parameters.currency
             lead_days: parameters.reorder_lead_days
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_reorder"
         to: validate_reorder_input
@@ -89,6 +93,9 @@ nodes:
             threshold: parameters.low_stock_threshold
             reorder_mode: true
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "quick_reorder"
         to: select_item_for_reorder
@@ -118,6 +125,9 @@ nodes:
             currency: parameters.currency
             lead_days: parameters.reorder_lead_days
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_reorder"
         to: validate_reorder_input
@@ -251,6 +261,9 @@ nodes:
             total_orders: "prev.payload.total_count"
             view_mode: "pending_approval"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "approve"
         to: approve_reorder

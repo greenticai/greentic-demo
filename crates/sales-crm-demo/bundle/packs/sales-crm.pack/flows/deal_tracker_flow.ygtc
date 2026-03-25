@@ -16,6 +16,7 @@ parameters:
     - Proposal
     - Negotiation
     - Closed Won
+  default_language: "en"
 
 nodes:
   # Check if Salesforce token exists
@@ -62,6 +63,9 @@ nodes:
             total_value: "prev.payload.total_value"
             deal_count: "prev.payload.deal_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_deal"
         to: fetch_deal_detail
@@ -104,6 +108,9 @@ nodes:
             notes: "prev.payload.notes"
             opportunity_id: "prev.payload.id"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "update_stage"
         to: update_stage
@@ -196,6 +203,9 @@ nodes:
           template_params:
             prefill_contact: "prev.payload.contact_name"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "schedule_meeting"
         to: create_deal_task

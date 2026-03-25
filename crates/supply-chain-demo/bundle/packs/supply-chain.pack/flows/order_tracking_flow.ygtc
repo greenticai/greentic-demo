@@ -11,6 +11,7 @@ tags:
 
 parameters:
   items_per_page: 10
+  default_language: "en"
 
 nodes:
   # Choose between search by ID or list recent orders
@@ -24,6 +25,9 @@ nodes:
             orders: []
             view_mode: "search"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "search_order"
         to: search_by_order_id
@@ -92,6 +96,9 @@ nodes:
             total_orders: "prev.payload.total_count"
             view_mode: "list"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_order"
         to: get_order_detail
@@ -139,6 +146,9 @@ nodes:
             order: "prev.payload"
             view_mode: "detail"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "contact_supplier"
         to: contact_supplier
