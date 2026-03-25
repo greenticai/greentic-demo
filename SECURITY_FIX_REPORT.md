@@ -11,20 +11,25 @@ Date (UTC): 2026-03-24
   - `pr-vulnerable-changes.json`: `[]`
 
 ## PR Dependency Vulnerability Check
-Reviewed dependency manifests and lockfiles for new vulnerable changes:
+Dependency files in scope:
 - `Cargo.toml`
 - `Cargo.lock`
 - `crates/**/Cargo.toml`
 - `crates/**/Cargo.lock`
 
-Result:
-- No dependency-file diffs detected in this PR scope (`git diff --name-only` returned no changes for files above).
-- No new PR dependency vulnerabilities were reported.
+Validation performed:
+- `git diff --name-only -- Cargo.toml Cargo.lock 'crates/**/Cargo.toml' 'crates/**/Cargo.lock'`
+- Result: no dependency-file diffs detected in current PR workspace.
+
+Additional scan attempt:
+- Command: `cargo audit -q`
+- Outcome: could not execute in CI sandbox due Rustup write restriction (`/home/runner/.rustup` is read-only in this environment).
 
 ## Remediation Actions
-- No Dependabot or code scanning findings were present.
-- No vulnerable dependency entries were provided.
-- No code or dependency fixes were required.
+- No Dependabot findings were present.
+- No code scanning findings were present.
+- No new PR dependency vulnerabilities were reported.
+- No code or dependency changes were required.
 
 ## Final Status
 - Security review completed.
