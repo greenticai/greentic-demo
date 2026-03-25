@@ -1,0 +1,19 @@
+{
+  "welcome_card.body_1.text": "This is the Greentic quickstart demo. Choose an action below to get started.",
+  "welcome_card.body_2.facts_0.title": "Platform",
+  "welcome_card.body_2.facts_0.value": "Greentic",
+  "welcome_card.body_2.facts_1.title": "Demo",
+  "welcome_card.body_2.facts_1.value": "Quickstart",
+  "welcome_card.body_2.facts_2.title": "Components",
+  "welcome_card.body_2.facts_2.value": "Adaptive Card",
+  "welcome_card.actions_0.title": "About Greentic",
+  "welcome_card.actions_1.title": "Echo Message",
+  "about_card.body_0.text": "About Greentic",
+  "about_card.body_1.text": "Greentic is a WASM-component-based, multi-tenant platform for building and running AI-driven digital workers. It uses WebAssembly (WASI Preview 2) for sandboxed, portable execution.",
+  "about_card.body_2.facts_0.title": "Runtime",
+  "about_card.body_2.facts_0.value": "Wasmtime (WASI P2)",
+  "about_card.body_2.facts_1.title": "Messaging",
+  "about_card.body_2.facts_1.value": "NATS",
+  "about_card.body_2.facts_2.title": "Version",
+  "about_card.actions_0.title": "Back to menu"
+}

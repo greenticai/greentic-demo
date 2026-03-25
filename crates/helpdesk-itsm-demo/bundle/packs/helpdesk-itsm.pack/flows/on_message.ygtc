@@ -12,6 +12,7 @@ tags:
 parameters:
   oauth_provider: jira
   jira_project_key: "ITSM"
+  default_language: "en"
 
 nodes:
   # Check if user has valid Jira OAuth token
@@ -33,6 +34,9 @@ nodes:
           template_params:
             provider: parameters.oauth_provider
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "connect_jira"
         to: start_oauth
@@ -77,6 +81,9 @@ nodes:
             display_name: "state.jira_display_name"
             project_key: parameters.jira_project_key
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "create_ticket"
         to: create_ticket
@@ -100,6 +107,9 @@ nodes:
           template_params:
             project_key: parameters.jira_project_key
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_ticket"
         to: submit_new_ticket
@@ -189,6 +199,9 @@ nodes:
             updated: "fetch_ticket_status.payload.fields.updated"
             description: "fetch_ticket_status.payload.fields.description"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "add_comment"
         to: add_comment
@@ -250,6 +263,9 @@ nodes:
             issue_key: "fetch_ticket_status.payload.key"
             current_priority: "fetch_ticket_status.payload.fields.priority.name"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "confirm_escalation"
         to: submit_escalation
@@ -334,6 +350,9 @@ nodes:
             total: "list_my_tickets.payload.total"
             view_mode: "list"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_ticket"
         to: view_selected_ticket
@@ -373,6 +392,9 @@ nodes:
             updated: "view_selected_ticket.payload.fields.updated"
             description: "view_selected_ticket.payload.fields.description"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "add_comment"
         to: add_comment
@@ -421,6 +443,9 @@ nodes:
             articles: "execute_kb_search.payload.articles"
             total_results: "execute_kb_search.payload.total"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_article"
         to: view_kb_article

@@ -14,6 +14,7 @@ parameters:
   company_name: "Acme Corp"
   default_department: "Engineering"
   onboarding_checklist_version: "v2"
+  default_language: "en"
 
 nodes:
   # Check if employee already exists in state
@@ -42,6 +43,9 @@ nodes:
             company_name: parameters.company_name
             default_department: parameters.default_department
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "submit_employee"
         to: validate_employee_data
@@ -152,6 +156,9 @@ nodes:
             completed_count: "1"
             total_count: "fetch_checklist.payload.total_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "upload_documents"
         to: redirect_documents

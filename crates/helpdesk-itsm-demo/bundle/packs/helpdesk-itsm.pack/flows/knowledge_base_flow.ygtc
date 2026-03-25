@@ -11,6 +11,7 @@ tags:
 
 parameters:
   kb_max_results: 10
+  default_language: "en"
 
 nodes:
   # Check if token exists
@@ -77,6 +78,9 @@ nodes:
             articles: "execute_search.payload.articles"
             total_results: "execute_search.payload.total"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "view_article"
         to: fetch_article

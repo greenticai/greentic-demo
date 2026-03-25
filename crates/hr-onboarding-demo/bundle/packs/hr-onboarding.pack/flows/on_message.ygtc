@@ -11,6 +11,7 @@ tags:
 
 parameters:
   company_name: "Acme Corp"
+  default_language: "en"
 
 nodes:
   # Check if user has an active onboarding session
@@ -49,6 +50,9 @@ nodes:
             has_onboarding: "false"
             progress_percent: "0"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "start_onboarding"
         to: start_wizard
@@ -67,6 +71,9 @@ nodes:
             employee_name: "state.onboarding_state.employee_name"
             progress_percent: "state.onboarding_state.progress_percent"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "start_onboarding"
         to: start_wizard
@@ -117,6 +124,9 @@ nodes:
             completed_count: "fetch_progress.payload.completed_count"
             total_count: "fetch_progress.payload.total_count"
         mode: renderAndValidate
+        i18n:
+          locale: session.language ?? parameters.default_language
+          bundle_path: i18n/{{locale}}.json
     routing:
       - condition: response.action == "back"
         to: show_welcome_with_progress
