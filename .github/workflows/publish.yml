@@ -112,6 +112,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.91.0
+
+      - name: Install greentic-bundle
+        run: cargo install greentic-bundle
+
       - name: Install ORAS
         uses: oras-project/setup-oras@v1
 
