@@ -46,17 +46,17 @@ jobs:
             package_name="$(sed -n 's/^name = "\(.*\)"/\1/p' "$dir/Cargo.toml" | head -n1)"
             cargo component build --release --target wasm32-wasip2 --manifest-path "$dir/Cargo.toml"
             artifact="target/wasm32-wasip1/release/${package_name//-/_}.wasm"
-            sha_ref="oci://ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${SHA}"
+            sha_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${SHA}"
             wkg oci push "$sha_ref" "$artifact"
-            echo "${component_name}=${sha_ref}" >> .artifacts/component-refs.txt
+            echo "${component_name}=oci://${sha_ref}" >> .artifacts/component-refs.txt
             if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
-              tag_ref="oci://ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${REF_NAME}"
+              tag_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${REF_NAME}"
               wkg oci push "$tag_ref" "$artifact"
-              echo "${component_name}_tag=${tag_ref}" >> .artifacts/component-refs.txt
+              echo "${component_name}_tag=oci://${tag_ref}" >> .artifacts/component-refs.txt
             elif [[ "${GITHUB_REF_NAME}" == "main" ]]; then
-              latest_ref="oci://ghcr.io/${OWNER}/greentic-demo-components/${component_name}:latest"
+              latest_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:latest"
               wkg oci push "$latest_ref" "$artifact"
-              echo "${component_name}_latest=${latest_ref}" >> .artifacts/component-refs.txt
+              echo "${component_name}_latest=oci://${latest_ref}" >> .artifacts/component-refs.txt
             fi
           done < <(find crates -mindepth 2 -maxdepth 2 -type d \( -name 'component-*' -o -name 'greentic-*' \) | sort)
 
