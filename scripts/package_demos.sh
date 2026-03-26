@@ -16,6 +16,7 @@ find "$OUTPUT_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -delete
 
 shopt -s nullglob
 crate_manifests=("$CRATES_DIR"/*/Cargo.toml)
+packaged_any=0
 
 if [ ${#crate_manifests[@]} -eq 0 ]; then
     echo "No demo crates found under crates/. Nothing to package."
@@ -32,6 +33,15 @@ for manifest in "${crate_manifests[@]}"; do
         continue
     fi
 
-    greentic-bundle build --root "$crate_dir/bundle" --offline --output "$bundle_path" >/dev/null
-    echo "Created demos/$demo_name.gtbundle"
+    if greentic-bundle build --root "$crate_dir/bundle" --offline --output "$bundle_path" >/dev/null; then
+        echo "Created demos/$demo_name.gtbundle"
+        packaged_any=1
+    else
+        echo "Skipping $demo_name: bundle packaging failed" >&2
+    fi
 done
+
+if [ "$packaged_any" -eq 0 ]; then
+    echo "No demo bundles were packaged successfully." >&2
+    exit 1
+fi
