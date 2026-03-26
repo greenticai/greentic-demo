@@ -1,6 +1,6 @@
 # SECURITY_FIX_REPORT
 
-Date: 2026-03-25 (UTC)
+Date: 2026-03-26 (UTC)
 Reviewer: Codex (Security Reviewer)
 
 ## 1) Alert Analysis
@@ -23,12 +23,12 @@ Repository checks performed:
   - `code-scanning-alerts.json`
   - `pr-vulnerable-changes.json`
 - Enumerated dependency manifests/lockfiles in repository (Cargo workspace).
-- Checked for dependency file changes in current PR workspace:
+- Checked PR dependency file diff:
   - `git diff --name-only -- Cargo.toml Cargo.lock crates/**/Cargo.toml crates/**/Cargo.lock`
 
 Result:
 - No new dependency vulnerabilities were reported.
-- No dependency manifest/lockfile changes were detected in the PR workspace.
+- No dependency manifest/lockfile changes were detected in the current PR workspace.
 - No PR-introduced dependency vulnerabilities were found.
 
 ## 3) Fixes Applied
