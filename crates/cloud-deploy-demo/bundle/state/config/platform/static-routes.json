@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "public_web_enabled": true,
+  "public_base_url": "https://example.com",
+  "public_surface_policy": "enabled",
+  "default_route_prefix_policy": "pack_declared",
+  "tenant_path_policy": "pack_declared"
+}

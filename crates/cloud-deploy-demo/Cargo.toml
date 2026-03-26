@@ -1,0 +1,9 @@
+[package]
+name = "cloud-deploy-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic cloud deployment demo bundle with messaging, events, state, and deploy provider extensions."
+
+[lib]
+path = "src/lib.rs"

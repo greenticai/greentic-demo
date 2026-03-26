@@ -1,0 +1,53 @@
+{
+  "wizard_id": "greentic-bundle.wizard.run",
+  "schema_id": "greentic-bundle.wizard.answers",
+  "schema_version": "1.0.0",
+  "locale": "en",
+  "answers": {
+    "access_rules": [
+      {
+        "policy": "public",
+        "rule_path": "cards-demo",
+        "tenant": "default"
+      }
+    ],
+    "advanced_setup": false,
+    "app_pack_entries": [
+      {
+        "detected_kind": "local_file",
+        "display_name": "Cards Demo",
+        "mapping": {
+          "scope": "global"
+        },
+        "pack_id": "cards-demo",
+        "reference": "../../../cloud-deploy-files-full/cards-demo.gtpack"
+      }
+    ],
+    "app_packs": [
+      "../../../cloud-deploy-files-full/cards-demo.gtpack"
+    ],
+    "bundle_id": "cloud-deploy-demo",
+    "bundle_name": "Cloud Deploy Demo",
+    "export_intent": false,
+    "extension_providers": [
+      "../../../cloud-deploy-files-full/messaging-webchat-gui.gtpack",
+      "../../../cloud-deploy-files-full/state-memory.gtpack",
+      "../../../cloud-deploy-files-full/events-webhook.gtpack"
+    ],
+    "mode": "create",
+    "output_dir": "crates/cloud-deploy-demo/bundle",
+    "remote_catalogs": [],
+    "setup_answers": {},
+    "setup_execution_intent": false,
+    "setup_specs": {}
+  },
+  "locks": {
+    "cache_policy": "workspace-local",
+    "catalogs": [],
+    "execution": "dry_run",
+    "lock_file": "bundle.lock.json",
+    "requested_mode": "create",
+    "setup_state_files": [],
+    "workspace_root": "bundle.yaml"
+  }
+}
