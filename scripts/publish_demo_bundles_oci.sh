@@ -31,20 +31,20 @@ for bundle_path in "${bundles[@]}"; do
 
     sha_ref="ghcr.io/${OWNER}/bundles/${bundle_name}:${SHA}"
     echo "Publishing ${bundle_name} bundle..."
-    oras push "$sha_ref" "${bundle_path}:${media_type}"
+    oras push --disable-path-validation "$sha_ref" "${bundle_path}:${media_type}"
     echo "${bundle_name}=${sha_ref}" >> "$ARTIFACTS_DIR/bundle-refs.txt"
     echo "  -> ${sha_ref}"
 
     if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "master" ]]; then
         latest_ref="ghcr.io/${OWNER}/bundles/${bundle_name}:latest"
-        oras push "$latest_ref" "${bundle_path}:${media_type}"
+        oras push --disable-path-validation "$latest_ref" "${bundle_path}:${media_type}"
         echo "${bundle_name}_latest=${latest_ref}" >> "$ARTIFACTS_DIR/bundle-refs.txt"
         echo "  -> ${latest_ref}"
     fi
 
     if [[ "$REF_TYPE" == "tag" && -n "$REF_NAME" ]]; then
         tag_ref="ghcr.io/${OWNER}/bundles/${bundle_name}:${REF_NAME}"
-        oras push "$tag_ref" "${bundle_path}:${media_type}"
+        oras push --disable-path-validation "$tag_ref" "${bundle_path}:${media_type}"
         echo "${bundle_name}_tag=${tag_ref}" >> "$ARTIFACTS_DIR/bundle-refs.txt"
         echo "  -> ${tag_ref}"
     fi
