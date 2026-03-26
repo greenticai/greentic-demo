@@ -11,13 +11,13 @@ Branch: `vahe/demo-bundle-publish-path`
 ## Repository Checks Performed
 - Identified dependency manifests/lockfiles in the repository (Rust workspace with `Cargo.toml` and `Cargo.lock` files).
 - Checked git diff for dependency files to detect newly introduced vulnerable dependency changes.
-- Result: no dependency file changes detected in the current worktree/PR diff.
+- Result: no dependency file changes detected in the current worktree/PR diff (`pr-comment.md` is the only modified file).
 
 ## Remediation Actions
 - No code or dependency remediation was required because there are no reported vulnerabilities and no new dependency changes introducing risk.
 
 ## Files Changed
-- Added `SECURITY_FIX_REPORT.md`.
+- Updated `SECURITY_FIX_REPORT.md` for this CI security review run.
 
 ## Outcome
 - Security review completed.
