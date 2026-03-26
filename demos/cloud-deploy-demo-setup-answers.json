@@ -1,0 +1,35 @@
+{
+  "bundle_source": "crates/cloud-deploy-demo/bundle",
+  "env": "dev",
+  "tenant": "demo",
+  "team": "default",
+  "platform_setup": {
+    "static_routes": {
+      "public_web_enabled": true,
+      "public_base_url": "https://example.com",
+      "public_surface_policy": "enabled"
+    },
+    "deployment_targets": [
+      {
+        "target": "runtime"
+      },
+      {
+        "target": "single-vm",
+        "provider_pack": "../../../cloud-deploy-files-full/terraform.gtpack"
+      },
+      {
+        "target": "aws",
+        "provider_pack": "../../../cloud-deploy-files-full/terraform.gtpack"
+      },
+      {
+        "target": "gcp",
+        "provider_pack": "../../../cloud-deploy-files-full/terraform.gtpack"
+      },
+      {
+        "target": "azure",
+        "provider_pack": "../../../cloud-deploy-files-full/terraform.gtpack"
+      }
+    ]
+  },
+  "setup_answers": {}
+}
