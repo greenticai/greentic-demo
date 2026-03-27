@@ -8,6 +8,7 @@
       {"title": "Provider", "value": "{{provider}}"},
       {"title": "City", "value": "{{city}}"}
     ]},
-    {"type": "TextBlock", "wrap": true, "fontType": "Monospace", "text": "{{payload}}"}
+    {"type": "TextBlock", "wrap": true, "text": "Raw MCP payload"},
+    {"type": "TextBlock", "wrap": true, "fontType": "Monospace", "text": "{{result_json}}"}
   ]
 }

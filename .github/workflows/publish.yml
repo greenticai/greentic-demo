@@ -173,5 +173,6 @@ jobs:
         with:
           files: |
             demos/*.gtbundle
+            demos/*.gtpack
             demos/*-create-answers.json
             demos/*-setup-answers.json

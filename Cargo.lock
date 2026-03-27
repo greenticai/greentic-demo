@@ -7,10 +7,6 @@ name = "cards-demo"
 version = "0.1.0"
 
 [[package]]
-name = "cisco-live-demo"
-version = "0.1.0"
-
-[[package]]
 name = "cloud-deploy-demo"
 version = "0.1.0"
 
