@@ -167,8 +167,11 @@ jobs:
           path: .artifacts/bundle-refs.txt
           if-no-files-found: error
 
-      - name: Attach bundles to release
+      - name: Attach bundles and answers to release
         if: steps.bundles.outputs.found == 'true' && startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: demos/*.gtbundle
+          files: |
+            demos/*.gtbundle
+            demos/*-create-answers.json
+            demos/*-setup-answers.json
