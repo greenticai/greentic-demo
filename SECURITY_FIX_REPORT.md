@@ -1,7 +1,7 @@
 # Security Fix Report
 
-Date: 2026-03-26 (UTC)
-Branch: `vahe/demo-bundle-publish-path`
+Date: 2026-03-27 (UTC)
+Branch: `chore/shared-codex-security-fix`
 
 ## Inputs Reviewed
 - Dependabot alerts: `0`
@@ -9,19 +9,29 @@ Branch: `vahe/demo-bundle-publish-path`
 - New PR dependency vulnerabilities: `0`
 
 ## Repository Checks Performed
-- Identified dependency manifests/lockfiles in the repository (Rust workspace with `Cargo.toml` and `Cargo.lock` files, including nested crates).
-- Computed PR scope using merge-base with `origin/main`:
-  - `merge-base`: `291f7d3261efaf53e72a1756e2138b8c34122e19`
-  - changed files in PR scope: `scripts/package_demos.sh`, `pr-comment.md`, `SECURITY_FIX_REPORT.md`
-- Checked PR diff for dependency-file changes (`Cargo.toml`/`Cargo.lock` at root and nested paths).
-- Result: no dependency manifest or lockfile changes in PR scope.
+- Reviewed provided alert payloads:
+  - `security-alerts.json`
+  - `dependabot-alerts.json`
+  - `code-scanning-alerts.json`
+  - `pr-vulnerable-changes.json`
+  - `all-dependabot-alerts.json`
+  - `all-code-scanning-alerts.json`
+- Enumerated dependency manifests/lockfiles in the repository (Rust workspace with `Cargo.toml`/`Cargo.lock` files at root and nested crates).
+- Checked git diff for dependency-file changes in this PR workspace:
+  - `Cargo.toml`, `Cargo.lock`, and nested `**/Cargo.toml`, `**/Cargo.lock`
+
+## Findings
+- No Dependabot alerts.
+- No code scanning alerts.
+- No new PR dependency vulnerabilities.
+- No dependency manifest or lockfile changes detected in the current workspace diff.
 
 ## Remediation Actions
-- No code or dependency remediation was required because there are no reported vulnerabilities and no new dependency changes introducing risk.
+- No remediation changes were required because no actionable vulnerabilities were found.
 
 ## Files Changed
-- Updated `SECURITY_FIX_REPORT.md` for this CI security review run.
+- Updated `SECURITY_FIX_REPORT.md`.
 
 ## Outcome
-- Security review completed.
-- No actionable vulnerabilities found.
+- Security review completed successfully.
+- No vulnerabilities required fixes in this run.
