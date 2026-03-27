@@ -1,0 +1,194 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "cardId": "MP-CARD-06",
+        "flow": "meetingPrep",
+        "nav": "back",
+        "toCardId": "MP-CARD-02"
+      },
+      "title": "{{i18n:cards.mp_card_06_additional_tasks_quest.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Dark",
+      "size": "Large",
+      "text": "{{i18n:cards.mp_card_06_additional_tasks_quest.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "color": "Light",
+          "size": "Medium",
+          "text": "{{i18n:cards.mp_card_06_additional_tasks_quest.body.i1.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "cardId": "MP-CARD-06",
+          "flow": "meetingPrep",
+          "step": "needMoreHelpYes"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Medium",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "color": "Light",
+          "size": "Medium",
+          "text": "{{i18n:cards.mp_card_06_additional_tasks_quest.body.i2.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "cardId": "MP-CARD-06",
+          "flow": "meetingPrep",
+          "step": "needMoreHelpNo"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "MP-CARD-06_additional_tasks_quest",
+      "implicitOutgoing": [
+        {
+          "path": "body/[1]/selectAction",
+          "to": "step:needMoreHelpYes",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[2]/selectAction",
+          "to": "step:needMoreHelpNo",
+          "via": "implicit:step"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "nav:back",
+          "via": "implicit:nav"
+        }
+      ],
+      "incoming": [
+        {
+          "from": "MP-CARD-07_other_tasks",
+          "path": "actions/[0]/data/toCardId",
+          "via": "key:toCardId"
+        },
+        {
+          "from": "MP-CARD-07_other_tasks",
+          "path": "actions/[0]",
+          "via": "action.data:toCardId"
+        }
+      ],
+      "incomingResolved": [
+        {
+          "condition": "else",
+          "from": "MP-CARD-04_schedule_meeting",
+          "path": "actions/[1]"
+        },
+        {
+          "condition": "meetingPrep.step:shareTeams",
+          "from": "MP-CARD-05_share_summary_notes",
+          "path": "actions/[1]"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "MP-CARD-07_other_tasks",
+          "path": "actions/[0]"
+        }
+      ],
+      "needsMapping": [
+        {
+          "action_path": "body/[1]/selectAction",
+          "action_title": null,
+          "data": {
+            "cardId": "MP-CARD-06",
+            "flow": "meetingPrep",
+            "step": "needMoreHelpYes"
+          }
+        },
+        {
+          "action_path": "body/[2]/selectAction",
+          "action_title": null,
+          "data": {
+            "cardId": "MP-CARD-06",
+            "flow": "meetingPrep",
+            "step": "needMoreHelpNo"
+          }
+        },
+        {
+          "action_path": "actions/[0]",
+          "action_title": "⬅️ Back",
+          "data": {
+            "cardId": "MP-CARD-06",
+            "flow": "meetingPrep",
+            "nav": "back"
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "body/[1]/selectAction",
+          "to": "step:needMoreHelpYes",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[2]/selectAction",
+          "to": "step:needMoreHelpNo",
+          "via": "implicit:step"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "nav:back",
+          "via": "implicit:nav"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "meetingPrep.step:needMoreHelpYes",
+          "path": "body/[1]/selectAction",
+          "to": "MP-CARD-02_meeting_prep",
+          "type": "navigate"
+        },
+        {
+          "condition": "meetingPrep.step:needMoreHelpNo",
+          "path": "body/[2]/selectAction",
+          "to": "HRM-CARD_home",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "MP-CARD-02_meeting_prep",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

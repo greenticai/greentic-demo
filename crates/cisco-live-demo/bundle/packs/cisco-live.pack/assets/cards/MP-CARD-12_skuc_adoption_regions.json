@@ -1,0 +1,429 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "cardId": "MP-CARD-12",
+        "flow": "meetingPrep",
+        "nav": "back",
+        "toCardId": "MP-CARD-02"
+      },
+      "title": "{{i18n:cards.mp_card_12_skuc_adoption_regions.actions.i0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "cardId": "MP-CARD-12",
+        "contentType": "skuc_adoption",
+        "flow": "meetingPrep",
+        "step": "shareEmail"
+      },
+      "title": "{{i18n:cards.mp_card_12_skuc_adoption_regions.actions.i1.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "bleed": true,
+      "items": [
+        {
+          "color": "Light",
+          "size": "Large",
+          "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i0.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "color": "Light",
+          "isSubtle": true,
+          "size": "Small",
+          "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i0.items.i1.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i1.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "Medium",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "size": "Medium",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i2.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "24px"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i2.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "None",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i2.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "spacing": "Small",
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i2.items.i0.columns.i2.items.i0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "cardId": "MP-CARD-12",
+          "flow": "meetingPrep",
+          "region": "poland",
+          "step": "viewRegion"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "size": "Medium",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i3.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "24px"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i3.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "None",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i3.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "spacing": "Small",
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i3.items.i0.columns.i2.items.i0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "cardId": "MP-CARD-12",
+          "flow": "meetingPrep",
+          "region": "italy",
+          "step": "viewRegion"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "size": "Medium",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i4.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "24px"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i4.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "None",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i4.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "spacing": "Small",
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.mp_card_12_skuc_adoption_regions.body.i4.items.i0.columns.i2.items.i0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "cardId": "MP-CARD-12",
+          "flow": "meetingPrep",
+          "region": "spain",
+          "step": "viewRegion"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "MP-CARD-12_skuc_adoption_regions",
+      "implicitOutgoing": [
+        {
+          "path": "body/[2]/selectAction",
+          "to": "step:viewRegion",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[3]/selectAction",
+          "to": "step:viewRegion",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[4]/selectAction",
+          "to": "step:viewRegion",
+          "via": "implicit:step"
+        },
+        {
+          "path": "actions/[1]",
+          "to": "step:shareEmail",
+          "via": "implicit:step"
+        }
+      ],
+      "incoming": [],
+      "incomingResolved": [
+        {
+          "condition": "question includes ('sku' or 'adoption') and ('lowest' or 'bottom' or 'region')",
+          "from": "MP-CARD-02_meeting_prep",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "MP-CARD-12A_region_poland",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "MP-CARD-12B_region_italy",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "MP-CARD-12C_region_spain",
+          "path": "actions/[0]"
+        }
+      ],
+      "needsMapping": [
+        {
+          "action_path": "body/[2]/selectAction",
+          "action_title": null,
+          "data": {
+            "cardId": "MP-CARD-12",
+            "flow": "meetingPrep",
+            "region": "poland",
+            "step": "viewRegion"
+          }
+        },
+        {
+          "action_path": "body/[3]/selectAction",
+          "action_title": null,
+          "data": {
+            "cardId": "MP-CARD-12",
+            "flow": "meetingPrep",
+            "region": "italy",
+            "step": "viewRegion"
+          }
+        },
+        {
+          "action_path": "body/[4]/selectAction",
+          "action_title": null,
+          "data": {
+            "cardId": "MP-CARD-12",
+            "flow": "meetingPrep",
+            "region": "spain",
+            "step": "viewRegion"
+          }
+        },
+        {
+          "action_path": "actions/[1]",
+          "action_title": "📧 Share via Email",
+          "data": {
+            "cardId": "MP-CARD-12",
+            "contentType": "skuc_adoption",
+            "flow": "meetingPrep",
+            "step": "shareEmail"
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[0]/data/toCardId",
+          "to": "MP-CARD-02_meeting_prep",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "MP-CARD-02_meeting_prep",
+          "via": "action.data:toCardId"
+        },
+        {
+          "path": "body/[2]/selectAction",
+          "to": "step:viewRegion",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[3]/selectAction",
+          "to": "step:viewRegion",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[4]/selectAction",
+          "to": "step:viewRegion",
+          "via": "implicit:step"
+        },
+        {
+          "path": "actions/[1]",
+          "to": "step:shareEmail",
+          "via": "implicit:step"
+        }
+      ],
+      "outgoingOpenUrl": [
+        {
+          "condition": "mailto",
+          "path": "actions/[1]",
+          "type": "open_url"
+        }
+      ],
+      "outgoingResolved": [
+        {
+          "condition": "region == poland",
+          "path": "body/[2]/selectAction",
+          "to": "MP-CARD-12A_region_poland",
+          "type": "navigate"
+        },
+        {
+          "condition": "region == italy",
+          "path": "body/[3]/selectAction",
+          "to": "MP-CARD-12B_region_italy",
+          "type": "navigate"
+        },
+        {
+          "condition": "region == spain",
+          "path": "body/[4]/selectAction",
+          "to": "MP-CARD-12C_region_spain",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "MP-CARD-02_meeting_prep",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

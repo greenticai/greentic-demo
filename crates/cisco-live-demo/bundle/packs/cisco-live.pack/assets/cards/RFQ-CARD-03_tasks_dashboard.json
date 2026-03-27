@@ -1,0 +1,854 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "flow": "rfq",
+        "nav": "back",
+        "toCardId": "RFQ-CARD-11_compliance_summary"
+      },
+      "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.actions.i0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.actions.i1.title}}",
+      "type": "Action.OpenUrl",
+      "url": "/account-analysis.html"
+    },
+    {
+      "data": {
+        "flow": "rfq",
+        "routeToCardId": "RFQ-CARD-06_pack_ready",
+        "step": "generatePack"
+      },
+      "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.actions.i2.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "ExtraLarge",
+      "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "spacing": "Small",
+      "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i2.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "color": "Good",
+      "spacing": "Large",
+      "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i3.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i1.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i2.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i3.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i4.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i5.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i6.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i7.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i8.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i9.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i10.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i11.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i12.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i13.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i14.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i15.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i16.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i17.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i18.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i19.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i20.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i21.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i22.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i4.items.i23.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "Small",
+      "type": "Container"
+    },
+    {
+      "color": "Warning",
+      "spacing": "Large",
+      "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i5.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i1.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i2.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i3.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i4.choices.i0.title}}",
+              "value": "Legal"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i4.choices.i1.title}}",
+              "value": "Finance"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i4.choices.i2.title}}",
+              "value": "Sales"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i4.choices.i3.title}}",
+              "value": "Technical"
+            }
+          ],
+          "id": "deptC001",
+          "placeholder": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i4.placeholder}}",
+          "style": "compact",
+          "type": "Input.ChoiceSet"
+        },
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "flow": "rfq",
+                        "step": "submitToDeptDropdown",
+                        "taskId": "C-001"
+                      },
+                      "style": "positive",
+                      "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i6.items.i5.columns.i0.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "width": "25%"
+            },
+            {
+              "items": [],
+              "type": "Column",
+              "width": "75%"
+            }
+          ],
+          "spacing": "Small",
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "warning",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i1.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i2.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i3.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i4.choices.i0.title}}",
+              "value": "Legal"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i4.choices.i1.title}}",
+              "value": "Finance"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i4.choices.i2.title}}",
+              "value": "Sales"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i4.choices.i3.title}}",
+              "value": "Technical"
+            }
+          ],
+          "id": "deptC002",
+          "placeholder": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i4.placeholder}}",
+          "style": "compact",
+          "type": "Input.ChoiceSet"
+        },
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "flow": "rfq",
+                        "step": "submitToDeptDropdown",
+                        "taskId": "C-002"
+                      },
+                      "style": "positive",
+                      "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i7.items.i5.columns.i0.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "width": "25%"
+            },
+            {
+              "items": [],
+              "type": "Column",
+              "width": "75%"
+            }
+          ],
+          "spacing": "Small",
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "warning",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i1.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i2.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i3.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i4.choices.i0.title}}",
+              "value": "Legal"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i4.choices.i1.title}}",
+              "value": "Finance"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i4.choices.i2.title}}",
+              "value": "Sales"
+            },
+            {
+              "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i4.choices.i3.title}}",
+              "value": "Technical"
+            }
+          ],
+          "id": "deptC003",
+          "placeholder": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i4.placeholder}}",
+          "style": "compact",
+          "type": "Input.ChoiceSet"
+        },
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "flow": "rfq",
+                        "step": "submitToDeptDropdown",
+                        "taskId": "C-003"
+                      },
+                      "style": "positive",
+                      "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i8.items.i5.columns.i0.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "width": "25%"
+            },
+            {
+              "items": [],
+              "type": "Column",
+              "width": "75%"
+            }
+          ],
+          "spacing": "Small",
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "warning",
+      "type": "Container"
+    },
+    {
+      "color": "Attention",
+      "spacing": "Large",
+      "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i9.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i10.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "isSubtle": true,
+          "spacing": "Small",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i10.items.i1.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i10.items.i2.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "flow": "rfq",
+                        "step": "contactRfqHelp",
+                        "taskId": "G-001"
+                      },
+                      "style": "positive",
+                      "title": "{{i18n:cards.rfq_card_03_tasks_dashboard.body.i10.items.i3.columns.i0.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "width": "25%"
+            },
+            {
+              "items": [],
+              "type": "Column",
+              "width": "75%"
+            }
+          ],
+          "spacing": "Small",
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "attention",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "RFQ-CARD-03_tasks_dashboard",
+      "implicitOutgoing": [
+        {
+          "path": "body/[6]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:submitToDeptDropdown",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[7]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:submitToDeptDropdown",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[8]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:submitToDeptDropdown",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[10]/items/[3]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:contactRfqHelp",
+          "via": "implicit:step"
+        }
+      ],
+      "incoming": [
+        {
+          "from": "RFQ-CARD-02_processing",
+          "path": "actions/[1]/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-02_processing",
+          "path": "actions/[1]",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-11_compliance_summary",
+          "path": "actions/[1]/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-11_compliance_summary",
+          "path": "actions/[1]",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[5]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[5]/selectAction",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[7]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[7]/selectAction",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "actions/[0]/data/toCardId",
+          "via": "key:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "actions/[0]",
+          "via": "action.data:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-05B_rag_answer",
+          "path": "body/[9]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-05B_rag_answer",
+          "path": "body/[9]/selectAction",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-06_pack_ready",
+          "path": "actions/[0]/data/toCardId",
+          "via": "key:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-06_pack_ready",
+          "path": "actions/[0]",
+          "via": "action.data:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-STATUS",
+          "path": "body/[4]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-STATUS",
+          "path": "body/[4]/selectAction",
+          "via": "action.data:routeToCardId"
+        }
+      ],
+      "incomingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-02_processing",
+          "path": "actions/[1]"
+        },
+        {
+          "condition": "rfq.step:submitToDeptDropdown",
+          "from": "RFQ-CARD-03_tasks_dashboard",
+          "path": "body/[6]/items/[5]/columns/[0]/items/[0]/actions/[0]"
+        },
+        {
+          "condition": "rfq.step:submitToDeptDropdown",
+          "from": "RFQ-CARD-03_tasks_dashboard",
+          "path": "body/[7]/items/[5]/columns/[0]/items/[0]/actions/[0]"
+        },
+        {
+          "condition": "rfq.step:submitToDeptDropdown",
+          "from": "RFQ-CARD-03_tasks_dashboard",
+          "path": "body/[8]/items/[5]/columns/[0]/items/[0]/actions/[0]"
+        },
+        {
+          "condition": "rfq.step:contactRfqHelp",
+          "from": "RFQ-CARD-03_tasks_dashboard",
+          "path": "body/[10]/items/[3]/columns/[0]/items/[0]/actions/[0]"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[5]/selectAction"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[7]/selectAction"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-05B_rag_answer",
+          "path": "body/[9]/selectAction"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "RFQ-CARD-06_pack_ready",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "alias:action:sendForReviewNow via routeToCardId",
+          "from": "RFQ-CARD-07_send_review",
+          "path": "body/[3]/selectAction"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-11_compliance_summary",
+          "path": "actions/[1]"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-STATUS",
+          "path": "body/[4]/selectAction"
+        }
+      ],
+      "needsMapping": [
+        {
+          "action_path": "body/[6]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "action_title": "📤 Submit",
+          "data": {
+            "flow": "rfq",
+            "step": "submitToDeptDropdown",
+            "taskId": "C-001"
+          }
+        },
+        {
+          "action_path": "body/[7]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "action_title": "📤 Submit",
+          "data": {
+            "flow": "rfq",
+            "step": "submitToDeptDropdown",
+            "taskId": "C-002"
+          }
+        },
+        {
+          "action_path": "body/[8]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "action_title": "📤 Submit",
+          "data": {
+            "flow": "rfq",
+            "step": "submitToDeptDropdown",
+            "taskId": "C-003"
+          }
+        },
+        {
+          "action_path": "body/[10]/items/[3]/columns/[0]/items/[0]/actions/[0]",
+          "action_title": "rfqhelp@contoso.com",
+          "data": {
+            "flow": "rfq",
+            "step": "contactRfqHelp",
+            "taskId": "G-001"
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[0]/data/toCardId",
+          "to": "RFQ-CARD-11_compliance_summary",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-11_compliance_summary",
+          "via": "action.data:toCardId"
+        },
+        {
+          "path": "actions/[2]/data/routeToCardId",
+          "to": "RFQ-CARD-06_pack_ready",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "actions/[2]",
+          "to": "RFQ-CARD-06_pack_ready",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "body/[6]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:submitToDeptDropdown",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[7]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:submitToDeptDropdown",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[8]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:submitToDeptDropdown",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[10]/items/[3]/columns/[0]/items/[0]/actions/[0]",
+          "to": "step:contactRfqHelp",
+          "via": "implicit:step"
+        }
+      ],
+      "outgoingOpenUrl": [
+        {
+          "condition": "openUrl",
+          "path": "actions/[1]",
+          "type": "open_url"
+        }
+      ],
+      "outgoingResolved": [
+        {
+          "condition": "rfq.step:submitToDeptDropdown",
+          "path": "body/[6]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "type": "navigate"
+        },
+        {
+          "condition": "rfq.step:submitToDeptDropdown",
+          "path": "body/[7]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "type": "navigate"
+        },
+        {
+          "condition": "rfq.step:submitToDeptDropdown",
+          "path": "body/[8]/items/[5]/columns/[0]/items/[0]/actions/[0]",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "type": "navigate"
+        },
+        {
+          "condition": "rfq.step:contactRfqHelp",
+          "path": "body/[10]/items/[3]/columns/[0]/items/[0]/actions/[0]",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-11_compliance_summary",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "path": "actions/[2]",
+          "to": "RFQ-CARD-06_pack_ready",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

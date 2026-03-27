@@ -1,0 +1,202 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "flow": "rfq",
+        "nav": "back",
+        "toCardId": "RFQ-CARD-05_rag_edit"
+      },
+      "title": "{{i18n:cards.rfq_card_05b_rag_answer.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "ExtraLarge",
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i1.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "spacing": "Medium",
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i2.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i3.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "spacing": "Small",
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i4.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i5.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "spacing": "Medium",
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i6.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "isSubtle": true,
+      "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i7.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "id": "editedSuggestion",
+      "isMultiline": true,
+      "maxLength": 900,
+      "placeholder": "{{i18n:cards.rfq_card_05b_rag_answer.body.i8.placeholder}}",
+      "type": "Input.Text"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i9.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i9.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "Small",
+                  "text": "{{i18n:cards.rfq_card_05b_rag_answer.body.i9.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "flow": "rfq",
+          "routeToCardId": "RFQ-CARD-03_tasks_dashboard",
+          "step": "addEdited",
+          "taskId": "${taskId}"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Medium",
+      "style": "accent",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "RFQ-CARD-05B_rag_answer",
+      "implicitOutgoing": [],
+      "incoming": [
+        {
+          "from": "RFQ-CARD-05_rag_edit",
+          "path": "actions/[0]/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-05_rag_edit",
+          "path": "actions/[0]",
+          "via": "action.data:routeToCardId"
+        }
+      ],
+      "incomingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-05_rag_edit",
+          "path": "actions/[0]"
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "body/[9]/selectAction/data/routeToCardId",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "body/[9]/selectAction",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "actions/[0]/data/toCardId",
+          "to": "RFQ-CARD-05_rag_edit",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-05_rag_edit",
+          "via": "action.data:toCardId"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "path": "body/[9]/selectAction",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-05_rag_edit",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

@@ -1,0 +1,314 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action": "completeTasks"
+      },
+      "style": "positive",
+      "title": "{{i18n:cards.hrm_card_02_onboarding.actions.i0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "targetCardId": "HRM-CARD-01"
+      },
+      "title": "{{i18n:cards.hrm_card_02_onboarding.actions.i1.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "ExtraLarge",
+      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "size": "Medium",
+      "spacing": "Medium",
+      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "size": "Medium",
+          "text": "{{i18n:cards.hrm_card_02_onboarding.body.i2.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "facts": [
+            {
+              "title": "{{i18n:cards.hrm_card_02_onboarding.body.i2.items.i1.facts.i0.title}}",
+              "value": "Erika Smith"
+            },
+            {
+              "title": "{{i18n:cards.hrm_card_02_onboarding.body.i2.items.i1.facts.i1.title}}",
+              "value": "AB-1234"
+            },
+            {
+              "title": "{{i18n:cards.hrm_card_02_onboarding.body.i2.items.i1.facts.i2.title}}",
+              "value": "Engineering"
+            },
+            {
+              "title": "{{i18n:cards.hrm_card_02_onboarding.body.i2.items.i1.facts.i3.title}}",
+              "value": "January 5, 2026"
+            },
+            {
+              "title": "{{i18n:cards.hrm_card_02_onboarding.body.i2.items.i1.facts.i4.title}}",
+              "value": "${firstName}"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "spacing": "Large",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "size": "Medium",
+          "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "items": [
+                    {
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i1.columns.i0.items.i0.items.i0.text}}",
+                      "type": "TextBlock",
+                      "weight": "Bolder",
+                      "wrap": true
+                    },
+                    {
+                      "isSubtle": true,
+                      "size": "Small",
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i1.columns.i0.items.i0.items.i1.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "style": "warning",
+                  "type": "Container"
+                }
+              ],
+              "type": "Column",
+              "width": "280px"
+            },
+            {
+              "items": [
+                {
+                  "items": [
+                    {
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i1.columns.i1.items.i0.items.i0.text}}",
+                      "type": "TextBlock",
+                      "weight": "Bolder",
+                      "wrap": true
+                    },
+                    {
+                      "isSubtle": true,
+                      "size": "Small",
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i1.columns.i1.items.i0.items.i1.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "style": "warning",
+                  "type": "Container"
+                }
+              ],
+              "type": "Column",
+              "width": "280px"
+            }
+          ],
+          "type": "ColumnSet"
+        },
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "items": [
+                    {
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i2.columns.i0.items.i0.items.i0.text}}",
+                      "type": "TextBlock",
+                      "weight": "Bolder",
+                      "wrap": true
+                    },
+                    {
+                      "isSubtle": true,
+                      "size": "Small",
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i2.columns.i0.items.i0.items.i1.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "style": "warning",
+                  "type": "Container"
+                }
+              ],
+              "type": "Column",
+              "width": "280px"
+            },
+            {
+              "items": [
+                {
+                  "items": [
+                    {
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i2.columns.i1.items.i0.items.i0.text}}",
+                      "type": "TextBlock",
+                      "weight": "Bolder",
+                      "wrap": true
+                    },
+                    {
+                      "isSubtle": true,
+                      "size": "Small",
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i2.columns.i1.items.i0.items.i1.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "style": "warning",
+                  "type": "Container"
+                }
+              ],
+              "type": "Column",
+              "width": "280px"
+            }
+          ],
+          "spacing": "Small",
+          "type": "ColumnSet"
+        },
+        {
+          "items": [
+            {
+              "columns": [
+                {
+                  "items": [
+                    {
+                      "size": "Large",
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i3.items.i0.columns.i0.items.i0.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "Column",
+                  "width": "auto"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i3.items.i0.columns.i1.items.i0.text}}",
+                      "type": "TextBlock",
+                      "weight": "Bolder"
+                    },
+                    {
+                      "isSubtle": true,
+                      "size": "Small",
+                      "text": "{{i18n:cards.hrm_card_02_onboarding.body.i3.items.i3.items.i0.columns.i1.items.i1.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "Column",
+                  "width": "stretch"
+                }
+              ],
+              "type": "ColumnSet"
+            }
+          ],
+          "spacing": "Small",
+          "style": "good",
+          "type": "Container"
+        }
+      ],
+      "spacing": "Large",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "size": "Medium",
+          "text": "{{i18n:cards.hrm_card_02_onboarding.body.i4.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "text": "{{i18n:cards.hrm_card_02_onboarding.body.i4.items.i1.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "Large",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "HRM-CARD-02_onboarding",
+      "implicitOutgoing": [
+        {
+          "path": "actions/[0]",
+          "to": "action:completeTasks",
+          "via": "implicit:action"
+        }
+      ],
+      "incoming": [
+        {
+          "from": "HRM-CARD-10_other_questions",
+          "path": "body/[3]/items/[1]/items/[1]/columns/[1]/items/[0]/text",
+          "via": "markdown:navigate"
+        }
+      ],
+      "incomingResolved": [],
+      "needsMapping": [
+        {
+          "action_path": "actions/[0]",
+          "action_title": "✅ Open Tasks",
+          "data": {
+            "action": "completeTasks"
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[1]/data/targetCardId",
+          "to": "HRM-CARD-01_menu",
+          "via": "key:targetCardId"
+        },
+        {
+          "path": "actions/[1]",
+          "to": "HRM-CARD-01_menu",
+          "via": "action.data:targetCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "action:completeTasks",
+          "via": "implicit:action"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "action:completeTasks",
+          "path": "actions/[0]",
+          "to": "HRM-CARD-02_pending_tasks",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:targetCardId",
+          "path": "actions/[1]",
+          "to": "HRM-CARD-01_menu",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

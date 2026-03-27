@@ -1,0 +1,120 @@
+{
+  "flow": "main.ygtc",
+  "nodes": {
+    "RFQ-CARD-01": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-02_processing": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-03_tasks_dashboard": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-04_task_detail": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-05B_rag_answer": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-05_rag_edit": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-06_pack_ready": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-07_send_review": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-08_review_dashboard": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-09_apply_change": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-10B_send_approval": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-10_final_approval": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-11_compliance_summary": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "RFQ-CARD-STATUS": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "askRag": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "generatePack": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "scanComplete": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "startScan": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "viewTasks": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    }
+  },
+  "schema_version": 1
+}

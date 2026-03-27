@@ -1,0 +1,142 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "flow": "rfq",
+        "routeToCardId": "RFQ-CARD-05B_rag_answer",
+        "step": "askRag",
+        "taskId": "${taskId}"
+      },
+      "title": "{{i18n:cards.rfq_card_05_rag_edit.actions.i0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "flow": "rfq",
+        "nav": "back",
+        "toCardId": "RFQ-CARD-04_task_detail"
+      },
+      "title": "{{i18n:cards.rfq_card_05_rag_edit.actions.i1.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "ExtraLarge",
+      "text": "{{i18n:cards.rfq_card_05_rag_edit.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_05_rag_edit.body.i1.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_05_rag_edit.body.i2.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "spacing": "Medium",
+      "text": "{{i18n:cards.rfq_card_05_rag_edit.body.i3.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "id": "ragQuestion",
+      "isMultiline": true,
+      "maxLength": 500,
+      "placeholder": "{{i18n:cards.rfq_card_05_rag_edit.body.i4.placeholder}}",
+      "type": "Input.Text"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "RFQ-CARD-05_rag_edit",
+      "implicitOutgoing": [],
+      "incoming": [
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[6]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[6]/selectAction",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-05B_rag_answer",
+          "path": "actions/[0]/data/toCardId",
+          "via": "key:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-05B_rag_answer",
+          "path": "actions/[0]",
+          "via": "action.data:toCardId"
+        }
+      ],
+      "incomingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-04_task_detail",
+          "path": "body/[6]/selectAction"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "RFQ-CARD-05B_rag_answer",
+          "path": "actions/[0]"
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[0]/data/routeToCardId",
+          "to": "RFQ-CARD-05B_rag_answer",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-05B_rag_answer",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "actions/[1]/data/toCardId",
+          "to": "RFQ-CARD-04_task_detail",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[1]",
+          "to": "RFQ-CARD-04_task_detail",
+          "via": "action.data:toCardId"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-05B_rag_answer",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[1]",
+          "to": "RFQ-CARD-04_task_detail",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

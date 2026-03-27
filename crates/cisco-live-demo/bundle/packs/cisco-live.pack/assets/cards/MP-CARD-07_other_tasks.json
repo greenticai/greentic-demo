@@ -1,0 +1,158 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "cardId": "MP-CARD-07",
+        "flow": "meetingPrep",
+        "nav": "back",
+        "toCardId": "MP-CARD-06"
+      },
+      "title": "{{i18n:cards.mp_card_07_other_tasks.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Dark",
+      "size": "Large",
+      "text": "{{i18n:cards.mp_card_07_other_tasks.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "color": "Light",
+          "size": "Medium",
+          "text": "{{i18n:cards.mp_card_07_other_tasks.body.i1.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "cardId": "MP-CARD-07",
+          "flow": "meetingPrep",
+          "step": "goScheduleMeeting"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Medium",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "color": "Light",
+          "size": "Medium",
+          "text": "{{i18n:cards.mp_card_07_other_tasks.body.i2.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "cardId": "MP-CARD-07",
+          "flow": "meetingPrep",
+          "step": "goShareTeams"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "MP-CARD-07_other_tasks",
+      "implicitOutgoing": [
+        {
+          "path": "body/[1]/selectAction",
+          "to": "step:goScheduleMeeting",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[2]/selectAction",
+          "to": "step:goShareTeams",
+          "via": "implicit:step"
+        }
+      ],
+      "incoming": [],
+      "incomingResolved": [],
+      "needsMapping": [
+        {
+          "action_path": "body/[1]/selectAction",
+          "action_title": null,
+          "data": {
+            "cardId": "MP-CARD-07",
+            "flow": "meetingPrep",
+            "step": "goScheduleMeeting"
+          }
+        },
+        {
+          "action_path": "body/[2]/selectAction",
+          "action_title": null,
+          "data": {
+            "cardId": "MP-CARD-07",
+            "flow": "meetingPrep",
+            "step": "goShareTeams"
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[0]/data/toCardId",
+          "to": "MP-CARD-06_additional_tasks_quest",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "MP-CARD-06_additional_tasks_quest",
+          "via": "action.data:toCardId"
+        },
+        {
+          "path": "body/[1]/selectAction",
+          "to": "step:goScheduleMeeting",
+          "via": "implicit:step"
+        },
+        {
+          "path": "body/[2]/selectAction",
+          "to": "step:goShareTeams",
+          "via": "implicit:step"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "meetingPrep.step:goScheduleMeeting",
+          "path": "body/[1]/selectAction",
+          "to": "MP-CARD-04_schedule_meeting",
+          "type": "navigate"
+        },
+        {
+          "condition": "meetingPrep.step:goShareTeams",
+          "path": "body/[2]/selectAction",
+          "to": "MP-CARD-05_share_summary_notes",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "MP-CARD-06_additional_tasks_quest",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

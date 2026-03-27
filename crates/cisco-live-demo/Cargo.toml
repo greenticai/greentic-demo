@@ -1,0 +1,9 @@
+[package]
+name = "cisco-live-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic Cisco Live demo bundle with HR, Meeting Prep, Networking & Ticketing, and RFQ flows."
+
+[lib]
+path = "src/lib.rs"

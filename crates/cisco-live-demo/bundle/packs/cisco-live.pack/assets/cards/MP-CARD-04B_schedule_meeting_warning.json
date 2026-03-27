@@ -1,0 +1,76 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "cardId": "MP-CARD-04-WARN",
+        "flow": "meetingPrep",
+        "nav": "back",
+        "toCardId": "MP-CARD-04"
+      },
+      "title": "{{i18n:cards.mp_card_04b_schedule_meeting_warning.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Attention",
+      "size": "Large",
+      "text": "{{i18n:cards.mp_card_04b_schedule_meeting_warning.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Attention",
+      "text": "{{i18n:cards.mp_card_04b_schedule_meeting_warning.body.i1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "spacing": "Small",
+      "text": "{{i18n:cards.mp_card_04b_schedule_meeting_warning.body.i2.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "MP-CARD-04B_schedule_meeting_warning",
+      "implicitOutgoing": [],
+      "incoming": [],
+      "incomingResolved": [
+        {
+          "condition": "if SLA_customer1.docx selected AND robert.taylor@contoso.com invited",
+          "from": "MP-CARD-04_schedule_meeting",
+          "path": "actions/[1]"
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[0]/data/toCardId",
+          "to": "MP-CARD-04_schedule_meeting",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "MP-CARD-04_schedule_meeting",
+          "via": "action.data:toCardId"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "MP-CARD-04_schedule_meeting",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}
