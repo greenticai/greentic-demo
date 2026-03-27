@@ -1,0 +1,174 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "flow": "rfq",
+        "nav": "back",
+        "toCardId": "RFQ-CARD-06_pack_ready"
+      },
+      "title": "{{i18n:cards.rfq_card_10b_send_approval.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "ExtraLarge",
+      "text": "{{i18n:cards.rfq_card_10b_send_approval.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_10b_send_approval.body.i1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "choices": [
+        {
+          "title": "{{i18n:cards.rfq_card_10b_send_approval.body.i2.choices.i0.title}}",
+          "value": "Legal"
+        },
+        {
+          "title": "{{i18n:cards.rfq_card_10b_send_approval.body.i2.choices.i1.title}}",
+          "value": "Finance"
+        },
+        {
+          "title": "{{i18n:cards.rfq_card_10b_send_approval.body.i2.choices.i2.title}}",
+          "value": "Sales"
+        },
+        {
+          "title": "{{i18n:cards.rfq_card_10b_send_approval.body.i2.choices.i3.title}}",
+          "value": "Technical"
+        }
+      ],
+      "id": "approvalTeams",
+      "isMultiSelect": true,
+      "style": "expanded",
+      "type": "Input.ChoiceSet"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.rfq_card_10b_send_approval.body.i3.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.rfq_card_10b_send_approval.body.i3.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "Small",
+                  "text": "{{i18n:cards.rfq_card_10b_send_approval.body.i3.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "flow": "rfq",
+          "routeToCardId": "action:sendForApprovalNow",
+          "step": "sendForApprovalNow"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Medium",
+      "style": "accent",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "RFQ-CARD-10B_send_approval",
+      "implicitOutgoing": [],
+      "incoming": [
+        {
+          "from": "RFQ-CARD-06_pack_ready",
+          "path": "body/[6]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-06_pack_ready",
+          "path": "body/[6]/selectAction",
+          "via": "action.data:routeToCardId"
+        }
+      ],
+      "incomingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-06_pack_ready",
+          "path": "body/[6]/selectAction"
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "body/[3]/selectAction/data/routeToCardId",
+          "to": "action:sendForApprovalNow",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "body/[3]/selectAction",
+          "to": "action:sendForApprovalNow",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "actions/[0]/data/toCardId",
+          "to": "RFQ-CARD-06_pack_ready",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-06_pack_ready",
+          "via": "action.data:toCardId"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "alias:action:sendForApprovalNow via routeToCardId",
+          "path": "body/[3]/selectAction",
+          "to": "RFQ-CARD-01_intake",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-06_pack_ready",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

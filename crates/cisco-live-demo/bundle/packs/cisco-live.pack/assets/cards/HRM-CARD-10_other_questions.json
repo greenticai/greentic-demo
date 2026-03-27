@@ -1,0 +1,160 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Medium",
+      "text": "{{i18n:cards.hrm_card_10_other_questions.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "spacing": "Small",
+      "text": "{{i18n:cards.hrm_card_10_other_questions.body.i1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "actions": [
+            {
+              "targetElements": [
+                "appraisal-answer"
+              ],
+              "title": "{{i18n:cards.hrm_card_10_other_questions.body.i2.items.i0.actions.i0.title}}",
+              "type": "Action.ToggleVisibility"
+            }
+          ],
+          "type": "ActionSet"
+        },
+        {
+          "id": "appraisal-answer",
+          "isVisible": false,
+          "items": [
+            {
+              "spacing": "Small",
+              "text": "{{i18n:cards.hrm_card_10_other_questions.body.i2.items.i1.items.i0.text}}",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            },
+            {
+              "columns": [
+                {
+                  "items": [
+                    {
+                      "text": "{{i18n:cards.hrm_card_10_other_questions.body.i2.items.i1.items.i1.columns.i0.items.i0.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "Column",
+                  "width": "auto"
+                },
+                {
+                  "items": [
+                    {
+                      "color": "Accent",
+                      "text": "{{i18n:cards.hrm_card_10_other_questions.body.i2.items.i1.items.i1.columns.i1.items.i0.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "Column",
+                  "width": "stretch"
+                }
+              ],
+              "type": "ColumnSet"
+            }
+          ],
+          "style": "emphasis",
+          "type": "Container"
+        }
+      ],
+      "spacing": "Medium",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "actions": [
+            {
+              "targetElements": [
+                "onboarding-answer"
+              ],
+              "title": "{{i18n:cards.hrm_card_10_other_questions.body.i3.items.i0.actions.i0.title}}",
+              "type": "Action.ToggleVisibility"
+            }
+          ],
+          "type": "ActionSet"
+        },
+        {
+          "id": "onboarding-answer",
+          "isVisible": false,
+          "items": [
+            {
+              "spacing": "Small",
+              "text": "{{i18n:cards.hrm_card_10_other_questions.body.i3.items.i1.items.i0.text}}",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            },
+            {
+              "columns": [
+                {
+                  "items": [
+                    {
+                      "text": "{{i18n:cards.hrm_card_10_other_questions.body.i3.items.i1.items.i1.columns.i0.items.i0.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "Column",
+                  "width": "auto"
+                },
+                {
+                  "items": [
+                    {
+                      "color": "Accent",
+                      "text": "{{i18n:cards.hrm_card_10_other_questions.body.i3.items.i1.items.i1.columns.i1.items.i0.text}}",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "Column",
+                  "width": "stretch"
+                }
+              ],
+              "type": "ColumnSet"
+            }
+          ],
+          "style": "emphasis",
+          "type": "Container"
+        }
+      ],
+      "spacing": "Medium",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "HRM-CARD-10_other_questions",
+      "implicitOutgoing": [],
+      "incoming": [],
+      "incomingResolved": [],
+      "outgoing": [
+        {
+          "path": "body/[2]/items/[1]/items/[1]/columns/[1]/items/[0]/text",
+          "to": "HRM-CARD-07_appraisal_process_answer",
+          "via": "markdown:navigate"
+        },
+        {
+          "path": "body/[3]/items/[1]/items/[1]/columns/[1]/items/[0]/text",
+          "to": "HRM-CARD-02_onboarding",
+          "via": "markdown:navigate"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

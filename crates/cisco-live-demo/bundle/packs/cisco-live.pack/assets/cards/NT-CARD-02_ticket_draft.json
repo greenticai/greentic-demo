@@ -1,0 +1,562 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action": "approveTicket",
+        "flow": "nt",
+        "fromCard": "NT-CARD-02"
+      },
+      "style": "positive",
+      "title": "{{i18n:cards.nt_card_02_ticket_draft.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "facts": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i0.title}}",
+              "value": "NET-ITSM-104882"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i1.title}}",
+              "value": "ServiceNow (example)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i2.title}}",
+              "value": "P3 – Degraded service"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i3.title}}",
+              "value": "2 – Multiple users impacted / 2 – High"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i4.title}}",
+              "value": "Broadband Access & Wi-Fi Assurance"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i5.title}}",
+              "value": "Premium Broadband / Premium Broadband – CPE/AP"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i6.title}}",
+              "value": "Chippenham (cluster)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i1.items.i0.facts.i7.title}}",
+              "value": "INC-CHIPP-2026-0211"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "spacing": "Medium",
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i2.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i3.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "spacing": "Medium",
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i4.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i5.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "spacing": "Medium",
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i6.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i7.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "selectAction": {
+        "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i8.selectaction.title}}",
+        "type": "Action.OpenUrl",
+        "url": "/hopbyhop-viewer.html"
+      },
+      "size": "Stretch",
+      "type": "Image",
+      "url": "/assets/hopbyhop_inhome_wifi.png",
+      "width": "400px"
+    },
+    {
+      "spacing": "Medium",
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i9.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i10.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "spacing": "Medium",
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i11.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i12.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "spacing": "Medium",
+      "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i13.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "actions": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i14.items.i0.actions.i0.title}}",
+              "type": "Action.OpenUrl",
+              "url": "/hopbyhop-viewer.html"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i14.items.i0.actions.i1.title}}",
+              "type": "Action.OpenUrl",
+              "url": "/wifi-tech-sheet.html"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i14.items.i0.actions.i2.title}}",
+              "type": "Action.OpenUrl",
+              "url": "/threshold-reference.html"
+            }
+          ],
+          "type": "ActionSet"
+        }
+      ],
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i15.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i15.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "Small",
+                  "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i15.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "targetElements": [
+          "editSection"
+        ],
+        "type": "Action.ToggleVisibility"
+      },
+      "spacing": "Medium",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "id": "editSection",
+      "isVisible": false,
+      "items": [
+        {
+          "isSubtle": true,
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i1.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "facts": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i2.facts.i0.title}}",
+              "value": "NET-ITSM-104882"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i2.facts.i1.title}}",
+              "value": "ServiceNow (example)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i2.facts.i2.title}}",
+              "value": "INC-CHIPP-2026-0211"
+            }
+          ],
+          "type": "FactSet"
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i3.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i0.title}}",
+              "value": "Broadband Access & Wi-Fi Assurance"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i1.title}}",
+              "value": "Network Core Operations"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i2.title}}",
+              "value": "DOCSIS Engineering"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i3.title}}",
+              "value": "Fiber Operations"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i4.title}}",
+              "value": "Customer Premises Support"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i5.title}}",
+              "value": "Field Services"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i6.title}}",
+              "value": "NOC Tier 2"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.choices.i7.title}}",
+              "value": "NOC Tier 3"
+            }
+          ],
+          "id": "assignmentGroup",
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i4.label}}",
+          "type": "Input.ChoiceSet",
+          "value": "Broadband Access & Wi-Fi Assurance"
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i0.title}}",
+              "value": "Premium Broadband – CPE/AP"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i1.title}}",
+              "value": "Premium Broadband – Router"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i2.title}}",
+              "value": "Standard Broadband – CPE"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i3.title}}",
+              "value": "Business Broadband – CPE"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i4.title}}",
+              "value": "Fiber Optic – ONT"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i5.title}}",
+              "value": "CMTS Node"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i6.title}}",
+              "value": "Metro Switch"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i7.title}}",
+              "value": "IPTV – Set-top Box"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.choices.i8.title}}",
+              "value": "VoIP – ATA"
+            }
+          ],
+          "id": "serviceCi",
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i5.label}}",
+          "type": "Input.ChoiceSet",
+          "value": "Premium Broadband – CPE/AP"
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i6.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i7.choices.i0.title}}",
+              "value": "P1"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i7.choices.i1.title}}",
+              "value": "P2"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i7.choices.i2.title}}",
+              "value": "P3"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i7.choices.i3.title}}",
+              "value": "P4"
+            }
+          ],
+          "id": "priority",
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i7.label}}",
+          "type": "Input.ChoiceSet",
+          "value": "P3"
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i8.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i9.choices.i0.title}}",
+              "value": "Broadband Care (auto)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i9.choices.i1.title}}",
+              "value": "NOC Monitoring (auto)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i9.choices.i2.title}}",
+              "value": "Customer Report"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i9.choices.i3.title}}",
+              "value": "Field Technician"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i9.choices.i4.title}}",
+              "value": "Proactive Monitoring"
+            }
+          ],
+          "id": "requester",
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i9.label}}",
+          "type": "Input.ChoiceSet",
+          "value": "Broadband Care (auto)"
+        },
+        {
+          "choices": [
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.choices.i0.title}}",
+              "value": "Chippenham (cluster)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.choices.i1.title}}",
+              "value": "Bristol (cluster)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.choices.i2.title}}",
+              "value": "Bath (cluster)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.choices.i3.title}}",
+              "value": "Swindon (cluster)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.choices.i4.title}}",
+              "value": "Gloucester (cluster)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.choices.i5.title}}",
+              "value": "Cardiff (cluster)"
+            },
+            {
+              "title": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.choices.i6.title}}",
+              "value": "National"
+            }
+          ],
+          "id": "location",
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i10.label}}",
+          "type": "Input.ChoiceSet",
+          "value": "Chippenham (cluster)"
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i11.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "id": "shortDescription",
+          "isMultiline": true,
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i12.label}}",
+          "type": "Input.Text",
+          "value": "High buffering – Chippenham cluster. Hop-by-hop indicates in-home Wi-Fi packet loss (CPE → Wi-Fi AP) while PCA metro/core baseline."
+        },
+        {
+          "id": "description",
+          "isMultiline": true,
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i13.label}}",
+          "type": "Input.Text",
+          "value": "Automated incident created from care-queue spike + telemetry correlation. Loss is localized to the in-home Wi-Fi segment. Transport/core is clean per PCA probes."
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i14.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "id": "evidenceSummary",
+          "isMultiline": true,
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i15.label}}",
+          "type": "Input.Text",
+          "value": "Hop-by-hop screenshot + TE endpoint/Connected Devices time series + PCA metro/core probe results + CPE/AP telemetry (RSSI/SNR, channel util, retries, firmware)."
+        },
+        {
+          "spacing": "Medium",
+          "text": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i16.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "id": "nextSteps",
+          "isMultiline": true,
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i17.label}}",
+          "type": "Input.Text",
+          "value": "Execute Wi-Fi interference triage; remediate channel/placement; arm 30-min verification watch (TE loss trend + PCA jitter). Escalate to access-loop only if thresholds breach."
+        },
+        {
+          "id": "verificationWatch",
+          "isMultiline": true,
+          "label": "{{i18n:cards.nt_card_02_ticket_draft.body.i16.items.i18.label}}",
+          "type": "Input.Text",
+          "value": "30 min: TE last-mile loss trend + Connected Devices retries; PCA transport jitter/loss. Auto-close if loss <1% sustained 10 min and PCA jitter normal."
+        }
+      ],
+      "spacing": "Medium",
+      "style": "default",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "NT-CARD-02_ticket_draft",
+      "implicitOutgoing": [
+        {
+          "path": "actions/[0]",
+          "to": "action:approveTicket",
+          "via": "implicit:action"
+        }
+      ],
+      "incoming": [],
+      "incomingResolved": [
+        {
+          "condition": "nt.action:createTicket",
+          "from": "NT-CARD-01_incident",
+          "path": "actions/[0]"
+        }
+      ],
+      "needsMapping": [
+        {
+          "action_path": "actions/[0]",
+          "action_title": "✅ Approve & Create Ticket",
+          "data": {
+            "action": "approveTicket",
+            "flow": "nt",
+            "fromCard": "NT-CARD-02"
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[0]",
+          "to": "action:approveTicket",
+          "via": "implicit:action"
+        }
+      ],
+      "outgoingOpenUrl": [
+        {
+          "condition": "openUrl",
+          "path": "body/[8]/selectAction",
+          "type": "open_url"
+        },
+        {
+          "condition": "openUrl",
+          "path": "body/[14]/items/[0]/actions/[0]",
+          "type": "open_url"
+        },
+        {
+          "condition": "openUrl",
+          "path": "body/[14]/items/[0]/actions/[1]",
+          "type": "open_url"
+        },
+        {
+          "condition": "openUrl",
+          "path": "body/[14]/items/[0]/actions/[2]",
+          "type": "open_url"
+        }
+      ],
+      "outgoingResolved": [],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

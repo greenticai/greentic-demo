@@ -1,0 +1,637 @@
+# BEGIN GENERATED (cards2pack)
+id: rfq
+type: messaging
+start: RFQ-CARD-01
+parameters: {}
+tags: []
+schema_version: 2
+entrypoints: {}
+nodes:
+  RFQ-CARD-01:
+    routing:
+    - to: RFQ-CARD-02_processing
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-01_intake.json
+          interaction:
+            action_id: action-1
+            card_instance_id: RFQ-CARD-01
+            interaction_type: Submit
+            raw_inputs: {}
+          mode: renderAndValidate
+          node_id: RFQ-CARD-01
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-01_intake.json
+      default_card_asset: assets/cards/RFQ-CARD-01_intake.json
+      default_source: asset
+      interaction:
+        action_id: action-1
+        card_instance_id: RFQ-CARD-01
+        interaction_type: Submit
+        raw_inputs: {}
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-01
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-02_processing:
+    routing:
+    - to: RFQ-CARD-03_tasks_dashboard
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-02_processing.json
+          interaction:
+            action_id: action-1
+            card_instance_id: RFQ-CARD-02_processing
+            interaction_type: Submit
+            raw_inputs: {}
+          mode: renderAndValidate
+          node_id: RFQ-CARD-02_processing
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-02_processing.json
+      default_card_asset: assets/cards/RFQ-CARD-02_processing.json
+      default_source: asset
+      interaction:
+        action_id: action-1
+        card_instance_id: RFQ-CARD-02_processing
+        interaction_type: Submit
+        raw_inputs: {}
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-02_processing
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-03_tasks_dashboard:
+    routing:
+    - to: RFQ-CARD-04_task_detail
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-03_tasks_dashboard.json
+          interaction:
+            action_id: action-1
+            card_instance_id: RFQ-CARD-03_tasks_dashboard
+            interaction_type: Submit
+            raw_inputs: {}
+          mode: renderAndValidate
+          node_id: RFQ-CARD-03_tasks_dashboard
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-03_tasks_dashboard.json
+      default_card_asset: assets/cards/RFQ-CARD-03_tasks_dashboard.json
+      default_source: asset
+      interaction:
+        action_id: action-1
+        card_instance_id: RFQ-CARD-03_tasks_dashboard
+        interaction_type: Submit
+        raw_inputs: {}
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-03_tasks_dashboard
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-04_task_detail:
+    routing:
+    - to: RFQ-CARD-05B_rag_answer
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-04_task_detail.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-04_task_detail
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-04_task_detail.json
+      default_card_asset: assets/cards/RFQ-CARD-04_task_detail.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-04_task_detail
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-05B_rag_answer:
+    routing:
+    - to: RFQ-CARD-05_rag_edit
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-05B_rag_answer.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-05B_rag_answer
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-05B_rag_answer.json
+      default_card_asset: assets/cards/RFQ-CARD-05B_rag_answer.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-05B_rag_answer
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-05_rag_edit:
+    routing:
+    - to: RFQ-CARD-06_pack_ready
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-05_rag_edit.json
+          interaction:
+            action_id: action-1
+            card_instance_id: RFQ-CARD-05_rag_edit
+            interaction_type: Submit
+            raw_inputs: {}
+          mode: renderAndValidate
+          node_id: RFQ-CARD-05_rag_edit
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-05_rag_edit.json
+      default_card_asset: assets/cards/RFQ-CARD-05_rag_edit.json
+      default_source: asset
+      interaction:
+        action_id: action-1
+        card_instance_id: RFQ-CARD-05_rag_edit
+        interaction_type: Submit
+        raw_inputs: {}
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-05_rag_edit
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-06_pack_ready:
+    routing:
+    - to: RFQ-CARD-07_send_review
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-06_pack_ready.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-06_pack_ready
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-06_pack_ready.json
+      default_card_asset: assets/cards/RFQ-CARD-06_pack_ready.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-06_pack_ready
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-07_send_review:
+    routing:
+    - to: RFQ-CARD-08_review_dashboard
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-07_send_review.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-07_send_review
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-07_send_review.json
+      default_card_asset: assets/cards/RFQ-CARD-07_send_review.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-07_send_review
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-08_review_dashboard:
+    routing:
+    - to: RFQ-CARD-09_apply_change
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-08_review_dashboard.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-08_review_dashboard
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-08_review_dashboard.json
+      default_card_asset: assets/cards/RFQ-CARD-08_review_dashboard.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-08_review_dashboard
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-09_apply_change:
+    routing:
+    - to: RFQ-CARD-10B_send_approval
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-09_apply_change.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-09_apply_change
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-09_apply_change.json
+      default_card_asset: assets/cards/RFQ-CARD-09_apply_change.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-09_apply_change
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-10B_send_approval:
+    routing:
+    - to: RFQ-CARD-10_final_approval
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-10B_send_approval.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-10B_send_approval
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-10B_send_approval.json
+      default_card_asset: assets/cards/RFQ-CARD-10B_send_approval.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-10B_send_approval
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-10_final_approval:
+    routing:
+    - to: RFQ-CARD-11_compliance_summary
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-10_final_approval.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-10_final_approval
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-10_final_approval.json
+      default_card_asset: assets/cards/RFQ-CARD-10_final_approval.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-10_final_approval
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-11_compliance_summary:
+    routing:
+    - to: RFQ-CARD-STATUS
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-11_compliance_summary.json
+          interaction:
+            action_id: action-1
+            card_instance_id: RFQ-CARD-11_compliance_summary
+            interaction_type: Submit
+            raw_inputs: {}
+          mode: renderAndValidate
+          node_id: RFQ-CARD-11_compliance_summary
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-11_compliance_summary.json
+      default_card_asset: assets/cards/RFQ-CARD-11_compliance_summary.json
+      default_source: asset
+      interaction:
+        action_id: action-1
+        card_instance_id: RFQ-CARD-11_compliance_summary
+        interaction_type: Submit
+        raw_inputs: {}
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-11_compliance_summary
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  RFQ-CARD-STATUS:
+    routing:
+    - to: askRag
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/RFQ-CARD-STATUS.json
+          mode: renderAndValidate
+          node_id: RFQ-CARD-STATUS
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/RFQ-CARD-STATUS.json
+      default_card_asset: assets/cards/RFQ-CARD-STATUS.json
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: RFQ-CARD-STATUS
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  askRag:
+    routing:
+    - to: generatePack
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: TODO
+          mode: renderAndValidate
+          node_id: askRag
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: TODO
+      default_card_asset: TODO
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: askRag
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  generatePack:
+    routing:
+    - to: scanComplete
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: TODO
+          mode: renderAndValidate
+          node_id: generatePack
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: TODO
+      default_card_asset: TODO
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: generatePack
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  scanComplete:
+    routing:
+    - to: startScan
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: TODO
+          mode: renderAndValidate
+          node_id: scanComplete
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: TODO
+      default_card_asset: TODO
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: scanComplete
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  startScan:
+    routing:
+    - to: viewTasks
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: TODO
+          mode: renderAndValidate
+          node_id: startScan
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: TODO
+      default_card_asset: TODO
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: startScan
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  viewTasks:
+    routing: out
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: TODO
+          mode: renderAndValidate
+          node_id: viewTasks
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: TODO
+      default_card_asset: TODO
+      default_source: asset
+      language_mode: all
+      mode: renderAndValidate
+      multilingual: true
+      node_id: viewTasks
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+# END GENERATED (cards2pack)
+
+# Developer space below (preserved on regen; keep it commented)
+# # Developer space below (preserved on regen; keep it commented)
+# # # Developer space below (preserved on regen; keep it commented)
+# # # # Developer space below (preserved on regen; keep it commented)
+# # # # id: main
+# # # # type: messaging
+# # # # nodes: {}

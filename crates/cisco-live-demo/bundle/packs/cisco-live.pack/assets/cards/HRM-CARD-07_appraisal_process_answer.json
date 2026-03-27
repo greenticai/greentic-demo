@@ -1,0 +1,321 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action": "requestHRCalibration"
+      },
+      "title": "{{i18n:cards.hrm_card_07_appraisal_process_answer.actions.i0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "targetCardId": "HRM-CARD-09"
+      },
+      "style": "positive",
+      "title": "{{i18n:cards.hrm_card_07_appraisal_process_answer.actions.i1.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "targetCardId": "HRM-CARD-01"
+      },
+      "title": "{{i18n:cards.hrm_card_07_appraisal_process_answer.actions.i2.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "ExtraLarge",
+      "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "size": "Medium",
+      "spacing": "Medium",
+      "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "size": "Medium",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i2.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        }
+      ],
+      "spacing": "Large",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "color": "Light",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i3.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "targetElements": [
+          "s1"
+        ],
+        "type": "Action.ToggleVisibility"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "id": "s1",
+      "isVisible": false,
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i4.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "None",
+      "style": "default",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "color": "Light",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i5.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "targetElements": [
+          "s2"
+        ],
+        "type": "Action.ToggleVisibility"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "id": "s2",
+      "isVisible": false,
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i6.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "None",
+      "style": "default",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "color": "Light",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i7.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "targetElements": [
+          "s3"
+        ],
+        "type": "Action.ToggleVisibility"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "id": "s3",
+      "isVisible": false,
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i8.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "None",
+      "style": "default",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "color": "Light",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i9.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "targetElements": [
+          "s4"
+        ],
+        "type": "Action.ToggleVisibility"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "id": "s4",
+      "isVisible": false,
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i10.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "None",
+      "style": "default",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "color": "Light",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i11.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "wrap": true
+        }
+      ],
+      "selectAction": {
+        "targetElements": [
+          "s5"
+        ],
+        "type": "Action.ToggleVisibility"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "id": "s5",
+      "isVisible": false,
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.hrm_card_07_appraisal_process_answer.body.i12.items.i0.text}}",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "None",
+      "style": "default",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "HRM-CARD-07_appraisal_process_answer",
+      "implicitOutgoing": [
+        {
+          "path": "actions/[0]",
+          "to": "action:requestHRCalibration",
+          "via": "implicit:action"
+        }
+      ],
+      "incoming": [
+        {
+          "from": "HRM-CARD-09_start_appraisal",
+          "path": "actions/[0]/data/targetCardId",
+          "via": "key:targetCardId"
+        },
+        {
+          "from": "HRM-CARD-09_start_appraisal",
+          "path": "actions/[0]",
+          "via": "action.data:targetCardId"
+        },
+        {
+          "from": "HRM-CARD-10_other_questions",
+          "path": "body/[2]/items/[1]/items/[1]/columns/[1]/items/[0]/text",
+          "via": "markdown:navigate"
+        }
+      ],
+      "incomingResolved": [
+        {
+          "condition": "explicit:targetCardId",
+          "from": "HRM-CARD-09_start_appraisal",
+          "path": "actions/[0]"
+        }
+      ],
+      "needsMapping": [
+        {
+          "action_path": "actions/[0]",
+          "action_title": "📋 Request HR Calibration",
+          "data": {
+            "action": "requestHRCalibration"
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "actions/[1]/data/targetCardId",
+          "to": "HRM-CARD-09_start_appraisal",
+          "via": "key:targetCardId"
+        },
+        {
+          "path": "actions/[1]",
+          "to": "HRM-CARD-09_start_appraisal",
+          "via": "action.data:targetCardId"
+        },
+        {
+          "path": "actions/[2]/data/targetCardId",
+          "to": "HRM-CARD-01_menu",
+          "via": "key:targetCardId"
+        },
+        {
+          "path": "actions/[2]",
+          "to": "HRM-CARD-01_menu",
+          "via": "action.data:targetCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "action:requestHRCalibration",
+          "via": "implicit:action"
+        }
+      ],
+      "outgoingOpenUrl": [],
+      "outgoingResolved": [
+        {
+          "condition": "explicit:targetCardId",
+          "path": "actions/[1]",
+          "to": "HRM-CARD-09_start_appraisal",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:targetCardId",
+          "path": "actions/[2]",
+          "to": "HRM-CARD-01_menu",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

@@ -4,109 +4,113 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repo Is
 
-greentic-demo is a thin bootstrap binary that wires environment variables into `greentic-runner-host`. It loads `.env`, discovers tenant packs from the filesystem, builds a `RunnerConfig`, and calls `runner_shim::run(cfg)`. All actual runtime logic (pack resolution, caching, hot reload, telemetry, secrets, routing) lives in the upstream runner crate.
+greentic-demo is a Rust workspace that collects independent Greentic demo crates. Each demo crate is a thin wrapper around a pre-built `bundle/` directory containing pack manifests, flows (`.ygtc`), assets, and optionally WASM components. The repo also hosts standalone WASM component sub-crates that compile to `wasm32-wasip2` separately from the workspace.
 
 ## Build & Development Commands
 
 ```bash
-# Build (uses nightly for edition 2024)
-cargo +nightly build --locked
-
-# Run (sources .env automatically)
-make run
+# Build workspace (uses stable toolchain pinned in rust-toolchain.toml)
+cargo build --locked
 
 # Format
-make fmt                    # or: cargo +nightly fmt
+cargo fmt --all
 
-# Lint
-cargo +nightly clippy --workspace --all-targets --all-features --locked -- -D warnings
+# Lint (pedantic + all warnings enabled via workspace lints)
+cargo clippy --workspace --all-targets -- -D warnings
 
-# Test (all)
-cargo +nightly test --locked
+# Test
+cargo test --workspace
 
-# Test (specific module)
-cargo +nightly test --locked loader::tests
+# Test a single crate
+cargo test -p quickstart-demo
 
-# Test with output
-cargo +nightly test --locked -- --nocapture
-
-# Local CI mirror (runs fmt + clippy + test + package)
+# Local CI mirror (fmt + clippy + test + package demos)
 ci/local_check.sh
 
-# Docker
-make docker-build DOCKER_IMAGE=greentic-demo:dev
-make docker-run
-
-# Cloudflare tunnel for demos
-make tunnel
+# Package all demo bundles (requires greentic-bundle tool; skips gracefully if missing)
+scripts/package_demos.sh
 ```
 
-Note: The Makefile defaults `CARGO` to `cargo +nightly` because the crate uses Rust edition 2024.
+Note: `ci/local_check.sh` runs offline by default (`CARGO_NET_OFFLINE=1`). Set `CARGO_NET_OFFLINE=false` if you need to fetch dependencies.
+
+### Building WASM Components
+
+WASM component sub-crates (excluded from the workspace) require separate builds:
+
+```bash
+cd crates/redbutton-demo/component-http   # or component-random, component-betterstack-incident, greentic-http2play
+cargo component build --release --target wasm32-wasip2
+```
+
+Each component directory has its own `Makefile` with targets: `build`, `wasm`, `check`, `lint`, `test`.
 
 ## Architecture
 
-### Startup Flow
+### Workspace Layout
 
 ```
-main.rs → dotenv() → CliArgs::parse() → apply_cli_overrides() → load_packs() → build_runner_config() → runner_shim::run(cfg)
+crates/<demo-name>/          # Demo crates (workspace members)
+  src/lib.rs                 # Exports DEMO_NAME const and bundle_dir()
+  bundle/                    # Pre-built bundle (committed to repo)
+    bundle.yaml              # References packs, providers, hooks
+    packs/<name>.pack/       # Pack with flows, assets, components
+      pack.yaml              # Component definitions, flows, assets
+      flows/*.ygtc           # Flow definitions
+      components/            # WASM component references (if any)
+      assets/i18n/           # Locale JSON files
+apps/                        # Standalone app packs (not workspace crates)
+demos/                       # Output: packaged .gtbundle files
+scripts/                     # Packaging scripts
+ci/                          # CI scripts
 ```
 
-### Key Modules
+### Demo Crate Pattern
 
-| Module | Purpose |
-|--------|---------|
-| `cmd/greentic-demo/main.rs` | Binary entry point: env loading, CLI parsing, pack discovery, config building |
-| `src/runner_shim/mod.rs` | Feature-gated delegation — re-exports `greentic-runner-host` API or a fallback stub |
-| `src/loader.rs` | Scans `PACKS_DIR` for tenant subdirectories with `index.ygtc` + `bindings.yaml` |
-| `src/path_safety.rs` | `normalize_under_root()` — prevents directory traversal in pack discovery |
-
-The remaining modules (`config`, `nats_bridge`, `runner_bridge`, `types`, `secrets`, `logging`, `telemetry`, `health`) are gated behind `feature = "runner-shim"` and represent historical NATS bridge utilities kept for reference. New work should go through the runner host.
-
-### Feature Flags
-
-```toml
-default = ["use-runner-api"]   # Production: delegates to greentic-runner-host
-runner-shim = []               # Fallback stub for testing without the runner
+Demo crates have zero dependencies — they are metadata wrappers. The `src/lib.rs` is trivial:
+```rust
+pub const DEMO_NAME: &str = "quickstart-demo";
+pub fn bundle_dir() -> &'static str { "bundle" }
 ```
 
-Exactly one must be enabled (enforced by `compile_error!`). Use `--no-default-features --features runner-shim` for stub mode.
+All meaningful content lives in the `bundle/` directory as YAML manifests, `.ygtc` flows, and pre-compiled WASM.
 
-### Tenant Pack Structure
+### WASM Component Sub-Crates
 
-Each tenant needs a directory under `PACKS_DIR` (default `./packs/`) containing:
+Four component crates under `crates/redbutton-demo/` are excluded from the workspace because they target `wasm32-wasip2`:
 
-```
-packs/<tenant-id>/
-├── index.ygtc        # Pack manifest (required)
-└── bindings.yaml     # Flow adapters, secrets allowlist, MCP config (required)
-```
+- `component-http` — HTTP client operations
+- `component-random` — Random value generation
+- `component-betterstack-incident` — Better Stack incident integration
+- `greentic-http2play` — HTTP to playback bridge
 
-The loader skips directories missing either file (with a warning/error log).
+Each is a standalone Rust crate with `crate-type = ["cdylib", "rlib"]`, its own `Cargo.lock`, a `build.rs` for i18n bundling, and a `component.manifest.json` defining operations, capabilities, and schemas. They use `greentic-interfaces-guest` to implement the `greentic:component/component@0.6.0` world.
 
-## Configuration
+### Packaging & Publishing
 
-Config flows: `.env` file → env vars → CLI flags (CLI overrides env). See `.env.example` for defaults and `README.md` for the full configuration surface table.
+- `scripts/package_demos.sh` archives each crate's `bundle/` into `demos/<name>.gtbundle` (requires `greentic-bundle` CLI)
+- CI publishes WASM components to GHCR via ORAS as OCI artifacts
+- App packs and demo bundles are also published to GHCR on tagged releases
 
-Key variables: `PACKS_DIR`, `PORT`, `PACK_SOURCE`, `PACK_INDEX_URL`, `PACK_CACHE_DIR`, `PACK_REFRESH_INTERVAL`, `TENANT_RESOLVER`, `SECRETS_BACKEND`.
+## Adding a New Demo
+
+1. Create a crate in `crates/<demo-name>/` with a minimal `Cargo.toml` and `src/lib.rs`
+2. Add a `bundle/` directory with `bundle.yaml` and at least one pack under `packs/`
+3. Run `ci/local_check.sh` to verify
 
 ## CI Pipeline
 
 GitHub Actions (`ci.yml`) runs `ci/local_check.sh` which executes:
 1. `cargo fmt --all -- --check`
-2. `cargo clippy --workspace --all-targets --all-features --locked -- -D warnings`
-3. `cargo test --workspace --locked`
-4. `cargo package -p greentic-demo --allow-dirty --locked`
+2. `cargo clippy --workspace --all-targets -- -D warnings`
+3. `cargo test --workspace`
+4. `scripts/package_demos.sh`
 
-## Deployment Demo Pack
+The publish workflow (`publish.yml`) builds WASM components, publishes packs and bundles to GHCR, and attaches `.gtbundle` files to GitHub Releases on tags.
 
-`examples/deployment/generic-deploy.gtpack` is included as a reference. If you modify the stub component in `examples/deployment/stub-deploy-component/`, rebuild it:
+## Workspace Lints
 
-```bash
-cd examples/deployment/stub-deploy-component
-cargo build --release --target wasm32-wasip1
-# Copy the .wasm to the gtpack components/ directory
-```
+The workspace enables `clippy::all` and `clippy::pedantic` as warnings. All code must pass these checks.
 
 ## Git Conventions
 
-See the workspace-level CLAUDE.md for commit rules. Key point: do NOT add Claude co-author attribution to commits or PRs.
+Do NOT add Claude co-author attribution to commits or PRs.

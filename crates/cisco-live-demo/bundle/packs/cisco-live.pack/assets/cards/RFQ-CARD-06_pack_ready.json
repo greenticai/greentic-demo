@@ -1,0 +1,445 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "flow": "rfq",
+        "nav": "back",
+        "toCardId": "RFQ-CARD-03_tasks_dashboard"
+      },
+      "title": "{{i18n:cards.rfq_card_06_pack_ready.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "ExtraLarge",
+      "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "color": "Dark",
+      "spacing": "Medium",
+      "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i2.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i3.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i3.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "Small",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i3.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "flow": "rfq",
+          "routeToCardId": "action:downloadPptx",
+          "step": "downloadPptx"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i4.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i4.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "Small",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i4.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "flow": "rfq",
+          "routeToCardId": "action:downloadDocx",
+          "step": "downloadDocx"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i5.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i5.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "Small",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i5.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "flow": "rfq",
+          "routeToCardId": "RFQ-CARD-07_send_review",
+          "step": "sendForReview"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Large",
+      "style": "accent",
+      "type": "Container"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "size": "Large",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i6.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "color": "Light",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i6.items.i0.columns.i1.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "color": "Light",
+                  "isSubtle": true,
+                  "spacing": "Small",
+                  "text": "{{i18n:cards.rfq_card_06_pack_ready.body.i6.items.i0.columns.i1.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "selectAction": {
+        "data": {
+          "flow": "rfq",
+          "routeToCardId": "RFQ-CARD-10B_send_approval",
+          "step": "sendForApproval"
+        },
+        "type": "Action.Submit"
+      },
+      "spacing": "Small",
+      "style": "accent",
+      "type": "Container"
+    }
+  ],
+  "metadata": {
+    "_lovableFlow": {
+      "cardKey": "RFQ-CARD-06_pack_ready",
+      "implicitOutgoing": [],
+      "incoming": [
+        {
+          "from": "RFQ-CARD-03_tasks_dashboard",
+          "path": "actions/[2]/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-03_tasks_dashboard",
+          "path": "actions/[2]",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-07_send_review",
+          "path": "actions/[0]/data/toCardId",
+          "via": "key:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-07_send_review",
+          "path": "actions/[0]",
+          "via": "action.data:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-08_review_dashboard",
+          "path": "actions/[0]/data/toCardId",
+          "via": "key:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-08_review_dashboard",
+          "path": "actions/[0]",
+          "via": "action.data:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-10_final_approval",
+          "path": "body/[3]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-10_final_approval",
+          "path": "body/[3]/selectAction",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-10B_send_approval",
+          "path": "actions/[0]/data/toCardId",
+          "via": "key:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-10B_send_approval",
+          "path": "actions/[0]",
+          "via": "action.data:toCardId"
+        },
+        {
+          "from": "RFQ-CARD-STATUS",
+          "path": "body/[7]/selectAction/data/routeToCardId",
+          "via": "key:routeToCardId"
+        },
+        {
+          "from": "RFQ-CARD-STATUS",
+          "path": "body/[7]/selectAction",
+          "via": "action.data:routeToCardId"
+        }
+      ],
+      "incomingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-03_tasks_dashboard",
+          "path": "actions/[2]"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "RFQ-CARD-07_send_review",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "RFQ-CARD-08_review_dashboard",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "from": "RFQ-CARD-10B_send_approval",
+          "path": "actions/[0]"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-10_final_approval",
+          "path": "body/[3]/selectAction"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "from": "RFQ-CARD-STATUS",
+          "path": "body/[7]/selectAction"
+        }
+      ],
+      "outgoing": [
+        {
+          "path": "body/[3]/selectAction/data/routeToCardId",
+          "to": "action:downloadPptx",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "body/[3]/selectAction",
+          "to": "action:downloadPptx",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "body/[4]/selectAction/data/routeToCardId",
+          "to": "action:downloadDocx",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "body/[4]/selectAction",
+          "to": "action:downloadDocx",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "body/[5]/selectAction/data/routeToCardId",
+          "to": "RFQ-CARD-07_send_review",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "body/[5]/selectAction",
+          "to": "RFQ-CARD-07_send_review",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "body/[6]/selectAction/data/routeToCardId",
+          "to": "RFQ-CARD-10B_send_approval",
+          "via": "key:routeToCardId"
+        },
+        {
+          "path": "body/[6]/selectAction",
+          "to": "RFQ-CARD-10B_send_approval",
+          "via": "action.data:routeToCardId"
+        },
+        {
+          "path": "actions/[0]/data/toCardId",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "via": "key:toCardId"
+        },
+        {
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "via": "action.data:toCardId"
+        }
+      ],
+      "outgoingOpenUrl": [
+        {
+          "condition": "alias:action:downloadPptx (download) via routeToCardId",
+          "path": "body/[3]/selectAction",
+          "type": "open_url"
+        },
+        {
+          "condition": "alias:action:downloadDocx (download) via routeToCardId",
+          "path": "body/[4]/selectAction",
+          "type": "open_url"
+        }
+      ],
+      "outgoingResolved": [
+        {
+          "condition": "explicit:routeToCardId",
+          "path": "body/[5]/selectAction",
+          "to": "RFQ-CARD-07_send_review",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:routeToCardId",
+          "path": "body/[6]/selectAction",
+          "to": "RFQ-CARD-10B_send_approval",
+          "type": "navigate"
+        },
+        {
+          "condition": "explicit:toCardId",
+          "path": "actions/[0]",
+          "to": "RFQ-CARD-03_tasks_dashboard",
+          "type": "navigate"
+        }
+      ],
+      "stillAmbiguous": []
+    }
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}
