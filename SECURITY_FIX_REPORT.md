@@ -1,7 +1,7 @@
 # Security Fix Report
 
 Date: 2026-03-27 (UTC)
-Branch: feat/cisco-live-demo
+Branch: vahe/remote-demo-pack-refs
 
 ## Input Alerts Reviewed
 - Dependabot alerts: `0`
@@ -13,16 +13,16 @@ Compared PR changes against `origin/main` and reviewed dependency-related files.
 
 Dependency files changed in this PR:
 - `Cargo.lock`
-- `crates/cisco-live-demo/Cargo.toml`
+- `crates/cards-demo/Cargo.toml`
 
 Findings:
-- `crates/cisco-live-demo/Cargo.toml` defines package metadata only and adds no third-party dependencies.
-- Root `Cargo.lock` currently contains only local workspace packages and no external crates.
+- `crates/cards-demo/Cargo.toml` defines package metadata only and adds no third-party dependencies.
+- Root `Cargo.lock` contains only local workspace packages and no external registry dependencies.
 - No vulnerable dependency introductions were identified from the provided PR vulnerability data (`[]`) or manifest/lockfile inspection.
 
 ## Remediation Actions
 - No remediation code changes were required because no active security vulnerabilities were present in the provided alerts or PR dependency vulnerability list.
 
 ## Result
-- Repository remains unchanged from a security-remediation perspective.
-- `SECURITY_FIX_REPORT.md` added to document review and outcome.
+- No security fixes were necessary.
+- `SECURITY_FIX_REPORT.md` updated to document review scope and outcome for this PR.
