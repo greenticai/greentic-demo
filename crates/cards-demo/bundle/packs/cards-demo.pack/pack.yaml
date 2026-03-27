@@ -4,7 +4,7 @@ kind: application
 publisher: Greentic
 components:
 - id: ai.greentic.component-adaptive-card
-  version: 0.1.2
+  version: 0.1.18
   world: greentic:component/component@0.6.0
   supports:
   - messaging
@@ -18,59 +18,8 @@ components:
       clocks: true
     host: {}
   wasm: components/component_adaptive_card.wasm
-- id: mcp.exec
-  version: 0.1.0
-  world: root:component/root
-  supports:
-  - messaging
-  profiles:
-    default: default
-    supported:
-    - default
-  capabilities:
-    wasi:
-      random: false
-      clocks: false
-    host: {}
-  wasm: components/mcp.exec/component.wasm
-- id: qa.process
-  version: 0.1.0
-  world: root:component/root
-  supports:
-  - messaging
-  profiles:
-    default: default
-    supported:
-    - default
-  capabilities:
-    wasi:
-      random: false
-      clocks: false
-    host: {}
-  wasm: components/qa.process/component.wasm
-- id: weather_api
-  version: 0.0.1
-  world: root:component/root
-  supports:
-  - messaging
-  profiles:
-    default: default
-    supported:
-    - default
-  capabilities:
-    wasi:
-      random: false
-      clocks: false
-    host: {}
-  wasm: components/weather_api/component.wasm
 dependencies: []
 flows:
-- id: adaptive_mcp_oauth_demo
-  file: flows/adaptive_mcp_oauth_demo.ygtc
-  tags:
-  - demo
-  entrypoints:
-  - default
 - id: cards_flow
   file: flows/cards_flow.ygtc
   tags:
@@ -81,5 +30,3 @@ assets:
 - path: assets/card1.json
 - path: assets/card2.json
 - path: assets/card3.json
-- path: assets/oauth_connect_card.json
-- path: assets/mcp_result_card.json

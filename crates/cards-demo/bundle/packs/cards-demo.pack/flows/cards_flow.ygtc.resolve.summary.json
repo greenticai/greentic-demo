@@ -8,7 +8,7 @@
         "kind": "local",
         "path": "../components/component_adaptive_card.wasm"
       },
-      "digest": "sha256:6c56b04da82d6a83853dee413efe9d97b1c62ebc238e895011d37d87d4d699cc"
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656"
     },
     "wait_1": {
       "component_id": "session.wait",
@@ -16,7 +16,7 @@
         "kind": "local",
         "path": "../components/component_adaptive_card.wasm"
       },
-      "digest": "sha256:6c56b04da82d6a83853dee413efe9d97b1c62ebc238e895011d37d87d4d699cc"
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656"
     },
     "card_2": {
       "component_id": "ai.greentic.component-adaptive-card",
@@ -24,7 +24,7 @@
         "kind": "local",
         "path": "../components/component_adaptive_card.wasm"
       },
-      "digest": "sha256:6c56b04da82d6a83853dee413efe9d97b1c62ebc238e895011d37d87d4d699cc"
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656"
     },
     "wait_2": {
       "component_id": "session.wait",
@@ -32,7 +32,7 @@
         "kind": "local",
         "path": "../components/component_adaptive_card.wasm"
       },
-      "digest": "sha256:6c56b04da82d6a83853dee413efe9d97b1c62ebc238e895011d37d87d4d699cc"
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656"
     },
     "done": {
       "component_id": "emit.response",
@@ -40,7 +40,7 @@
         "kind": "local",
         "path": "../components/component_adaptive_card.wasm"
       },
-      "digest": "sha256:6c56b04da82d6a83853dee413efe9d97b1c62ebc238e895011d37d87d4d699cc"
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656"
     }
   }
 }

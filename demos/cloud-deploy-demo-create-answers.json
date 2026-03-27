@@ -14,25 +14,25 @@
     "advanced_setup": false,
     "app_pack_entries": [
       {
-        "detected_kind": "oci",
+        "detected_kind": "https",
         "display_name": "Cards Demo",
         "mapping": {
           "scope": "global"
         },
         "pack_id": "cards-demo",
-        "reference": "oci://ghcr.io/greenticai/packs/apps/cards-demo:latest"
+        "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/cards-demo.gtpack"
       }
     ],
     "app_packs": [
-      "oci://ghcr.io/greenticai/packs/apps/cards-demo:latest"
+      "https://github.com/greenticai/greentic-demo/releases/latest/download/cards-demo.gtpack"
     ],
     "bundle_id": "cloud-deploy-demo",
     "bundle_name": "Cloud Deploy Demo",
     "export_intent": false,
     "extension_providers": [
-      "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
-      "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
-      "oci://ghcr.io/greenticai/packs/events/events-webhook:latest"
+      "https://github.com/greenticai/greentic-demo/releases/latest/download/messaging-webchat-gui.gtpack",
+      "https://github.com/greenticai/greentic-demo/releases/latest/download/state-memory.gtpack",
+      "https://github.com/greenticai/greentic-demo/releases/latest/download/events-webhook.gtpack"
     ],
     "mode": "create",
     "output_dir": "crates/cloud-deploy-demo/bundle",
