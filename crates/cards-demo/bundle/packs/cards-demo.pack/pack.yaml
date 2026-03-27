@@ -18,35 +18,8 @@ components:
       clocks: true
     host: {}
   wasm: components/component_adaptive_card.wasm
-- id: mcp.exec
-  version: 0.1.0
-  world: root:component/root
-  supports:
-  - messaging
-  profiles:
-    default: default
-    supported:
-    - default
-  capabilities:
-    wasi:
-      random: false
-      clocks: false
-    host: {}
-  wasm: components/mcp.exec/component.wasm
-dependencies:
-- alias: oauth
-  pack_id: io.greentic.capabilities.oauth
-  version_req: ^1.0.0
-  required_capabilities:
-  - greentic.cap.oauth.broker.v1
+dependencies: []
 flows:
-- id: adaptive_mcp_oauth_demo
-  file: flows/adaptive_mcp_oauth_demo.ygtc
-  tags:
-  - demo
-  - default
-  entrypoints:
-  - default
 - id: cards_flow
   file: flows/cards_flow.ygtc
   tags:
@@ -57,5 +30,3 @@ assets:
 - path: assets/card1.json
 - path: assets/card2.json
 - path: assets/card3.json
-- path: assets/oauth_connect_card.json
-- path: assets/mcp_result_card.json
