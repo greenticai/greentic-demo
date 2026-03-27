@@ -117,9 +117,6 @@ jobs:
         with:
           toolchain: 1.91.0
 
-      - name: Install greentic-bundle
-        run: cargo install greentic-bundle
-
       - name: Install ORAS
         uses: oras-project/setup-oras@v1
 
