@@ -6,8 +6,8 @@ ROOT_DIR=$(cd -- "$(dirname "$0")/.." && pwd)
 CRATES_DIR="$ROOT_DIR/crates"
 OUTPUT_DIR="$ROOT_DIR/demos"
 
-if ! command -v greentic-bundle >/dev/null 2>&1; then
-    echo "greentic-bundle not found; skipping demo packaging."
+if ! command -v zip >/dev/null 2>&1; then
+    echo "zip not found; skipping demo packaging."
     exit 0
 fi
 
@@ -33,7 +33,16 @@ for manifest in "${crate_manifests[@]}"; do
         continue
     fi
 
-    if greentic-bundle build --root "$crate_dir/bundle" --offline --output "$bundle_path" >/dev/null; then
+    if (
+        cd "$crate_dir/bundle"
+        zip -rq "$bundle_path" .
+    ); then
+        artifact_kind=$(file -b "$bundle_path" || true)
+        if ! printf '%s' "$artifact_kind" | grep -qi 'zip archive'; then
+            echo "Skipping $demo_name: expected ZIP .gtbundle but got: ${artifact_kind:-unknown}" >&2
+            rm -f "$bundle_path"
+            continue
+        fi
         echo "Created demos/$demo_name.gtbundle"
         packaged_any=1
     else
