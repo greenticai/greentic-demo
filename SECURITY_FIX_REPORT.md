@@ -1,33 +1,26 @@
 # Security Fix Report
 
 Date: 2026-03-27 (UTC)
-Reviewer: CI Security Reviewer
+Reviewer: Codex Security Reviewer
+Branch: `vahe/archive-demo-gtbundle`
+Base comparison: `origin/main...HEAD`
 
-## Inputs Reviewed
-- Dependabot alerts: `[]`
-- Code scanning alerts: `[]`
-- New PR dependency vulnerabilities: `[]`
+## 1) Security alerts analysis
+- Dependabot alerts provided: `0`
+- Code scanning alerts provided: `0`
+- Result: No security alerts were supplied that require remediation.
 
-## Repository Checks Performed
-1. Inspected dependency manifest/lockfiles in the repository (Rust `Cargo.toml` / `Cargo.lock` files).
-2. Checked working tree and PR-introduced file changes.
-3. Verified whether any dependency files were modified by this PR.
+## 2) PR dependency vulnerability check
+- Provided "New PR Dependency Vulnerabilities": `[]` (none)
+- Verified changed files in PR range `origin/main...HEAD`:
+  - `.github/workflows/publish.yml`
+  - `scripts/package_demos.sh`
+- Dependency/lock files changed in PR: `none`
 
-## Findings
-- No active Dependabot alerts were provided.
-- No active code-scanning alerts were provided.
-- No new PR dependency vulnerabilities were provided.
-- Dependency file changes were detected in this PR:
-  - `Cargo.lock` changed.
-  - Diff review shows only removal of a workspace package entry:
-    - `cisco-live-demo v0.1.0` removed from lockfile package list.
-  - No newly introduced third-party dependency versions were detected in the lockfile diff.
-- Non-dependency changed file detected: `pr-comment.md`
+## 3) Remediation actions
+- No vulnerable dependencies or code-scanning findings were identified.
+- No dependency upgrades or code patches were required.
 
-## Remediation Actions
-- No code or dependency remediation was required because no vulnerabilities were identified and the PR dependency diff did not introduce new vulnerable packages.
-- Attempted to run `cargo audit` for an additional advisory check, but execution was blocked in this CI sandbox due to a read-only rustup temp path.
-
-## Result
-- Security posture unchanged.
-- No new vulnerabilities detected from provided alert data and PR dependency diff.
+## 4) Outcome
+- Security status for provided inputs: **No findings**.
+- Repository changes made by this review: added this report file only.
