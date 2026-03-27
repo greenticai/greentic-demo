@@ -1,0 +1,41 @@
+id: cards_flow
+schema_version: 2
+type: messaging
+start: card_1
+nodes:
+  card_1:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: card1.json
+        mode: renderAndValidate
+    routing:
+      - to: wait_1
+
+  wait_1:
+    session.wait:
+      reason: "wait card1 click"
+    routing:
+      - to: card_2
+
+  card_2:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: card2.json
+        mode: renderAndValidate
+    routing:
+      - to: wait_2
+
+  wait_2:
+    session.wait:
+      reason: "wait card2 click"
+    routing:
+      - to: done
+
+  done:
+    emit.response:
+      text: "cards flow completed"
+    routing: out

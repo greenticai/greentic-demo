@@ -1,0 +1,53 @@
+id: adaptive_mcp_oauth_demo
+schema_version: 2
+type: messaging
+start: oauth_card
+
+parameters:
+  oauth_provider: microsoft-graph
+  city: Yerevan
+  oauth_access_token: demo-token
+
+nodes:
+  oauth_card:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: oauth_connect_card.json
+          template_params:
+            provider: parameters.oauth_provider
+            city: parameters.city
+        mode: renderAndValidate
+    routing:
+      - to: call_mcp
+
+  call_mcp:
+    mcp.exec:
+      component: weather_api
+      action: forecast_weather
+      args:
+        q: parameters.city
+        oauth_provider: parameters.oauth_provider
+        oauth_access_token: parameters.oauth_access_token
+    routing:
+      - to: result_card
+
+  result_card:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: mcp_result_card.json
+          template_params:
+            city: parameters.city
+            provider: parameters.oauth_provider
+            payload: call_mcp.payload
+        mode: renderAndValidate
+    routing:
+      - to: done
+
+  done:
+    emit.response:
+      text: "demo complete: adaptive card + mcp + oauth"
+    routing: out

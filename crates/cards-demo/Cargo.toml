@@ -1,0 +1,9 @@
+[package]
+name = "cards-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic cards demo app pack source."
+
+[lib]
+path = "src/lib.rs"

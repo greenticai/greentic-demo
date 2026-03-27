@@ -14,25 +14,25 @@
     "advanced_setup": false,
     "app_pack_entries": [
       {
-        "detected_kind": "local_file",
+        "detected_kind": "oci",
         "display_name": "Cards Demo",
         "mapping": {
           "scope": "global"
         },
         "pack_id": "cards-demo",
-        "reference": "../../../cloud-deploy-files-full/cards-demo.gtpack"
+        "reference": "oci://ghcr.io/greenticai/packs/apps/cards-demo:latest"
       }
     ],
     "app_packs": [
-      "../../../cloud-deploy-files-full/cards-demo.gtpack"
+      "oci://ghcr.io/greenticai/packs/apps/cards-demo:latest"
     ],
     "bundle_id": "cloud-deploy-demo",
     "bundle_name": "Cloud Deploy Demo",
     "export_intent": false,
     "extension_providers": [
-      "../../../cloud-deploy-files-full/messaging-webchat-gui.gtpack",
-      "../../../cloud-deploy-files-full/state-memory.gtpack",
-      "../../../cloud-deploy-files-full/events-webhook.gtpack"
+      "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+      "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+      "oci://ghcr.io/greenticai/packs/events/events-webhook:latest"
     ],
     "mode": "create",
     "output_dir": "crates/cloud-deploy-demo/bundle",
