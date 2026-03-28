@@ -1,33 +1,29 @@
 # Security Fix Report
 
-Date: 2026-03-27 (UTC)
-Reviewer: CI Security Reviewer
+Date: 2026-03-28 (UTC)
+Role: CI Security Reviewer
 
-## Inputs Reviewed
-- Dependabot alerts: `[]`
-- Code scanning alerts: `[]`
-- New PR dependency vulnerabilities: `[]`
+## Input Alerts Reviewed
+- Dependabot alerts: `0`
+- Code scanning alerts: `0`
+- New PR dependency vulnerabilities: `0`
 
-## Repository Checks Performed
-1. Inspected dependency manifest/lockfiles in the repository (Rust `Cargo.toml` / `Cargo.lock` files).
-2. Checked working tree and PR-introduced file changes.
-3. Verified whether any dependency files were modified by this PR.
+## PR Dependency Change Review
+Reviewed the latest PR commit and checked for modified dependency manifest/lock files.
 
-## Findings
-- No active Dependabot alerts were provided.
-- No active code-scanning alerts were provided.
-- No new PR dependency vulnerabilities were provided.
-- Dependency file changes were detected in this PR:
-  - `Cargo.lock` changed.
-  - Diff review shows only removal of a workspace package entry:
-    - `cisco-live-demo v0.1.0` removed from lockfile package list.
-  - No newly introduced third-party dependency versions were detected in the lockfile diff.
-- Non-dependency changed file detected: `pr-comment.md`
+- Latest commit changed files:
+  - `crates/helpdesk-itsm-demo/bundle/greentic.demo.yaml`
+  - `crates/hr-onboarding-demo/bundle/greentic.demo.yaml`
+  - `crates/incident-demo/bundle/greentic.demo.yaml`
+  - `crates/quickstart-demo/bundle/greentic.demo.yaml`
+  - `crates/sales-crm-demo/bundle/greentic.demo.yaml`
+  - `crates/supply-chain-demo/bundle/greentic.demo.yaml`
+- Dependency files changed in latest commit: `none`
 
 ## Remediation Actions
-- No code or dependency remediation was required because no vulnerabilities were identified and the PR dependency diff did not introduce new vulnerable packages.
-- Attempted to run `cargo audit` for an additional advisory check, but execution was blocked in this CI sandbox due to a read-only rustup temp path.
+- No vulnerabilities were identified from the provided alert data.
+- No newly introduced dependency vulnerabilities were identified in this PR.
+- No code or dependency changes were required for remediation.
 
-## Result
-- Security posture unchanged.
-- No new vulnerabilities detected from provided alert data and PR dependency diff.
+## Outcome
+Security review completed with no actionable findings for this PR based on the provided alert feeds and dependency diff inspection.
