@@ -10,10 +10,10 @@ app_pack_mappings:
   - reference: packs/sales-crm.pack
     scope: global
 extension_providers:
-  - oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest
-  - oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest
-  - oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest
-  - oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-webchat-gui:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-slack:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-teams:latest
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest
 remote_catalogs: []
 hooks: []
 subscriptions: []
