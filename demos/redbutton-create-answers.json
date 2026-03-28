@@ -56,12 +56,12 @@
             "detected_kind": "oci",
             "display_name": "Greentic Events Webhook",
             "provider_id": "greentic.events.webhook",
-            "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
+            "reference": "oci://ghcr.io/greenticai/greentic-packs/events-webhook:latest",
             "version": "latest"
           }
         ],
         "extension_providers": [
-          "oci://ghcr.io/greenticai/packs/events/events-webhook:latest"
+          "oci://ghcr.io/greenticai/greentic-packs/events-webhook:latest"
         ],
         "mode": "create",
         "output_dir": "crates/redbutton-demo/bundle",
