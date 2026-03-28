@@ -35,9 +35,9 @@
                 "extension_provider_entries": [
                     {
                         "detected_kind": "oci",
-                        "display_name": "Greentic Messaging Webchat (latest)",
-                        "provider_id": "greentic.messaging.webchat.latest",
-                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+                        "display_name": "Greentic Messaging Webchat GUI (latest)",
+                        "provider_id": "greentic.messaging.webchat-gui.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
                         "version": "latest"
                     },
                     {
@@ -53,12 +53,20 @@
                         "provider_id": "greentic.messaging.teams.latest",
                         "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
                         "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Webex (latest)",
+                        "provider_id": "greentic.messaging.webex.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
+                        "version": "latest"
                     }
                 ],
                 "extension_providers": [
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest"
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest"
                 ],
                 "mode": "create",
                 "output_dir": "crates/helpdesk-itsm-demo/bundle",
