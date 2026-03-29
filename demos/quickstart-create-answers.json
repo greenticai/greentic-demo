@@ -25,7 +25,7 @@
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest"
                 ],
                 "mode": "create",
-                "output_dir": "crates/quickstart-demo/bundle",
+                "output_dir": "./quickstart-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

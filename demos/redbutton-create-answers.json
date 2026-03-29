@@ -64,7 +64,7 @@
           "oci://ghcr.io/greenticai/packs/events/events-webhook:latest"
         ],
         "mode": "create",
-        "output_dir": "crates/redbutton-demo/bundle",
+        "output_dir": "./redbutton-demo-bundle",
         "remote_catalogs": [],
         "setup_answers": {},
         "setup_execution_intent": false,
