@@ -1,9 +1,9 @@
 version: 1
 tenant: default
-project_root: ./demo.gtbundle
+project_root: ./cloud-deploy-demo-bundle
 bundle:
-  bundle_id: meeting-demo-full
-  bundle_name: Meeting Demo Bundle Full
+  bundle_id: cloud-deploy-demo
+  bundle_name: Cloud Deploy Demo
   locale: en
   mode: create
   advanced_setup: false
@@ -16,12 +16,12 @@ policy:
 catalogs:
   []
 app_packs:
-  - reference: ./cards-demo.gtpack
+  - reference: https://github.com/greenticai/greentic-demo/releases/latest/download/cards-demo.gtpack
     policy: public
 extension_providers:
-  - ./events-webhook.gtpack
-  - ./messaging-webchat-gui.gtpack
-  - ./state-memory.gtpack
+  - https://github.com/greenticai/greentic-demo/releases/latest/download/events-webhook.gtpack
+  - https://github.com/greenticai/greentic-demo/releases/latest/download/messaging-webchat-gui.gtpack
+  - https://github.com/greenticai/greentic-demo/releases/latest/download/state-memory.gtpack
 hooks:
   []
 subscriptions:
