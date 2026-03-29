@@ -26,5 +26,11 @@
       }
     ]
   },
-  "setup_answers": {}
+  "setup_answers": {
+    "messaging-webchat-gui": {
+      "jwt_signing_key": "secret",
+      "mode": "embedded",
+      "public_base_url": "https://example.com"
+    }
+  }
 }
