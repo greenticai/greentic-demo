@@ -29,7 +29,7 @@
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest"
                 ],
                 "mode": "create",
-                "output_dir": "crates/hr-onboarding-demo/bundle",
+                "output_dir": "./hr-onboarding-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

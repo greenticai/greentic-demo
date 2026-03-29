@@ -35,7 +35,7 @@
       "https://github.com/greenticai/greentic-demo/releases/latest/download/events-webhook.gtpack"
     ],
     "mode": "create",
-    "output_dir": "crates/cloud-deploy-demo/bundle",
+    "output_dir": "./cloud-deploy-demo-bundle",
     "remote_catalogs": [],
     "setup_answers": {},
     "setup_execution_intent": false,

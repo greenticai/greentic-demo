@@ -31,7 +31,7 @@
                     "oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest"
                 ],
                 "mode": "create",
-                "output_dir": "crates/hr-onboarding-demo/bundle",
+                "output_dir": "./hr-onboarding-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

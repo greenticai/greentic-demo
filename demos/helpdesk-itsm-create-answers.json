@@ -69,7 +69,7 @@
                     "oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest"
                 ],
                 "mode": "create",
-                "output_dir": "crates/helpdesk-itsm-demo/bundle",
+                "output_dir": "./helpdesk-itsm-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

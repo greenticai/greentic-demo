@@ -31,7 +31,7 @@
                     "oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest"
                 ],
                 "mode": "create",
-                "output_dir": "crates/sales-crm-demo/bundle",
+                "output_dir": "./sales-crm-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

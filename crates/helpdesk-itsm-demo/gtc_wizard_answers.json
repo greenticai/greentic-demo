@@ -61,7 +61,7 @@
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest"
                 ],
                 "mode": "create",
-                "output_dir": "crates/helpdesk-itsm-demo/bundle",
+                "output_dir": "./helpdesk-itsm-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,
