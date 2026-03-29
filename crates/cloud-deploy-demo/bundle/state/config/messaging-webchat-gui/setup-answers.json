@@ -1,0 +1,5 @@
+{
+  "jwt_signing_key": "secret",
+  "mode": "embedded",
+  "public_base_url": "https://example.com"
+}
