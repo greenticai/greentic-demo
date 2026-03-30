@@ -1,0 +1,21 @@
+schema_version: 1
+bundle_id: car-sales-demo
+bundle_name: Car Sales Demo
+locale: en-GB
+mode: create
+advanced_setup: false
+app_packs:
+  - packs/car-sales.pack
+app_pack_mappings:
+  - reference: packs/car-sales.pack
+    scope: global
+extension_providers:
+  - oci://ghcr.io/greenticai/greentic-packs/messaging-webchat-gui:latest
+remote_catalogs: []
+hooks: []
+subscriptions: []
+capabilities:
+  - greentic.cap.bundle_assets.read.v1
+  - greentic.cap.webchat.embed.v1
+setup_execution_intent: false
+export_intent: false

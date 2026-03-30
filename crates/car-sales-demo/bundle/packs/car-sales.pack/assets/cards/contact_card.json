@@ -1,0 +1,49 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Contact AutoMax Motors",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "TextBlock",
+      "text": "We'd love to hear from you. Visit us or get in touch!",
+      "wrap": true,
+      "spacing": "Small",
+      "isSubtle": true
+    },
+    {
+      "type": "FactSet",
+      "separator": true,
+      "spacing": "Medium",
+      "facts": [
+        {
+          "title": "Address",
+          "value": "123 Motor Avenue, Auto City, AC 10001"
+        },
+        {
+          "title": "Phone",
+          "value": "+1 (555) 123-4567"
+        },
+        {
+          "title": "Email",
+          "value": "sales@automax-motors.com"
+        },
+        {
+          "title": "Hours",
+          "value": "Mon-Sat 9AM-8PM | Sun 10AM-6PM"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Back to Menu",
+      "verb": "back"
+    }
+  ]
+}

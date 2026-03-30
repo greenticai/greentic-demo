@@ -1,0 +1,1437 @@
+{
+  "version": 0,
+  "langs": {
+    "es": {
+      "keys": {
+        "car_sales.car_catalog_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9d26e4f6f8b8563065e8e2eb00ef8a16ab11d8eea8dc3b9be63feb2637a9f374",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_0.text": {
+          "last_english_hash": "64d65518de40d6384fe6ec873f70d8b7b37eec91dd227ef68ec5a6af01e76f9c",
+          "last_bot_translation_hash": "a8a9f67ee0610c6461f3a6504548bb30e8d3f44e26271dab05957ce8dcadb3b7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_0.text": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "24c58bd4bf28274fe8df75647ac7d6483d6a1253270ed6b4cf76d08ece70f34b",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_1.text": {
+          "last_english_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "last_bot_translation_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_2.text": {
+          "last_english_hash": "9f1ca3e57c623c36ae36690d5118e95c6b7e5be90b5b9e17e826e176aa54fe22",
+          "last_bot_translation_hash": "ffab26544738217a666befb48101c5b8b87be1c75e09a31b322a469dfb35aaca",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "e58564b4affe12a6ee2b922da6e2005c5d2984981f335f61da18497ca122bd2d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "last_bot_translation_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_2.text": {
+          "last_english_hash": "cad4890465aa9fa8aa2634516162f8530f0f426786e26b83893c4e11df09e996",
+          "last_bot_translation_hash": "72dd6d702f1ed05c068c12f9544544123cdce7a47ddb0170ef4ea78ec4333df3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "e58564b4affe12a6ee2b922da6e2005c5d2984981f335f61da18497ca122bd2d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "last_bot_translation_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_2.text": {
+          "last_english_hash": "8b68b1814cb55822ca2522e8dcb0f07a9b4333dbc3936bd42c21be1ed7ee0916",
+          "last_bot_translation_hash": "b1f32b6a4bdc30b584bb6b3f63fc30db65ea4ffb7b01882544c06a40b9ec6394",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "e58564b4affe12a6ee2b922da6e2005c5d2984981f335f61da18497ca122bd2d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_detail_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "daf07b17f40577dfe0c134c567e92aad0d806f767090d4eeeae9db811201ffad",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_detail_card.actions_1.title": {
+          "last_english_hash": "ec840b6dfcaa87a1d7a5fcd6a8e8a7e01c497db4977ee5b04ce6429e81c2c192",
+          "last_bot_translation_hash": "9a69390ee6c9bdac825c92cdcea96a102c4149de79edfebd10b39fcbb8c0e4c4",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_detail_card.body_2_facts_0.title": {
+          "last_english_hash": "5040f272366060bf721b7a2e7cf7543be76c6ee18ff71a5233a18da766ed82fa",
+          "last_bot_translation_hash": "1047e5975bebd75b6d7561240d0d8f1de80add66fd99bb0d91a18ab761160140",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_detail_card.body_2_facts_1.title": {
+          "last_english_hash": "b1d901fc0bafbe944072a3191a31f438e3417f6e6e9bff4f8ebe18fa7bbec2bd",
+          "last_bot_translation_hash": "5af30724e5e3187124eba50405ca1d4029b3636bb3f1405d1874d8733c3045bb",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_detail_card.body_3.text": {
+          "last_english_hash": "9a13108ae94020ac8559eb1ee0f9ec9646ab2498e811de32acb1c64dbc0b3bf8",
+          "last_bot_translation_hash": "85f33ad6e2d2d2b3c3b2427b172ee3e1e3d33f209b3c7d17e7975c88667bd186",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.car_detail_card.body_4_inlines_0.text": {
+          "last_english_hash": "1e6312e225a5919d1517bf7163888e465a87a2e99cc8278933452b63726d1949",
+          "last_bot_translation_hash": "4fa6786c260bdde7161bcc731fcd455b2332f2a77aea59e949f38feaf24c3168",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9d26e4f6f8b8563065e8e2eb00ef8a16ab11d8eea8dc3b9be63feb2637a9f374",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_0.text": {
+          "last_english_hash": "a08a531f1592bedf4306e17141ab849d2d36183c74cfe7efc6ac4e539e543ec0",
+          "last_bot_translation_hash": "79785a158612c58c4b06535829bea1ca4e7224e5c7471bf8d3f977c39a61a628",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_1.text": {
+          "last_english_hash": "d1569c7e6df7a9979e3c90fc821790f1ceba01d103ff4bf11d838115fe47a207",
+          "last_bot_translation_hash": "6de504ed98e98658d5358795fba17d101134683f4eda7e43867f77994e1cf53b",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_0.title": {
+          "last_english_hash": "38f692a7a965b0880e0e4492c17224768573682b68b5f81eab4ad4fe1c382518",
+          "last_bot_translation_hash": "14654f4b8111237e9c4b42b1fcb8a1954e33f521fce8ff779b4e6709e979f7a7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_0.value": {
+          "last_english_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "last_bot_translation_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "f1f94da5124d926943a3e2a0f31db45b347355748261edd4ab7abfd540a023a2",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_1.value": {
+          "last_english_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "last_bot_translation_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_2.title": {
+          "last_english_hash": "f9abaf4857134a9de85ea9d42a2192763ed5cd3bba137252a43f57b40c1cec85",
+          "last_bot_translation_hash": "0645cefded72e4236e40183b90e53d07e0d2e6a51b91b0d225d1f4f478eb642a",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_2.value": {
+          "last_english_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "last_bot_translation_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_3.title": {
+          "last_english_hash": "23972edc4aab8c111c2e526aac7bcd6da929eb2a5680f284b42d9b5d3383da4b",
+          "last_bot_translation_hash": "0a40d860bab6882f1e58c2a303b5e2533c2cfebe7af3e91e772919b6a7c93e2e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.contact_card.body_2_facts_3.value": {
+          "last_english_hash": "1cd74f5cb9d511b7cea459099017b3da02c131d3f116c7b186e4f3c6335fc047",
+          "last_bot_translation_hash": "e82c470d1c289fcc1ea0362f8f25e2f15863ca82fd5d2a1d11f3973e0580fcb5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "daf07b17f40577dfe0c134c567e92aad0d806f767090d4eeeae9db811201ffad",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.actions_1.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9d26e4f6f8b8563065e8e2eb00ef8a16ab11d8eea8dc3b9be63feb2637a9f374",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_0.text": {
+          "last_english_hash": "85a6dbf105248431f775f04bc331d57f82c56b079cf7370247f3716820c0cc0c",
+          "last_bot_translation_hash": "876ce17c865e67035378fad2333e9b822ced20554038baac38947f041181c9fc",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_1.text": {
+          "last_english_hash": "e64dda3b021dd3f4e85a81b626bedfb9e8adf7327d22c49cbdd8e9189c8ce2c8",
+          "last_bot_translation_hash": "cf09f11f56b4c03d73dc09d6e2b0decd50164ac5f6986bebfcbf9e13ba39b886",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_2.errorMessage": {
+          "last_english_hash": "47da750fd02cb601293753a5ec51af1cf267cab945c1fcdf05dfe689446bf5ae",
+          "last_bot_translation_hash": "9fb713cde66a1b6976effc3a041ae39993cb0df7d5f7c2b9f6955c89488828fe",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_2.label": {
+          "last_english_hash": "4dddddfb3e277fa24fe579bba05f15366a8f4d7cc8f5c6d6fe90c73ccaeebf82",
+          "last_bot_translation_hash": "1b691cf499b3b13b09c71fd684de34896c5fa9e7721b402659816313be5feef0",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_2.placeholder": {
+          "last_english_hash": "8265bb47fe00c0c063a3ed6afb62467194616ddaab9f00c4841aed2f2b3d3496",
+          "last_bot_translation_hash": "26c51f8bc6b3ec530b3b28fd6809d466ea6025eabc8eebc5809e1ce5e39ed327",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_3.errorMessage": {
+          "last_english_hash": "5ce410f5d8952cec2a8c748c7f9dd8051c2821ba68455f3ccc67002b4faa8e9b",
+          "last_bot_translation_hash": "9d250fbf7be9da107cc7455e96579afeb08c6c968c789f31f1a86832b10b41fb",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_3.label": {
+          "last_english_hash": "d37c15aba8f71542f17238a6736b59e47d65cb4f19d546fefd4f4f5c1b6c0d61",
+          "last_bot_translation_hash": "f8fb43968434a3e06223d32a46d2f3ceb7cf34f51f5fa7a99981c06592971c30",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_3.placeholder": {
+          "last_english_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "last_bot_translation_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_4.label": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "48325c91bd6fb5fb2c6ffb683e04ea7a2aa51d74c018a56ec2c6c7f9b2bc2660",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_5.label": {
+          "last_english_hash": "f8ca5eb9fbc9a5ba99ec95a6f659cbd2cc0f545c46a328430de1f94f9ba430c4",
+          "last_bot_translation_hash": "30f537b49155fa86031600286085f410e869c0fea2ee2d14fbbaf492005e106b",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_5.placeholder": {
+          "last_english_hash": "4cef918bf2f6239b200d1d0df4087179fa7d8d62c018592ec7742abc4b1a0284",
+          "last_bot_translation_hash": "fba86a6038d9333ecbededf66b8a5270952b44957c1bf0224889ea41c228497f",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_5_choices_0.title": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "24c58bd4bf28274fe8df75647ac7d6483d6a1253270ed6b4cf76d08ece70f34b",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_5_choices_1.title": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_card.body_5_choices_2.title": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_confirm_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9d26e4f6f8b8563065e8e2eb00ef8a16ab11d8eea8dc3b9be63feb2637a9f374",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_confirm_card.body_0.text": {
+          "last_english_hash": "955635d67097830a4c949a7cb8403baa10a437360773ee74f24d6f5a37df7b36",
+          "last_bot_translation_hash": "fb808c40e8069bcb853ea70fb907b9bdae374119a89ad65cff1a3ad7f72fffd1",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_confirm_card.body_1.text": {
+          "last_english_hash": "847ae75f1f3eb568330160d711c8874f1c47a397721bee6beaaaaf57a3743e39",
+          "last_bot_translation_hash": "cb711965623493e1c20de6b736e61b953ca859413e8419c194a928935b641feb",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848704
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_0.title": {
+          "last_english_hash": "e81360eaaea292c04acbc3c164abbb27c2367bbfb3fb65d86406539bae780e5a",
+          "last_bot_translation_hash": "a39d63807361411f1403c1e310072565c4ed443215122c2ad7172ece38f8bcb9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "f1f94da5124d926943a3e2a0f31db45b347355748261edd4ab7abfd540a023a2",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_2.title": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "48325c91bd6fb5fb2c6ffb683e04ea7a2aa51d74c018a56ec2c6c7f9b2bc2660",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_3.title": {
+          "last_english_hash": "0b733c45cd185502a991ed7798e6d2292354311bd552f3e604e9fe71ae7a9b04",
+          "last_bot_translation_hash": "e99e613595f4093b165837b7811eb7865acae065e522e49a385623551df96ce9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        },
+        "car_sales.welcome_card.actions_0.title": {
+          "last_english_hash": "5ebc8e348f3bacf8ebd6e1e12d0a452d94e646ecc0fe4842e16e2dad83fc5686",
+          "last_bot_translation_hash": "7b3c9d30ad4101bcc08780d7b9a92b48db6e4e8128e58b2b1456b8793bdc9caa",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        },
+        "car_sales.welcome_card.actions_1.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "daf07b17f40577dfe0c134c567e92aad0d806f767090d4eeeae9db811201ffad",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        },
+        "car_sales.welcome_card.actions_2.title": {
+          "last_english_hash": "145517e5ed55732e9cb9ae0ffe1fb5e59afed67ef1d519e818f587724dfa9b98",
+          "last_bot_translation_hash": "bed09e95b905d6f06305333ea199617a85d54a2142b316b2ab94a07ff0f2449d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        },
+        "car_sales.welcome_card.body_0_items_1.text": {
+          "last_english_hash": "2f2a837e57fd2aeb8eb8a40f39d91e6a7ad538fe66aadf55ac2658f8cafd759e",
+          "last_bot_translation_hash": "9f3d9f7257160f6312aec1711cba58bd51f876a886d8f75ff5f8bcc7ffe3feb4",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        },
+        "car_sales.welcome_card.body_1.text": {
+          "last_english_hash": "bb1dd0af4bfca0cfb15fbd1dd181665a57b57e93533877295403c2cf18d5123d",
+          "last_bot_translation_hash": "3b313e68e32453ff8f9c871ac3fb82a5ba3980bd56862dfa288af8d5d29d0231",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848711
+        }
+      }
+    },
+    "id": {
+      "keys": {
+        "car_sales.car_catalog_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "919019cdf7b2635080c2057a90b5e2856d094f24de794f04115d385350e65fd7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_0.text": {
+          "last_english_hash": "64d65518de40d6384fe6ec873f70d8b7b37eec91dd227ef68ec5a6af01e76f9c",
+          "last_bot_translation_hash": "e38aeac08208cf74b4bad75cf44763e4a678eb16f8539cae42edcc283b9682ab",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_0.text": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_1.text": {
+          "last_english_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "last_bot_translation_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_2.text": {
+          "last_english_hash": "9f1ca3e57c623c36ae36690d5118e95c6b7e5be90b5b9e17e826e176aa54fe22",
+          "last_bot_translation_hash": "d5f748359d088690b67490fc9f30129898ffd369cababe10c1159378fc976286",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "7fb57b5b33887fc0193a79d08de20f18f4ff66a3a4fb4093a1500e1f0260b2d4",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "last_bot_translation_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_2.text": {
+          "last_english_hash": "cad4890465aa9fa8aa2634516162f8530f0f426786e26b83893c4e11df09e996",
+          "last_bot_translation_hash": "5674e2b8634175cb8cffe3ef01f4f48b0fef3a6b6b2c22cacb7d511fbb9fa521",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "7fb57b5b33887fc0193a79d08de20f18f4ff66a3a4fb4093a1500e1f0260b2d4",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "last_bot_translation_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_2.text": {
+          "last_english_hash": "8b68b1814cb55822ca2522e8dcb0f07a9b4333dbc3936bd42c21be1ed7ee0916",
+          "last_bot_translation_hash": "cfc34b231188b5acdce1165b9c877a3349b7cade647b241ce403a82005faea4c",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "7fb57b5b33887fc0193a79d08de20f18f4ff66a3a4fb4093a1500e1f0260b2d4",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_detail_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "4784214dc091f1acd9c99f792cc30b3c56fd0df280faa51d694dc13771aeb639",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_detail_card.actions_1.title": {
+          "last_english_hash": "ec840b6dfcaa87a1d7a5fcd6a8e8a7e01c497db4977ee5b04ce6429e81c2c192",
+          "last_bot_translation_hash": "b017bfacf5522fb9ec9c571421eb2a42fc97c5593f8830b5c8f5714f3d04cc1d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_detail_card.body_2_facts_0.title": {
+          "last_english_hash": "5040f272366060bf721b7a2e7cf7543be76c6ee18ff71a5233a18da766ed82fa",
+          "last_bot_translation_hash": "e11d70b9545f48b0a8352f720ed49b754a721df1b82f687841d49b638d06e3da",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_detail_card.body_2_facts_1.title": {
+          "last_english_hash": "b1d901fc0bafbe944072a3191a31f438e3417f6e6e9bff4f8ebe18fa7bbec2bd",
+          "last_bot_translation_hash": "aaf56af1fc2b5a4c1d332b88d454ba35be096b32faadfa22e95da57f8af89fb9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_detail_card.body_3.text": {
+          "last_english_hash": "9a13108ae94020ac8559eb1ee0f9ec9646ab2498e811de32acb1c64dbc0b3bf8",
+          "last_bot_translation_hash": "9f7f3bee7db7ace73b3d8c4e3604c481c26cfbc8ffa6794e6ca599df759c4dab",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.car_detail_card.body_4_inlines_0.text": {
+          "last_english_hash": "1e6312e225a5919d1517bf7163888e465a87a2e99cc8278933452b63726d1949",
+          "last_bot_translation_hash": "f4c0ffe9e0df9306fad2bc15679c4e7ce71a136e222a9ee405eb31f4bc6b4e2a",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "919019cdf7b2635080c2057a90b5e2856d094f24de794f04115d385350e65fd7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_0.text": {
+          "last_english_hash": "a08a531f1592bedf4306e17141ab849d2d36183c74cfe7efc6ac4e539e543ec0",
+          "last_bot_translation_hash": "045ca022556e366af2dda1abf8c286e68b258380c5c4bcc52315b571bceda658",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_1.text": {
+          "last_english_hash": "d1569c7e6df7a9979e3c90fc821790f1ceba01d103ff4bf11d838115fe47a207",
+          "last_bot_translation_hash": "bc2874b4fe6aec2d1c2ca671e3b5a53391c9cfb5ed4c0316514c94e33e646669",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_0.title": {
+          "last_english_hash": "38f692a7a965b0880e0e4492c17224768573682b68b5f81eab4ad4fe1c382518",
+          "last_bot_translation_hash": "b1c162700327ccda546b8f9b651ee30c2b8c2b6790baf24b888191ca01c432c0",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_0.value": {
+          "last_english_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "last_bot_translation_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "9c583b4766f4182bcb33bbc1af55d2f7fdb03b4a178a9481d6d4384fe70b0d73",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_1.value": {
+          "last_english_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "last_bot_translation_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_2.title": {
+          "last_english_hash": "f9abaf4857134a9de85ea9d42a2192763ed5cd3bba137252a43f57b40c1cec85",
+          "last_bot_translation_hash": "f9abaf4857134a9de85ea9d42a2192763ed5cd3bba137252a43f57b40c1cec85",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_2.value": {
+          "last_english_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "last_bot_translation_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_3.title": {
+          "last_english_hash": "23972edc4aab8c111c2e526aac7bcd6da929eb2a5680f284b42d9b5d3383da4b",
+          "last_bot_translation_hash": "69f10535c9f13ca4f2e19dfd80f1df73ba5edb3831ae25e36d9f1a7c358984b9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.contact_card.body_2_facts_3.value": {
+          "last_english_hash": "1cd74f5cb9d511b7cea459099017b3da02c131d3f116c7b186e4f3c6335fc047",
+          "last_bot_translation_hash": "cf7fa76fe3b8a010989660c3543d08746fc1382850a2d308bfda30c11b1f921b",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "4784214dc091f1acd9c99f792cc30b3c56fd0df280faa51d694dc13771aeb639",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.actions_1.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "919019cdf7b2635080c2057a90b5e2856d094f24de794f04115d385350e65fd7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_0.text": {
+          "last_english_hash": "85a6dbf105248431f775f04bc331d57f82c56b079cf7370247f3716820c0cc0c",
+          "last_bot_translation_hash": "4784214dc091f1acd9c99f792cc30b3c56fd0df280faa51d694dc13771aeb639",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_1.text": {
+          "last_english_hash": "e64dda3b021dd3f4e85a81b626bedfb9e8adf7327d22c49cbdd8e9189c8ce2c8",
+          "last_bot_translation_hash": "3ca937204a5a92cbdf55e88c54160eab5dc042f4fd0c4720b2870fd1cb5a2003",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_2.errorMessage": {
+          "last_english_hash": "47da750fd02cb601293753a5ec51af1cf267cab945c1fcdf05dfe689446bf5ae",
+          "last_bot_translation_hash": "f719f573aa2d86c68d94aea69fe82c5d050f250aff1ab495dc00092fa107ad16",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_2.label": {
+          "last_english_hash": "4dddddfb3e277fa24fe579bba05f15366a8f4d7cc8f5c6d6fe90c73ccaeebf82",
+          "last_bot_translation_hash": "c3d5247f0ef8dacabd110a8ae1c76e3a0289873e96a0a969d6ff80dcefbb2380",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_2.placeholder": {
+          "last_english_hash": "8265bb47fe00c0c063a3ed6afb62467194616ddaab9f00c4841aed2f2b3d3496",
+          "last_bot_translation_hash": "3cf00dc1c71b6b79079994663e61384c7102197f87a556281a68137122383382",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_3.errorMessage": {
+          "last_english_hash": "5ce410f5d8952cec2a8c748c7f9dd8051c2821ba68455f3ccc67002b4faa8e9b",
+          "last_bot_translation_hash": "1b9d000f149cc2d3d6f6ce0267e48730e91eb10104917cbcdf5ae38bcc3c6480",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_3.label": {
+          "last_english_hash": "d37c15aba8f71542f17238a6736b59e47d65cb4f19d546fefd4f4f5c1b6c0d61",
+          "last_bot_translation_hash": "427cd4be46e36a0232f3dcb90d05ab39048ece50c3288f269ab15d752c83fc34",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_3.placeholder": {
+          "last_english_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "last_bot_translation_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_4.label": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "f647ff4cdcc49716940dc97b5e55c7999934dee80ea9cfc17beb659d4ae9023d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_5.label": {
+          "last_english_hash": "f8ca5eb9fbc9a5ba99ec95a6f659cbd2cc0f545c46a328430de1f94f9ba430c4",
+          "last_bot_translation_hash": "b8759de4f47122602725328133c285f10a080750cc1f0334abb3fd41d68d22b8",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_5.placeholder": {
+          "last_english_hash": "4cef918bf2f6239b200d1d0df4087179fa7d8d62c018592ec7742abc4b1a0284",
+          "last_bot_translation_hash": "45f0d98caa3fc5cdbef6d6e82fe3fa69871de9acd9c58173f3c26d2ba2bf3716",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_5_choices_0.title": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_5_choices_1.title": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_card.body_5_choices_2.title": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_confirm_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "919019cdf7b2635080c2057a90b5e2856d094f24de794f04115d385350e65fd7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_confirm_card.body_0.text": {
+          "last_english_hash": "955635d67097830a4c949a7cb8403baa10a437360773ee74f24d6f5a37df7b36",
+          "last_bot_translation_hash": "7c39c13977036c6e82e8a2aa293b2307cbccfa4a3fb7085352a5d5e057ed4410",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_confirm_card.body_1.text": {
+          "last_english_hash": "847ae75f1f3eb568330160d711c8874f1c47a397721bee6beaaaaf57a3743e39",
+          "last_bot_translation_hash": "547e03d621cbdffb45dd4dc3545ff78da7a6706ab8b496f6afbeb4fb2f15ab2a",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848619
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_0.title": {
+          "last_english_hash": "e81360eaaea292c04acbc3c164abbb27c2367bbfb3fb65d86406539bae780e5a",
+          "last_bot_translation_hash": "0baec240c00db588fd3b0ad9b1f5e2c868fcf6a00caa5f0d425e1db0e1db255e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848591
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "9c583b4766f4182bcb33bbc1af55d2f7fdb03b4a178a9481d6d4384fe70b0d73",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_2.title": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "f647ff4cdcc49716940dc97b5e55c7999934dee80ea9cfc17beb659d4ae9023d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_3.title": {
+          "last_english_hash": "0b733c45cd185502a991ed7798e6d2292354311bd552f3e604e9fe71ae7a9b04",
+          "last_bot_translation_hash": "29b25a85ee632c85b3daad0ee842f339cfea75ab447c85fa1025b1fd34f62664",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.welcome_card.actions_0.title": {
+          "last_english_hash": "5ebc8e348f3bacf8ebd6e1e12d0a452d94e646ecc0fe4842e16e2dad83fc5686",
+          "last_bot_translation_hash": "1922dd27ed24ba1cd3bc49ec7759101ad81177e8f5135971f9895a337210af81",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.welcome_card.actions_1.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "4784214dc091f1acd9c99f792cc30b3c56fd0df280faa51d694dc13771aeb639",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.welcome_card.actions_2.title": {
+          "last_english_hash": "145517e5ed55732e9cb9ae0ffe1fb5e59afed67ef1d519e818f587724dfa9b98",
+          "last_bot_translation_hash": "4870713a897ecfe7b21dca093068830af1b34b038909c322459b9401b698a3de",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.welcome_card.body_0_items_1.text": {
+          "last_english_hash": "2f2a837e57fd2aeb8eb8a40f39d91e6a7ad538fe66aadf55ac2658f8cafd759e",
+          "last_bot_translation_hash": "741f943b8398a91f7a7a99353913dd81701469f99d7919cdf7f05f66dfe13228",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.welcome_card.body_1.text": {
+          "last_english_hash": "bb1dd0af4bfca0cfb15fbd1dd181665a57b57e93533877295403c2cf18d5123d",
+          "last_bot_translation_hash": "5807475225e35bf487377a6107eeeff0f65be298966737b1acded4b20a5c8780",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        }
+      }
+    },
+    "ja": {
+      "keys": {
+        "car_sales.car_catalog_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "411c3baeb84fdb67875590815972d9670e7a0f8f0690ddb5b394b2ceec5d86d7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_0.text": {
+          "last_english_hash": "64d65518de40d6384fe6ec873f70d8b7b37eec91dd227ef68ec5a6af01e76f9c",
+          "last_bot_translation_hash": "02c8d335a751b90d78c0b5d02d7856c6c2bc55fd71c8662c28c79fd189258431",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_0.text": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "0c9939c65aec3328e28248f4bae2a1f23afbe70a8145fae1aa8360e4a515df75",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_1.text": {
+          "last_english_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "last_bot_translation_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_2.text": {
+          "last_english_hash": "9f1ca3e57c623c36ae36690d5118e95c6b7e5be90b5b9e17e826e176aa54fe22",
+          "last_bot_translation_hash": "1fa7aee715f70380a72973701e9183cd8f47fa3b6d2aede3eba97f802355ca36",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "17d33b905ba4e14db7f85f10824d97ddae7693f0e23c6356ffaf832f1f1472e2",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "last_bot_translation_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_2.text": {
+          "last_english_hash": "cad4890465aa9fa8aa2634516162f8530f0f426786e26b83893c4e11df09e996",
+          "last_bot_translation_hash": "127b5eea7f14e9fd2ead203f55f76612d1a3cb64bea0c58362db37f3f3568db3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "17d33b905ba4e14db7f85f10824d97ddae7693f0e23c6356ffaf832f1f1472e2",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "last_bot_translation_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_2.text": {
+          "last_english_hash": "8b68b1814cb55822ca2522e8dcb0f07a9b4333dbc3936bd42c21be1ed7ee0916",
+          "last_bot_translation_hash": "4e5b00ec87b4f3508f9ed1e894bd5169a537f1efcd1ab41de9a3a9b7ee4d2bd6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "17d33b905ba4e14db7f85f10824d97ddae7693f0e23c6356ffaf832f1f1472e2",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_detail_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "107ff2a02cc443a736cd17ed0c14f56455c8a0549bd76c2cb95a7b2727888ce1",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_detail_card.actions_1.title": {
+          "last_english_hash": "ec840b6dfcaa87a1d7a5fcd6a8e8a7e01c497db4977ee5b04ce6429e81c2c192",
+          "last_bot_translation_hash": "8ba9f48edf346e34747cea3cb328629002de1a6c07d940881a199635510779d1",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_detail_card.body_2_facts_0.title": {
+          "last_english_hash": "5040f272366060bf721b7a2e7cf7543be76c6ee18ff71a5233a18da766ed82fa",
+          "last_bot_translation_hash": "63df1ba26d0c5181ae52c53a66f08bb8ab118870c536d83a67d12e8c28ec6583",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_detail_card.body_2_facts_1.title": {
+          "last_english_hash": "b1d901fc0bafbe944072a3191a31f438e3417f6e6e9bff4f8ebe18fa7bbec2bd",
+          "last_bot_translation_hash": "a801adaa17ff2b90cfae430e8cbaade4bc55d17fe6e149627dc80055d1763c2e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_detail_card.body_3.text": {
+          "last_english_hash": "9a13108ae94020ac8559eb1ee0f9ec9646ab2498e811de32acb1c64dbc0b3bf8",
+          "last_bot_translation_hash": "eb6433c1156b94595167e5d6f3c6a8cc2c6e6193224a42bcd9fad37eee3a09bd",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.car_detail_card.body_4_inlines_0.text": {
+          "last_english_hash": "1e6312e225a5919d1517bf7163888e465a87a2e99cc8278933452b63726d1949",
+          "last_bot_translation_hash": "b7ac90c0d4144555e9bf8e68320225d07d16370ac5a523baeeb2ee453332215d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "411c3baeb84fdb67875590815972d9670e7a0f8f0690ddb5b394b2ceec5d86d7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_0.text": {
+          "last_english_hash": "a08a531f1592bedf4306e17141ab849d2d36183c74cfe7efc6ac4e539e543ec0",
+          "last_bot_translation_hash": "bcf0b353a7ce3058011c3dead432739fd27efe4a80dd94148587d3869d89e724",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_1.text": {
+          "last_english_hash": "d1569c7e6df7a9979e3c90fc821790f1ceba01d103ff4bf11d838115fe47a207",
+          "last_bot_translation_hash": "dad1e64cb07b04676f7dc81ab39fd5a4d300638c91c7c0c26820827ea99e431b",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_0.title": {
+          "last_english_hash": "38f692a7a965b0880e0e4492c17224768573682b68b5f81eab4ad4fe1c382518",
+          "last_bot_translation_hash": "73fff73663a8648eb7ec0d7cee9a829a6579a7289b3073c98ff38461d83c0bc0",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_0.value": {
+          "last_english_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "last_bot_translation_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "4abb351824d4f04f4bd0894eeaf4578ae98466e66aff0931a8f5380b194f195f",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_1.value": {
+          "last_english_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "last_bot_translation_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_2.title": {
+          "last_english_hash": "f9abaf4857134a9de85ea9d42a2192763ed5cd3bba137252a43f57b40c1cec85",
+          "last_bot_translation_hash": "fa7cd9aede19fa4f31265e06215874257a6e0efab9d2567885c29569a9c73e62",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_2.value": {
+          "last_english_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "last_bot_translation_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_3.title": {
+          "last_english_hash": "23972edc4aab8c111c2e526aac7bcd6da929eb2a5680f284b42d9b5d3383da4b",
+          "last_bot_translation_hash": "07161300c40eed84562a68d070d8943752a784c4458d6e4e14b144062f2adee5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.contact_card.body_2_facts_3.value": {
+          "last_english_hash": "1cd74f5cb9d511b7cea459099017b3da02c131d3f116c7b186e4f3c6335fc047",
+          "last_bot_translation_hash": "a1f08314f764857c28a87bf0f87cbfc16b4b3fb9e21f7ab5250dae55152baaf0",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "107ff2a02cc443a736cd17ed0c14f56455c8a0549bd76c2cb95a7b2727888ce1",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.actions_1.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "411c3baeb84fdb67875590815972d9670e7a0f8f0690ddb5b394b2ceec5d86d7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_0.text": {
+          "last_english_hash": "85a6dbf105248431f775f04bc331d57f82c56b079cf7370247f3716820c0cc0c",
+          "last_bot_translation_hash": "107ff2a02cc443a736cd17ed0c14f56455c8a0549bd76c2cb95a7b2727888ce1",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_1.text": {
+          "last_english_hash": "e64dda3b021dd3f4e85a81b626bedfb9e8adf7327d22c49cbdd8e9189c8ce2c8",
+          "last_bot_translation_hash": "4356b551bd2e3132cfe1620d18153f13fe2ddbaa95febbdb7df5fcaa474ab74e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_2.errorMessage": {
+          "last_english_hash": "47da750fd02cb601293753a5ec51af1cf267cab945c1fcdf05dfe689446bf5ae",
+          "last_bot_translation_hash": "6c0336543064d81e246c8210f729cba41e4b56b05a4141304f91522b5d449ac3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_2.label": {
+          "last_english_hash": "4dddddfb3e277fa24fe579bba05f15366a8f4d7cc8f5c6d6fe90c73ccaeebf82",
+          "last_bot_translation_hash": "17ab80f3059d3a04cfa8f1f0c0690f0848e845adc75cab346de8da9e6c2854e0",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_2.placeholder": {
+          "last_english_hash": "8265bb47fe00c0c063a3ed6afb62467194616ddaab9f00c4841aed2f2b3d3496",
+          "last_bot_translation_hash": "99614eab023c8036ea644fdd18e4f22f1408c5540c6e0c9ae2feae68f20cc3bf",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_3.errorMessage": {
+          "last_english_hash": "5ce410f5d8952cec2a8c748c7f9dd8051c2821ba68455f3ccc67002b4faa8e9b",
+          "last_bot_translation_hash": "fdfcf4be808df447248710dd87ccff28c8559f2f722d35d30781168652b8b6bc",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_3.label": {
+          "last_english_hash": "d37c15aba8f71542f17238a6736b59e47d65cb4f19d546fefd4f4f5c1b6c0d61",
+          "last_bot_translation_hash": "b694c2bc57781ea4f45ffd783b0f6241f5fad6f34eacbafd6c44b11abadf29ec",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_3.placeholder": {
+          "last_english_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "last_bot_translation_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_4.label": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "c11845bde254fe5b57bb0bc0fe974d6a87e32e4edf7cea18444b0391bdd82aae",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_5.label": {
+          "last_english_hash": "f8ca5eb9fbc9a5ba99ec95a6f659cbd2cc0f545c46a328430de1f94f9ba430c4",
+          "last_bot_translation_hash": "5a2b32900dc4599b085f213cb56f49535edaa8acb81afe7315ac26ef99ea8605",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_5.placeholder": {
+          "last_english_hash": "4cef918bf2f6239b200d1d0df4087179fa7d8d62c018592ec7742abc4b1a0284",
+          "last_bot_translation_hash": "b5688d06302dda499926f8c436fff704437b29090a4b36cf7c328e51374e33bf",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_5_choices_0.title": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "0c9939c65aec3328e28248f4bae2a1f23afbe70a8145fae1aa8360e4a515df75",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_5_choices_1.title": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_card.body_5_choices_2.title": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_confirm_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "411c3baeb84fdb67875590815972d9670e7a0f8f0690ddb5b394b2ceec5d86d7",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_confirm_card.body_0.text": {
+          "last_english_hash": "955635d67097830a4c949a7cb8403baa10a437360773ee74f24d6f5a37df7b36",
+          "last_bot_translation_hash": "06b4bd3df0e733dc221509a0fde16fe60c64338105ae3d766b3b0240644fdbcc",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_confirm_card.body_1.text": {
+          "last_english_hash": "847ae75f1f3eb568330160d711c8874f1c47a397721bee6beaaaaf57a3743e39",
+          "last_bot_translation_hash": "1461d9c494571ba37258e696b3088e8007601f29aced2781bf514210f339948a",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848650
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_0.title": {
+          "last_english_hash": "e81360eaaea292c04acbc3c164abbb27c2367bbfb3fb65d86406539bae780e5a",
+          "last_bot_translation_hash": "17ab80f3059d3a04cfa8f1f0c0690f0848e845adc75cab346de8da9e6c2854e0",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848624
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "b694c2bc57781ea4f45ffd783b0f6241f5fad6f34eacbafd6c44b11abadf29ec",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_2.title": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "c11845bde254fe5b57bb0bc0fe974d6a87e32e4edf7cea18444b0391bdd82aae",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_3.title": {
+          "last_english_hash": "0b733c45cd185502a991ed7798e6d2292354311bd552f3e604e9fe71ae7a9b04",
+          "last_bot_translation_hash": "96f5ae0587de45c32002d9818789c742cdbaa658229a5a947c65cc3d6b5729a8",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        },
+        "car_sales.welcome_card.actions_0.title": {
+          "last_english_hash": "5ebc8e348f3bacf8ebd6e1e12d0a452d94e646ecc0fe4842e16e2dad83fc5686",
+          "last_bot_translation_hash": "891d491e192b9b4e3794ae35a31e7427e3e65a8fbd221659026f595965714184",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        },
+        "car_sales.welcome_card.actions_1.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "107ff2a02cc443a736cd17ed0c14f56455c8a0549bd76c2cb95a7b2727888ce1",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        },
+        "car_sales.welcome_card.actions_2.title": {
+          "last_english_hash": "145517e5ed55732e9cb9ae0ffe1fb5e59afed67ef1d519e818f587724dfa9b98",
+          "last_bot_translation_hash": "5bacb0c278f652209376734719c1b55b0aabecf30d723f0149e1fa0cb2764c4c",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        },
+        "car_sales.welcome_card.body_0_items_1.text": {
+          "last_english_hash": "2f2a837e57fd2aeb8eb8a40f39d91e6a7ad538fe66aadf55ac2658f8cafd759e",
+          "last_bot_translation_hash": "c4fa401493955d399217dc91de4987d933c116aa878354e1b75794e8d5a0fa37",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        },
+        "car_sales.welcome_card.body_1.text": {
+          "last_english_hash": "bb1dd0af4bfca0cfb15fbd1dd181665a57b57e93533877295403c2cf18d5123d",
+          "last_bot_translation_hash": "e06e7f9cce9309a6fb874ec85a01a463137a3b7a8a4d19e1ffb77fbc3d2d2ab9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848655
+        }
+      }
+    },
+    "zh": {
+      "keys": {
+        "car_sales.car_catalog_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9bb66bfacbc8dfc41966008a279bdb855174eb68c5ef367416962e32e1e5821e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_0.text": {
+          "last_english_hash": "64d65518de40d6384fe6ec873f70d8b7b37eec91dd227ef68ec5a6af01e76f9c",
+          "last_bot_translation_hash": "86af6297f44fcc6759c9e0d7ba6d113e4e532968b6931e867ca311854b4b5e29",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_0.text": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_1.text": {
+          "last_english_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "last_bot_translation_hash": "aa5d861675b16221714ad7f475b3cf4b294fc50b0a518db26842208a6e6e4d36",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_0_items_2.text": {
+          "last_english_hash": "9f1ca3e57c623c36ae36690d5118e95c6b7e5be90b5b9e17e826e176aa54fe22",
+          "last_bot_translation_hash": "288bdb9fa5fe66dc96873c16959ffd9325db82bff8fff5e242f9d07adfb2a29a",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_1_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "b87d5a4f38663a7fa91f17117fbf30441e98aa610f982c2366f976921deeca2f",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "last_bot_translation_hash": "8516ed1710fbb7b659d927f07dad7e540a51f33c1301d68d862969733232d91d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_0_items_2.text": {
+          "last_english_hash": "cad4890465aa9fa8aa2634516162f8530f0f426786e26b83893c4e11df09e996",
+          "last_bot_translation_hash": "cbcda8f40cdf8f7c6282653ad0ee36c7e79fc856542253cff8b9d77c8ec9392f",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_2_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "b87d5a4f38663a7fa91f17117fbf30441e98aa610f982c2366f976921deeca2f",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_0.text": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_1.text": {
+          "last_english_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "last_bot_translation_hash": "8e5b89f7cdab13307116e6bd247a9ca30ecc30591e1ab5f58736db4d0c3a8292",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_0_items_2.text": {
+          "last_english_hash": "8b68b1814cb55822ca2522e8dcb0f07a9b4333dbc3936bd42c21be1ed7ee0916",
+          "last_bot_translation_hash": "5fb10204043ed0a8cf8c8235aaea562da8fd72ab7355eafeeee1740757a6160f",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_catalog_card.body_3_items_0_columns_1_items_0_actions_0.title": {
+          "last_english_hash": "a6fc3ce4455056d0aeb8d18a1375a7a7bfa17f626164d8f00e461b2f75de283a",
+          "last_bot_translation_hash": "b87d5a4f38663a7fa91f17117fbf30441e98aa610f982c2366f976921deeca2f",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_detail_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "7dbedf797a51457f86014ee7e49aedc04e10267ed2eb5081dd75be2b28fb0246",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_detail_card.actions_1.title": {
+          "last_english_hash": "ec840b6dfcaa87a1d7a5fcd6a8e8a7e01c497db4977ee5b04ce6429e81c2c192",
+          "last_bot_translation_hash": "e32af06a6751d0a2e4e4647657c7bb0800e76b05a6b6e6b6460976550f9ecc20",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_detail_card.body_2_facts_0.title": {
+          "last_english_hash": "5040f272366060bf721b7a2e7cf7543be76c6ee18ff71a5233a18da766ed82fa",
+          "last_bot_translation_hash": "80d3d70be5087b45f446c1747cbef6833d2009b41f706cf185abeba3a3c8476a",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_detail_card.body_2_facts_1.title": {
+          "last_english_hash": "b1d901fc0bafbe944072a3191a31f438e3417f6e6e9bff4f8ebe18fa7bbec2bd",
+          "last_bot_translation_hash": "caade4cfe7819a0b567a37bc1195f184fd283c892c8dd269e2f61bf70d2b8848",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_detail_card.body_3.text": {
+          "last_english_hash": "9a13108ae94020ac8559eb1ee0f9ec9646ab2498e811de32acb1c64dbc0b3bf8",
+          "last_bot_translation_hash": "622760579c5db391e0a12fd78f23bc7b111ce95017e861bff811be4472f3198c",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.car_detail_card.body_4_inlines_0.text": {
+          "last_english_hash": "1e6312e225a5919d1517bf7163888e465a87a2e99cc8278933452b63726d1949",
+          "last_bot_translation_hash": "3b536ec81d1a9691ac3ef1d09fe4985bf741daad1cd4971a983177012e891dd3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9bb66bfacbc8dfc41966008a279bdb855174eb68c5ef367416962e32e1e5821e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_0.text": {
+          "last_english_hash": "a08a531f1592bedf4306e17141ab849d2d36183c74cfe7efc6ac4e539e543ec0",
+          "last_bot_translation_hash": "36032c1bc71e7be6dce44a47949981c3cbbf51e6732fa0b4a270bf7a16b337cf",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_1.text": {
+          "last_english_hash": "d1569c7e6df7a9979e3c90fc821790f1ceba01d103ff4bf11d838115fe47a207",
+          "last_bot_translation_hash": "f4bfb5beccd4cae5a2df980ae3c212299cc3a08311f66b05dc94ce5f2d060be3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_0.title": {
+          "last_english_hash": "38f692a7a965b0880e0e4492c17224768573682b68b5f81eab4ad4fe1c382518",
+          "last_bot_translation_hash": "c1b104b90e4f5eba94226e0d054076cd58e35558eb3ea6c3c2d5cac65ee158ea",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_0.value": {
+          "last_english_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "last_bot_translation_hash": "8deef72ce0a5c61cb4664d2e67f1a1002b665902a4f1c89c5866935ac6de9f91",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "0606b18407cd3ecd8327e35f8ed1ff2608ad371b6edac9ea0f2158a8137ccfa9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_1.value": {
+          "last_english_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "last_bot_translation_hash": "629498be826d3cbc8bb5fd1b7b3c10c8b565bcd2825754cf79750d967dd149b3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_2.title": {
+          "last_english_hash": "f9abaf4857134a9de85ea9d42a2192763ed5cd3bba137252a43f57b40c1cec85",
+          "last_bot_translation_hash": "3dbf9e6ecf516061b628c3e8938a47a9aeadec95cf3e24741198f39fd0565185",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_2.value": {
+          "last_english_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "last_bot_translation_hash": "05898a7e716d874d8da895f3c9fd28a604ebe9a8055e75ed901807190d4840f9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_3.title": {
+          "last_english_hash": "23972edc4aab8c111c2e526aac7bcd6da929eb2a5680f284b42d9b5d3383da4b",
+          "last_bot_translation_hash": "fed8f8d5bb13dc77e64f8eec928d8f83092bae1fe6883f9297f538653e1b502d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.contact_card.body_2_facts_3.value": {
+          "last_english_hash": "1cd74f5cb9d511b7cea459099017b3da02c131d3f116c7b186e4f3c6335fc047",
+          "last_bot_translation_hash": "b7bb98c04c9a53be6915d9e2ae385b6a79b88f8420f8237d2feeb6ab360ddad3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.actions_0.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "7dbedf797a51457f86014ee7e49aedc04e10267ed2eb5081dd75be2b28fb0246",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.actions_1.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9bb66bfacbc8dfc41966008a279bdb855174eb68c5ef367416962e32e1e5821e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_0.text": {
+          "last_english_hash": "85a6dbf105248431f775f04bc331d57f82c56b079cf7370247f3716820c0cc0c",
+          "last_bot_translation_hash": "7dbedf797a51457f86014ee7e49aedc04e10267ed2eb5081dd75be2b28fb0246",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_1.text": {
+          "last_english_hash": "e64dda3b021dd3f4e85a81b626bedfb9e8adf7327d22c49cbdd8e9189c8ce2c8",
+          "last_bot_translation_hash": "ce41d07d2095519c47ea655e210eb6b7f3a6a37fd77bcd3c0c15da9cc69f265d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_2.errorMessage": {
+          "last_english_hash": "47da750fd02cb601293753a5ec51af1cf267cab945c1fcdf05dfe689446bf5ae",
+          "last_bot_translation_hash": "c57c727efc780abc383e986aa2e1cecc0902022e6967364d16d14075f29d9d90",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_2.label": {
+          "last_english_hash": "4dddddfb3e277fa24fe579bba05f15366a8f4d7cc8f5c6d6fe90c73ccaeebf82",
+          "last_bot_translation_hash": "ee9ecf20d29ba40341ffe075ceadc57c9dcbfe199f3e7554ecabfd8663e30fc3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_2.placeholder": {
+          "last_english_hash": "8265bb47fe00c0c063a3ed6afb62467194616ddaab9f00c4841aed2f2b3d3496",
+          "last_bot_translation_hash": "c57c727efc780abc383e986aa2e1cecc0902022e6967364d16d14075f29d9d90",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_3.errorMessage": {
+          "last_english_hash": "5ce410f5d8952cec2a8c748c7f9dd8051c2821ba68455f3ccc67002b4faa8e9b",
+          "last_bot_translation_hash": "74862196a392e4aecc91cc36034edfb73ad76951e26f807769309a3c6fc1f26d",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_3.label": {
+          "last_english_hash": "d37c15aba8f71542f17238a6736b59e47d65cb4f19d546fefd4f4f5c1b6c0d61",
+          "last_bot_translation_hash": "96f91abeba28f21023c71c2dacc107d7971b700d18fcb1f5ec88a5f94dfe5dd2",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_3.placeholder": {
+          "last_english_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "last_bot_translation_hash": "cd3617c14b18c4de9b8a6c9cba0e49380f6a8b18fa3218f9830ae27040e29900",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_4.label": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "56aea2e907f8fa7b5d1ec123eb7619accd3e12ce872cff23ddaeafe99f6a751b",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_5.label": {
+          "last_english_hash": "f8ca5eb9fbc9a5ba99ec95a6f659cbd2cc0f545c46a328430de1f94f9ba430c4",
+          "last_bot_translation_hash": "cf92a194bb6509e9a00fe37fa1db53ab308a61cfacd471d47d53d6d5ce5d2b14",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_5.placeholder": {
+          "last_english_hash": "4cef918bf2f6239b200d1d0df4087179fa7d8d62c018592ec7742abc4b1a0284",
+          "last_bot_translation_hash": "7e1fe61d6fb67e519b32c972ee7622e6dca30a6b03a7870808f8d0f262eb7ed8",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_5_choices_0.title": {
+          "last_english_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "last_bot_translation_hash": "28eba5f9a666b13b4b60f9c94e54ad08b6adfe8d556245ba4e1c9a4c16978c01",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_5_choices_1.title": {
+          "last_english_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "last_bot_translation_hash": "a473cd5f18421764be6bb806cca05b84de40bc85ad1d033142859afd4b83cce6",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_card.body_5_choices_2.title": {
+          "last_english_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "last_bot_translation_hash": "a1b2d4c22948c38ae81fe739a3eb52a48becd2439369f4c8d99bd5ee612098a5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_confirm_card.actions_0.title": {
+          "last_english_hash": "65973758330231012f596bfcb9ebe149f86fb93ccc2d0ef110baf8fbc860b5f4",
+          "last_bot_translation_hash": "9bb66bfacbc8dfc41966008a279bdb855174eb68c5ef367416962e32e1e5821e",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_confirm_card.body_0.text": {
+          "last_english_hash": "955635d67097830a4c949a7cb8403baa10a437360773ee74f24d6f5a37df7b36",
+          "last_bot_translation_hash": "da957e873ba6d82f04e0190582d4930a6a478515ee0ab39620ffa3ee97c92c76",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_confirm_card.body_1.text": {
+          "last_english_hash": "847ae75f1f3eb568330160d711c8874f1c47a397721bee6beaaaaf57a3743e39",
+          "last_bot_translation_hash": "e4c0681be0d442439f68a9489d413a523c7991d6c3e00846eaa25f9c55b37627",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848678
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_0.title": {
+          "last_english_hash": "e81360eaaea292c04acbc3c164abbb27c2367bbfb3fb65d86406539bae780e5a",
+          "last_bot_translation_hash": "ee9ecf20d29ba40341ffe075ceadc57c9dcbfe199f3e7554ecabfd8663e30fc3",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_1.title": {
+          "last_english_hash": "413169f4a4f0387e36c7204115afcbdae7a96aaf1df15ba7a20504eb89fd0de9",
+          "last_bot_translation_hash": "0606b18407cd3ecd8327e35f8ed1ff2608ad371b6edac9ea0f2158a8137ccfa9",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_2.title": {
+          "last_english_hash": "9f3c21051c0ab40c4fb655076ef605e1aa0f18b2ac46212af3a9a1edd69c2866",
+          "last_bot_translation_hash": "d1f0a9b90fff2047272e36747d986d8e0fe0ddccb08e8d17b0dc54c454664a60",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.test_drive_confirm_card.body_2_facts_3.title": {
+          "last_english_hash": "0b733c45cd185502a991ed7798e6d2292354311bd552f3e604e9fe71ae7a9b04",
+          "last_bot_translation_hash": "be82bc66a385e75bfc914788ce8e40dff35f6ddd04339420036123d484d712d5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.welcome_card.actions_0.title": {
+          "last_english_hash": "5ebc8e348f3bacf8ebd6e1e12d0a452d94e646ecc0fe4842e16e2dad83fc5686",
+          "last_bot_translation_hash": "fec190e701fcfa3ca0455c0cc466c50b7239d594467cbf91b109f05751e81494",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.welcome_card.actions_1.title": {
+          "last_english_hash": "28cc62dc8714b8fd134bde7f6b5bdbe17a97866e3d19007a546e9ce6a8137e08",
+          "last_bot_translation_hash": "7dbedf797a51457f86014ee7e49aedc04e10267ed2eb5081dd75be2b28fb0246",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.welcome_card.actions_2.title": {
+          "last_english_hash": "145517e5ed55732e9cb9ae0ffe1fb5e59afed67ef1d519e818f587724dfa9b98",
+          "last_bot_translation_hash": "7e532e6ce9b06502126530e0e5714755ad69dd4376d37aa3cd228adac5b60864",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.welcome_card.body_0_items_1.text": {
+          "last_english_hash": "2f2a837e57fd2aeb8eb8a40f39d91e6a7ad538fe66aadf55ac2658f8cafd759e",
+          "last_bot_translation_hash": "27f71a706f5bd25a1dc7762b7b0febf520ff38f4cbbd42e439ab19063b0b50e5",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        },
+        "car_sales.welcome_card.body_1.text": {
+          "last_english_hash": "bb1dd0af4bfca0cfb15fbd1dd181665a57b57e93533877295403c2cf18d5123d",
+          "last_bot_translation_hash": "bc0758a349c0ec073e0164005f65d3e0b65a1412aae3a83cb1504ecb48d56b77",
+          "engine": "codex-cli",
+          "timestamp_epoch_secs": 1774848683
+        }
+      }
+    }
+  }
+}

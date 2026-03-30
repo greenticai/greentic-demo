@@ -1,0 +1,184 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Our Vehicle Collection",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "Container",
+      "separator": true,
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "AutoMax Sedan 2026",
+                  "weight": "Bolder",
+                  "size": "Medium"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "$32,500",
+                  "color": "Good",
+                  "weight": "Bolder",
+                  "spacing": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Elegant design, premium comfort",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "Small"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "verticalContentAlignment": "Center",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Execute",
+                      "title": "View Details",
+                      "verb": "view_sedan"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "separator": true,
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "AutoMax SUV X7",
+                  "weight": "Bolder",
+                  "size": "Medium"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "$48,900",
+                  "color": "Good",
+                  "weight": "Bolder",
+                  "spacing": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Adventure meets luxury",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "Small"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "verticalContentAlignment": "Center",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Execute",
+                      "title": "View Details",
+                      "verb": "view_suv"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "separator": true,
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "AutoMax EV Zero",
+                  "weight": "Bolder",
+                  "size": "Medium"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "$41,200",
+                  "color": "Good",
+                  "weight": "Bolder",
+                  "spacing": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "100% Electric, Zero emissions",
+                  "isSubtle": true,
+                  "wrap": true,
+                  "spacing": "Small"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "verticalContentAlignment": "Center",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Execute",
+                      "title": "View Details",
+                      "verb": "view_ev"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Back to Menu",
+      "verb": "back"
+    }
+  ]
+}

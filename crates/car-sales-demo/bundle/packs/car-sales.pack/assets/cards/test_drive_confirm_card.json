@@ -1,0 +1,49 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Test Drive Booked!",
+      "size": "Large",
+      "weight": "Bolder",
+      "color": "Good"
+    },
+    {
+      "type": "TextBlock",
+      "text": "We'll contact you shortly to confirm your appointment.",
+      "wrap": true,
+      "spacing": "Small"
+    },
+    {
+      "type": "FactSet",
+      "separator": true,
+      "spacing": "Medium",
+      "facts": [
+        {
+          "title": "Name",
+          "value": "{{ customer_name }}"
+        },
+        {
+          "title": "Phone",
+          "value": "{{ customer_phone }}"
+        },
+        {
+          "title": "Preferred Date",
+          "value": "{{ preferred_date }}"
+        },
+        {
+          "title": "Vehicle",
+          "value": "{{ car_model }}"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Back to Menu",
+      "verb": "back"
+    }
+  ]
+}

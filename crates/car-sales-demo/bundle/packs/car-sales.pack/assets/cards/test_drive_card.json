@@ -1,0 +1,74 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Book a Test Drive",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Fill in the details below and we'll arrange your test drive.",
+      "wrap": true,
+      "spacing": "Small",
+      "isSubtle": true
+    },
+    {
+      "type": "Input.Text",
+      "id": "customer_name",
+      "label": "Full Name",
+      "placeholder": "Enter your full name",
+      "isRequired": true,
+      "errorMessage": "Please enter your name",
+      "spacing": "Medium"
+    },
+    {
+      "type": "Input.Text",
+      "id": "customer_phone",
+      "label": "Phone Number",
+      "placeholder": "+1 (555) 000-0000",
+      "isRequired": true,
+      "errorMessage": "Please enter your phone number",
+      "style": "Tel"
+    },
+    {
+      "type": "Input.Date",
+      "id": "preferred_date",
+      "label": "Preferred Date"
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "car_model",
+      "label": "Select Car",
+      "placeholder": "Choose a vehicle",
+      "choices": [
+        {
+          "title": "AutoMax Sedan 2026",
+          "value": "sedan_2026"
+        },
+        {
+          "title": "AutoMax SUV X7",
+          "value": "suv_x7"
+        },
+        {
+          "title": "AutoMax EV Zero",
+          "value": "ev_zero"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Book Test Drive",
+      "verb": "submit_test_drive"
+    },
+    {
+      "type": "Action.Execute",
+      "title": "Back to Menu",
+      "verb": "back"
+    }
+  ]
+}

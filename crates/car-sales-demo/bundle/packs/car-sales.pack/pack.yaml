@@ -1,0 +1,63 @@
+pack_id: car-sales.pack
+version: 0.1.0
+kind: application
+publisher: Greentic
+components:
+  - id: component-adaptive-card
+    version: 0.1.18
+    world: greentic:component/component-v0-v6-v0@0.6.0
+    supports:
+      - messaging
+    profiles:
+      default: stateless
+      supported:
+        - stateless
+    capabilities:
+      wasi:
+        random: true
+        clocks: true
+        filesystem:
+          mode: read_only
+          mounts:
+            - guest_path: .
+              host_class: cwd
+              name: workspace
+      host:
+        messaging:
+          inbound: true
+          outbound: true
+        secrets:
+          required: []
+        state:
+          delete: true
+          read: true
+          write: true
+        telemetry:
+          scope: node
+    wasm: components/component-adaptive-card/component.wasm
+dependencies: []
+flows:
+  - id: on_message
+    file: flows/on_message.ygtc
+    tags:
+      - default
+      - messaging
+    entrypoints:
+      - default
+assets:
+  - path: assets/cards/welcome_card.json
+  - path: assets/cards/car_catalog_card.json
+  - path: assets/cards/car_detail_card.json
+  - path: assets/cards/test_drive_card.json
+  - path: assets/cards/test_drive_confirm_card.json
+  - path: assets/cards/contact_card.json
+  - path: assets/i18n/en.json
+    tags: [i18n, default]
+  - path: assets/i18n/id.json
+    tags: [i18n]
+  - path: assets/i18n/ja.json
+    tags: [i18n]
+  - path: assets/i18n/zh.json
+    tags: [i18n]
+  - path: assets/i18n/es.json
+    tags: [i18n]

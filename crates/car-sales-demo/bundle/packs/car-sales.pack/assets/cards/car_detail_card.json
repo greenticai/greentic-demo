@@ -1,0 +1,62 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "{{ car_name }}",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "TextBlock",
+      "text": "{{ car_price }}",
+      "size": "ExtraLarge",
+      "color": "Good",
+      "weight": "Bolder",
+      "spacing": "Small"
+    },
+    {
+      "type": "FactSet",
+      "separator": true,
+      "spacing": "Medium",
+      "facts": [
+        {
+          "title": "Engine",
+          "value": "{{ car_engine }}"
+        },
+        {
+          "title": "Transmission",
+          "value": "{{ car_transmission }}"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Key Features",
+      "weight": "Bolder",
+      "spacing": "Medium"
+    },
+    {
+      "type": "RichTextBlock",
+      "inlines": [
+        {
+          "type": "TextRun",
+          "text": "- Advanced safety suite\n- Premium sound system\n- Leather interior\n- Adaptive cruise control\n- Panoramic sunroof"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Book Test Drive",
+      "verb": "book_test_drive"
+    },
+    {
+      "type": "Action.Execute",
+      "title": "Back to Catalog",
+      "verb": "back_catalog"
+    }
+  ]
+}

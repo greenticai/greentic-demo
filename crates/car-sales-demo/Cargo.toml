@@ -1,0 +1,9 @@
+[package]
+name = "car-sales-demo"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Greentic car sales demo - interactive car dealership chatbot with catalog browsing, test drive booking, and contact form."
+
+[lib]
+path = "src/lib.rs"

@@ -1,0 +1,216 @@
+id: on_message
+title: Car Sales - Message Handler
+description: Car dealership chatbot with catalog browsing, test drive booking, and contact info
+type: messaging
+start: render_welcome
+parameters:
+  default_language: "en"
+tags:
+  - messaging
+schema_version: 2
+entrypoints: {}
+
+nodes:
+  render_welcome:
+    component-adaptive-card.card:
+      node_id: welcome-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        greeting: "Welcome to AutoMax Motors"
+      card_spec:
+        asset_path: assets/cards/welcome_card.json
+        template_params:
+          greeting: "Welcome to AutoMax Motors"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: browse_cars
+        to: render_catalog
+      - out: book_test_drive
+        to: render_test_drive
+      - out: contact_us
+        to: render_contact
+      - out: true
+
+  render_catalog:
+    component-adaptive-card.card:
+      node_id: catalog-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload: {}
+      card_spec:
+        asset_path: assets/cards/car_catalog_card.json
+        template_params: {}
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: view_sedan
+        to: render_detail_sedan
+      - out: view_suv
+        to: render_detail_suv
+      - out: view_ev
+        to: render_detail_ev
+      - out: back
+        to: render_welcome
+      - out: true
+
+  render_detail_sedan:
+    component-adaptive-card.card:
+      node_id: detail-sedan-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        car_name: "AutoMax Sedan 2026"
+        car_price: "$32,500"
+        car_engine: "2.0L Turbocharged Inline-4"
+        car_transmission: "8-Speed Automatic"
+      card_spec:
+        asset_path: assets/cards/car_detail_card.json
+        template_params:
+          car_name: "AutoMax Sedan 2026"
+          car_price: "$32,500"
+          car_engine: "2.0L Turbocharged Inline-4"
+          car_transmission: "8-Speed Automatic"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: book_test_drive
+        to: render_test_drive
+      - out: back_catalog
+        to: render_catalog
+      - out: true
+
+  render_detail_suv:
+    component-adaptive-card.card:
+      node_id: detail-suv-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        car_name: "AutoMax SUV X7"
+        car_price: "$48,900"
+        car_engine: "3.5L V6 Twin-Turbo"
+        car_transmission: "9-Speed Automatic AWD"
+      card_spec:
+        asset_path: assets/cards/car_detail_card.json
+        template_params:
+          car_name: "AutoMax SUV X7"
+          car_price: "$48,900"
+          car_engine: "3.5L V6 Twin-Turbo"
+          car_transmission: "9-Speed Automatic AWD"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: book_test_drive
+        to: render_test_drive
+      - out: back_catalog
+        to: render_catalog
+      - out: true
+
+  render_detail_ev:
+    component-adaptive-card.card:
+      node_id: detail-ev-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        car_name: "AutoMax EV Zero"
+        car_price: "$41,200"
+        car_engine: "Dual Electric Motors, 320 kW"
+        car_transmission: "Single-Speed Direct Drive"
+      card_spec:
+        asset_path: assets/cards/car_detail_card.json
+        template_params:
+          car_name: "AutoMax EV Zero"
+          car_price: "$41,200"
+          car_engine: "Dual Electric Motors, 320 kW"
+          car_transmission: "Single-Speed Direct Drive"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: book_test_drive
+        to: render_test_drive
+      - out: back_catalog
+        to: render_catalog
+      - out: true
+
+  render_test_drive:
+    component-adaptive-card.card:
+      node_id: test-drive-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload: {}
+      card_spec:
+        asset_path: assets/cards/test_drive_card.json
+        template_params: {}
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: submit_test_drive
+        to: render_test_drive_confirm
+      - out: back
+        to: render_welcome
+      - out: true
+
+  render_test_drive_confirm:
+    component-adaptive-card.card:
+      node_id: test-drive-confirm-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload:
+        customer_name: "{{ message.data.customer_name }}"
+        customer_phone: "{{ message.data.customer_phone }}"
+        preferred_date: "{{ message.data.preferred_date }}"
+        car_model: "{{ message.data.car_model }}"
+      card_spec:
+        asset_path: assets/cards/test_drive_confirm_card.json
+        template_params:
+          customer_name: "{{ message.data.customer_name }}"
+          customer_phone: "{{ message.data.customer_phone }}"
+          preferred_date: "{{ message.data.preferred_date }}"
+          car_model: "{{ message.data.car_model }}"
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: back
+        to: render_welcome
+      - out: true
+
+  render_contact:
+    component-adaptive-card.card:
+      node_id: contact-card
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      interaction: "{{ message.interaction }}"
+      payload: {}
+      card_spec:
+        asset_path: assets/cards/contact_card.json
+        template_params: {}
+      i18n:
+        locale: session.language ?? parameters.default_language
+        bundle_path: i18n/{{locale}}.json
+    routing:
+      - out: back
+        to: render_welcome
+      - out: true

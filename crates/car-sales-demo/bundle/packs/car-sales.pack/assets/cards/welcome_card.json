@@ -1,0 +1,52 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "{{ greeting }}",
+          "size": "ExtraLarge",
+          "weight": "Bolder",
+          "horizontalAlignment": "Center"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Your trusted car dealership — find your perfect ride",
+          "size": "Medium",
+          "horizontalAlignment": "Center",
+          "spacing": "Small",
+          "isSubtle": true,
+          "wrap": true
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "How can we help you today?",
+      "wrap": true,
+      "spacing": "Large",
+      "horizontalAlignment": "Center"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Browse Cars",
+      "verb": "browse_cars"
+    },
+    {
+      "type": "Action.Execute",
+      "title": "Book Test Drive",
+      "verb": "book_test_drive"
+    },
+    {
+      "type": "Action.Execute",
+      "title": "Contact Us",
+      "verb": "contact_us"
+    }
+  ]
+}
