@@ -1,16 +1,48 @@
 {
-    "wizard_id": "greentic-dev.wizard.launcher.main",
-    "schema_id": "greentic-dev.launcher.main",
-    "schema_version": "1.0.0",
-    "locale": "en-GB",
-    "answers": {
-        "selected_action": "setup",
-        "delegate_answer_document": {
-            "wizard_id": "greentic-bundle.wizard.setup",
-            "schema_id": "greentic-bundle.setup.answers",
-            "schema_version": "1.0.0",
-            "locale": "en-GB",
-            "answers": {}
-        }
+  "bundle_source": ".",
+  "env": "dev",
+  "greentic_setup_version": "1.0.0",
+  "platform_setup": {
+    "deployment_targets": [],
+    "static_routes": {
+      "default_route_prefix_policy": "pack_declared",
+      "public_surface_policy": "disabled",
+      "public_web_enabled": false,
+      "tenant_path_policy": "pack_declared"
     }
+  },
+  "setup_answers": {
+    "messaging-slack": {
+      "api_base_url": "https://slack.com/api",
+      "default_channel": "",
+      "public_base_url": "",
+      "slack_app_id": "",
+      "slack_bot_token": "",
+      "slack_configuration_token": ""
+    },
+    "messaging-teams": {
+      "channel_id": "",
+      "ms_bot_app_id": "",
+      "ms_bot_app_password": "",
+      "public_base_url": "",
+      "team_id": ""
+    },
+    "messaging-webchat-gui": {
+      "base_url": "",
+      "jwt_signing_key": "",
+      "mode": "local_queue",
+      "public_base_url": "http://localhost:8080",
+      "route": "webchat",
+      "tenant_channel_id": ""
+    },
+    "messaging-webex": {
+      "api_base_url": "https://webexapis.com/v1",
+      "default_room_id": "",
+      "default_to_person_email": "",
+      "public_base_url": "",
+      "webex_bot_token": ""
+    }
+  },
+  "team": null,
+  "tenant": "demo"
 }

@@ -61,16 +61,46 @@
           "value": "{{default_department}}",
           "isRequired": true,
           "choices": [
-            { "title": "Engineering", "value": "Engineering" },
-            { "title": "Product", "value": "Product" },
-            { "title": "Design", "value": "Design" },
-            { "title": "Marketing", "value": "Marketing" },
-            { "title": "Sales", "value": "Sales" },
-            { "title": "Finance", "value": "Finance" },
-            { "title": "Human Resources", "value": "Human Resources" },
-            { "title": "Legal", "value": "Legal" },
-            { "title": "Operations", "value": "Operations" },
-            { "title": "Customer Support", "value": "Customer Support" }
+            {
+              "title": "Engineering",
+              "value": "Engineering"
+            },
+            {
+              "title": "Product",
+              "value": "Product"
+            },
+            {
+              "title": "Design",
+              "value": "Design"
+            },
+            {
+              "title": "Marketing",
+              "value": "Marketing"
+            },
+            {
+              "title": "Sales",
+              "value": "Sales"
+            },
+            {
+              "title": "Finance",
+              "value": "Finance"
+            },
+            {
+              "title": "Human Resources",
+              "value": "Human Resources"
+            },
+            {
+              "title": "Legal",
+              "value": "Legal"
+            },
+            {
+              "title": "Operations",
+              "value": "Operations"
+            },
+            {
+              "title": "Customer Support",
+              "value": "Customer Support"
+            }
           ]
         },
         {
@@ -107,7 +137,8 @@
       "title": "Cancel",
       "style": "default",
       "data": {
-        "action_id": "cancel"
+        "action_id": "cancel",
+        "routeToCardId": "welcome_card"
       }
     }
   ]

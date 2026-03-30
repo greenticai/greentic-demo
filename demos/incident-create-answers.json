@@ -21,17 +21,17 @@
         "advanced_setup": false,
         "app_pack_entries": [
           {
-            "detected_kind": "local_dir",
+            "detected_kind": "https",
             "display_name": "Incident Demo Pack",
             "mapping": {
               "scope": "global"
             },
             "pack_id": "incident-demo-pack",
-            "reference": "packs/incident-demo.pack"
+            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/incident-demo.gtpack"
           }
         ],
         "app_packs": [
-          "packs/incident-demo.pack"
+          "https://github.com/greenticai/greentic-demo/releases/latest/download/incident-demo.gtpack"
         ],
         "bundle_id": "incident-demo",
         "bundle_name": "incident-demo",

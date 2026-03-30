@@ -21,14 +21,14 @@
                 "advanced_setup": false,
                 "app_pack_entries": [
                     {
-                        "detected_kind": "local_dir",
+                        "detected_kind": "https",
                         "display_name": "IT Helpdesk ITSM Demo Pack",
                         "mapping": { "scope": "global" },
                         "pack_id": "helpdesk-itsm-pack",
-                        "reference": "packs/helpdesk-itsm.pack"
+                        "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/helpdesk-itsm.gtpack"
                     }
                 ],
-                "app_packs": ["packs/helpdesk-itsm.pack"],
+                "app_packs": ["https://github.com/greenticai/greentic-demo/releases/latest/download/helpdesk-itsm.gtpack"],
                 "bundle_id": "helpdesk-itsm-demo",
                 "bundle_name": "helpdesk-itsm-demo",
                 "export_intent": false,

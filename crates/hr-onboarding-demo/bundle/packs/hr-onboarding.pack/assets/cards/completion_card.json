@@ -119,7 +119,8 @@
       "type": "Action.Submit",
       "title": "Back to Menu",
       "data": {
-        "action_id": "back"
+        "action_id": "back",
+        "routeToCardId": "welcome_card"
       }
     }
   ]
