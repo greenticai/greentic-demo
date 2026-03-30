@@ -45,7 +45,7 @@ jobs:
             component_name="$(basename "$dir")"
             package_name="$(sed -n 's/^name = "\(.*\)"/\1/p' "$dir/Cargo.toml" | head -n1)"
             cargo component build --release --target wasm32-wasip2 --manifest-path "$dir/Cargo.toml"
-            artifact="$dir/target/wasm32-wasip1/release/${package_name//-/_}.wasm"
+            artifact="$dir/target/wasm32-wasip2/release/${package_name//-/_}.wasm"
             sha_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${SHA}"
             wkg oci push "$sha_ref" "$artifact"
             echo "${component_name}=oci://${sha_ref}" >> .artifacts/component-refs.txt
@@ -116,6 +116,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: 1.91.0
+          targets: wasm32-wasip2
 
       - name: Install ORAS
         uses: oras-project/setup-oras@v1
