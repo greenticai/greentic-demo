@@ -21,7 +21,7 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: 1.91.0
+          toolchain: 1.94.0
           targets: wasm32-wasip2
 
       - name: Install cargo-component and wkg
@@ -106,6 +106,7 @@ jobs:
           done < <(find crates -path '*/bundle/packs/*.pack' -type d | sort)
 
   publish-demos:
+    if: always()
     needs: [publish-components, publish-app-packs]
     runs-on: ubuntu-latest
     steps:
@@ -115,7 +116,7 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: 1.91.0
+          toolchain: 1.94.0
           targets: wasm32-wasip2
 
       - name: Install ORAS
