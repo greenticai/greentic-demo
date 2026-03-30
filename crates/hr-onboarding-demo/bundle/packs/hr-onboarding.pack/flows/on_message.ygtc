@@ -3,6 +3,9 @@ schema_version: 2
 type: messaging
 start: welcome
 
+parameters:
+  default_locale: "en"
+
 nodes:
   welcome:
     card:
@@ -12,8 +15,8 @@ nodes:
           asset_path: cards/welcome_card.json
         mode: renderAndValidate
         i18n:
-          locale: en
-          bundle_path: i18n/en.json
+          locale: "{{in.locale ?? parameters.default_locale}}"
+          bundle_path: "i18n/{{in.locale ?? parameters.default_locale}}.json"
     routing: out
 
   employee_form:
@@ -24,8 +27,8 @@ nodes:
           asset_path: cards/employee_form_card.json
         mode: renderAndValidate
         i18n:
-          locale: en
-          bundle_path: i18n/en.json
+          locale: "{{in.locale ?? parameters.default_locale}}"
+          bundle_path: "i18n/{{in.locale ?? parameters.default_locale}}.json"
     routing: out
 
   checklist:
@@ -36,8 +39,8 @@ nodes:
           asset_path: cards/onboarding_checklist_card.json
         mode: renderAndValidate
         i18n:
-          locale: en
-          bundle_path: i18n/en.json
+          locale: "{{in.locale ?? parameters.default_locale}}"
+          bundle_path: "i18n/{{in.locale ?? parameters.default_locale}}.json"
     routing: out
 
   document_upload:
@@ -48,8 +51,8 @@ nodes:
           asset_path: cards/document_upload_card.json
         mode: renderAndValidate
         i18n:
-          locale: en
-          bundle_path: i18n/en.json
+          locale: "{{in.locale ?? parameters.default_locale}}"
+          bundle_path: "i18n/{{in.locale ?? parameters.default_locale}}.json"
     routing: out
 
   access_request:
@@ -60,8 +63,8 @@ nodes:
           asset_path: cards/access_request_card.json
         mode: renderAndValidate
         i18n:
-          locale: en
-          bundle_path: i18n/en.json
+          locale: "{{in.locale ?? parameters.default_locale}}"
+          bundle_path: "i18n/{{in.locale ?? parameters.default_locale}}.json"
     routing: out
 
   completion:
@@ -72,6 +75,6 @@ nodes:
           asset_path: cards/completion_card.json
         mode: renderAndValidate
         i18n:
-          locale: en
-          bundle_path: i18n/en.json
+          locale: "{{in.locale ?? parameters.default_locale}}"
+          bundle_path: "i18n/{{in.locale ?? parameters.default_locale}}.json"
     routing: out

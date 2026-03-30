@@ -4,7 +4,7 @@ kind: application
 publisher: Greentic
 components:
 - id: ai.greentic.component-adaptive-card
-  version: 0.1.18
+  version: 0.1.2
   world: greentic:component/component@0.6.0
   supports:
   - messaging
