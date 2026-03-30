@@ -83,28 +83,32 @@
       "title": "Start Onboarding",
       "style": "positive",
       "data": {
-        "action_id": "start_onboarding"
+        "action_id": "start_onboarding",
+        "routeToCardId": "employee_form_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "Check Progress",
       "data": {
-        "action_id": "check_progress"
+        "action_id": "check_progress",
+        "routeToCardId": "onboarding_checklist_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "Upload Documents",
       "data": {
-        "action_id": "upload_documents"
+        "action_id": "upload_documents",
+        "routeToCardId": "document_upload_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "Request Access",
       "data": {
-        "action_id": "request_access"
+        "action_id": "request_access",
+        "routeToCardId": "access_request_card"
       }
     },
     {

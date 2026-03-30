@@ -103,21 +103,24 @@
       "title": "Upload Documents",
       "style": "positive",
       "data": {
-        "action_id": "upload_documents"
+        "action_id": "upload_documents",
+        "routeToCardId": "document_upload_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "Request Access",
       "data": {
-        "action_id": "request_access"
+        "action_id": "request_access",
+        "routeToCardId": "access_request_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "Back to Menu",
       "data": {
-        "action_id": "back"
+        "action_id": "back",
+        "routeToCardId": "welcome_card"
       }
     }
   ]

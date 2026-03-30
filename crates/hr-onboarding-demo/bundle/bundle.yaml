@@ -17,6 +17,7 @@ extension_providers:
 remote_catalogs: []
 hooks: []
 subscriptions: []
-capabilities: []
+capabilities:
+  - greentic.cap.bundle_assets.read.v1
 setup_execution_intent: false
 export_intent: false
