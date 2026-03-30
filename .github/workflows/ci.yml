@@ -23,6 +23,9 @@ jobs:
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.91.0
+          targets: wasm32-wasip2
 
       - name: Cache cargo state
         uses: actions/cache@v4
