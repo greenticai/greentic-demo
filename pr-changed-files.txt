@@ -1,1 +1,13 @@
 .github/workflows/publish.yml
+SECURITY_FIX_REPORT.md
+demos/helpdesk-itsm.gtpack
+demos/hr-onboarding.gtpack
+demos/incident-demo.gtpack
+demos/quickstart.gtpack
+demos/redbutton-demo.gtpack
+demos/sales-crm.gtpack
+demos/supply-chain.gtpack
+pr-changed-files.txt
+pr-comment.md
+scripts/package_demos.sh
+scripts/publish_demo_bundles_oci.sh
