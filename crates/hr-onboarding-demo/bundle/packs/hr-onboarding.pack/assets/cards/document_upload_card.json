@@ -1,355 +1,352 @@
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "type": "AdaptiveCard",
-  "version": "1.3",
+  "actions": [
+    {
+      "data": {
+        "action_id": "back",
+        "routeToCardId": "welcome_card"
+      },
+      "title": "{{i18n:card.document_upload_card.actions_0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
   "body": [
     {
-      "type": "TextBlock",
       "size": "Large",
-      "weight": "Bolder",
-      "text": "Required Documents"
+      "text": "{{i18n:card.document_upload_card.body_0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
     },
     {
-      "type": "ColumnSet",
       "columns": [
         {
-          "type": "Column",
-          "width": "stretch",
           "items": [
             {
-              "type": "TextBlock",
-              "text": "Employee: Jane Smith",
-              "isSubtle": true
+              "isSubtle": true,
+              "text": "{{i18n:card.document_upload_card.body_1_columns_0_items_0.text}}",
+              "type": "TextBlock"
             }
-          ]
+          ],
+          "type": "Column",
+          "width": "stretch"
         },
         {
-          "type": "Column",
-          "width": "auto",
           "items": [
             {
+              "color": "Good",
+              "text": "{{i18n:card.document_upload_card.body_1_columns_1_items_0.text}}",
               "type": "TextBlock",
-              "text": "1/5 Submitted",
-              "weight": "Bolder",
-              "color": "Good"
+              "weight": "Bolder"
             }
-          ]
+          ],
+          "type": "Column",
+          "width": "auto"
         }
-      ]
+      ],
+      "type": "ColumnSet"
     },
     {
-      "type": "TextBlock",
-      "text": "Please submit the following documents to complete your onboarding.",
-      "wrap": true,
       "isSubtle": true,
-      "spacing": "Small"
+      "spacing": "Small",
+      "text": "{{i18n:card.document_upload_card.body_2.text}}",
+      "type": "TextBlock",
+      "wrap": true
     },
     {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Medium",
       "items": [
         {
-          "type": "ColumnSet",
           "columns": [
             {
-              "type": "Column",
-              "width": "stretch",
               "items": [
                 {
+                  "text": "{{i18n:card.document_upload_card.body_3_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
-                  "weight": "Bolder",
-                  "text": "Government-Issued Photo ID"
+                  "weight": "Bolder"
                 },
                 {
-                  "type": "TextBlock",
-                  "text": "Passport, driver's license, or national ID card",
                   "isSubtle": true,
                   "size": "Small",
+                  "text": "{{i18n:card.document_upload_card.body_3_items_0_columns_0_items_1.text}}",
+                  "type": "TextBlock",
                   "wrap": true
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "stretch"
             },
             {
-              "type": "Column",
-              "width": "auto",
-              "verticalContentAlignment": "Center",
               "items": [
                 {
-                  "type": "ActionSet",
                   "actions": [
                     {
-                      "type": "Action.Submit",
-                      "title": "Upload",
                       "data": {
                         "action_id": "upload_government_id"
-                      }
+                      },
+                      "title": "{{i18n:card.document_upload_card.body_3_items_0_columns_1_items_0_actions_0.title}}",
+                      "type": "Action.Submit"
                     }
-                  ]
+                  ],
+                  "type": "ActionSet"
                 }
-              ]
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
             }
-          ]
+          ],
+          "type": "ColumnSet"
         }
-      ]
+      ],
+      "spacing": "Medium",
+      "style": "emphasis",
+      "type": "Container"
     },
     {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Small",
       "items": [
         {
-          "type": "ColumnSet",
           "columns": [
             {
-              "type": "Column",
-              "width": "stretch",
               "items": [
                 {
+                  "text": "{{i18n:card.document_upload_card.body_4_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
-                  "weight": "Bolder",
-                  "text": "Tax Form W-4"
+                  "weight": "Bolder"
                 },
                 {
-                  "type": "TextBlock",
-                  "text": "Federal tax withholding form",
                   "isSubtle": true,
                   "size": "Small",
+                  "text": "{{i18n:card.document_upload_card.body_4_items_0_columns_0_items_1.text}}",
+                  "type": "TextBlock",
                   "wrap": true
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "stretch"
             },
             {
-              "type": "Column",
-              "width": "auto",
-              "verticalContentAlignment": "Center",
               "items": [
                 {
-                  "type": "ActionSet",
                   "actions": [
                     {
-                      "type": "Action.Submit",
-                      "title": "Upload",
                       "data": {
                         "action_id": "upload_tax_form"
-                      }
+                      },
+                      "title": "{{i18n:card.document_upload_card.body_4_items_0_columns_1_items_0_actions_0.title}}",
+                      "type": "Action.Submit"
                     }
-                  ]
+                  ],
+                  "type": "ActionSet"
                 }
-              ]
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
             }
-          ]
+          ],
+          "type": "ColumnSet"
         }
-      ]
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
     },
     {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Small",
       "items": [
         {
-          "type": "ColumnSet",
           "columns": [
             {
-              "type": "Column",
-              "width": "stretch",
               "items": [
                 {
+                  "text": "{{i18n:card.document_upload_card.body_5_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
-                  "weight": "Bolder",
-                  "text": "Signed Employment Contract"
+                  "weight": "Bolder"
                 },
                 {
-                  "type": "TextBlock",
-                  "text": "Your signed offer letter and employment agreement",
                   "isSubtle": true,
                   "size": "Small",
+                  "text": "{{i18n:card.document_upload_card.body_5_items_0_columns_0_items_1.text}}",
+                  "type": "TextBlock",
                   "wrap": true
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "stretch"
             },
             {
-              "type": "Column",
-              "width": "auto",
-              "verticalContentAlignment": "Center",
               "items": [
                 {
-                  "type": "ActionSet",
                   "actions": [
                     {
-                      "type": "Action.Submit",
-                      "title": "Upload",
                       "data": {
                         "action_id": "upload_contract"
-                      }
+                      },
+                      "title": "{{i18n:card.document_upload_card.body_5_items_0_columns_1_items_0_actions_0.title}}",
+                      "type": "Action.Submit"
                     }
-                  ]
+                  ],
+                  "type": "ActionSet"
                 }
-              ]
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
             }
-          ]
+          ],
+          "type": "ColumnSet"
         }
-      ]
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
     },
     {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Small",
       "items": [
         {
-          "type": "ColumnSet",
           "columns": [
             {
-              "type": "Column",
-              "width": "stretch",
               "items": [
                 {
+                  "text": "{{i18n:card.document_upload_card.body_6_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
-                  "weight": "Bolder",
-                  "text": "Emergency Contact Form"
+                  "weight": "Bolder"
                 },
                 {
-                  "type": "TextBlock",
-                  "text": "Emergency contact details and medical information",
                   "isSubtle": true,
                   "size": "Small",
+                  "text": "{{i18n:card.document_upload_card.body_6_items_0_columns_0_items_1.text}}",
+                  "type": "TextBlock",
                   "wrap": true
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "stretch"
             },
             {
-              "type": "Column",
-              "width": "auto",
-              "verticalContentAlignment": "Center",
               "items": [
                 {
-                  "type": "ActionSet",
                   "actions": [
                     {
-                      "type": "Action.Submit",
-                      "title": "Upload",
                       "data": {
                         "action_id": "upload_emergency_contact"
-                      }
+                      },
+                      "title": "{{i18n:card.document_upload_card.body_6_items_0_columns_1_items_0_actions_0.title}}",
+                      "type": "Action.Submit"
                     }
-                  ]
+                  ],
+                  "type": "ActionSet"
                 }
-              ]
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
             }
-          ]
+          ],
+          "type": "ColumnSet"
         }
-      ]
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
     },
     {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Small",
       "items": [
         {
-          "type": "ColumnSet",
           "columns": [
             {
-              "type": "Column",
-              "width": "stretch",
               "items": [
                 {
+                  "text": "{{i18n:card.document_upload_card.body_7_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
-                  "weight": "Bolder",
-                  "text": "Direct Deposit Authorization"
+                  "weight": "Bolder"
                 },
                 {
-                  "type": "TextBlock",
-                  "text": "Bank account details for payroll",
                   "isSubtle": true,
                   "size": "Small",
+                  "text": "{{i18n:card.document_upload_card.body_7_items_0_columns_0_items_1.text}}",
+                  "type": "TextBlock",
                   "wrap": true
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "stretch"
             },
             {
-              "type": "Column",
-              "width": "auto",
-              "verticalContentAlignment": "Center",
               "items": [
                 {
-                  "type": "ActionSet",
                   "actions": [
                     {
-                      "type": "Action.Submit",
-                      "title": "Upload",
                       "data": {
                         "action_id": "upload_direct_deposit"
-                      }
+                      },
+                      "title": "{{i18n:card.document_upload_card.body_7_items_0_columns_1_items_0_actions_0.title}}",
+                      "type": "Action.Submit"
                     }
-                  ]
+                  ],
+                  "type": "ActionSet"
                 }
-              ]
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
             }
-          ]
+          ],
+          "type": "ColumnSet"
         }
-      ]
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
     },
     {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Small",
       "items": [
         {
-          "type": "ColumnSet",
           "columns": [
             {
-              "type": "Column",
-              "width": "stretch",
               "items": [
                 {
+                  "text": "{{i18n:card.document_upload_card.body_8_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
-                  "weight": "Bolder",
-                  "text": "Non-Disclosure Agreement"
+                  "weight": "Bolder"
                 },
                 {
-                  "type": "TextBlock",
-                  "text": "Confidentiality and non-disclosure agreement",
                   "isSubtle": true,
                   "size": "Small",
+                  "text": "{{i18n:card.document_upload_card.body_8_items_0_columns_0_items_1.text}}",
+                  "type": "TextBlock",
                   "wrap": true
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "stretch"
             },
             {
-              "type": "Column",
-              "width": "auto",
-              "verticalContentAlignment": "Center",
               "items": [
                 {
-                  "type": "ActionSet",
                   "actions": [
                     {
-                      "type": "Action.Submit",
-                      "title": "Upload",
                       "data": {
                         "action_id": "upload_nda"
-                      }
+                      },
+                      "title": "{{i18n:card.document_upload_card.body_8_items_0_columns_1_items_0_actions_0.title}}",
+                      "type": "Action.Submit"
                     }
-                  ]
+                  ],
+                  "type": "ActionSet"
                 }
-              ]
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
             }
-          ]
+          ],
+          "type": "ColumnSet"
         }
-      ]
-    },
-    {
-      "type": "ActionSet",
-      "actions": [
-        {
-          "type": "Action.Submit",
-          "title": "Back to Menu",
-          "data": {
-            "action_id": "back",
-            "routeToCardId": "welcome_card"
-          }
-        }
-      ]
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
     }
-  ]
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
 }

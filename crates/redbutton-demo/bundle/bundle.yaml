@@ -13,7 +13,7 @@ app_pack_mappings:
   - reference: public-deployer-aws-vm
     scope: global
 extension_providers:
-  - oci://ghcr.io/greenticai/greentic-packs/events-webhook:latest
+  - oci://ghcr.io/greenticai/packs/events/events-webhook:latest
 remote_catalogs: []
 hooks: []
 subscriptions: []

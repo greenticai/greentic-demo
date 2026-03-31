@@ -1,96 +1,123 @@
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "type": "AdaptiveCard",
-  "version": "1.3",
+  "actions": [
+    {
+      "data": {
+        "action_id": "start_onboarding",
+        "routeToCardId": "employee_form_card"
+      },
+      "style": "positive",
+      "title": "{{i18n:card.welcome_card.actions_0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "check_progress",
+        "routeToCardId": "onboarding_checklist_card"
+      },
+      "title": "{{i18n:card.welcome_card.actions_1.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "upload_documents",
+        "routeToCardId": "document_upload_card"
+      },
+      "title": "{{i18n:card.welcome_card.actions_2.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "request_access",
+        "routeToCardId": "access_request_card"
+      },
+      "title": "{{i18n:card.welcome_card.actions_3.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "reset_onboarding"
+      },
+      "style": "destructive",
+      "title": "{{i18n:card.welcome_card.actions_4.title}}",
+      "type": "Action.Submit"
+    }
+  ],
   "body": [
     {
-      "type": "Container",
       "items": [
         {
-          "type": "ColumnSet",
           "columns": [
             {
-              "type": "Column",
-              "width": "auto",
               "items": [
                 {
+                  "size": "Medium",
                   "type": "Image",
-                  "url": "https://img.icons8.com/fluency/96/person-male.png",
-                  "size": "Medium"
+                  "url": "https://img.icons8.com/fluency/96/person-male.png"
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "auto"
             },
             {
-              "type": "Column",
-              "width": "stretch",
               "items": [
                 {
-                  "type": "TextBlock",
                   "size": "Large",
-                  "weight": "Bolder",
-                  "text": "HR Onboarding"
+                  "text": "{{i18n:card.welcome_card.body_0_items_0_columns_1_items_0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
                 },
                 {
-                  "type": "TextBlock",
-                  "text": "Welcome to the employee onboarding assistant",
                   "isSubtle": true,
+                  "text": "{{i18n:card.welcome_card.body_0_items_0_columns_1_items_1.text}}",
+                  "type": "TextBlock",
                   "wrap": true
                 }
-              ]
+              ],
+              "type": "Column",
+              "width": "stretch"
             }
-          ]
+          ],
+          "type": "ColumnSet"
         }
-      ]
+      ],
+      "type": "Container"
     },
     {
-      "type": "TextBlock",
-      "wrap": true,
-      "text": "What would you like to do?",
+      "isVisible": "true",
+      "items": [
+        {
+          "text": "{{i18n:card.welcome_card.body_1_items_0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "isSubtle": true,
+                  "text": "{{i18n:card.welcome_card.body_1_items_1_columns_0_items_0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "style": "accent",
+      "type": "Container"
+    },
+    {
       "spacing": "Medium",
-      "weight": "Bolder"
-    },
-    {
-      "type": "ActionSet",
-      "actions": [
-        {
-          "type": "Action.Submit",
-          "title": "Start Onboarding",
-          "style": "positive",
-          "data": {
-            "action_id": "start_onboarding",
-            "routeToCardId": "employee_form_card"
-          }
-        },
-        {
-          "type": "Action.Submit",
-          "title": "Check Progress",
-          "data": {
-            "action_id": "check_progress",
-            "routeToCardId": "onboarding_checklist_card"
-          }
-        }
-      ]
-    },
-    {
-      "type": "ActionSet",
-      "actions": [
-        {
-          "type": "Action.Submit",
-          "title": "Upload Documents",
-          "data": {
-            "action_id": "upload_documents",
-            "routeToCardId": "document_upload_card"
-          }
-        },
-        {
-          "type": "Action.Submit",
-          "title": "Request Access",
-          "data": {
-            "action_id": "request_access",
-            "routeToCardId": "access_request_card"
-          }
-        }
-      ]
+      "text": "{{i18n:card.welcome_card.body_2.text}}",
+      "type": "TextBlock",
+      "wrap": true
     }
-  ]
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
 }

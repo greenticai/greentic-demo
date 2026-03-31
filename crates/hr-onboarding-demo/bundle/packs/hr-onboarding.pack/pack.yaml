@@ -41,6 +41,7 @@ assets:
 - path: assets/i18n/de.json
 - path: assets/i18n/ja.json
 - path: assets/i18n/zh.json
+- path: assets/i18n/th.json
 - path: assets/i18n/_manifest.json
 - path: assets/webchat-gui/skins/hr-onboarding/skin.json
 - path: assets/webchat-gui/skins/hr-onboarding/fullpage/index.html

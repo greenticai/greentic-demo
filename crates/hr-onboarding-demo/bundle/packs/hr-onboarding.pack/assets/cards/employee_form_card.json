@@ -1,79 +1,97 @@
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "type": "AdaptiveCard",
-  "version": "1.3",
   "body": [
     {
-      "type": "TextBlock",
       "size": "Large",
-      "weight": "Bolder",
-      "text": "New Employee Registration"
-    },
-    {
+      "text": "{{i18n:card.employee_form_card.body_0.text}}",
       "type": "TextBlock",
-      "text": "Welcome to Acme Corp! Please fill in your information below.",
-      "wrap": true,
-      "isSubtle": true
+      "weight": "Bolder"
     },
     {
-      "type": "Container",
-      "style": "emphasis",
+      "isSubtle": true,
+      "text": "{{i18n:card.employee_form_card.body_1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
       "items": [
         {
+          "text": "{{i18n:card.employee_form_card.body_2_items_0.text}}",
           "type": "TextBlock",
-          "weight": "Bolder",
-          "text": "Personal Information"
+          "weight": "Bolder"
         },
         {
-          "type": "FactSet",
           "facts": [
-            { "title": "Full Name", "value": "Jane Smith" },
-            { "title": "Work Email", "value": "jane.smith@acmecorp.com" }
-          ]
+            {
+              "title": "{{i18n:card.employee_form_card.body_2_items_1_facts_0.title}}",
+              "value": "Jane Smith"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_2_items_1_facts_1.title}}",
+              "value": "jane.smith@acmecorp.com"
+            }
+          ],
+          "type": "FactSet"
         }
-      ]
+      ],
+      "style": "emphasis",
+      "type": "Container"
     },
     {
-      "type": "Container",
-      "style": "emphasis",
       "items": [
         {
+          "text": "{{i18n:card.employee_form_card.body_3_items_0.text}}",
           "type": "TextBlock",
-          "weight": "Bolder",
-          "text": "Role Information"
+          "weight": "Bolder"
         },
         {
-          "type": "FactSet",
           "facts": [
-            { "title": "Department", "value": "Engineering" },
-            { "title": "Job Title", "value": "Software Engineer" },
-            { "title": "Start Date", "value": "April 15, 2026" },
-            { "title": "Manager", "value": "John Doe" }
-          ]
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_0.title}}",
+              "value": "Engineering"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_1.title}}",
+              "value": "Software Engineer"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_2.title}}",
+              "value": "April 15, 2026"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_3.title}}",
+              "value": "John Doe"
+            }
+          ],
+          "type": "FactSet"
         }
-      ]
+      ],
+      "style": "emphasis",
+      "type": "Container"
     },
     {
-      "type": "ActionSet",
       "actions": [
         {
-          "type": "Action.Submit",
-          "title": "Confirm Registration",
-          "style": "positive",
           "data": {
             "action_id": "submit_registration",
             "routeToCardId": "onboarding_checklist_card"
-          }
+          },
+          "style": "positive",
+          "title": "{{i18n:card.employee_form_card.body_4_actions_0.title}}",
+          "type": "Action.Submit"
         },
         {
-          "type": "Action.Submit",
-          "title": "Back to Menu",
           "data": {
             "action_id": "back",
             "routeToCardId": "welcome_card"
-          }
+          },
+          "title": "{{i18n:card.employee_form_card.body_4_actions_1.title}}",
+          "type": "Action.Submit"
         }
-      ]
+      ],
+      "type": "ActionSet"
     }
-  ]
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
 }

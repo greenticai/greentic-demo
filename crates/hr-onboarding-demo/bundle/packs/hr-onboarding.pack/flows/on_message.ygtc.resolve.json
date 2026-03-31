@@ -7,42 +7,42 @@
         "kind": "local",
         "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
-      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6"
     },
     "employee_form": {
       "source": {
         "kind": "local",
         "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
-      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6"
     },
     "checklist": {
       "source": {
         "kind": "local",
         "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
-      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6"
     },
     "document_upload": {
       "source": {
         "kind": "local",
         "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
-      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6"
     },
     "access_request": {
       "source": {
         "kind": "local",
         "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
-      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6"
     },
     "completion": {
       "source": {
         "kind": "local",
         "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
-      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6"
     }
   }
 }
