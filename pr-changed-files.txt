@@ -1,1 +1,1 @@
-.github/workflows/publish.yml
+scripts/publish_demo_bundles_oci.sh
