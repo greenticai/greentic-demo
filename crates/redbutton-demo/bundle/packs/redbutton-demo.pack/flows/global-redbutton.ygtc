@@ -9,7 +9,7 @@ schema_version: 2
 entrypoints: {}
 nodes:
   choose_route:
-    component-random.select-route:
+    ai.greentic.component-random.select-route:
       routes:
         - route: branch-a
           audio_url: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
@@ -29,13 +29,13 @@ nodes:
     routing:
       - to: play_audio
   play_audio:
-    greentic-http2play.play-url:
+    ai.greentic.greentic-http2play.play-url:
       audio_url: "{{ choose_route.audio_url }}"
       route: "{{ choose_route.route }}"
     routing:
       - to: notify_http
   notify_http:
-    component-http.post-json:
+    ai.greentic.component-http.post-json:
       url: "{{ choose_route.http_endpoint }}"
       method: POST
       body:
@@ -45,7 +45,7 @@ nodes:
     routing:
       - to: create_incident
   create_incident:
-    component-betterstack-incident.create-incident:
+    ai.greentic.component-betterstack-incident.create-incident:
       name: "{{ choose_route.incident_name }}"
       summary: "{{ choose_route.incident_summary }}"
       description: Red button webhook received and processed.

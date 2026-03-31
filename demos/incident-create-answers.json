@@ -41,20 +41,20 @@
             "detected_kind": "oci",
             "display_name": "Greentic Messaging Webchat (latest)",
             "provider_id": "greentic.messaging.webchat.latest",
-            "reference": "oci://ghcr.io/greenticai/greentic-packs/messaging-webchat:latest",
+            "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
             "version": "latest"
           },
           {
             "detected_kind": "oci",
             "display_name": "Greentic Messaging Webex (latest)",
             "provider_id": "greentic.messaging.webex.latest",
-            "reference": "oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest",
+            "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
             "version": "latest"
           }
         ],
         "extension_providers": [
-          "oci://ghcr.io/greenticai/greentic-packs/messaging-webchat:latest",
-          "oci://ghcr.io/greenticai/greentic-packs/messaging-webex:latest"
+          "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+          "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest"
         ],
         "mode": "create",
         "output_dir": "./incident-demo-bundle",

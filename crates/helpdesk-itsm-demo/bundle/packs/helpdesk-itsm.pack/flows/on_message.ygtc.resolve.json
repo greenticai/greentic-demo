@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "flow": "flows/on_message.ygtc",
+  "nodes": {}
+}

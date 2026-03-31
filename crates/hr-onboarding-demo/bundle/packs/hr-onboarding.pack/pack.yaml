@@ -2,22 +2,7 @@ pack_id: greentic.hr-onboarding.demo
 version: 0.1.0
 kind: application
 publisher: Greentic
-components:
-- id: ai.greentic.component-adaptive-card
-  version: 0.1.2
-  world: greentic:component/component@0.6.0
-  supports:
-  - messaging
-  profiles:
-    default: stateless
-    supported:
-    - stateless
-  capabilities:
-    wasi:
-      random: true
-      clocks: true
-    host: {}
-  wasm: components/ai.greentic.component-adaptive-card.wasm
+components: []
 dependencies: []
 flows:
 - id: on_message
@@ -45,3 +30,12 @@ assets:
 - path: assets/webchat-gui/skins/hr-onboarding/skin.json
 - path: assets/webchat-gui/skins/hr-onboarding/fullpage/index.html
 - path: assets/webchat-gui/skins/hr-onboarding/fullpage/page.css
+extensions:
+  greentic.components:
+    kind: greentic.components
+    version: v1
+    inline:
+      allow_tags: true
+      mode: eager
+      refs:
+      - oci://ghcr.io/greenticai/components/component-adaptive-card:latest

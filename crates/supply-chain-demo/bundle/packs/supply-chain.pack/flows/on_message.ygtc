@@ -369,18 +369,13 @@ nodes:
           locale: session.language ?? parameters.default_language
           bundle_path: i18n/{{locale}}.json
     routing:
+      - condition: "{{response.action == 'submit_reorder' && (in.input.quantity == null || in.input.quantity == '0')}}"
+        to: reorder_validation_error
       - condition: response.action == "submit_reorder"
-        to: validate_reorder
+        to: create_reorder_request
       - condition: response.action == "back"
         to: load_dashboard_metrics
       - to: done
-
-  # Validate reorder input
-  validate_reorder:
-    routing:
-      - condition: "{{in.input.quantity == null || in.input.quantity == '0'}}"
-        to: reorder_validation_error
-      - to: create_reorder_request
 
   # Reorder validation error
   reorder_validation_error:

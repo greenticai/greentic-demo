@@ -10,9 +10,9 @@ app_pack_mappings:
   - reference: ./cards-demo.gtpack
     scope: global
 extension_providers:
-  - ./events-webhook.gtpack
-  - ./messaging-webchat-gui.gtpack
-  - ./state-memory.gtpack
+  - oci://ghcr.io/greenticai/packs/events/events-webhook:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest
+  - oci://ghcr.io/greenticai/packs/state/state-memory:latest
 remote_catalogs: []
 hooks: []
 subscriptions: []

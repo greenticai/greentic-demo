@@ -12,7 +12,43 @@ permissions:
   packages: write
 
 jobs:
+  resolve-version:
+    runs-on: ubuntu-latest
+    outputs:
+      workspace_version: ${{ steps.workspace-version.outputs.workspace_version }}
+      publish_version: ${{ steps.publish-version.outputs.publish_version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read workspace version
+        id: workspace-version
+        run: |
+          set -euo pipefail
+          workspace_version="$(sed -n '/^\[workspace.package\]/,/^\[/s/^version = "\(.*\)"/\1/p' Cargo.toml | head -n1)"
+          if [[ -z "${workspace_version}" ]]; then
+            echo "Failed to read workspace.package.version from Cargo.toml" >&2
+            exit 1
+          fi
+          echo "workspace_version=${workspace_version}" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve publish version
+        id: publish-version
+        env:
+          WORKSPACE_VERSION: ${{ steps.workspace-version.outputs.workspace_version }}
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            publish_version="${GITHUB_REF_NAME}"
+          elif [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
+            publish_version="v${WORKSPACE_VERSION}"
+          else
+            publish_version=""
+          fi
+          echo "publish_version=${publish_version}" >> "$GITHUB_OUTPUT"
+
   publish-components:
+    needs: resolve-version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,6 +74,7 @@ jobs:
           OWNER: ${{ github.repository_owner }}
           REF_NAME: ${{ github.ref_name }}
           SHA: ${{ github.sha }}
+          PUBLISH_VERSION: ${{ needs.resolve-version.outputs.publish_version }}
         run: |
           set -euo pipefail
           mkdir -p .artifacts
@@ -49,11 +86,12 @@ jobs:
             sha_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${SHA}"
             wkg oci push "$sha_ref" "$artifact"
             echo "${component_name}=oci://${sha_ref}" >> .artifacts/component-refs.txt
-            if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
-              tag_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${REF_NAME}"
-              wkg oci push "$tag_ref" "$artifact"
-              echo "${component_name}_tag=oci://${tag_ref}" >> .artifacts/component-refs.txt
-            elif [[ "${GITHUB_REF_NAME}" == "main" ]]; then
+            if [[ -n "${PUBLISH_VERSION}" ]]; then
+              version_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:${PUBLISH_VERSION}"
+              wkg oci push "$version_ref" "$artifact"
+              echo "${component_name}_version=oci://${version_ref}" >> .artifacts/component-refs.txt
+            fi
+            if [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
               latest_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:latest"
               wkg oci push "$latest_ref" "$artifact"
               echo "${component_name}_latest=oci://${latest_ref}" >> .artifacts/component-refs.txt
@@ -68,6 +106,7 @@ jobs:
           if-no-files-found: error
 
   publish-app-packs:
+    needs: resolve-version
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -83,6 +122,7 @@ jobs:
         env:
           OWNER: ${{ github.repository_owner }}
           SHA: ${{ github.sha }}
+          PUBLISH_VERSION: ${{ needs.resolve-version.outputs.publish_version }}
         run: |
           set -euo pipefail
           while IFS= read -r pack_dir; do
@@ -92,22 +132,22 @@ jobs:
             sha_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:${SHA}"
             oras push "$sha_ref" .
             echo "  -> ${sha_ref}"
+            if [[ -n "${PUBLISH_VERSION}" ]]; then
+              version_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:${PUBLISH_VERSION}"
+              oras push "$version_ref" .
+              echo "  -> ${version_ref}"
+            fi
             if [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
               latest_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:latest"
               oras push "$latest_ref" .
               echo "  -> ${latest_ref}"
-            fi
-            if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
-              tag_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:${GITHUB_REF_NAME}"
-              oras push "$tag_ref" .
-              echo "  -> ${tag_ref}"
             fi
             cd - > /dev/null
           done < <(find crates -path '*/bundle/packs/*.pack' -type d | sort)
 
   publish-demos:
     if: always()
-    needs: [publish-components, publish-app-packs]
+    needs: [resolve-version, publish-components, publish-app-packs]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -156,6 +196,7 @@ jobs:
           REF_NAME: ${{ github.ref_name }}
           REF_TYPE: ${{ github.ref_type }}
           BRANCH_NAME: ${{ github.ref_name }}
+          PUBLISH_VERSION: ${{ needs.resolve-version.outputs.publish_version }}
         run: scripts/publish_demo_bundles_oci.sh
 
       - name: Upload bundle refs
@@ -167,9 +208,11 @@ jobs:
           if-no-files-found: error
 
       - name: Attach bundles and answers to release
-        if: steps.bundles.outputs.found == 'true' && startsWith(github.ref, 'refs/tags/v')
+        if: steps.bundles.outputs.found == 'true' && needs.resolve-version.outputs.publish_version != ''
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ needs.resolve-version.outputs.publish_version }}
+          name: ${{ needs.resolve-version.outputs.publish_version }}
           files: |
             demos/*.gtbundle
             demos/*.gtpack

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "flow": "on_message.ygtc",
+  "nodes": {
+    "echo_message": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+    },
+    "render_about": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+    },
+    "render_welcome": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+    }
+  }
+}

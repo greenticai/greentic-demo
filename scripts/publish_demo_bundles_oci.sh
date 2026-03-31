@@ -10,6 +10,7 @@ SHA="${SHA:?SHA is required}"
 REF_NAME="${REF_NAME:-}"
 REF_TYPE="${REF_TYPE:-}"
 BRANCH_NAME="${BRANCH_NAME:-}"
+PUBLISH_VERSION="${PUBLISH_VERSION:-}"
 
 if ! command -v oras >/dev/null 2>&1; then
     echo "oras not found; skipping OCI bundle publication."
@@ -42,10 +43,10 @@ for bundle_path in "${bundles[@]}"; do
         echo "  -> ${latest_ref}"
     fi
 
-    if [[ "$REF_TYPE" == "tag" && -n "$REF_NAME" ]]; then
-        tag_ref="ghcr.io/${OWNER}/bundles/${bundle_name}:${REF_NAME}"
-        oras push --disable-path-validation "$tag_ref" "${bundle_path}:${media_type}"
-        echo "${bundle_name}_tag=${tag_ref}" >> "$ARTIFACTS_DIR/bundle-refs.txt"
-        echo "  -> ${tag_ref}"
+    if [[ -n "$PUBLISH_VERSION" ]]; then
+        version_ref="ghcr.io/${OWNER}/bundles/${bundle_name}:${PUBLISH_VERSION}"
+        oras push --disable-path-validation "$version_ref" "${bundle_path}:${media_type}"
+        echo "${bundle_name}_version=${version_ref}" >> "$ARTIFACTS_DIR/bundle-refs.txt"
+        echo "  -> ${version_ref}"
     fi
 done
