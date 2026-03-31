@@ -60,8 +60,11 @@ jobs:
           toolchain: 1.94.0
           targets: wasm32-wasip2
 
+      - name: Install cargo-binstall
+        run: cargo install --locked cargo-binstall
+
       - name: Install cargo-component and wkg
-        run: cargo install --locked cargo-component wkg
+        run: cargo binstall -y cargo-component wkg
 
       - name: Install ORAS
         uses: oras-project/setup-oras@v1
