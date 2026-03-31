@@ -171,28 +171,31 @@ jobs:
       - name: Package demos
         run: scripts/package_demos.sh
 
-      - name: Detect bundles
-        id: bundles
+      - name: Detect demo artifacts
+        id: artifacts
         run: |
           shopt -s nullglob
           bundles=(demos/*.gtbundle)
-          if [ ${#bundles[@]} -eq 0 ]; then
+          packs=(demos/*.gtpack)
+          if [ ${#bundles[@]} -eq 0 ] && [ ${#packs[@]} -eq 0 ]; then
             echo "found=false" >> "$GITHUB_OUTPUT"
-            echo "No demo bundles found. Skipping publish steps."
+            echo "No demo artifacts found. Skipping publish steps."
           else
             echo "found=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Upload workflow artifact
-        if: steps.bundles.outputs.found == 'true'
+        if: steps.artifacts.outputs.found == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: demo-bundles
-          path: demos/*.gtbundle
+          name: demo-artifacts
+          path: |
+            demos/*.gtbundle
+            demos/*.gtpack
           if-no-files-found: error
 
-      - name: Publish demo bundles to GHCR
-        if: steps.bundles.outputs.found == 'true'
+      - name: Publish demo artifacts to GHCR
+        if: steps.artifacts.outputs.found == 'true'
         env:
           OWNER: ${{ github.repository_owner }}
           SHA: ${{ github.sha }}
@@ -203,15 +206,23 @@ jobs:
         run: scripts/publish_demo_bundles_oci.sh
 
       - name: Upload bundle refs
-        if: steps.bundles.outputs.found == 'true'
+        if: steps.artifacts.outputs.found == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: demo-bundle-refs
           path: .artifacts/bundle-refs.txt
           if-no-files-found: error
 
+      - name: Upload pack refs
+        if: steps.artifacts.outputs.found == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-pack-refs
+          path: .artifacts/pack-refs.txt
+          if-no-files-found: ignore
+
       - name: Attach bundles and answers to release
-        if: steps.bundles.outputs.found == 'true' && needs.resolve-version.outputs.publish_version != ''
+        if: steps.artifacts.outputs.found == 'true' && needs.resolve-version.outputs.publish_version != ''
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ needs.resolve-version.outputs.publish_version }}
