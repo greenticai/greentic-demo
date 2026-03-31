@@ -8,45 +8,37 @@ Reviewer: Codex Security Reviewer
 - Code scanning alerts: `0`
 - New PR dependency vulnerabilities: `0`
 
+## PR Context
+- Event: `pull_request`
+- Base branch: `main`
+- Head branch: `fix/demo-release-followups`
+
 ## What I Checked
-1. Parsed provided security alert payloads:
-- `security-alerts.json`
-- `dependabot-alerts.json`
-- `code-scanning-alerts.json`
-- `pr-vulnerable-changes.json`
+1. Parsed provided alert payloads from the task input:
+- `dependabot`: empty list
+- `code_scanning`: empty list
+- `New PR Dependency Vulnerabilities`: empty list
 
-2. Reviewed PR-changed files from `pr-changed-files.txt`:
-- `.github/workflows/publish.yml`
-- `SECURITY_FIX_REPORT.md`
-- `demos/helpdesk-itsm.gtpack`
-- `demos/hr-onboarding.gtpack`
-- `demos/incident-demo.gtpack`
-- `demos/quickstart.gtpack`
-- `demos/redbutton-demo.gtpack`
-- `demos/sales-crm.gtpack`
-- `demos/supply-chain.gtpack`
-- `pr-changed-files.txt`
-- `pr-comment.md`
-- `scripts/package_demos.sh`
-- `scripts/publish_demo_bundles_oci.sh`
+2. Reviewed PR-changed files from `pr-changed-files.txt` and validated dependency-related diffs against base:
+- Command: `git diff --name-only origin/main...HEAD`
+- Dependency file changes detected:
+  - `Cargo.toml`
+  - `Cargo.lock`
 
-3. Verified dependency manifest/lockfile changes via git diff:
-- Checked root and workspace Rust dependency files (`Cargo.toml`, `Cargo.lock`, and `**/Cargo.toml`)
-- Result: no dependency file changes detected in this PR
-
-4. Attempted local Rust audit tooling:
-- `cargo --version` / `cargo audit -V`
-- Blocked by CI environment rustup write restriction (`/home/runner/.rustup/tmp` read-only)
+3. Inspected dependency diffs in detail:
+- `Cargo.toml`: workspace package version changed `0.1.26 -> 0.1.28`
+- `Cargo.lock`: internal workspace crate versions changed `0.1.26 -> 0.1.28`
+- No new third-party crates added
+- No third-party crate version upgrades/downgrades
 
 ## Findings
 - No Dependabot alerts to remediate.
 - No code scanning alerts to remediate.
 - No new PR dependency vulnerabilities were reported.
-- No dependency file changes were introduced by this PR.
+- PR dependency-file changes are limited to internal package version bumps and do not introduce vulnerable dependency deltas.
 
 ## Remediation Applied
-- No code or dependency remediation was required.
-- No security patches were applied because there were no actionable vulnerabilities.
+- No dependency or code changes were required for security remediation.
 
 ## Final Status
-- **No actionable vulnerabilities detected in provided alerts or PR dependency changes.**
+- **No actionable vulnerabilities detected.**
