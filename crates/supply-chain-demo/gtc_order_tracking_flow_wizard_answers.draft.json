@@ -1,0 +1,70 @@
+{
+  "wizard_id": "greentic-pack.wizard.run",
+  "schema_id": "greentic-pack.wizard.answers",
+  "schema_version": "1.0.0",
+  "locale": "en-GB",
+  "answers": {
+    "dry_run": true,
+    "flow_wizard_answers": {
+      "answers": {
+        "flow.name": "order_tracking_flow",
+        "flow.ops": "6",
+        "flow.scope": "global",
+        "flow.select": "0",
+        "flow.type": "messaging",
+        "main.exit.save": true,
+        "main.menu": "0"
+      },
+      "events": [
+        "1",
+        "global",
+        "messaging",
+        "order_tracking_flow",
+        "2",
+        "1",
+        "3",
+        "1",
+        "2",
+        "1",
+        "1",
+        "2",
+        "assets/cards/order_tracking_card.json",
+        "false",
+        "default",
+        "0",
+        "4",
+        "0",
+        "Y",
+        "2",
+        "0",
+        "0",
+        "Y",
+        "2",
+        "2",
+        "6",
+        "yes",
+        "0",
+        "Y",
+        "4",
+        "0"
+      ],
+      "schema_id": "greentic-flow.wizard.menu.replay",
+      "schema_version": "1.0.0"
+    },
+    "mode": "interactive-dry-run",
+    "pack_dir": ".",
+    "run_build": true,
+    "run_delegate_component": false,
+    "run_delegate_flow": true,
+    "run_doctor": true,
+    "selected_actions": [
+      "main.update_application_pack",
+      "update_application_pack.edit_flows",
+      "pipeline.update_validate",
+      "pipeline.sign_prompt.skip",
+      "main.exit"
+    ],
+    "sign": false
+  },
+  "locks": {}
+}

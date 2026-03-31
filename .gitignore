@@ -2,5 +2,11 @@
 /.target
 /.cargo-home
 /demos/*.gtbundle
+.tmp_*
+tmp_supply_*_answers.json
+**/bundle/packs/*.pack/pack.lock.cbor
+**/bundle/packs/*.pack/flows/*.ygtc.resolve.json
+**/bundle/packs/*.pack/flows/*.ygtc.resolve.summary.json
+**/bundle/packs/*.pack/dist/
 .DS_Store
 .greentic/

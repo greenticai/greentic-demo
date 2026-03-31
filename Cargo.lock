@@ -4,36 +4,36 @@ version = 4
 
 [[package]]
 name = "cards-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "cloud-deploy-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "helpdesk-itsm-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "hr-onboarding-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "incident-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "quickstart-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "redbutton-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "sales-crm-demo"
-version = "0.1.28"
+version = "0.1.29"
 
 [[package]]
 name = "supply-chain-demo"
-version = "0.1.28"
+version = "0.1.29"
