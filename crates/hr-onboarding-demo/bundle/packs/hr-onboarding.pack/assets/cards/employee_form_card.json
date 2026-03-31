@@ -121,25 +121,28 @@
           "placeholder": "e.g., John Doe"
         }
       ]
-    }
-  ],
-  "actions": [
-    {
-      "type": "Action.Submit",
-      "title": "Submit Registration",
-      "style": "positive",
-      "data": {
-        "action_id": "submit_employee"
-      }
     },
     {
-      "type": "Action.Submit",
-      "title": "Cancel",
-      "style": "default",
-      "data": {
-        "action_id": "cancel",
-        "routeToCardId": "welcome_card"
-      }
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Submit Registration",
+          "style": "positive",
+          "data": {
+            "action_id": "submit_employee"
+          }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Cancel",
+          "style": "default",
+          "data": {
+            "action_id": "cancel",
+            "routeToCardId": "welcome_card"
+          }
+        }
+      ]
     }
   ]
 }

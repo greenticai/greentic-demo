@@ -131,24 +131,27 @@
           "valueOff": "false"
         }
       ]
-    }
-  ],
-  "actions": [
-    {
-      "type": "Action.Submit",
-      "title": "Submit Access Request",
-      "style": "positive",
-      "data": {
-        "action_id": "submit_access_request"
-      }
     },
     {
-      "type": "Action.Submit",
-      "title": "Back to Menu",
-      "data": {
-        "action_id": "back",
-        "routeToCardId": "welcome_card"
-      }
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Submit Access Request",
+          "style": "positive",
+          "data": {
+            "action_id": "submit_access_request"
+          }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to Menu",
+          "data": {
+            "action_id": "back",
+            "routeToCardId": "welcome_card"
+          }
+        }
+      ]
     }
   ]
 }

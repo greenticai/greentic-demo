@@ -28,7 +28,7 @@
                   "type": "TextBlock",
                   "size": "Large",
                   "weight": "Bolder",
-                  "text": "{{company_name}} - HR Onboarding"
+                  "text": "HR Onboarding"
                 },
                 {
                   "type": "TextBlock",
@@ -43,81 +43,54 @@
       ]
     },
     {
-      "type": "Container",
-      "isVisible": "{{has_onboarding}}",
-      "style": "accent",
-      "items": [
+      "type": "TextBlock",
+      "wrap": true,
+      "text": "What would you like to do?",
+      "spacing": "Medium",
+      "weight": "Bolder"
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
         {
-          "type": "TextBlock",
-          "weight": "Bolder",
-          "text": "Current Onboarding: {{employee_name}}"
+          "type": "Action.Submit",
+          "title": "Start Onboarding",
+          "style": "positive",
+          "data": {
+            "action_id": "start_onboarding",
+            "routeToCardId": "employee_form_card"
+          }
         },
         {
-          "type": "ColumnSet",
-          "columns": [
-            {
-              "type": "Column",
-              "width": "stretch",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Progress: {{progress_percent}}%",
-                  "isSubtle": true
-                }
-              ]
-            }
-          ]
+          "type": "Action.Submit",
+          "title": "Check Progress",
+          "data": {
+            "action_id": "check_progress",
+            "routeToCardId": "onboarding_checklist_card"
+          }
         }
       ]
     },
     {
-      "type": "TextBlock",
-      "wrap": true,
-      "text": "What would you like to do?",
-      "spacing": "Medium"
-    }
-  ],
-  "actions": [
-    {
-      "type": "Action.Submit",
-      "title": "Start Onboarding",
-      "style": "positive",
-      "data": {
-        "action_id": "start_onboarding",
-        "routeToCardId": "employee_form_card"
-      }
-    },
-    {
-      "type": "Action.Submit",
-      "title": "Check Progress",
-      "data": {
-        "action_id": "check_progress",
-        "routeToCardId": "onboarding_checklist_card"
-      }
-    },
-    {
-      "type": "Action.Submit",
-      "title": "Upload Documents",
-      "data": {
-        "action_id": "upload_documents",
-        "routeToCardId": "document_upload_card"
-      }
-    },
-    {
-      "type": "Action.Submit",
-      "title": "Request Access",
-      "data": {
-        "action_id": "request_access",
-        "routeToCardId": "access_request_card"
-      }
-    },
-    {
-      "type": "Action.Submit",
-      "title": "Reset Onboarding",
-      "style": "destructive",
-      "data": {
-        "action_id": "reset_onboarding"
-      }
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Upload Documents",
+          "data": {
+            "action_id": "upload_documents",
+            "routeToCardId": "document_upload_card"
+          }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Request Access",
+          "data": {
+            "action_id": "request_access",
+            "routeToCardId": "access_request_card"
+          }
+        }
+      ]
     }
   ]
 }
