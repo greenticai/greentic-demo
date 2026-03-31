@@ -18,6 +18,8 @@ if ! command -v oras >/dev/null 2>&1; then
 fi
 
 mkdir -p "$ARTIFACTS_DIR"
+: > "$ARTIFACTS_DIR/bundle-refs.txt"
+: > "$ARTIFACTS_DIR/pack-refs.txt"
 shopt -s nullglob
 bundles=("$OUTPUT_DIR"/*.gtbundle)
 packs=("$OUTPUT_DIR"/*.gtpack)
