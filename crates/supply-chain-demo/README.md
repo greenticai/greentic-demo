@@ -27,27 +27,54 @@ Demo pack for inventory monitoring, order tracking, and automated reorder manage
 
 ## Quick Start
 
-### 1. Create Bundle from Wizard
+### 1. Build Demo Pack and Create Bundle
 
 ```bash
-gtc wizard --answers wizard-answers.yaml
+scripts/package_demos.sh
+gtc wizard --answers demos/supply-chain-create-answers.json
 ```
 
 ### 2. Setup Providers
 
 ```bash
-# Interactive setup
-gtc setup ./supply-chain
+gtc setup ./supply-chain-demo-bundle
 
 # Or with answers file
-gtc setup --answers setup-answers.json ./supply-chain
+gtc setup --answers demos/supply-chain-setup-answers.json ./supply-chain-demo-bundle
 ```
 
 ### 3. Start Server
 
 ```bash
-gtc start ./supply-chain
+gtc start ./supply-chain-demo-bundle
 ```
+
+## Migration Status
+
+This demo is mid-migration to the wizard-generated pack model used by `quickstart-demo`, `cards-demo`, and `hr-onboarding-demo`.
+
+Current source of truth retained in the repo:
+
+- crate assets under [`assets/`](./assets)
+- pack build answers in [`gtc_pack_wizard_answers.json`](./gtc_pack_wizard_answers.json)
+- existing checked-in source pack under [`bundle/packs/supply-chain.pack`](./bundle/packs/supply-chain.pack)
+
+Captured wizard replay work-in-progress is stored in:
+
+- [`gtc_main_flow_wizard_answers.draft.json`](./gtc_main_flow_wizard_answers.draft.json) for the scaffold default flow that is replacing the old `on_message` path
+- [`gtc_pack_create_wizard_answers.draft.json`](./gtc_pack_create_wizard_answers.draft.json) for the first captured `stock_check_flow` replay
+- [`gtc_order_tracking_flow_wizard_answers.draft.json`](./gtc_order_tracking_flow_wizard_answers.draft.json) for `order_tracking_flow`
+- [`gtc_reorder_flow_wizard_answers.draft.json`](./gtc_reorder_flow_wizard_answers.draft.json) for `reorder_flow`
+
+Those draft files are intentionally not activated in packaging yet because the live consolidated create replay has not been assembled and validated end-to-end.
+
+Current limitation:
+
+- the checked-in source pack still fails `greentic-pack doctor` / `greentic-pack wizard apply` because the existing flow resolve summaries are incomplete
+- so this demo is not yet on the fully generated-pack path used by `quickstart-demo`, `cards-demo`, and `hr-onboarding-demo`
+- the intended generated shape is now:
+  - scaffold `main.ygtc` as the primary entry flow
+  - `stock_check_flow`, `order_tracking_flow`, and `reorder_flow` as secondary flows
 
 ## Configuration
 
@@ -100,9 +127,9 @@ supply-chain/
 
 ## Flows
 
-### on_message
+### Main Entry Flow
 
-Main entry point for messaging. Loads dashboard metrics (total SKUs, low stock count, pending orders) and routes to sub-flows based on user selection:
+Main messaging entry flow. In the migrated wizard-generated model this is the scaffold default flow (`main.ygtc`), replacing the old checked-in `on_message.ygtc`. It loads dashboard metrics (total SKUs, low stock count, pending orders) and routes to sub-flows based on user selection:
 - Check Stock -> stock search and detail
 - Track Orders -> order list and tracking
 - Low Stock Alerts -> items below threshold

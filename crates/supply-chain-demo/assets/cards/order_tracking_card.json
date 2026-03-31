@@ -1,0 +1,384 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Order Tracking"
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "Input.Text",
+                  "id": "order_id",
+                  "placeholder": "Enter Order ID (e.g., PO-2026-001234)..."
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Submit",
+                      "title": "Search",
+                      "style": "positive",
+                      "data": {
+                        "action_id": "search_order"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "spacing": "Small",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "1",
+              "items": [
+                {
+                  "type": "Input.ChoiceSet",
+                  "id": "status_filter",
+                  "placeholder": "Filter by Status",
+                  "choices": [
+                    { "title": "All Statuses", "value": "" },
+                    { "title": "Pending", "value": "pending" },
+                    { "title": "Confirmed", "value": "confirmed" },
+                    { "title": "Shipped", "value": "shipped" },
+                    { "title": "In Transit", "value": "in_transit" },
+                    { "title": "Delivered", "value": "delivered" },
+                    { "title": "Cancelled", "value": "cancelled" }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "ActionSet",
+                  "actions": [
+                    {
+                      "type": "Action.Submit",
+                      "title": "Filter",
+                      "data": {
+                        "action_id": "list_by_status"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "{{total_orders}} orders found",
+      "isSubtle": true,
+      "spacing": "Small"
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "$data": "{{orders}}",
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "2",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "{{order_id}}",
+                      "weight": "Bolder",
+                      "size": "Small",
+                      "fontType": "Monospace"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "{{supplier_name}}",
+                      "isSubtle": true,
+                      "size": "Small",
+                      "spacing": "None"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "{{item_count}} items",
+                      "size": "Small"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "{{total_amount}}",
+                      "size": "Small",
+                      "spacing": "None",
+                      "isSubtle": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "{{status}}",
+                      "size": "Small",
+                      "color": "{{status_color}}",
+                      "weight": "Bolder"
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "ETA: {{eta}}",
+                      "size": "Small",
+                      "isSubtle": true,
+                      "spacing": "None"
+                    }
+                  ]
+                }
+              ],
+              "selectAction": {
+                "type": "Action.Submit",
+                "data": {
+                  "action_id": "view_order",
+                  "order_id": "{{order_id}}",
+                  "supplier_id": "{{supplier_id}}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "spacing": "Medium",
+      "separator": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Order Detail",
+          "weight": "Bolder",
+          "size": "Medium"
+        },
+        {
+          "type": "FactSet",
+          "facts": [
+            { "title": "Order ID", "value": "{{order.order_id}}" },
+            { "title": "Supplier", "value": "{{order.supplier_name}}" },
+            { "title": "Created", "value": "{{order.created_date}}" },
+            { "title": "Total Amount", "value": "{{order.total_amount}}" },
+            { "title": "Tracking No.", "value": "{{order.tracking_number}}" }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "Status Timeline",
+          "weight": "Bolder",
+          "spacing": "Medium"
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "1",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{order.stage_placed}}",
+                  "horizontalAlignment": "Center",
+                  "size": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Placed",
+                  "horizontalAlignment": "Center",
+                  "size": "Small",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "1",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{order.stage_confirmed}}",
+                  "horizontalAlignment": "Center",
+                  "size": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Confirmed",
+                  "horizontalAlignment": "Center",
+                  "size": "Small",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "1",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{order.stage_shipped}}",
+                  "horizontalAlignment": "Center",
+                  "size": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Shipped",
+                  "horizontalAlignment": "Center",
+                  "size": "Small",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "1",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{order.stage_in_transit}}",
+                  "horizontalAlignment": "Center",
+                  "size": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "In Transit",
+                  "horizontalAlignment": "Center",
+                  "size": "Small",
+                  "isSubtle": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "1",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{order.stage_delivered}}",
+                  "horizontalAlignment": "Center",
+                  "size": "Small"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Delivered",
+                  "horizontalAlignment": "Center",
+                  "size": "Small",
+                  "isSubtle": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "ETA: {{order.eta}}",
+          "weight": "Bolder",
+          "spacing": "Small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Items in this order:",
+          "weight": "Bolder",
+          "spacing": "Medium"
+        },
+        {
+          "type": "Container",
+          "items": [
+            {
+              "$data": "{{order.items}}",
+              "type": "ColumnSet",
+              "spacing": "Small",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [{ "type": "TextBlock", "text": "{{sku}}", "size": "Small", "fontType": "Monospace" }]
+                },
+                {
+                  "type": "Column",
+                  "width": "2",
+                  "items": [{ "type": "TextBlock", "text": "{{product_name}}", "size": "Small", "wrap": true }]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [{ "type": "TextBlock", "text": "{{quantity}} units", "size": "Small", "horizontalAlignment": "Right" }]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [{ "type": "TextBlock", "text": "{{unit_price}}", "size": "Small", "horizontalAlignment": "Right" }]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "List Recent",
+      "data": {
+        "action_id": "list_recent"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Contact Supplier",
+      "data": {
+        "action_id": "contact_supplier"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Back",
+      "data": {
+        "action_id": "back"
+      }
+    }
+  ]
+}

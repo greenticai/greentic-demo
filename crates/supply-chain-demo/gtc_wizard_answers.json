@@ -13,8 +13,8 @@
             "answers": {
                 "access_rules": [{"policy": "public", "rule_path": "supply-chain-pack", "tenant": "default"}],
                 "advanced_setup": false,
-                "app_pack_entries": [{"detected_kind": "local_dir", "display_name": "Supply Chain Demo Pack", "mapping": {"scope": "global"}, "pack_id": "supply-chain-pack", "reference": "packs/supply-chain.pack"}],
-                "app_packs": ["packs/supply-chain.pack"],
+                "app_pack_entries": [{"detected_kind": "local_file", "display_name": "Supply Chain Demo Pack", "mapping": {"scope": "global"}, "pack_id": "supply-chain-pack", "reference": "demos/supply-chain.gtpack"}],
+                "app_packs": ["demos/supply-chain.gtpack"],
                 "bundle_id": "supply-chain-demo",
                 "bundle_name": "supply-chain-demo",
                 "export_intent": false,
