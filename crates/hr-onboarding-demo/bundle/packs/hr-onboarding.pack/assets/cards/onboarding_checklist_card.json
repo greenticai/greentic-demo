@@ -1,127 +1,127 @@
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "type": "AdaptiveCard",
-  "version": "1.3",
-  "body": [
-    {
-      "type": "TextBlock",
-      "size": "Large",
-      "weight": "Bolder",
-      "text": "Onboarding Checklist"
-    },
-    {
-      "type": "ColumnSet",
-      "columns": [
-        {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "{{employee_name}} - {{department}}",
-              "isSubtle": true
-            }
-          ]
-        },
-        {
-          "type": "Column",
-          "width": "auto",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "{{completed_count}}/{{total_count}} Complete",
-              "weight": "Bolder",
-              "color": "Good"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "TextBlock",
-      "text": "Progress: {{progress_percent}}%",
-      "spacing": "Small"
-    },
-    {
-      "type": "Container",
-      "style": "emphasis",
-      "items": [
-        {
-          "$data": "{{checklist_items}}",
-          "type": "ColumnSet",
-          "spacing": "Small",
-          "columns": [
-            {
-              "type": "Column",
-              "width": "auto",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "{{status_icon}}",
-                  "size": "Medium"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": "stretch",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "{{title}}",
-                  "weight": "Bolder"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "{{description}}",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "size": "Small"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": "auto",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "{{status}}",
-                  "isSubtle": true,
-                  "size": "Small"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ],
   "actions": [
     {
-      "type": "Action.Submit",
-      "title": "Upload Documents",
-      "style": "positive",
       "data": {
         "action_id": "upload_documents",
         "routeToCardId": "document_upload_card"
-      }
+      },
+      "style": "positive",
+      "title": "{{i18n:cards.onboarding_checklist_card.actions.i0.title}}",
+      "type": "Action.Submit"
     },
     {
-      "type": "Action.Submit",
-      "title": "Request Access",
       "data": {
         "action_id": "request_access",
         "routeToCardId": "access_request_card"
-      }
+      },
+      "title": "{{i18n:cards.onboarding_checklist_card.actions.i1.title}}",
+      "type": "Action.Submit"
     },
     {
-      "type": "Action.Submit",
-      "title": "Back to Menu",
       "data": {
         "action_id": "back",
         "routeToCardId": "welcome_card"
-      }
+      },
+      "title": "{{i18n:cards.onboarding_checklist_card.actions.i2.title}}",
+      "type": "Action.Submit"
     }
-  ]
+  ],
+  "body": [
+    {
+      "size": "Large",
+      "text": "{{i18n:cards.onboarding_checklist_card.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "isSubtle": true,
+              "text": "{{employee_name}} - {{department}}",
+              "type": "TextBlock"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        },
+        {
+          "items": [
+            {
+              "color": "Good",
+              "text": "{{completed_count}}/{{total_count}} Complete",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            }
+          ],
+          "type": "Column",
+          "width": "auto"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "spacing": "Small",
+      "text": "Progress: {{progress_percent}}%",
+      "type": "TextBlock"
+    },
+    {
+      "items": [
+        {
+          "$data": "{{checklist_items}}",
+          "columns": [
+            {
+              "items": [
+                {
+                  "size": "Medium",
+                  "text": "{{status_icon}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "text": "{{title}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{description}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{status}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            }
+          ],
+          "spacing": "Small",
+          "type": "ColumnSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    }
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
 }

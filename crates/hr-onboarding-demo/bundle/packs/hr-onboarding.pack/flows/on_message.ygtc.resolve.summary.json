@@ -5,7 +5,7 @@
     "welcome": {
       "source": {
         "kind": "local",
-        "path": "../components/component_adaptive_card.wasm"
+        "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
       "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb",
       "component_id": "ai.greentic.component-adaptive-card"
@@ -13,7 +13,7 @@
     "employee_form": {
       "source": {
         "kind": "local",
-        "path": "../components/component_adaptive_card.wasm"
+        "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
       "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb",
       "component_id": "ai.greentic.component-adaptive-card"
@@ -21,7 +21,7 @@
     "checklist": {
       "source": {
         "kind": "local",
-        "path": "../components/component_adaptive_card.wasm"
+        "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
       "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb",
       "component_id": "ai.greentic.component-adaptive-card"
@@ -29,7 +29,7 @@
     "document_upload": {
       "source": {
         "kind": "local",
-        "path": "../components/component_adaptive_card.wasm"
+        "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
       "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb",
       "component_id": "ai.greentic.component-adaptive-card"
@@ -37,7 +37,7 @@
     "access_request": {
       "source": {
         "kind": "local",
-        "path": "../components/component_adaptive_card.wasm"
+        "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
       "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb",
       "component_id": "ai.greentic.component-adaptive-card"
@@ -45,7 +45,7 @@
     "completion": {
       "source": {
         "kind": "local",
-        "path": "../components/component_adaptive_card.wasm"
+        "path": "../components/ai.greentic.component-adaptive-card.wasm"
       },
       "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb",
       "component_id": "ai.greentic.component-adaptive-card"
