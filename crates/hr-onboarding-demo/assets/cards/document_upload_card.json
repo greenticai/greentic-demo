@@ -1,0 +1,352 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action_id": "back",
+        "routeToCardId": "welcome_card"
+      },
+      "title": "{{i18n:cards.document_upload_card.actions.i0.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "size": "Large",
+      "text": "{{i18n:cards.document_upload_card.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "isSubtle": true,
+              "text": "Employee: {{employee_name}}",
+              "type": "TextBlock"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        },
+        {
+          "items": [
+            {
+              "color": "Good",
+              "text": "{{uploaded_count}}/{{total_count}} Submitted",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            }
+          ],
+          "type": "Column",
+          "width": "auto"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "isSubtle": true,
+      "spacing": "Small",
+      "text": "{{i18n:cards.document_upload_card.body.i2.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "text": "{{i18n:cards.document_upload_card.body.i3.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{i18n:cards.document_upload_card.body.i3.items.i0.columns.i0.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "action_id": "upload_government_id"
+                      },
+                      "title": "{{i18n:cards.document_upload_card.body.i3.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Medium",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "text": "{{i18n:cards.document_upload_card.body.i4.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{i18n:cards.document_upload_card.body.i4.items.i0.columns.i0.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "action_id": "upload_tax_form"
+                      },
+                      "title": "{{i18n:cards.document_upload_card.body.i4.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "text": "{{i18n:cards.document_upload_card.body.i5.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{i18n:cards.document_upload_card.body.i5.items.i0.columns.i0.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "action_id": "upload_contract"
+                      },
+                      "title": "{{i18n:cards.document_upload_card.body.i5.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "text": "{{i18n:cards.document_upload_card.body.i6.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{i18n:cards.document_upload_card.body.i6.items.i0.columns.i0.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "action_id": "upload_emergency_contact"
+                      },
+                      "title": "{{i18n:cards.document_upload_card.body.i6.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "text": "{{i18n:cards.document_upload_card.body.i7.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{i18n:cards.document_upload_card.body.i7.items.i0.columns.i0.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "action_id": "upload_direct_deposit"
+                      },
+                      "title": "{{i18n:cards.document_upload_card.body.i7.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "text": "{{i18n:cards.document_upload_card.body.i8.items.i0.columns.i0.items.i0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{i18n:cards.document_upload_card.body.i8.items.i0.columns.i0.items.i1.text}}",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "actions": [
+                    {
+                      "data": {
+                        "action_id": "upload_nda"
+                      },
+                      "title": "{{i18n:cards.document_upload_card.body.i8.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "type": "Action.Submit"
+                    }
+                  ],
+                  "type": "ActionSet"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
+    }
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

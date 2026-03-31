@@ -49,7 +49,7 @@ extensions:
       allow_tags: true
       mode: eager
       refs:
-      - oci://ghcr.io/greenticai/components/component-adaptive-card:latest
+      - oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2
   greentic.pack.component_sources@v1:
     kind: greentic.pack.component_sources@v1
     version: 1.0.0

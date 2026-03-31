@@ -1,8 +1,0 @@
-{
-  "original_reference": "ghcr.io/greenticai/packs/events/events-webhook:latest",
-  "resolved_digest": "sha256:cb750c4c0edefff57d60b2a49e38e0feb6e49fcd5f4b84e3a1d3728343637104",
-  "media_type": "application/vnd.greentic.gtpack.layer.v1+tar",
-  "fetched_at_unix_seconds": 1773641826,
-  "size_bytes": 2801125,
-  "manifest_digest": "sha256:cb750c4c0edefff57d60b2a49e38e0feb6e49fcd5f4b84e3a1d3728343637104"
-}

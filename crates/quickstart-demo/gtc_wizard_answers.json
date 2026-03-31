@@ -13,8 +13,8 @@
             "answers": {
                 "access_rules": [{"policy": "public", "rule_path": "quickstart-pack", "tenant": "default"}],
                 "advanced_setup": false,
-                "app_pack_entries": [{"detected_kind": "local_dir", "display_name": "Quickstart Demo Pack", "mapping": {"scope": "global"}, "pack_id": "quickstart-pack", "reference": "packs/quickstart.pack"}],
-                "app_packs": ["packs/quickstart.pack"],
+                "app_pack_entries": [{"detected_kind": "local_file", "display_name": "Quickstart Demo Pack", "mapping": {"scope": "global"}, "pack_id": "quickstart-pack", "reference": "demos/quickstart.gtpack"}],
+                "app_packs": ["demos/quickstart.gtpack"],
                 "bundle_id": "quickstart-demo",
                 "bundle_name": "quickstart-demo",
                 "export_intent": false,

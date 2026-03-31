@@ -13,8 +13,8 @@
             "answers": {
                 "access_rules": [{"policy": "public", "rule_path": "hr-onboarding-pack", "tenant": "default"}],
                 "advanced_setup": false,
-                "app_pack_entries": [{"detected_kind": "local_dir", "display_name": "HR Onboarding Demo Pack", "mapping": {"scope": "global"}, "pack_id": "hr-onboarding-pack", "reference": "packs/hr-onboarding.pack"}],
-                "app_packs": ["packs/hr-onboarding.pack"],
+                "app_pack_entries": [{"detected_kind": "local_file", "display_name": "HR Onboarding Demo Pack", "mapping": {"scope": "global"}, "pack_id": "hr-onboarding-pack", "reference": "demos/hr-onboarding.gtpack"}],
+                "app_packs": ["demos/hr-onboarding.gtpack"],
                 "bundle_id": "hr-onboarding-demo",
                 "bundle_name": "hr-onboarding-demo",
                 "export_intent": false,

@@ -27,26 +27,26 @@ Demo pack for employee onboarding with MCP (Model Context Protocol) tools, docum
 
 ## Quick Start
 
-### 1. Create Bundle from Wizard
+### 1. Build Demo Pack and Create Bundle
 
 ```bash
-gtc wizard --answers wizard-answers.yaml
+scripts/package_demos.sh
+gtc wizard --answers demos/hr-onboarding-create-answers.json
 ```
 
 ### 2. Setup Providers
 
 ```bash
-# Interactive setup
-gtc setup ./hr-onboarding
+gtc setup ./hr-onboarding-demo-bundle
 
 # Or with answers file
-gtc setup --answers setup-answers.json ./hr-onboarding
+gtc setup --answers demos/hr-onboarding-setup-answers.json ./hr-onboarding-demo-bundle
 ```
 
 ### 3. Start Server
 
 ```bash
-gtc start ./hr-onboarding
+gtc start ./hr-onboarding-demo-bundle
 ```
 
 ## Configuration
@@ -67,27 +67,20 @@ gtc start ./hr-onboarding
 | `default_department` | Engineering | Default department for new hires |
 | `document_retention_days` | 90 | Days to retain uploaded documents |
 
-## Pack Structure
+## Generated Pack Inputs
 
 ```
-hr-onboarding/
-├── pack.yaml                      # Pack manifest
-├── bindings.yaml                  # Tenant bindings
-├── greentic.demo.yaml             # Demo server configuration
-├── wizard-answers.yaml            # Wizard answers template
-├── flows/
-│   ├── on_message.ygtc            # Main message handler
-│   ├── onboarding_wizard_flow.ygtc    # Employee info collection wizard
-│   ├── document_collection_flow.ygtc  # Document upload and tracking
-│   └── access_provisioning_flow.ygtc  # System access requests
-└── assets/
-    ├── welcome_card.json              # HR onboarding menu
-    ├── employee_form_card.json        # Employee information form
-    ├── onboarding_checklist_card.json # Checklist with progress
-    ├── document_upload_card.json      # Document status and upload
-    ├── access_request_card.json       # System access toggles
-    └── completion_card.json           # Onboarding complete summary
+crates/hr-onboarding-demo/
+├── assets/
+│   ├── cards/
+│   ├── i18n/
+│   └── webchat-gui/
+├── gtc_pack_create_wizard_answers.json
+├── gtc_pack_wizard_answers.json
+└── gtc_wizard_answers.json
 ```
+
+The checked-in pack tree is generated from the wizard answers plus the crate assets.
 
 ## Components
 
