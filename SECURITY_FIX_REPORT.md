@@ -10,13 +10,16 @@ Reviewer: CI Security Reviewer
 
 ## Repository Checks Performed
 1. Enumerated dependency manifests and lockfiles in the repository.
-2. Reviewed working tree changes to identify PR-modified files relevant to dependencies.
+2. Compared PR changes against `origin/main` using `git diff --name-only origin/main...HEAD`.
+3. Filtered changed files for dependency manifests/lockfiles.
+4. Attempted local Rust advisory scan (`cargo audit`) where available.
 
 ## Findings
 - No active Dependabot alerts were provided.
 - No active code scanning alerts were provided.
 - No new PR dependency vulnerabilities were provided.
-- No dependency manifest or lockfile changes were detected in the current PR workspace.
+- PR-changed files do not include dependency manifests or lockfiles.
+- `cargo-audit` is not installed in this CI environment, so no local advisory DB scan was executed.
 
 ## Remediation Actions
 - No security remediation was required.
