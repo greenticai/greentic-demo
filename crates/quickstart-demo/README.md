@@ -11,9 +11,10 @@ Minimal Greentic demo that displays a welcome card with simple menu interactions
 ## Quick Start
 
 ```bash
+scripts/package_demos.sh
 gtc wizard --answers demos/quickstart-create-answers.json
-gtc setup --answers demos/quickstart-setup-answers.json crates/quickstart-demo/bundle
-gtc start crates/quickstart-demo/bundle
+gtc setup --answers demos/quickstart-setup-answers.json ./quickstart-demo-bundle
+gtc start ./quickstart-demo-bundle
 ```
 
 ## Components
