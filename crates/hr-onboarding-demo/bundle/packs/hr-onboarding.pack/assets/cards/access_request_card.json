@@ -10,125 +10,68 @@
       "text": "System Access Request"
     },
     {
-      "type": "ColumnSet",
-      "columns": [
-        {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "Jane Smith - Engineering (Software Engineer)",
-              "isSubtle": true,
-              "wrap": true
-            }
-          ]
-        },
-        {
-          "type": "Column",
-          "width": "auto",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "2/5 Active",
-              "weight": "Bolder",
-              "color": "Good"
-            }
-          ]
-        }
-      ]
+      "type": "TextBlock",
+      "text": "Jane Smith - Engineering (Software Engineer)",
+      "isSubtle": true,
+      "wrap": true
     },
     {
       "type": "TextBlock",
-      "text": "Select the systems you need access to for your role.",
+      "text": "Systems that will be provisioned for your role:",
       "wrap": true,
-      "isSubtle": true,
-      "spacing": "Small"
+      "spacing": "Medium"
     },
     {
       "type": "Container",
       "style": "emphasis",
-      "spacing": "Medium",
       "items": [
         {
           "type": "TextBlock",
           "weight": "Bolder",
-          "text": "Communication & Collaboration",
-          "spacing": "Small"
+          "text": "Communication & Collaboration"
         },
         {
-          "type": "Input.Toggle",
-          "id": "corporate_email",
-          "title": "Corporate Email (Outlook/Gmail)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "slack",
-          "title": "Slack (Team messaging)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
+          "type": "FactSet",
+          "facts": [
+            { "title": "Corporate Email", "value": "Outlook/Gmail" },
+            { "title": "Slack", "value": "Team messaging" }
+          ]
         }
       ]
     },
     {
       "type": "Container",
       "style": "emphasis",
-      "spacing": "Small",
       "items": [
         {
           "type": "TextBlock",
           "weight": "Bolder",
-          "text": "Development & Project Management",
-          "spacing": "Small"
+          "text": "Development & Project Management"
         },
         {
-          "type": "Input.Toggle",
-          "id": "github",
-          "title": "GitHub (Source code repositories)",
-          "value": "false",
-          "valueOn": "true",
-          "valueOff": "false"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "jira",
-          "title": "Jira (Project tracking)",
-          "value": "false",
-          "valueOn": "true",
-          "valueOff": "false"
+          "type": "FactSet",
+          "facts": [
+            { "title": "GitHub", "value": "Source code repositories" },
+            { "title": "Jira", "value": "Project tracking" }
+          ]
         }
       ]
     },
     {
       "type": "Container",
       "style": "emphasis",
-      "spacing": "Small",
       "items": [
         {
           "type": "TextBlock",
           "weight": "Bolder",
-          "text": "Infrastructure & Physical Access",
-          "spacing": "Small"
+          "text": "Infrastructure & Physical Access"
         },
         {
-          "type": "Input.Toggle",
-          "id": "vpn",
-          "title": "VPN (Remote network access)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "building_access",
-          "title": "Building Access (Badge/keycard)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
+          "type": "FactSet",
+          "facts": [
+            { "title": "VPN", "value": "Remote network access" },
+            { "title": "Building Access", "value": "Badge/keycard" }
+          ]
         }
       ]
     },
@@ -140,7 +83,8 @@
           "title": "Submit Access Request",
           "style": "positive",
           "data": {
-            "action_id": "submit_access_request"
+            "action_id": "submit_access",
+            "routeToCardId": "completion_card"
           }
         },
         {

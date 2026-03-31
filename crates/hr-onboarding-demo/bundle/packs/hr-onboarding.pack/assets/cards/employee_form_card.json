@@ -22,25 +22,14 @@
         {
           "type": "TextBlock",
           "weight": "Bolder",
-          "text": "Personal Information",
-          "spacing": "Small"
+          "text": "Personal Information"
         },
         {
-          "type": "Input.Text",
-          "id": "full_name",
-          "label": "Full Name",
-          "placeholder": "e.g., Jane Smith",
-          "isRequired": true,
-          "errorMessage": "Full name is required"
-        },
-        {
-          "type": "Input.Text",
-          "id": "email",
-          "label": "Work Email",
-          "placeholder": "e.g., jane.smith@acmecorp.com",
-          "isRequired": true,
-          "errorMessage": "Work email is required",
-          "style": "Email"
+          "type": "FactSet",
+          "facts": [
+            { "title": "Full Name", "value": "Jane Smith" },
+            { "title": "Work Email", "value": "jane.smith@acmecorp.com" }
+          ]
         }
       ]
     },
@@ -51,74 +40,16 @@
         {
           "type": "TextBlock",
           "weight": "Bolder",
-          "text": "Role Information",
-          "spacing": "Small"
+          "text": "Role Information"
         },
         {
-          "type": "Input.ChoiceSet",
-          "id": "department",
-          "label": "Department",
-          "value": "Engineering",
-          "isRequired": true,
-          "choices": [
-            {
-              "title": "Engineering",
-              "value": "Engineering"
-            },
-            {
-              "title": "Product",
-              "value": "Product"
-            },
-            {
-              "title": "Design",
-              "value": "Design"
-            },
-            {
-              "title": "Marketing",
-              "value": "Marketing"
-            },
-            {
-              "title": "Sales",
-              "value": "Sales"
-            },
-            {
-              "title": "Finance",
-              "value": "Finance"
-            },
-            {
-              "title": "Human Resources",
-              "value": "Human Resources"
-            },
-            {
-              "title": "Legal",
-              "value": "Legal"
-            },
-            {
-              "title": "Operations",
-              "value": "Operations"
-            },
-            {
-              "title": "Customer Support",
-              "value": "Customer Support"
-            }
+          "type": "FactSet",
+          "facts": [
+            { "title": "Department", "value": "Engineering" },
+            { "title": "Job Title", "value": "Software Engineer" },
+            { "title": "Start Date", "value": "April 15, 2026" },
+            { "title": "Manager", "value": "John Doe" }
           ]
-        },
-        {
-          "type": "Input.Text",
-          "id": "role",
-          "label": "Job Title / Role",
-          "placeholder": "e.g., Senior Software Engineer"
-        },
-        {
-          "type": "Input.Date",
-          "id": "start_date",
-          "label": "Start Date"
-        },
-        {
-          "type": "Input.Text",
-          "id": "manager_name",
-          "label": "Reporting Manager",
-          "placeholder": "e.g., John Doe"
         }
       ]
     },
@@ -127,18 +58,18 @@
       "actions": [
         {
           "type": "Action.Submit",
-          "title": "Submit Registration",
+          "title": "Confirm Registration",
           "style": "positive",
           "data": {
-            "action_id": "submit_employee"
+            "action_id": "submit_registration",
+            "routeToCardId": "onboarding_checklist_card"
           }
         },
         {
           "type": "Action.Submit",
-          "title": "Cancel",
-          "style": "default",
+          "title": "Back to Menu",
           "data": {
-            "action_id": "cancel",
+            "action_id": "back",
             "routeToCardId": "welcome_card"
           }
         }
