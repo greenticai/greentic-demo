@@ -17,7 +17,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "Congratulations, {{employee_name}}! Your onboarding is now complete.",
+          "text": "Congratulations, Jane Smith! Your onboarding is now complete.",
           "wrap": true,
           "horizontalAlignment": "Center"
         }
@@ -38,23 +38,23 @@
           "facts": [
             {
               "title": "Employee",
-              "value": "{{employee_name}}"
+              "value": "Jane Smith"
             },
             {
               "title": "Department",
-              "value": "{{department}}"
+              "value": "Engineering"
             },
             {
               "title": "Role",
-              "value": "{{role}}"
+              "value": "Software Engineer"
             },
             {
               "title": "Start Date",
-              "value": "{{start_date}}"
+              "value": "2026-04-15"
             },
             {
               "title": "Manager",
-              "value": "{{manager_name}}"
+              "value": "John Doe"
             }
           ]
         }

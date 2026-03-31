@@ -18,7 +18,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "{{employee_name}} - {{department}}",
+              "text": "Jane Smith - Engineering",
               "isSubtle": true
             }
           ]
@@ -29,7 +29,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "{{completed_count}}/{{total_count}} Complete",
+              "text": "2/5 Complete",
               "weight": "Bolder",
               "color": "Good"
             }
@@ -39,7 +39,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "Progress: {{progress_percent}}%",
+      "text": "Progress: 40%",
       "spacing": "Small"
     },
     {
@@ -47,7 +47,7 @@
       "style": "emphasis",
       "items": [
         {
-          "$data": "{{checklist_items}}",
+          "$data": "",
           "type": "ColumnSet",
           "spacing": "Small",
           "columns": [
@@ -57,7 +57,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{status_icon}}",
+                  "text": "\u2705",
                   "size": "Medium"
                 }
               ]
@@ -68,12 +68,12 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{title}}",
+                  "text": "Task",
                   "weight": "Bolder"
                 },
                 {
                   "type": "TextBlock",
-                  "text": "{{description}}",
+                  "text": "Task description",
                   "isSubtle": true,
                   "wrap": true,
                   "size": "Small"
@@ -86,7 +86,7 @@
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "{{status}}",
+                  "text": "Done",
                   "isSubtle": true,
                   "size": "Small"
                 }

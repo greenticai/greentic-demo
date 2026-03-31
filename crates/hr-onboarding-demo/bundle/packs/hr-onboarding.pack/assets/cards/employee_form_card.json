@@ -11,7 +11,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "Welcome to {{company_name}}! Please fill in your information below.",
+      "text": "Welcome to Acme Corp! Please fill in your information below.",
       "wrap": true,
       "isSubtle": true
     },
@@ -58,7 +58,7 @@
           "type": "Input.ChoiceSet",
           "id": "department",
           "label": "Department",
-          "value": "{{default_department}}",
+          "value": "Engineering",
           "isRequired": true,
           "choices": [
             {

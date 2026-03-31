@@ -18,7 +18,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "Employee: {{employee_name}}",
+              "text": "Employee: Jane Smith",
               "isSubtle": true
             }
           ]
@@ -29,7 +29,7 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "{{uploaded_count}}/{{total_count}} Submitted",
+              "text": "1/5 Submitted",
               "weight": "Bolder",
               "color": "Good"
             }
