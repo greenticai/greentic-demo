@@ -63,6 +63,6 @@ extensions:
       allow_tags: true
       mode: eager
       refs:
-      - oci://ghcr.io/greenticai/components/component-adaptive-card:latest
-      - oci://ghcr.io/greenticai/component/component-msg2events:latest
-      - oci://ghcr.io/greenticai/component/component-events2msg:latest
+      - oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2
+      - oci://ghcr.io/greenticai/component/component-msg2events@sha256:c799dea25af2521701b75b40d2827b65d4250e0574e2ab794b366ffedf601acc
+      - oci://ghcr.io/greenticai/component/component-events2msg@sha256:aac2126add873723960343b86dc9e8bfbf892278b43302cc432f230dc9f5ee57

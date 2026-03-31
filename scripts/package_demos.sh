@@ -62,8 +62,8 @@ generated_pack_answers=("$CRATES_DIR"/*/gtc_pack_create_wizard_answers.json)
 bundle_answers=("$DEMOS_DIR"/*-create-answers.json)
 packaged_any=0
 
-if [ ${#pack_dirs[@]} -eq 0 ]; then
-    echo "No demo pack directories found under crates/. Nothing to package."
+if [ ${#pack_dirs[@]} -eq 0 ] && [ ${#generated_pack_answers[@]} -eq 0 ]; then
+    echo "No demo pack sources or generated-pack answers found under crates/. Nothing to package."
     exit 1
 fi
 
@@ -72,7 +72,6 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     crate_dir="$(cd "$source_pack_dir/../../.." && pwd)"
     pack_answers="$DEFAULT_PACK_ANSWERS"
     create_answers="$crate_dir/gtc_pack_create_wizard_answers.json"
-    flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
     temp_pack_dir="$TMP_ROOT/packs/$pack_name"
     built_pack="$temp_pack_dir/dist/$pack_name.gtpack"
     target_pack="$DEMOS_DIR/$pack_name.gtpack"
@@ -81,7 +80,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
     fi
 
-    if [ -f "$create_answers" ] && [ -f "$flow_answers" ]; then
+    if [ -f "$create_answers" ]; then
         temp_pack_parent="$TMP_ROOT/packs-create/$pack_name"
         temp_pack_dir="$temp_pack_parent/$pack_name.pack"
         built_pack="$temp_pack_dir/dist/$pack_name.gtpack"
@@ -105,11 +104,6 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         if [ -d "$source_pack_dir/components" ]; then
             mkdir -p "$temp_pack_dir/components"
             cp -R "$source_pack_dir/components/." "$temp_pack_dir/components/"
-        fi
-
-        if ! greentic-flow wizard "$temp_pack_dir" --answers-file "$flow_answers" >/dev/null; then
-            echo "Skipping $pack_name: flow wizard replay failed" >&2
-            continue
         fi
 
         if ! (
@@ -145,7 +139,6 @@ done
 
 for create_answers in "${generated_pack_answers[@]}"; do
     crate_dir="$(cd "$(dirname "$create_answers")" && pwd)"
-    flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
     pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
     source_assets_dir="$crate_dir/assets"
     source_components_dir="$crate_dir/components"
@@ -157,8 +150,8 @@ for create_answers in "${generated_pack_answers[@]}"; do
         continue
     fi
 
-    if [ ! -f "$flow_answers" ] || [ ! -f "$pack_answers" ]; then
-        echo "Skipping $pack_name: missing flow or pack wizard answers" >&2
+    if [ ! -f "$pack_answers" ]; then
+        echo "Skipping $pack_name: missing pack wizard answers" >&2
         continue
     fi
 
@@ -186,11 +179,6 @@ for create_answers in "${generated_pack_answers[@]}"; do
     if [ -d "$source_components_dir" ]; then
         mkdir -p "$temp_pack_dir/components"
         cp -R "$source_components_dir/." "$temp_pack_dir/components/"
-    fi
-
-    if ! greentic-flow wizard "$temp_pack_dir" --answers-file "$flow_answers" >/dev/null; then
-        echo "Skipping $pack_name: flow wizard replay failed" >&2
-        continue
     fi
 
     if ! (
