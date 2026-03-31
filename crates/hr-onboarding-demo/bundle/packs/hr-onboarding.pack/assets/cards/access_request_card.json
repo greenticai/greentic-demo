@@ -1,154 +1,154 @@
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "type": "AdaptiveCard",
-  "version": "1.3",
-  "body": [
-    {
-      "type": "TextBlock",
-      "size": "Large",
-      "weight": "Bolder",
-      "text": "System Access Request"
-    },
-    {
-      "type": "ColumnSet",
-      "columns": [
-        {
-          "type": "Column",
-          "width": "stretch",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "{{employee_name}} - {{department}} ({{role}})",
-              "isSubtle": true,
-              "wrap": true
-            }
-          ]
-        },
-        {
-          "type": "Column",
-          "width": "auto",
-          "items": [
-            {
-              "type": "TextBlock",
-              "text": "{{provisioned_count}}/{{total_count}} Active",
-              "weight": "Bolder",
-              "color": "Good"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "TextBlock",
-      "text": "Select the systems you need access to for your role.",
-      "wrap": true,
-      "isSubtle": true,
-      "spacing": "Small"
-    },
-    {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Medium",
-      "items": [
-        {
-          "type": "TextBlock",
-          "weight": "Bolder",
-          "text": "Communication & Collaboration",
-          "spacing": "Small"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "corporate_email",
-          "title": "Corporate Email (Outlook/Gmail)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "slack",
-          "title": "Slack (Team messaging)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
-        }
-      ]
-    },
-    {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Small",
-      "items": [
-        {
-          "type": "TextBlock",
-          "weight": "Bolder",
-          "text": "Development & Project Management",
-          "spacing": "Small"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "github",
-          "title": "GitHub (Source code repositories)",
-          "value": "false",
-          "valueOn": "true",
-          "valueOff": "false"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "jira",
-          "title": "Jira (Project tracking)",
-          "value": "false",
-          "valueOn": "true",
-          "valueOff": "false"
-        }
-      ]
-    },
-    {
-      "type": "Container",
-      "style": "emphasis",
-      "spacing": "Small",
-      "items": [
-        {
-          "type": "TextBlock",
-          "weight": "Bolder",
-          "text": "Infrastructure & Physical Access",
-          "spacing": "Small"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "vpn",
-          "title": "VPN (Remote network access)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
-        },
-        {
-          "type": "Input.Toggle",
-          "id": "building_access",
-          "title": "Building Access (Badge/keycard)",
-          "value": "true",
-          "valueOn": "true",
-          "valueOff": "false"
-        }
-      ]
-    }
-  ],
   "actions": [
     {
-      "type": "Action.Submit",
-      "title": "Submit Access Request",
-      "style": "positive",
       "data": {
         "action_id": "submit_access_request"
-      }
+      },
+      "style": "positive",
+      "title": "{{i18n:cards.access_request_card.actions.i0.title}}",
+      "type": "Action.Submit"
     },
     {
-      "type": "Action.Submit",
-      "title": "Back to Menu",
       "data": {
         "action_id": "back",
         "routeToCardId": "welcome_card"
-      }
+      },
+      "title": "{{i18n:cards.access_request_card.actions.i1.title}}",
+      "type": "Action.Submit"
     }
-  ]
+  ],
+  "body": [
+    {
+      "size": "Large",
+      "text": "{{i18n:cards.access_request_card.body.i0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "isSubtle": true,
+              "text": "{{employee_name}} - {{department}} ({{role}})",
+              "type": "TextBlock",
+              "wrap": true
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        },
+        {
+          "items": [
+            {
+              "color": "Good",
+              "text": "{{provisioned_count}}/{{total_count}} Active",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            }
+          ],
+          "type": "Column",
+          "width": "auto"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "isSubtle": true,
+      "spacing": "Small",
+      "text": "{{i18n:cards.access_request_card.body.i2.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.access_request_card.body.i3.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "id": "corporate_email",
+          "title": "{{i18n:cards.access_request_card.body.i3.items.i1.title}}",
+          "type": "Input.Toggle",
+          "value": "true",
+          "valueOff": "false",
+          "valueOn": "true"
+        },
+        {
+          "id": "slack",
+          "title": "{{i18n:cards.access_request_card.body.i3.items.i2.title}}",
+          "type": "Input.Toggle",
+          "value": "true",
+          "valueOff": "false",
+          "valueOn": "true"
+        }
+      ],
+      "spacing": "Medium",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.access_request_card.body.i4.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "id": "github",
+          "title": "{{i18n:cards.access_request_card.body.i4.items.i1.title}}",
+          "type": "Input.Toggle",
+          "value": "false",
+          "valueOff": "false",
+          "valueOn": "true"
+        },
+        {
+          "id": "jira",
+          "title": "{{i18n:cards.access_request_card.body.i4.items.i2.title}}",
+          "type": "Input.Toggle",
+          "value": "false",
+          "valueOff": "false",
+          "valueOn": "true"
+        }
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "spacing": "Small",
+          "text": "{{i18n:cards.access_request_card.body.i5.items.i0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "id": "vpn",
+          "title": "{{i18n:cards.access_request_card.body.i5.items.i1.title}}",
+          "type": "Input.Toggle",
+          "value": "true",
+          "valueOff": "false",
+          "valueOn": "true"
+        },
+        {
+          "id": "building_access",
+          "title": "{{i18n:cards.access_request_card.body.i5.items.i2.title}}",
+          "type": "Input.Toggle",
+          "value": "true",
+          "valueOff": "false",
+          "valueOn": "true"
+        }
+      ],
+      "spacing": "Small",
+      "style": "emphasis",
+      "type": "Container"
+    }
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
 }
