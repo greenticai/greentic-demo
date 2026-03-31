@@ -19,9 +19,9 @@ app_packs:
   - reference: https://github.com/greenticai/greentic-demo/releases/latest/download/cards-demo.gtpack
     policy: public
 extension_providers:
-  - https://github.com/greenticai/greentic-demo/releases/latest/download/events-webhook.gtpack
-  - https://github.com/greenticai/greentic-demo/releases/latest/download/messaging-webchat-gui.gtpack
-  - https://github.com/greenticai/greentic-demo/releases/latest/download/state-memory.gtpack
+  - oci://ghcr.io/greenticai/packs/events/events-webhook:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest
+  - oci://ghcr.io/greenticai/packs/state/state-memory:latest
 hooks:
   []
 subscriptions:

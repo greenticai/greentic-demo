@@ -16,13 +16,13 @@
   ],
   "extension_providers": [
     {
-      "reference": "./events-webhook.gtpack"
+      "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:latest"
     },
     {
-      "reference": "./messaging-webchat-gui.gtpack"
+      "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest"
     },
     {
-      "reference": "./state-memory.gtpack"
+      "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
     }
   ],
   "setup_state_files": []

@@ -11,12 +11,6 @@ nodes:
           asset_path: card1.json
         mode: renderAndValidate
     routing:
-      - to: wait_1
-
-  wait_1:
-    session.wait:
-      reason: "wait card1 click"
-    routing:
       - to: card_2
 
   card_2:
@@ -27,15 +21,13 @@ nodes:
           asset_path: card2.json
         mode: renderAndValidate
     routing:
-      - to: wait_2
+      - to: card_3
 
-  wait_2:
-    session.wait:
-      reason: "wait card2 click"
-    routing:
-      - to: done
-
-  done:
-    emit.response:
-      text: "cards flow completed"
+  card_3:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: card3.json
+        mode: renderAndValidate
     routing: out

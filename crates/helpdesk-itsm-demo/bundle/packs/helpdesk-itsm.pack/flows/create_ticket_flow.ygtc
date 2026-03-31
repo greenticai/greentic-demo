@@ -47,20 +47,13 @@ nodes:
           locale: session.language ?? parameters.default_language
           bundle_path: i18n/{{locale}}.json
     routing:
+      - condition: "{{response.action == 'submit_ticket' && (in.input.ticket_summary == '' || in.input.ticket_summary == null)}}"
+        to: validation_error
       - condition: response.action == "submit_ticket"
-        to: validate_input
+        to: create_issue
       - condition: response.action == "cancel"
         to: cancelled
       - to: cancelled
-
-  # Validate required fields
-  validate_input:
-    routing:
-      - condition: "{{in.input.ticket_summary == ''}}"
-        to: validation_error
-      - condition: "{{in.input.ticket_summary == null}}"
-        to: validation_error
-      - to: create_issue
 
   # Validation error
   validation_error:

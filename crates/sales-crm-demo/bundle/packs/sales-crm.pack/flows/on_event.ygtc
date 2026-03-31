@@ -28,22 +28,17 @@ nodes:
         event: "{{trigger.payload}}"
         event_type: "{{trigger.headers.X-Salesforce-Event}}"
     routing:
-      - condition: prev.success == true
-        to: route_event
-      - to: unknown_event
-
-  # Route based on event type
-  route_event:
-    routing:
-      - condition: "{{trigger.headers.X-Salesforce-Event == 'lead_created'}}"
+      - condition: "{{prev.success == true && trigger.headers.X-Salesforce-Event == 'lead_created'}}"
         to: handle_lead_created
-      - condition: "{{trigger.headers.X-Salesforce-Event == 'opportunity_updated'}}"
+      - condition: "{{prev.success == true && trigger.headers.X-Salesforce-Event == 'opportunity_updated'}}"
         to: handle_opportunity_updated
-      - condition: "{{trigger.headers.X-Salesforce-Event == 'deal_closed_won'}}"
+      - condition: "{{prev.success == true && trigger.headers.X-Salesforce-Event == 'deal_closed_won'}}"
         to: handle_deal_closed_won
-      - condition: "{{trigger.headers.X-Salesforce-Event == 'deal_closed_lost'}}"
+      - condition: "{{prev.success == true && trigger.headers.X-Salesforce-Event == 'deal_closed_lost'}}"
         to: handle_deal_closed_lost
-      - to: notify_event
+      - condition: prev.success == true
+        to: notify_event
+      - to: unknown_event
 
   # Handle new lead created event
   handle_lead_created:

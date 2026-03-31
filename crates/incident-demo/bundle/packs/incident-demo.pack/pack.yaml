@@ -3,39 +3,7 @@ version: 0.1.0
 kind: application
 publisher: Greentic
 components:
-- id: component-adaptive-card
-  version: 0.1.18
-  world: greentic:component/component-v0-v6-v0@0.6.0
-  supports:
-  - messaging
-  profiles:
-    default: stateless
-    supported:
-    - stateless
-  capabilities:
-    wasi:
-      random: true
-      clocks: true
-      filesystem:
-        mode: read_only
-        mounts:
-        - guest_path: .
-          host_class: cwd
-          name: workspace
-    host:
-      messaging:
-        inbound: true
-        outbound: true
-      secrets:
-        required: []
-      state:
-        delete: true
-        read: true
-        write: true
-      telemetry:
-        scope: node
-  wasm: components/component-adaptive-card/component.wasm
-- id: component-betterstack-incident
+- id: ai.greentic.component-betterstack-incident.create-incident
   version: 0.1.0
   world: root:component/root
   supports:
@@ -54,6 +22,9 @@ components:
         required:
         - key: betterstack_token
           required: true
+          scope:
+            env: dev
+            tenant: default
       http:
         client: true
         server: false
@@ -70,3 +41,29 @@ flows:
 assets:
 - path: assets/cards/create-incident.json
 - path: assets/cards/incident-result.json
+extensions:
+  greentic.components:
+    kind: greentic.components
+    version: v1
+    inline:
+      allow_tags: true
+      mode: eager
+      refs:
+      - oci://ghcr.io/greenticai/components/component-adaptive-card:latest
+  greentic.pack.component_sources@v1:
+    kind: greentic.pack.component_sources@v1
+    version: 1.0.0
+    inline:
+      components:
+      - artifact:
+          inline:
+            manifest_path: components/component-betterstack-incident/component.manifest.json
+            wasm_path: components/component-betterstack-incident/component.wasm
+        component_id: ai.greentic.component-betterstack-incident
+        name: ai.greentic.component-betterstack-incident.create-incident
+        resolved:
+          digest: sha256:63a25cad0a75c146f40ea644684e4845f745d4138edbe5bf8fdb9c564711f69b
+        source:
+          kind: local
+          path: components/component-betterstack-incident/component.wasm
+      schema_version: 1

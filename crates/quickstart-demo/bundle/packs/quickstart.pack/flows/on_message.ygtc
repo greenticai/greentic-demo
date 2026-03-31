@@ -12,7 +12,7 @@ entrypoints: {}
 
 nodes:
   render_welcome:
-    component-adaptive-card.card:
+    card:
       node_id: welcome-card
       card_source: asset
       mode: renderAndValidate
@@ -28,14 +28,10 @@ nodes:
         locale: session.language ?? parameters.default_language
         bundle_path: i18n/{{locale}}.json
     routing:
-      - out: about
-        to: render_about
-      - out: echo
-        to: echo_message
-      - out: true
+      - to: render_about
 
   render_about:
-    component-adaptive-card.card:
+    card:
       node_id: about-card
       card_source: asset
       mode: renderAndValidate
@@ -51,12 +47,10 @@ nodes:
         locale: session.language ?? parameters.default_language
         bundle_path: i18n/{{locale}}.json
     routing:
-      - out: back
-        to: render_welcome
-      - out: true
+      - to: echo_message
 
   echo_message:
-    component-adaptive-card.card:
+    card:
       node_id: echo-result
       card_source: inline
       mode: renderAndValidate
@@ -83,6 +77,4 @@ nodes:
         locale: session.language ?? parameters.default_language
         bundle_path: i18n/{{locale}}.json
     routing:
-      - out: back
-        to: render_welcome
-      - out: true
+      - to: out

@@ -45,20 +45,13 @@ nodes:
           locale: session.language ?? parameters.default_language
           bundle_path: i18n/{{locale}}.json
     routing:
+      - condition: "{{response.action == 'submit_lead' && (in.input.company == null || in.input.company == '' || in.input.last_name == null || in.input.last_name == '')}}"
+        to: validation_error
       - condition: response.action == "submit_lead"
-        to: validate_lead
+        to: create_lead
       - condition: response.action == "back"
         to: done
       - to: done
-
-  # Validate lead form inputs
-  validate_lead:
-    routing:
-      - condition: "{{in.input.company == null || in.input.company == ''}}"
-        to: validation_error
-      - condition: "{{in.input.last_name == null || in.input.last_name == ''}}"
-        to: validation_error
-      - to: create_lead
 
   # Validation error
   validation_error:
@@ -108,20 +101,15 @@ nodes:
           oauth_token: "{{state.salesforce_oauth_token}}"
           lead_id: "{{state.last_created_lead_id}}"
     routing:
-      - condition: prev.success == true
-        to: evaluate_score
-      - to: qualification_error
-
-  # Evaluate lead score against threshold
-  evaluate_score:
-    routing:
-      - condition: "{{prev.payload.rating == 'Hot'}}"
+      - condition: "{{prev.success == true && prev.payload.rating == 'Hot'}}"
         to: show_hot_lead
-      - condition: "{{prev.payload.rating == 'Warm'}}"
+      - condition: "{{prev.success == true && prev.payload.rating == 'Warm'}}"
         to: show_warm_lead
-      - condition: "{{prev.payload.rating == 'Cold'}}"
+      - condition: "{{prev.success == true && prev.payload.rating == 'Cold'}}"
         to: show_cold_lead
-      - to: show_score_result
+      - condition: prev.success == true
+        to: show_score_result
+      - to: qualification_error
 
   # Hot lead - high priority follow-up
   show_hot_lead:

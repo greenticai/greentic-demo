@@ -55,16 +55,11 @@ nodes:
           query: "{{in.input.text}}"
           max_results: parameters.kb_max_results
     routing:
-      - condition: prev.success == true
-        to: check_results
-      - to: search_error
-
-  # Check if results were found
-  check_results:
-    routing:
-      - condition: "{{prev.payload.total == 0}}"
+      - condition: "{{prev.success == true && prev.payload.total == 0}}"
         to: no_results
-      - to: show_results
+      - condition: prev.success == true
+        to: show_results
+      - to: search_error
 
   # Show search results card
   show_results:

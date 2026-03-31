@@ -10,7 +10,7 @@ schema_version: 2
 entrypoints: {}
 nodes:
   render_incident_form:
-    component-adaptive-card.card:
+    card:
       node_id: incident-create-card
       card_source: asset
       mode: renderAndValidate
@@ -39,20 +39,18 @@ nodes:
           critical_alert: true
           team_wait: 300
     routing:
-      - out: submit
-        to: create_incident
-      - out: true
+      - to: create_incident
   create_incident:
-    component-betterstack-incident.create-incident:
-      requester_email: "{{ render_incident_form.event.data.requester_email }}"
-      name: "{{ render_incident_form.event.data.name }}"
-      summary: "{{ render_incident_form.event.data.summary }}"
-      description: "{{ render_incident_form.event.data.description }}"
-      call: "{{ render_incident_form.event.data.call }}"
-      sms: "{{ render_incident_form.event.data.sms }}"
-      email: "{{ render_incident_form.event.data.email }}"
-      critical_alert: "{{ render_incident_form.event.data.critical_alert }}"
-      team_wait: "{{ render_incident_form.event.data.team_wait }}"
+    ai.greentic.component-betterstack-incident.create-incident:
+      requester_email: "{{ payload.requester_email }}"
+      name: "{{ payload.name }}"
+      summary: "{{ payload.summary }}"
+      description: "{{ payload.description }}"
+      call: "{{ payload.call }}"
+      sms: "{{ payload.sms }}"
+      email: "{{ payload.email }}"
+      critical_alert: "{{ payload.critical_alert }}"
+      team_wait: "{{ payload.team_wait }}"
       metadata:
         Channel:
           - value: "{{ message.channel }}"
@@ -61,7 +59,7 @@ nodes:
     routing:
       - to: render_result
   render_result:
-    component-adaptive-card.card:
+    card:
       node_id: incident-result-card
       card_source: asset
       mode: renderAndValidate
@@ -79,4 +77,4 @@ nodes:
           incident_id: "{{ create_incident.incident_id }}"
           response: "{{ create_incident.response }}"
     routing:
-      - out: true
+      - to: out

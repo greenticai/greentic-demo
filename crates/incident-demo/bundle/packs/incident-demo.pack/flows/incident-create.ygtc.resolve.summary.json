@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "flow": "incident-create.ygtc",
+  "nodes": {
+    "render_incident_form": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+    },
+    "create_incident": {
+      "component_id": "ai.greentic.component-betterstack-incident.create-incident",
+      "source": {
+        "kind": "local",
+        "path": "../components/component-betterstack-incident/component.wasm"
+      },
+      "digest": "sha256:63a25cad0a75c146f40ea644684e4845f745d4138edbe5bf8fdb9c564711f69b"
+    },
+    "render_result": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:5206bb07370e68bb803e280a45cd38861e50af59c15e820284afa94167171ddb"
+    }
+  }
+}

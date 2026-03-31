@@ -1,6 +1,6 @@
 {
   "$schema": "https://greenticai.github.io/greentic-component/schemas/v1/component.manifest.schema.json",
-  "id": "ai.greentic.greentic-http2play",
+  "id": "ai.greentic.greentic-http2play.play-url",
   "name": "greentic-http2play",
   "version": "0.1.0",
   "world": "greentic:component/component@0.6.0",

@@ -60,8 +60,14 @@ nodes:
           locale: session.language ?? parameters.default_language
           bundle_path: i18n/{{locale}}.json
     routing:
+      - condition: "{{response.action == 'submit_reorder' && (in.input.product_sku == null || in.input.product_sku == '')}}"
+        to: validation_error_sku
+      - condition: "{{response.action == 'submit_reorder' && (in.input.quantity == null || in.input.quantity == '0')}}"
+        to: validation_error_quantity
+      - condition: "{{response.action == 'submit_reorder' && (in.input.supplier_id == null || in.input.supplier_id == '')}}"
+        to: validation_error_supplier
       - condition: response.action == "submit_reorder"
-        to: validate_reorder_input
+        to: create_reorder
       - condition: response.action == "back"
         to: clear_reorder_context
       - to: done
@@ -129,22 +135,17 @@ nodes:
           locale: session.language ?? parameters.default_language
           bundle_path: i18n/{{locale}}.json
     routing:
+      - condition: "{{response.action == 'submit_reorder' && (in.input.product_sku == null || in.input.product_sku == '')}}"
+        to: validation_error_sku
+      - condition: "{{response.action == 'submit_reorder' && (in.input.quantity == null || in.input.quantity == '0')}}"
+        to: validation_error_quantity
+      - condition: "{{response.action == 'submit_reorder' && (in.input.supplier_id == null || in.input.supplier_id == '')}}"
+        to: validation_error_supplier
       - condition: response.action == "submit_reorder"
-        to: validate_reorder_input
+        to: create_reorder
       - condition: response.action == "back"
         to: load_low_stock_items
       - to: done
-
-  # Validate reorder form input
-  validate_reorder_input:
-    routing:
-      - condition: "{{in.input.product_sku == null || in.input.product_sku == ''}}"
-        to: validation_error_sku
-      - condition: "{{in.input.quantity == null || in.input.quantity == '0'}}"
-        to: validation_error_quantity
-      - condition: "{{in.input.supplier_id == null || in.input.supplier_id == ''}}"
-        to: validation_error_supplier
-      - to: create_reorder
 
   # Validation error messages
   validation_error_sku:
