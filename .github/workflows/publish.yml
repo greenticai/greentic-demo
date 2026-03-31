@@ -41,7 +41,7 @@ jobs:
           if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
             publish_version="${GITHUB_REF_NAME}"
           elif [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
-            publish_version="v${WORKSPACE_VERSION}"
+            publish_version="${WORKSPACE_VERSION}"
           else
             publish_version=""
           fi
@@ -53,26 +53,60 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect component changes
+        id: component-changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            components:
+              - 'crates/**/component-*/**'
+              - 'crates/**/greentic-*/**'
+              - 'Cargo.toml'
+              - 'Cargo.lock'
+              - '.cargo/**'
+              - '.github/workflows/publish.yml'
+
+      - name: Initialize component refs artifact
+        run: |
+          mkdir -p .artifacts
+          : > .artifacts/component-refs.txt
 
       - name: Install Rust
+        if: steps.component-changes.outputs.components == 'true'
         uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: 1.94.0
           targets: wasm32-wasip2
 
       - name: Install cargo-binstall
+        if: steps.component-changes.outputs.components == 'true'
         uses: cargo-bins/cargo-binstall@main
 
       - name: Install cargo-component and wkg
+        if: steps.component-changes.outputs.components == 'true'
         run: cargo binstall -y cargo-component wkg
 
+      - name: Cache Rust build artifacts
+        if: steps.component-changes.outputs.components == 'true'
+        uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: publish-components-v1
+          cache-targets: true
+          cache-on-failure: true
+
       - name: Install ORAS
+        if: steps.component-changes.outputs.components == 'true'
         uses: oras-project/setup-oras@v1
 
       - name: Login to GHCR
+        if: steps.component-changes.outputs.components == 'true'
         run: echo "${{ secrets.GITHUB_TOKEN }}" | oras login ghcr.io -u "${{ github.actor }}" --password-stdin
 
       - name: Build and publish components
+        if: steps.component-changes.outputs.components == 'true'
         env:
           OWNER: ${{ github.repository_owner }}
           REF_NAME: ${{ github.ref_name }}
@@ -100,6 +134,10 @@ jobs:
               echo "${component_name}_latest=oci://${latest_ref}" >> .artifacts/component-refs.txt
             fi
           done < <(find crates -mindepth 2 -maxdepth 2 -type d \( -name 'component-*' -o -name 'greentic-*' \) | sort)
+
+      - name: Skip component publish when unchanged
+        if: steps.component-changes.outputs.components != 'true'
+        run: echo "No public component source changes detected. Skipping component build/publish."
 
       - name: Upload component refs
         uses: actions/upload-artifact@v4
