@@ -1,29 +1,28 @@
-# Security Fix Report
+# SECURITY_FIX_REPORT
 
 Date: 2026-03-31 (UTC)
-Reviewer: CI Security Reviewer
+Role: CI Security Reviewer
 
-## Inputs Reviewed
-- Dependabot alerts: `[]`
-- Code scanning alerts: `[]`
-- New PR dependency vulnerabilities: `[]`
+## Input Summary
+- Dependabot alerts: none (`[]`)
+- Code scanning alerts: none (`[]`)
+- New PR dependency vulnerabilities: none (`[]`)
 
-## Repository Checks Performed
+## Checks Performed
 1. Enumerated dependency manifests and lockfiles in the repository.
-2. Compared PR changes against `origin/main` using `git diff --name-only origin/main...HEAD`.
-3. Filtered changed files for dependency manifests/lockfiles.
-4. Attempted local Rust advisory scan (`cargo audit`) where available.
+2. Compared PR diff against `origin/main` with:
+   - `git diff --name-only origin/main...HEAD`
+3. Reviewed changed files for dependency manifest/lockfile changes.
 
 ## Findings
-- No active Dependabot alerts were provided.
-- No active code scanning alerts were provided.
-- No new PR dependency vulnerabilities were provided.
-- PR-changed files do not include dependency manifests or lockfiles.
-- `cargo-audit` is not installed in this CI environment, so no local advisory DB scan was executed.
+- No Dependabot alerts were provided.
+- No code scanning alerts were provided.
+- No PR dependency vulnerabilities were provided.
+- No dependency manifest or lockfile changes were introduced by this PR.
 
-## Remediation Actions
-- No security remediation was required.
+## Remediation
+- No remediation changes were required.
 - No dependency upgrades or lockfile edits were applied.
 
-## Result
-- Security status: **No actionable vulnerabilities detected from provided inputs.**
+## Notes
+- Attempting local advisory tooling (`cargo audit --version`) was not possible in this CI sandbox due rustup temp-file write restrictions in `/home/runner/.rustup`.
