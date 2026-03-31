@@ -1,1 +1,15 @@
-.github/workflows/publish.yml
+crates/quickstart-demo/README.md
+crates/quickstart-demo/assets/cards/about_card.json
+crates/quickstart-demo/assets/cards/welcome_card.json
+crates/quickstart-demo/assets/i18n/en.json
+crates/quickstart-demo/bundle/bundle.yaml
+crates/quickstart-demo/bundle/greentic.demo.yaml
+crates/quickstart-demo/bundle/packs/quickstart.pack/flows/on_message.ygtc
+crates/quickstart-demo/bundle/packs/quickstart.pack/flows/on_message.ygtc.resolve.json
+crates/quickstart-demo/bundle/packs/quickstart.pack/flows/on_message.ygtc.resolve.summary.json
+crates/quickstart-demo/bundle/packs/quickstart.pack/pack.lock.cbor
+crates/quickstart-demo/bundle/packs/quickstart.pack/pack.yaml
+crates/quickstart-demo/gtc_flow_wizard_answers.json
+crates/quickstart-demo/gtc_pack_create_wizard_answers.json
+crates/quickstart-demo/gtc_pack_wizard_answers.json
+scripts/package_demos.sh
