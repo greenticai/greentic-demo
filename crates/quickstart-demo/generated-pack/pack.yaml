@@ -1,0 +1,14 @@
+pack_id: quickstart-demo
+version: 0.1.0
+kind: application
+publisher: Greentic
+components: []
+dependencies: []
+flows:
+- id: on_message
+  file: flows/main.ygtc
+  tags:
+  - default
+  entrypoints:
+  - default
+assets: []

@@ -1,32 +1,51 @@
 {
   "type": "AdaptiveCard",
   "version": "1.6",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "body": [
     {
       "type": "TextBlock",
-      "text": "About Greentic",
+      "text": "🏠 About Greentic",
       "size": "Large",
       "weight": "Bolder"
     },
     {
       "type": "TextBlock",
-      "text": "Greentic is a WASM-component-based, multi-tenant platform for building and running AI-driven digital workers. It uses WebAssembly (WASI Preview 2) for sandboxed, portable execution.",
+      "text": "Greentic is a **WASM-component-based, multi-tenant platform** for building and running AI-driven digital workers.",
       "wrap": true,
       "spacing": "Medium"
     },
     {
+      "type": "TextBlock",
+      "text": "It uses WebAssembly (WASI Preview 2) for sandboxed, portable execution — meaning your automation components run safely in any environment without dependencies.",
+      "wrap": true,
+      "spacing": "Small",
+      "isSubtle": true
+    },
+    {
       "type": "FactSet",
+      "spacing": "Large",
       "facts": [
-        { "title": "Runtime", "value": "Wasmtime (WASI P2)" },
-        { "title": "Messaging", "value": "NATS" },
+        { "title": "Runtime", "value": "Wasmtime 43 (WASI P2)" },
+        { "title": "Messaging", "value": "Slack, Teams, Telegram, WebChat, WhatsApp, Webex, Email" },
+        { "title": "Events", "value": "Webhook, Timer, Email, SMS" },
+        { "title": "Components", "value": "Adaptive Cards, Templates, LLM, Scripting" },
+        { "title": "Security", "value": "Ed25519 signed packs, encrypted secrets" },
         { "title": "Version", "value": "{{ version }}" }
       ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "📚 Learn more at [docs.greentic.ai](https://docs.greentic.ai)",
+      "wrap": true,
+      "spacing": "Medium",
+      "size": "Small"
     }
   ],
   "actions": [
     {
       "type": "Action.Execute",
-      "title": "Back to menu",
+      "title": "← Back to menu",
       "verb": "back"
     }
   ]
