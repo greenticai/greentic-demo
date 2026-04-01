@@ -1,6 +1,6 @@
 # Security Fix Report
 
-Date: 2026-03-31 (UTC)
+Date: 2026-04-01 (UTC)
 Role: Security Reviewer (CI)
 
 ## Inputs Reviewed
@@ -10,15 +10,17 @@ Role: Security Reviewer (CI)
 
 ## Repository Checks Performed
 1. Enumerated dependency manifests/lockfiles in the repository.
-2. Checked working tree and PR diff for changed files.
+2. Reviewed CI-provided PR changed-file and vulnerability artifacts.
 3. Verified whether any dependency files were modified in this PR context.
 
 ## Findings
 - No Dependabot or code scanning alerts were provided.
 - No new PR dependency vulnerabilities were provided.
-- Current changed files are:
+- PR changed files provided by CI are:
   - `pr-changed-files.txt`
   - `pr-comment.md`
+  - `SECURITY_FIX_REPORT.md`
+  - `demos/greentic.hr-onboarding.demo.gtpack`
 - No dependency manifest or lockfile changes were detected in the PR diff.
 
 ## Remediation Actions
