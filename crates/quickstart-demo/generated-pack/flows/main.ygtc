@@ -1,4 +1,4 @@
-# Quickstart Demo Flow — Adaptive Card menu navigation
+# Quickstart Demo Flow — Adaptive Card menu
 id: on_message
 type: messaging
 start: welcome_card

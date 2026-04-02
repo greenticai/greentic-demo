@@ -20,7 +20,16 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing: out
+    routing:
+      - condition: response.action == "about"
+        to: about_card
+      - condition: response.action == "getting_started"
+        to: getting_started_card
+      - condition: response.action == "capabilities"
+        to: capabilities_card
+      - condition: response.action == "architecture"
+        to: architecture_card
+      - to: welcome_card
 
   about_card:
     card:
@@ -35,7 +44,8 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing: out
+    routing:
+      - to: welcome_card
 
   getting_started_card:
     card:
@@ -48,7 +58,8 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing: out
+    routing:
+      - to: welcome_card
 
   capabilities_card:
     card:
@@ -61,7 +72,8 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing: out
+    routing:
+      - to: welcome_card
 
   architecture_card:
     card:
@@ -74,4 +86,5 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing: out
+    routing:
+      - to: welcome_card
