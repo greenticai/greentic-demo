@@ -1,43 +1,28 @@
 # SECURITY_FIX_REPORT
 
-<<<<<<< HEAD
-Date: 2026-04-02 (UTC)
-Reviewer: Codex Security Reviewer
+Date: 2026-03-31 (UTC)
+Role: CI Security Reviewer
 
 ## Input Summary
-- Dependabot alerts: 0
-- Code scanning alerts: 0
+- Dependabot alerts: none (`[]`)
+- Code scanning alerts: none (`[]`)
+- New PR dependency vulnerabilities: none (`[]`)
 
-## Analysis
-- Parsed provided security alerts JSON.
-- Verified both `dependabot` and `code_scanning` arrays are empty.
-- No actionable vulnerabilities were present for remediation.
-
-## Remediation Actions
-- No code changes required.
-- No dependency updates required.
-
-## Final Status
-- No security fixes were necessary for this CI run.
-=======
-## Input Summary
-- Dependabot alerts: `0`
-- Code scanning alerts: `0`
-- New PR dependency vulnerabilities: `0`
-
-## Review Actions Performed
-1. Parsed the provided security alert inputs.
-2. Enumerated repository dependency files (Rust manifests and lockfiles).
-3. Checked the current diff to determine whether this PR introduces dependency-file changes.
+## Checks Performed
+1. Enumerated dependency manifests and lockfiles in the repository.
+2. Compared PR diff against `origin/main` with:
+   - `git diff --name-only origin/main...HEAD`
+3. Reviewed changed files for dependency manifest/lockfile changes.
 
 ## Findings
-- No active Dependabot or code-scanning alerts were provided.
-- No new PR dependency vulnerabilities were provided.
-- Current modified files do **not** include dependency manifests or lockfiles.
+- No Dependabot alerts were provided.
+- No code scanning alerts were provided.
+- No PR dependency vulnerabilities were provided.
+- No dependency manifest or lockfile changes were introduced by this PR.
 
-## Remediation Applied
-- No remediation changes were necessary because no vulnerabilities were identified and no dependency updates were introduced by this PR.
+## Remediation
+- No remediation changes were required.
+- No dependency upgrades or lockfile edits were applied.
 
-## Security Status
-- **Result:** No actionable vulnerabilities found in the supplied alert data or PR dependency scope.
->>>>>>> origin/fix/oci-pack-refs-standard
+## Notes
+- Attempting local advisory tooling (`cargo audit --version`) was not possible in this CI sandbox due rustup temp-file write restrictions in `/home/runner/.rustup`.
