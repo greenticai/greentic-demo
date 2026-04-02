@@ -1,0 +1,36 @@
+{
+  "schema_id": "greentic-flow.wizard.plan",
+  "schema_version": "2.0.0",
+  "actions": [
+    {
+      "action": "add-flow",
+      "flow": "flows/deal_tracker_flow.ygtc",
+      "flow_id": "deal_tracker_flow",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/lead_qualification_flow.ygtc",
+      "flow_id": "lead_qualification_flow",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/on_event.ygtc",
+      "flow_id": "on_event",
+      "flow_type": "event"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/on_message.ygtc",
+      "flow_id": "on_message",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/salesforce_oauth_flow.ygtc",
+      "flow_id": "salesforce_oauth_flow",
+      "flow_type": "messaging"
+    }
+  ]
+}

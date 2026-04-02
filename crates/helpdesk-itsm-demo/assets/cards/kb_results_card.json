@@ -1,0 +1,116 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Knowledge Base Results"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Search: \"{{query}}\" - {{total_results}} results found",
+      "isSubtle": true,
+      "wrap": true
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "$data": "{{articles}}",
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "weight": "Bolder",
+                      "text": "{{title}}",
+                      "wrap": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "{{snippet}}",
+                      "isSubtle": true,
+                      "wrap": true,
+                      "maxLines": 3
+                    },
+                    {
+                      "type": "ColumnSet",
+                      "columns": [
+                        {
+                          "type": "Column",
+                          "width": "auto",
+                          "items": [
+                            {
+                              "type": "TextBlock",
+                              "text": "{{category}}",
+                              "isSubtle": true,
+                              "size": "Small"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Column",
+                          "width": "auto",
+                          "items": [
+                            {
+                              "type": "TextBlock",
+                              "text": "Relevance: {{relevance_score}}%",
+                              "isSubtle": true,
+                              "size": "Small"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "selectAction": {
+                "type": "Action.Submit",
+                "data": {
+                  "action_id": "view_article",
+                  "article_id": "{{article_id}}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Search Again",
+      "data": {
+        "action_id": "search_again"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Create Ticket",
+      "style": "positive",
+      "data": {
+        "action_id": "create_ticket"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Back",
+      "data": {
+        "action_id": "back"
+      }
+    }
+  ]
+}

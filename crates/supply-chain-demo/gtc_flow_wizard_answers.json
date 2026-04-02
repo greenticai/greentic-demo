@@ -1,0 +1,30 @@
+{
+  "schema_id": "greentic-flow.wizard.plan",
+  "schema_version": "2.0.0",
+  "actions": [
+    {
+      "action": "add-flow",
+      "flow": "flows/on_message.ygtc",
+      "flow_id": "on_message",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/order_tracking_flow.ygtc",
+      "flow_id": "order_tracking_flow",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/reorder_flow.ygtc",
+      "flow_id": "reorder_flow",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/stock_check_flow.ygtc",
+      "flow_id": "stock_check_flow",
+      "flow_type": "messaging"
+    }
+  ]
+}

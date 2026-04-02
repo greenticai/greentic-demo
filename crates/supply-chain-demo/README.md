@@ -51,30 +51,11 @@ gtc start ./supply-chain-demo-bundle
 
 ## Migration Status
 
-This demo is mid-migration to the wizard-generated pack model used by `quickstart-demo`, `cards-demo`, and `hr-onboarding-demo`.
+This demo now uses the answers-driven packaging path:
 
-Current source of truth retained in the repo:
-
-- crate assets under [`assets/`](./assets)
-- pack build answers in [`gtc_pack_wizard_answers.json`](./gtc_pack_wizard_answers.json)
-- existing checked-in source pack under [`bundle/packs/supply-chain.pack`](./bundle/packs/supply-chain.pack)
-
-Captured wizard replay work-in-progress is stored in:
-
-- [`gtc_main_flow_wizard_answers.draft.json`](./gtc_main_flow_wizard_answers.draft.json) for the scaffold default flow that is replacing the old `on_message` path
-- [`gtc_pack_create_wizard_answers.draft.json`](./gtc_pack_create_wizard_answers.draft.json) for the first captured `stock_check_flow` replay
-- [`gtc_order_tracking_flow_wizard_answers.draft.json`](./gtc_order_tracking_flow_wizard_answers.draft.json) for `order_tracking_flow`
-- [`gtc_reorder_flow_wizard_answers.draft.json`](./gtc_reorder_flow_wizard_answers.draft.json) for `reorder_flow`
-
-Those draft files are intentionally not activated in packaging yet because the live consolidated create replay has not been assembled and validated end-to-end.
-
-Current limitation:
-
-- the checked-in source pack still fails `greentic-pack doctor` / `greentic-pack wizard apply` because the existing flow resolve summaries are incomplete
-- so this demo is not yet on the fully generated-pack path used by `quickstart-demo`, `cards-demo`, and `hr-onboarding-demo`
-- the intended generated shape is now:
-  - scaffold `main.ygtc` as the primary entry flow
-  - `stock_check_flow`, `order_tracking_flow`, and `reorder_flow` as secondary flows
+- Pack manifest is generated from wizard answers during packaging.
+- Flows are generated from `gtc_flow_wizard_answers.json` during packaging.
+- Assets are checked in under `assets/`.
 
 ## Configuration
 
@@ -98,25 +79,9 @@ Current limitation:
 
 ## Pack Structure
 
-```
-supply-chain/
-├── pack.yaml              # Pack manifest
-├── bindings.yaml          # Tenant bindings
-├── greentic.demo.yaml     # Demo runtime configuration
-├── wizard-answers.yaml    # Wizard answers template
-├── flows/
-│   ├── on_message.ygtc         # Main message handler & dashboard
-│   ├── stock_check_flow.ygtc   # Stock search and detail view
-│   ├── order_tracking_flow.ygtc # Order tracking and status
-│   └── reorder_flow.ygtc       # Reorder creation and approval
-└── assets/
-    ├── welcome_card.json        # Dashboard with key metrics
-    ├── stock_status_card.json   # Stock table with search
-    ├── order_tracking_card.json # Order timeline and list
-    ├── reorder_card.json        # Reorder request form
-    ├── supplier_card.json       # Supplier directory
-    └── alert_card.json          # Low stock alerts
-```
+- Pack manifest is generated from wizard answers during packaging.
+- Flows are generated from `gtc_flow_wizard_answers.json` during packaging.
+- Assets are checked in under `assets/`.
 
 ## Components
 

@@ -1,0 +1,12 @@
+{
+  "schema_id": "greentic-flow.wizard.plan",
+  "schema_version": "2.0.0",
+  "actions": [
+    {
+      "action": "add-flow",
+      "flow": "flows/global-redbutton.ygtc",
+      "flow_id": "global_redbutton",
+      "flow_type": "messaging"
+    }
+  ]
+}

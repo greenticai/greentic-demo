@@ -76,26 +76,9 @@ The following Salesforce OAuth scopes are requested:
 
 ## Pack Structure
 
-```
-sales-crm/
-├── pack.yaml                        # Pack manifest
-├── bindings.yaml                    # Tenant bindings
-├── greentic.demo.yaml               # Demo configuration
-├── wizard-answers.yaml              # Wizard answers template
-├── flows/
-│   ├── on_message.ygtc              # Main message handler
-│   ├── on_event.ygtc                # Salesforce webhook event handler
-│   ├── salesforce_oauth_flow.ygtc   # OAuth flow
-│   ├── lead_qualification_flow.ygtc # Lead qualification flow
-│   └── deal_tracker_flow.ygtc       # Deal tracking and pipeline flow
-└── assets/
-    ├── welcome_card.json            # CRM dashboard menu card
-    ├── salesforce_connect_card.json # OAuth connection card
-    ├── lead_form_card.json          # Lead capture form card
-    ├── pipeline_card.json           # Sales pipeline stages card
-    ├── deal_detail_card.json        # Deal details card
-    └── meeting_card.json            # Meeting scheduler card
-```
+- Pack manifest is generated from wizard answers during packaging.
+- Flows are generated from `gtc_flow_wizard_answers.json` during packaging.
+- Assets are checked in under `assets/`.
 
 ## Components
 
