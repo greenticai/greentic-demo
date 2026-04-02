@@ -89,9 +89,9 @@
       "url": "https://docs.greentic.ai/components/fast2flow/"
     },
     {
-      "type": "Action.Execute",
+      "type": "Action.Submit",
       "title": "← Back to menu",
-      "verb": "back"
+      "data": { "action": "welcome_card" }
     }
   ]
 }

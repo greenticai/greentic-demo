@@ -1,106 +1,106 @@
 {
+  "type": "AdaptiveCard",
+  "version": "1.6",
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "body": [
     {
+      "type": "Container",
+      "style": "emphasis",
       "bleed": true,
       "items": [
         {
+          "type": "ColumnSet",
           "columns": [
             {
+              "type": "Column",
+              "width": "auto",
               "items": [
                 {
-                  "size": "ExtraLarge",
-                  "text": "{{i18n:cards.welcome_card.body.i0.items.i0.columns.i0.items.i0.text}}",
-                  "type": "TextBlock"
+                  "type": "TextBlock",
+                  "text": "👋",
+                  "size": "ExtraLarge"
                 }
               ],
-              "type": "Column",
-              "verticalContentAlignment": "Center",
-              "width": "auto"
+              "verticalContentAlignment": "Center"
             },
             {
+              "type": "Column",
+              "width": "stretch",
               "items": [
                 {
-                  "size": "Large",
-                  "text": "{{ greeting }}",
                   "type": "TextBlock",
+                  "text": "{{ greeting }}",
+                  "size": "Large",
                   "weight": "Bolder",
                   "wrap": true
                 },
                 {
-                  "isSubtle": true,
-                  "size": "Small",
-                  "spacing": "Small",
-                  "text": "{{i18n:cards.welcome_card.body.i0.items.i0.columns.i1.items.i1.text}}",
                   "type": "TextBlock",
-                  "wrap": true
+                  "text": "I'm your AI assistant powered by Greentic. I can help you learn about the platform, guide you through setup, or answer your questions.",
+                  "wrap": true,
+                  "size": "Small",
+                  "isSubtle": true,
+                  "spacing": "Small"
                 }
-              ],
-              "type": "Column",
-              "width": "stretch"
+              ]
             }
-          ],
-          "type": "ColumnSet"
+          ]
         }
-      ],
-      "style": "emphasis",
-      "type": "Container"
+      ]
     },
     {
-      "spacing": "Large",
-      "text": "{{i18n:cards.welcome_card.body.i1.text}}",
       "type": "TextBlock",
-      "weight": "Bolder"
+      "text": "What would you like to explore?",
+      "weight": "Bolder",
+      "spacing": "Large"
     },
     {
+      "type": "ColumnSet",
+      "spacing": "Medium",
       "columns": [
         {
+          "type": "Column",
+          "width": "stretch",
           "items": [
             {
+              "type": "ActionSet",
               "actions": [
                 {
-                  "title": "{{i18n:cards.welcome_card.body.i2.columns.i0.items.i0.actions.i0.title}}",
-                  "type": "Action.Execute",
-                  "verb": "about"
+                  "type": "Action.Submit",
+                  "title": "🏠 About Greentic",
+                  "data": { "action": "about_card" }
                 },
                 {
-                  "title": "{{i18n:cards.welcome_card.body.i2.columns.i0.items.i0.actions.i1.title}}",
-                  "type": "Action.Execute",
-                  "verb": "getting_started"
+                  "type": "Action.Submit",
+                  "title": "🚀 Getting Started",
+                  "data": { "action": "getting_started_card" }
                 }
-              ],
-              "type": "ActionSet"
+              ]
             }
-          ],
-          "type": "Column",
-          "width": "stretch"
+          ]
         },
         {
+          "type": "Column",
+          "width": "stretch",
           "items": [
             {
+              "type": "ActionSet",
               "actions": [
                 {
-                  "title": "{{i18n:cards.welcome_card.body.i2.columns.i1.items.i0.actions.i0.title}}",
-                  "type": "Action.Execute",
-                  "verb": "capabilities"
+                  "type": "Action.Submit",
+                  "title": "💡 What Can I Do?",
+                  "data": { "action": "capabilities_card" }
                 },
                 {
-                  "title": "{{i18n:cards.welcome_card.body.i2.columns.i1.items.i0.actions.i1.title}}",
-                  "type": "Action.Execute",
-                  "verb": "architecture"
+                  "type": "Action.Submit",
+                  "title": "🔧 How It Works",
+                  "data": { "action": "architecture_card" }
                 }
-              ],
-              "type": "ActionSet"
+              ]
             }
-          ],
-          "type": "Column",
-          "width": "stretch"
+          ]
         }
-      ],
-      "spacing": "Medium",
-      "type": "ColumnSet"
+      ]
     }
-  ],
-  "type": "AdaptiveCard",
-  "version": "1.6"
+  ]
 }

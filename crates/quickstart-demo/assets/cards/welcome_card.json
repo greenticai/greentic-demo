@@ -66,14 +66,14 @@
               "type": "ActionSet",
               "actions": [
                 {
-                  "type": "Action.Execute",
+                  "type": "Action.Submit",
                   "title": "🏠 About Greentic",
-                  "verb": "about"
+                  "data": { "action": "about_card" }
                 },
                 {
-                  "type": "Action.Execute",
+                  "type": "Action.Submit",
                   "title": "🚀 Getting Started",
-                  "verb": "getting_started"
+                  "data": { "action": "getting_started_card" }
                 }
               ]
             }
@@ -87,14 +87,14 @@
               "type": "ActionSet",
               "actions": [
                 {
-                  "type": "Action.Execute",
+                  "type": "Action.Submit",
                   "title": "💡 What Can I Do?",
-                  "verb": "capabilities"
+                  "data": { "action": "capabilities_card" }
                 },
                 {
-                  "type": "Action.Execute",
+                  "type": "Action.Submit",
                   "title": "🔧 How It Works",
-                  "verb": "architecture"
+                  "data": { "action": "architecture_card" }
                 }
               ]
             }

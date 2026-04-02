@@ -1,176 +1,112 @@
 {
+  "type": "AdaptiveCard",
+  "version": "1.6",
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "actions": [
-    {
-      "title": "{{i18n:cards.getting_started_card.actions.i0.title}}",
-      "type": "Action.OpenUrl",
-      "url": "https://docs.greentic.ai/getting-started/quick-start/"
-    },
-    {
-      "title": "{{i18n:cards.getting_started_card.actions.i1.title}}",
-      "type": "Action.Execute",
-      "verb": "back"
-    }
-  ],
   "body": [
     {
-      "size": "Large",
-      "text": "{{i18n:cards.getting_started_card.body.i0.text}}",
       "type": "TextBlock",
+      "text": "🚀 Getting Started",
+      "size": "Large",
       "weight": "Bolder"
     },
     {
-      "spacing": "Medium",
-      "text": "{{i18n:cards.getting_started_card.body.i1.text}}",
       "type": "TextBlock",
-      "wrap": true
+      "text": "Get up and running with Greentic in 4 simple steps:",
+      "wrap": true,
+      "spacing": "Medium"
     },
     {
+      "type": "Container",
+      "spacing": "Medium",
       "items": [
         {
+          "type": "ColumnSet",
           "columns": [
             {
-              "items": [
-                {
-                  "color": "Accent",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i0.columns.i0.items.i0.text}}",
-                  "type": "TextBlock"
-                }
-              ],
               "type": "Column",
-              "width": "auto"
+              "width": "auto",
+              "items": [{ "type": "TextBlock", "text": "**1**", "color": "Accent" }]
             },
             {
-              "items": [
-                {
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i0.columns.i1.items.i0.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                },
-                {
-                  "isSubtle": true,
-                  "size": "Small",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i0.columns.i1.items.i1.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                }
-              ],
               "type": "Column",
-              "width": "stretch"
+              "width": "stretch",
+              "items": [
+                { "type": "TextBlock", "text": "**Install the CLI**", "wrap": true },
+                { "type": "TextBlock", "text": "`cargo binstall greentic`", "wrap": true, "isSubtle": true, "size": "Small" }
+              ]
             }
-          ],
-          "type": "ColumnSet"
+          ]
         },
         {
+          "type": "ColumnSet",
+          "spacing": "Small",
           "columns": [
             {
-              "items": [
-                {
-                  "color": "Accent",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i1.columns.i0.items.i0.text}}",
-                  "type": "TextBlock"
-                }
-              ],
               "type": "Column",
-              "width": "auto"
+              "width": "auto",
+              "items": [{ "type": "TextBlock", "text": "**2**", "color": "Accent" }]
             },
             {
-              "items": [
-                {
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i1.columns.i1.items.i0.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                },
-                {
-                  "isSubtle": true,
-                  "size": "Small",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i1.columns.i1.items.i1.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                }
-              ],
               "type": "Column",
-              "width": "stretch"
+              "width": "stretch",
+              "items": [
+                { "type": "TextBlock", "text": "**Create a bundle**", "wrap": true },
+                { "type": "TextBlock", "text": "`gtc wizard` — interactive setup for your first digital worker", "wrap": true, "isSubtle": true, "size": "Small" }
+              ]
             }
-          ],
-          "spacing": "Small",
-          "type": "ColumnSet"
+          ]
         },
         {
+          "type": "ColumnSet",
+          "spacing": "Small",
           "columns": [
             {
-              "items": [
-                {
-                  "color": "Accent",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i2.columns.i0.items.i0.text}}",
-                  "type": "TextBlock"
-                }
-              ],
               "type": "Column",
-              "width": "auto"
+              "width": "auto",
+              "items": [{ "type": "TextBlock", "text": "**3**", "color": "Accent" }]
             },
             {
-              "items": [
-                {
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i2.columns.i1.items.i0.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                },
-                {
-                  "isSubtle": true,
-                  "size": "Small",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i2.columns.i1.items.i1.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                }
-              ],
               "type": "Column",
-              "width": "stretch"
+              "width": "stretch",
+              "items": [
+                { "type": "TextBlock", "text": "**Configure providers**", "wrap": true },
+                { "type": "TextBlock", "text": "`gtc setup ./my-bundle` — connect Slack, Teams, or WebChat", "wrap": true, "isSubtle": true, "size": "Small" }
+              ]
             }
-          ],
-          "spacing": "Small",
-          "type": "ColumnSet"
+          ]
         },
         {
+          "type": "ColumnSet",
+          "spacing": "Small",
           "columns": [
             {
-              "items": [
-                {
-                  "color": "Accent",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i3.columns.i0.items.i0.text}}",
-                  "type": "TextBlock"
-                }
-              ],
               "type": "Column",
-              "width": "auto"
+              "width": "auto",
+              "items": [{ "type": "TextBlock", "text": "**4**", "color": "Accent" }]
             },
             {
-              "items": [
-                {
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i3.columns.i1.items.i0.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                },
-                {
-                  "isSubtle": true,
-                  "size": "Small",
-                  "text": "{{i18n:cards.getting_started_card.body.i2.items.i3.columns.i1.items.i1.text}}",
-                  "type": "TextBlock",
-                  "wrap": true
-                }
-              ],
               "type": "Column",
-              "width": "stretch"
+              "width": "stretch",
+              "items": [
+                { "type": "TextBlock", "text": "**Start & chat!**", "wrap": true },
+                { "type": "TextBlock", "text": "`gtc start ./my-bundle` — your digital worker is live", "wrap": true, "isSubtle": true, "size": "Small" }
+              ]
             }
-          ],
-          "spacing": "Small",
-          "type": "ColumnSet"
+          ]
         }
-      ],
-      "spacing": "Medium",
-      "type": "Container"
+      ]
     }
   ],
-  "type": "AdaptiveCard",
-  "version": "1.6"
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "📖 Full Guide",
+      "url": "https://docs.greentic.ai/getting-started/quick-start/"
+    },
+    {
+      "type": "Action.Submit",
+      "title": "← Back to menu",
+      "data": { "action": "welcome_card" }
+    }
+  ]
 }

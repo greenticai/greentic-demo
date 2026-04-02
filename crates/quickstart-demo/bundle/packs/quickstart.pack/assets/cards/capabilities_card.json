@@ -1,97 +1,97 @@
 {
+  "type": "AdaptiveCard",
+  "version": "1.6",
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "actions": [
-    {
-      "title": "{{i18n:cards.capabilities_card.actions.i0.title}}",
-      "type": "Action.OpenUrl",
-      "url": "https://docs.greentic.ai/components/fast2flow/"
-    },
-    {
-      "title": "{{i18n:cards.capabilities_card.actions.i1.title}}",
-      "type": "Action.Execute",
-      "verb": "back"
-    }
-  ],
   "body": [
     {
-      "size": "Large",
-      "text": "{{i18n:cards.capabilities_card.body.i0.text}}",
       "type": "TextBlock",
+      "text": "💡 What Can I Do?",
+      "size": "Large",
       "weight": "Bolder"
     },
     {
-      "spacing": "Medium",
-      "text": "{{i18n:cards.capabilities_card.body.i1.text}}",
       "type": "TextBlock",
-      "wrap": true
+      "text": "Greentic digital workers can automate conversations and tasks across multiple channels:",
+      "wrap": true,
+      "spacing": "Medium"
     },
     {
+      "type": "Container",
+      "spacing": "Medium",
       "items": [
         {
-          "spacing": "Small",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i0.text}}",
-          "type": "TextBlock"
-        },
-        {
-          "isSubtle": true,
-          "size": "Small",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i1.text}}",
           "type": "TextBlock",
-          "wrap": true
+          "text": "**💬 Multi-Channel Messaging**",
+          "spacing": "Small"
         },
         {
-          "spacing": "Medium",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i2.text}}",
-          "type": "TextBlock"
-        },
-        {
-          "isSubtle": true,
-          "size": "Small",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i3.text}}",
           "type": "TextBlock",
-          "wrap": true
-        },
-        {
-          "spacing": "Medium",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i4.text}}",
-          "type": "TextBlock"
-        },
-        {
+          "text": "Slack, Microsoft Teams, Telegram, WhatsApp, Webex, WebChat, Email — one flow, all channels.",
+          "wrap": true,
           "isSubtle": true,
-          "size": "Small",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i5.text}}",
+          "size": "Small"
+        },
+        {
           "type": "TextBlock",
-          "wrap": true
+          "text": "**🎴 Rich Adaptive Cards**",
+          "spacing": "Medium"
         },
         {
-          "spacing": "Medium",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i6.text}}",
-          "type": "TextBlock"
-        },
-        {
+          "type": "TextBlock",
+          "text": "Interactive forms, buttons, images, and data displays that work across platforms.",
+          "wrap": true,
           "isSubtle": true,
-          "size": "Small",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i7.text}}",
+          "size": "Small"
+        },
+        {
           "type": "TextBlock",
-          "wrap": true
+          "text": "**⚡ Event-Driven Automation**",
+          "spacing": "Medium"
         },
         {
-          "spacing": "Medium",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i8.text}}",
-          "type": "TextBlock"
-        },
-        {
+          "type": "TextBlock",
+          "text": "Webhooks, timers, email triggers, SMS — react to events from any source.",
+          "wrap": true,
           "isSubtle": true,
-          "size": "Small",
-          "text": "{{i18n:cards.capabilities_card.body.i2.items.i9.text}}",
+          "size": "Small"
+        },
+        {
           "type": "TextBlock",
-          "wrap": true
+          "text": "**🔐 OAuth & MCP Integration**",
+          "spacing": "Medium"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Connect to GitHub, Google, Microsoft APIs securely. Use MCP tools for AI-powered actions.",
+          "wrap": true,
+          "isSubtle": true,
+          "size": "Small"
+        },
+        {
+          "type": "TextBlock",
+          "text": "**🌍 Multi-Language & Multi-Tenant**",
+          "spacing": "Medium"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Built-in i18n (50+ languages), per-tenant isolation, custom branding per team.",
+          "wrap": true,
+          "isSubtle": true,
+          "size": "Small"
         }
-      ],
-      "spacing": "Medium",
-      "type": "Container"
+      ]
     }
   ],
-  "type": "AdaptiveCard",
-  "version": "1.6"
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "📚 Browse Components",
+      "url": "https://docs.greentic.ai/components/fast2flow/"
+    },
+    {
+      "type": "Action.Submit",
+      "title": "← Back to menu",
+      "data": { "action": "welcome_card" }
+    }
+  ]
 }

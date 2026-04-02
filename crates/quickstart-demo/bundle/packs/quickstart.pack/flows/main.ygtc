@@ -1,4 +1,7 @@
-# Quickstart Demo Flow — Adaptive Card menu
+# Quickstart Demo Flow — Adaptive Card menu with text + button routing
+# All routing goes through the flow engine. collect_transcript_outputs picks
+# the LAST node output, so the user sees the final card even when welcome_card
+# renders as an intermediate step. No default route = flow ends if nothing matches.
 id: on_message
 type: messaging
 start: welcome_card
@@ -21,15 +24,35 @@ nodes:
       session: {}
       state: {}
     routing:
-      - condition: response.action == "about"
+      # Button click routing (response.action from Action.Submit data)
+      - condition: response.action == "about_card"
         to: about_card
-      - condition: response.action == "getting_started"
+      - condition: response.action == "getting_started_card"
         to: getting_started_card
-      - condition: response.action == "capabilities"
+      - condition: response.action == "capabilities_card"
         to: capabilities_card
-      - condition: response.action == "architecture"
+      - condition: response.action == "architecture_card"
         to: architecture_card
-      - to: welcome_card
+      # Back to menu: no match needed — flow ends at welcome_card
+      # Text input routing (case-insensitive)
+      - condition: response.text == "about"
+        to: about_card
+      - condition: response.text == "getting started"
+        to: getting_started_card
+      - condition: response.text == "get started"
+        to: getting_started_card
+      - condition: response.text == "capabilities"
+        to: capabilities_card
+      - condition: response.text == "what can you do?"
+        to: capabilities_card
+      - condition: response.text == "architecture"
+        to: architecture_card
+      - condition: response.text == "how it works"
+        to: architecture_card
+      - condition: response.text == "help"
+        to: capabilities_card
+      - condition: response.text == "show me a demo"
+        to: getting_started_card
 
   about_card:
     card:
@@ -44,8 +67,7 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing:
-      - to: welcome_card
+    routing: out
 
   getting_started_card:
     card:
@@ -58,8 +80,7 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing:
-      - to: welcome_card
+    routing: out
 
   capabilities_card:
     card:
@@ -72,8 +93,7 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing:
-      - to: welcome_card
+    routing: out
 
   architecture_card:
     card:
@@ -86,5 +106,4 @@ nodes:
       payload: {}
       session: {}
       state: {}
-    routing:
-      - to: welcome_card
+    routing: out

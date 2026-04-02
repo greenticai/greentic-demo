@@ -47,9 +47,9 @@
       "url": "https://docs.greentic.ai/concepts/architecture/"
     },
     {
-      "type": "Action.Execute",
+      "type": "Action.Submit",
       "title": "← Back to menu",
-      "verb": "back"
+      "data": { "action": "welcome_card" }
     }
   ]
 }

@@ -104,9 +104,9 @@
       "url": "https://docs.greentic.ai/getting-started/quick-start/"
     },
     {
-      "type": "Action.Execute",
+      "type": "Action.Submit",
       "title": "← Back to menu",
-      "verb": "back"
+      "data": { "action": "welcome_card" }
     }
   ]
 }
