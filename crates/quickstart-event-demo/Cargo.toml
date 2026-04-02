@@ -1,0 +1,9 @@
+[package]
+name = "quickstart-event-demo"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "Greentic quickstart event demo — webhook, timer, email (SendGrid), and SMS (Twilio) event providers."
+
+[lib]
+path = "src/lib.rs"

@@ -1,0 +1,23 @@
+schema_version: 1
+bundle_id: hr-onboarding-demo
+bundle_name: hr-onboarding-demo
+locale: en-GB
+mode: create
+advanced_setup: false
+app_packs:
+  - packs/hr-onboarding.pack
+app_pack_mappings:
+  - reference: packs/hr-onboarding.pack
+    scope: global
+extension_providers:
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest
+remote_catalogs: []
+hooks: []
+subscriptions: []
+capabilities:
+  - greentic.cap.bundle_assets.read.v1
+setup_execution_intent: false
+export_intent: false

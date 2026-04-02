@@ -7,7 +7,7 @@
         "routeToCardId": "employee_form_card"
       },
       "style": "positive",
-      "title": "{{i18n:cards.welcome_card.actions.i0.title}}",
+      "title": "{{i18n:card.welcome_card.actions_0.title}}",
       "type": "Action.Submit"
     },
     {
@@ -15,7 +15,7 @@
         "action_id": "check_progress",
         "routeToCardId": "onboarding_checklist_card"
       },
-      "title": "{{i18n:cards.welcome_card.actions.i1.title}}",
+      "title": "{{i18n:card.welcome_card.actions_1.title}}",
       "type": "Action.Submit"
     },
     {
@@ -23,7 +23,7 @@
         "action_id": "upload_documents",
         "routeToCardId": "document_upload_card"
       },
-      "title": "{{i18n:cards.welcome_card.actions.i2.title}}",
+      "title": "{{i18n:card.welcome_card.actions_2.title}}",
       "type": "Action.Submit"
     },
     {
@@ -31,7 +31,7 @@
         "action_id": "request_access",
         "routeToCardId": "access_request_card"
       },
-      "title": "{{i18n:cards.welcome_card.actions.i3.title}}",
+      "title": "{{i18n:card.welcome_card.actions_3.title}}",
       "type": "Action.Submit"
     },
     {
@@ -39,7 +39,7 @@
         "action_id": "reset_onboarding"
       },
       "style": "destructive",
-      "title": "{{i18n:cards.welcome_card.actions.i4.title}}",
+      "title": "{{i18n:card.welcome_card.actions_4.title}}",
       "type": "Action.Submit"
     }
   ],
@@ -63,13 +63,13 @@
               "items": [
                 {
                   "size": "Large",
-                  "text": "{{company_name}} - HR Onboarding",
+                  "text": "{{i18n:card.welcome_card.body_0_items_0_columns_1_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
-                  "text": "{{i18n:cards.welcome_card.body.i0.items.i0.columns.i1.items.i1.text}}",
+                  "text": "{{i18n:card.welcome_card.body_0_items_0_columns_1_items_1.text}}",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -84,10 +84,10 @@
       "type": "Container"
     },
     {
-      "isVisible": "{{has_onboarding}}",
+      "isVisible": "true",
       "items": [
         {
-          "text": "Current Onboarding: {{employee_name}}",
+          "text": "{{i18n:card.welcome_card.body_1_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
@@ -97,7 +97,7 @@
               "items": [
                 {
                   "isSubtle": true,
-                  "text": "Progress: {{progress_percent}}%",
+                  "text": "{{i18n:card.welcome_card.body_1_items_1_columns_0_items_0.text}}",
                   "type": "TextBlock"
                 }
               ],
@@ -113,7 +113,7 @@
     },
     {
       "spacing": "Medium",
-      "text": "{{i18n:cards.welcome_card.body.i2.text}}",
+      "text": "{{i18n:card.welcome_card.body_2.text}}",
       "type": "TextBlock",
       "wrap": true
     }

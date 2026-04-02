@@ -1,0 +1,46 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "GitHub Security Dashboard",
+      "weight": "Bolder",
+      "size": "Large",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Enter a GitHub owner to scan repositories for security vulnerabilities.",
+      "wrap": true,
+      "isSubtle": true
+    },
+    {
+      "type": "Input.Text",
+      "id": "owner_name",
+      "label": "GitHub Username or Organization",
+      "placeholder": "e.g. greenticai",
+      "isRequired": true,
+      "errorMessage": "Please enter a GitHub username or organization name."
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "owner_type",
+      "label": "Account Type",
+      "value": "org",
+      "choices": [
+        { "title": "Organization", "value": "org" },
+        { "title": "User", "value": "user" }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Scan Repositories",
+      "style": "positive",
+      "data": { "action_id": "scan_repos" }
+    }
+  ]
+}

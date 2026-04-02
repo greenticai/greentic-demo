@@ -1,0 +1,8 @@
+{
+  "demo.title": "Event Demo",
+  "demo.description": "This demo showcases all Greentic event providers working together.",
+  "webhook.title": "Webhook Event Received",
+  "timer.title": "Timer Event",
+  "email.title": "Email Event",
+  "sms.title": "SMS Event"
+}

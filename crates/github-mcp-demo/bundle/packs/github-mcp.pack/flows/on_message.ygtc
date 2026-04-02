@@ -1,0 +1,43 @@
+id: on_message
+title: GitHub Security Dashboard
+description: Scan GitHub repos for security vulnerabilities via MCP.
+type: messaging
+start: show_repo_input
+parameters:
+  oauth_provider: github
+tags:
+  - default
+  - messaging
+schema_version: 2
+entrypoints: {}
+nodes:
+  show_repo_input:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: cards/repo_input_card.json
+        mode: renderAndValidate
+    routing:
+      - to: call_mcp
+
+  call_mcp:
+    component.exec:
+      component: mcp.exec
+      operation: call
+      input:
+        tool: echo
+        arguments:
+          owner: greenticai
+          scan_type: security
+    routing:
+      - to: show_result_card
+
+  show_result_card:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: cards/security_results_card.json
+        mode: renderAndValidate
+    routing: out

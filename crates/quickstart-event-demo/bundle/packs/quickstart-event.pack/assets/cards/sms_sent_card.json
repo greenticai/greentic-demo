@@ -1,0 +1,28 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "SMS Event",
+      "color": "Attention"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Provider", "value": "Twilio" },
+        { "title": "Event Type", "value": "sms" },
+        { "title": "Status", "value": "Sent" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "An SMS event was processed via the Twilio provider.",
+      "wrap": true,
+      "isSubtle": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "GitHub Authorization Required",
+      "weight": "Bolder",
+      "size": "Medium",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Connect your GitHub account to access repository security data. This requires read access to your repositories and security alerts.",
+      "wrap": true,
+      "isSubtle": true
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Provider", "value": "GitHub" },
+        { "title": "Scopes", "value": "repo, security_events" }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Connect GitHub",
+      "style": "positive",
+      "data": { "action_id": "connect_github" }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Cancel",
+      "data": { "action_id": "cancel" }
+    }
+  ]
+}

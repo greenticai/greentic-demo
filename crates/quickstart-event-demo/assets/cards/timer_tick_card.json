@@ -1,0 +1,28 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Timer Event",
+      "color": "Accent"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Event Type", "value": "timer" },
+        { "title": "Source", "value": "Cron schedule" },
+        { "title": "Status", "value": "Triggered" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "A scheduled timer event was triggered by the cron scheduler.",
+      "wrap": true,
+      "isSubtle": true
+    }
+  ]
+}

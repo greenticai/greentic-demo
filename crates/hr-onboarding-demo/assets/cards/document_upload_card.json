@@ -6,14 +6,14 @@
         "action_id": "back",
         "routeToCardId": "welcome_card"
       },
-      "title": "{{i18n:cards.document_upload_card.actions.i0.title}}",
+      "title": "{{i18n:card.document_upload_card.actions_0.title}}",
       "type": "Action.Submit"
     }
   ],
   "body": [
     {
       "size": "Large",
-      "text": "{{i18n:cards.document_upload_card.body.i0.text}}",
+      "text": "{{i18n:card.document_upload_card.body_0.text}}",
       "type": "TextBlock",
       "weight": "Bolder"
     },
@@ -23,7 +23,7 @@
           "items": [
             {
               "isSubtle": true,
-              "text": "Employee: {{employee_name}}",
+              "text": "{{i18n:card.document_upload_card.body_1_columns_0_items_0.text}}",
               "type": "TextBlock"
             }
           ],
@@ -34,7 +34,7 @@
           "items": [
             {
               "color": "Good",
-              "text": "{{uploaded_count}}/{{total_count}} Submitted",
+              "text": "{{i18n:card.document_upload_card.body_1_columns_1_items_0.text}}",
               "type": "TextBlock",
               "weight": "Bolder"
             }
@@ -48,7 +48,7 @@
     {
       "isSubtle": true,
       "spacing": "Small",
-      "text": "{{i18n:cards.document_upload_card.body.i2.text}}",
+      "text": "{{i18n:card.document_upload_card.body_2.text}}",
       "type": "TextBlock",
       "wrap": true
     },
@@ -59,14 +59,14 @@
             {
               "items": [
                 {
-                  "text": "{{i18n:cards.document_upload_card.body.i3.items.i0.columns.i0.items.i0.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_3_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{i18n:cards.document_upload_card.body.i3.items.i0.columns.i0.items.i1.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_3_items_0_columns_0_items_1.text}}",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -82,7 +82,7 @@
                       "data": {
                         "action_id": "upload_government_id"
                       },
-                      "title": "{{i18n:cards.document_upload_card.body.i3.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "title": "{{i18n:card.document_upload_card.body_3_items_0_columns_1_items_0_actions_0.title}}",
                       "type": "Action.Submit"
                     }
                   ],
@@ -108,14 +108,14 @@
             {
               "items": [
                 {
-                  "text": "{{i18n:cards.document_upload_card.body.i4.items.i0.columns.i0.items.i0.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_4_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{i18n:cards.document_upload_card.body.i4.items.i0.columns.i0.items.i1.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_4_items_0_columns_0_items_1.text}}",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -131,7 +131,7 @@
                       "data": {
                         "action_id": "upload_tax_form"
                       },
-                      "title": "{{i18n:cards.document_upload_card.body.i4.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "title": "{{i18n:card.document_upload_card.body_4_items_0_columns_1_items_0_actions_0.title}}",
                       "type": "Action.Submit"
                     }
                   ],
@@ -157,14 +157,14 @@
             {
               "items": [
                 {
-                  "text": "{{i18n:cards.document_upload_card.body.i5.items.i0.columns.i0.items.i0.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_5_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{i18n:cards.document_upload_card.body.i5.items.i0.columns.i0.items.i1.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_5_items_0_columns_0_items_1.text}}",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -180,7 +180,7 @@
                       "data": {
                         "action_id": "upload_contract"
                       },
-                      "title": "{{i18n:cards.document_upload_card.body.i5.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "title": "{{i18n:card.document_upload_card.body_5_items_0_columns_1_items_0_actions_0.title}}",
                       "type": "Action.Submit"
                     }
                   ],
@@ -206,14 +206,14 @@
             {
               "items": [
                 {
-                  "text": "{{i18n:cards.document_upload_card.body.i6.items.i0.columns.i0.items.i0.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_6_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{i18n:cards.document_upload_card.body.i6.items.i0.columns.i0.items.i1.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_6_items_0_columns_0_items_1.text}}",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -229,7 +229,7 @@
                       "data": {
                         "action_id": "upload_emergency_contact"
                       },
-                      "title": "{{i18n:cards.document_upload_card.body.i6.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "title": "{{i18n:card.document_upload_card.body_6_items_0_columns_1_items_0_actions_0.title}}",
                       "type": "Action.Submit"
                     }
                   ],
@@ -255,14 +255,14 @@
             {
               "items": [
                 {
-                  "text": "{{i18n:cards.document_upload_card.body.i7.items.i0.columns.i0.items.i0.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_7_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{i18n:cards.document_upload_card.body.i7.items.i0.columns.i0.items.i1.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_7_items_0_columns_0_items_1.text}}",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -278,7 +278,7 @@
                       "data": {
                         "action_id": "upload_direct_deposit"
                       },
-                      "title": "{{i18n:cards.document_upload_card.body.i7.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "title": "{{i18n:card.document_upload_card.body_7_items_0_columns_1_items_0_actions_0.title}}",
                       "type": "Action.Submit"
                     }
                   ],
@@ -304,14 +304,14 @@
             {
               "items": [
                 {
-                  "text": "{{i18n:cards.document_upload_card.body.i8.items.i0.columns.i0.items.i0.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_8_items_0_columns_0_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{i18n:cards.document_upload_card.body.i8.items.i0.columns.i0.items.i1.text}}",
+                  "text": "{{i18n:card.document_upload_card.body_8_items_0_columns_0_items_1.text}}",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -327,7 +327,7 @@
                       "data": {
                         "action_id": "upload_nda"
                       },
-                      "title": "{{i18n:cards.document_upload_card.body.i8.items.i0.columns.i1.items.i0.actions.i0.title}}",
+                      "title": "{{i18n:card.document_upload_card.body_8_items_0_columns_1_items_0_actions_0.title}}",
                       "type": "Action.Submit"
                     }
                   ],
