@@ -10,10 +10,3 @@ Security alerts JSON:
   "dependabot": [],
   "code_scanning": []
 }
-<<<<<<< HEAD
-=======
-
-
-New PR Dependency Vulnerabilities:
-[]
->>>>>>> origin/fix/oci-pack-refs-standard
