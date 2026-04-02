@@ -1,19 +1,13 @@
 {
   "flow": "main.ygtc",
   "nodes": {
+    "welcome_card": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
     "about_card": {
-      "source": {
-        "kind": "oci",
-        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
-      }
-    },
-    "architecture_card": {
-      "source": {
-        "kind": "oci",
-        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
-      }
-    },
-    "capabilities_card": {
       "source": {
         "kind": "oci",
         "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
@@ -25,7 +19,13 @@
         "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
       }
     },
-    "welcome_card": {
+    "capabilities_card": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "architecture_card": {
       "source": {
         "kind": "oci",
         "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
