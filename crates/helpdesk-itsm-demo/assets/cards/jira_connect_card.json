@@ -1,0 +1,69 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "Image",
+          "url": "https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png",
+          "size": "Medium",
+          "horizontalAlignment": "Center"
+        },
+        {
+          "type": "TextBlock",
+          "size": "Large",
+          "weight": "Bolder",
+          "text": "Connect to Jira",
+          "horizontalAlignment": "Center"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "wrap": true,
+      "text": "This IT Helpdesk requires access to your Jira account to create and manage support tickets, search the knowledge base, and handle escalations.",
+      "horizontalAlignment": "Center"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Provider",
+          "value": "{{provider}}"
+        },
+        {
+          "title": "Permissions",
+          "value": "read:jira-work, write:jira-work, read:jira-user"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "wrap": true,
+      "isSubtle": true,
+      "text": "You will be redirected to Atlassian to authorize this application. Your credentials are securely handled via OAuth 2.0.",
+      "size": "Small"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Connect to Jira",
+      "style": "positive",
+      "data": {
+        "action_id": "connect_jira"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Cancel",
+      "style": "default",
+      "data": {
+        "action_id": "cancel"
+      }
+    }
+  ]
+}

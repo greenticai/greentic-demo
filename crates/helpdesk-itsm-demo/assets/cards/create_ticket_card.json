@@ -1,0 +1,144 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Create Support Ticket"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Project: {{project_key}}",
+      "isSubtle": true
+    },
+    {
+      "type": "Input.Text",
+      "id": "ticket_summary",
+      "label": "Summary",
+      "placeholder": "Brief description of the issue",
+      "isRequired": true,
+      "errorMessage": "Summary is required"
+    },
+    {
+      "type": "Input.Text",
+      "id": "ticket_description",
+      "label": "Description",
+      "placeholder": "Detailed description of the issue, steps to reproduce, expected behavior...",
+      "isMultiline": true,
+      "isRequired": false
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "issue_type",
+      "label": "Issue Type",
+      "value": "Task",
+      "choices": [
+        {
+          "title": "Task",
+          "value": "Task"
+        },
+        {
+          "title": "Bug",
+          "value": "Bug"
+        },
+        {
+          "title": "Story",
+          "value": "Story"
+        },
+        {
+          "title": "Service Request",
+          "value": "Service Request"
+        }
+      ]
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "priority",
+      "label": "Priority",
+      "value": "Medium",
+      "choices": [
+        {
+          "title": "Highest - Critical system outage",
+          "value": "Highest"
+        },
+        {
+          "title": "High - Major functionality impacted",
+          "value": "High"
+        },
+        {
+          "title": "Medium - Moderate impact, workaround available",
+          "value": "Medium"
+        },
+        {
+          "title": "Low - Minor issue, cosmetic",
+          "value": "Low"
+        },
+        {
+          "title": "Lowest - Enhancement request",
+          "value": "Lowest"
+        }
+      ]
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "category",
+      "label": "Category",
+      "value": "general",
+      "choices": [
+        {
+          "title": "General IT Support",
+          "value": "general"
+        },
+        {
+          "title": "Network & Connectivity",
+          "value": "network"
+        },
+        {
+          "title": "Hardware",
+          "value": "hardware"
+        },
+        {
+          "title": "Software & Applications",
+          "value": "software"
+        },
+        {
+          "title": "Account & Access",
+          "value": "access"
+        },
+        {
+          "title": "Email & Communication",
+          "value": "email"
+        },
+        {
+          "title": "Security",
+          "value": "security"
+        },
+        {
+          "title": "Database & Storage",
+          "value": "database"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit Ticket",
+      "style": "positive",
+      "data": {
+        "action_id": "submit_ticket"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Cancel",
+      "style": "default",
+      "data": {
+        "action_id": "cancel"
+      }
+    }
+  ]
+}

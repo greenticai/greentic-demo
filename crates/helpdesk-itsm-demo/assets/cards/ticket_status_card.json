@@ -1,0 +1,115 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "size": "Large",
+                  "weight": "Bolder",
+                  "text": "{{issue_key}}"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "{{summary}}",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{status}}",
+                  "weight": "Bolder",
+                  "color": "{{status_color}}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Priority",
+          "value": "{{priority}}"
+        },
+        {
+          "title": "Assignee",
+          "value": "{{assignee}}"
+        },
+        {
+          "title": "Reporter",
+          "value": "{{reporter}}"
+        },
+        {
+          "title": "Created",
+          "value": "{{created}}"
+        },
+        {
+          "title": "Updated",
+          "value": "{{updated}}"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Description"
+        },
+        {
+          "type": "TextBlock",
+          "wrap": true,
+          "text": "{{description}}"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Add Comment",
+      "style": "positive",
+      "data": {
+        "action_id": "add_comment",
+        "issue_key": "{{issue_key}}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Escalate",
+      "style": "destructive",
+      "data": {
+        "action_id": "escalate",
+        "issue_key": "{{issue_key}}"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Back",
+      "data": {
+        "action_id": "back"
+      }
+    }
+  ]
+}
