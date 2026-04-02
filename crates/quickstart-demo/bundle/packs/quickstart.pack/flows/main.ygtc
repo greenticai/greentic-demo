@@ -1,0 +1,77 @@
+# Quickstart Demo Flow — Adaptive Card menu
+id: on_message
+type: messaging
+start: welcome_card
+parameters: {}
+tags: []
+schema_version: 2
+entrypoints: {}
+nodes:
+  welcome_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: welcome_card
+      card_spec:
+        asset_path: assets/cards/welcome_card.json
+        template_params:
+          greeting: "Welcome to Greentic!"
+      payload: {}
+      session: {}
+      state: {}
+    routing: out
+
+  about_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: about_card
+      card_spec:
+        asset_path: assets/cards/about_card.json
+        template_params:
+          version: "0.4"
+      payload: {}
+      session: {}
+      state: {}
+    routing: out
+
+  getting_started_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: getting_started_card
+      card_spec:
+        asset_path: assets/cards/getting_started_card.json
+      payload: {}
+      session: {}
+      state: {}
+    routing: out
+
+  capabilities_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: capabilities_card
+      card_spec:
+        asset_path: assets/cards/capabilities_card.json
+      payload: {}
+      session: {}
+      state: {}
+    routing: out
+
+  architecture_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: architecture_card
+      card_spec:
+        asset_path: assets/cards/architecture_card.json
+      payload: {}
+      session: {}
+      state: {}
+    routing: out
