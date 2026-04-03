@@ -13,8 +13,8 @@
             "answers": {
                 "access_rules": [{"policy": "public", "rule_path": "hr-onboarding-pack", "tenant": "default"}],
                 "advanced_setup": false,
-                "app_pack_entries": [{"detected_kind": "https", "display_name": "HR Onboarding Demo Pack", "mapping": {"scope": "global"}, "pack_id": "hr-onboarding-pack", "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/hr-onboarding.gtpack"}],
-                "app_packs": ["https://github.com/greenticai/greentic-demo/releases/latest/download/hr-onboarding.gtpack"],
+                "app_pack_entries": [{"detected_kind": "https", "display_name": "HR Onboarding Demo Pack", "mapping": {"scope": "global"}, "pack_id": "hr-onboarding-pack", "reference": "https://github.com/greenticai/greentic-demo/releases/download/0.1.29/greentic.hr-onboarding.demo.gtpack"}],
+                "app_packs": ["https://github.com/greenticai/greentic-demo/releases/download/0.1.29/greentic.hr-onboarding.demo.gtpack"],
                 "bundle_id": "hr-onboarding-demo",
                 "bundle_name": "hr-onboarding-demo",
                 "export_intent": false,

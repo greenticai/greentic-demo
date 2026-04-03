@@ -1,0 +1,31 @@
+{
+  "bundle_source": ".",
+  "env": "dev",
+  "greentic_setup_version": "1.0.0",
+  "platform_setup": {
+    "deployment_targets": [],
+    "static_routes": {
+      "default_route_prefix_policy": "pack_declared",
+      "public_surface_policy": "disabled",
+      "public_web_enabled": false,
+      "tenant_path_policy": "pack_declared"
+    }
+  },
+  "setup_answers": {
+    "messaging-webchat-gui": {
+      "jwt_signing_key": "secret",
+      "mode": "local_queue",
+      "public_base_url": "http://localhost:8080",
+      "route": "webchat"
+    },
+    "oauth-github": {
+      "client_id": "",
+      "client_secret": "",
+      "scopes": "repo,security_events",
+      "authorize_url": "https://github.com/login/oauth/authorize",
+      "token_url": "https://github.com/login/oauth/access_token"
+    }
+  },
+  "team": null,
+  "tenant": "demo"
+}

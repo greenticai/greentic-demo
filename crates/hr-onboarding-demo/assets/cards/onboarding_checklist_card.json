@@ -7,7 +7,7 @@
         "routeToCardId": "document_upload_card"
       },
       "style": "positive",
-      "title": "{{i18n:cards.onboarding_checklist_card.actions.i0.title}}",
+      "title": "{{i18n:card.onboarding_checklist_card.actions_0.title}}",
       "type": "Action.Submit"
     },
     {
@@ -15,7 +15,7 @@
         "action_id": "request_access",
         "routeToCardId": "access_request_card"
       },
-      "title": "{{i18n:cards.onboarding_checklist_card.actions.i1.title}}",
+      "title": "{{i18n:card.onboarding_checklist_card.actions_1.title}}",
       "type": "Action.Submit"
     },
     {
@@ -23,14 +23,14 @@
         "action_id": "back",
         "routeToCardId": "welcome_card"
       },
-      "title": "{{i18n:cards.onboarding_checklist_card.actions.i2.title}}",
+      "title": "{{i18n:card.onboarding_checklist_card.actions_2.title}}",
       "type": "Action.Submit"
     }
   ],
   "body": [
     {
       "size": "Large",
-      "text": "{{i18n:cards.onboarding_checklist_card.body.i0.text}}",
+      "text": "{{i18n:card.onboarding_checklist_card.body_0.text}}",
       "type": "TextBlock",
       "weight": "Bolder"
     },
@@ -40,7 +40,7 @@
           "items": [
             {
               "isSubtle": true,
-              "text": "{{employee_name}} - {{department}}",
+              "text": "{{i18n:card.onboarding_checklist_card.body_1_columns_0_items_0.text}}",
               "type": "TextBlock"
             }
           ],
@@ -51,7 +51,7 @@
           "items": [
             {
               "color": "Good",
-              "text": "{{completed_count}}/{{total_count}} Complete",
+              "text": "{{i18n:card.onboarding_checklist_card.body_1_columns_1_items_0.text}}",
               "type": "TextBlock",
               "weight": "Bolder"
             }
@@ -64,19 +64,19 @@
     },
     {
       "spacing": "Small",
-      "text": "Progress: {{progress_percent}}%",
+      "text": "{{i18n:card.onboarding_checklist_card.body_2.text}}",
       "type": "TextBlock"
     },
     {
       "items": [
         {
-          "$data": "{{checklist_items}}",
+          "$data": "",
           "columns": [
             {
               "items": [
                 {
                   "size": "Medium",
-                  "text": "{{status_icon}}",
+                  "text": "",
                   "type": "TextBlock"
                 }
               ],
@@ -86,14 +86,14 @@
             {
               "items": [
                 {
-                  "text": "{{title}}",
+                  "text": "{{i18n:card.onboarding_checklist_card.body_3_items_0_columns_1_items_0.text}}",
                   "type": "TextBlock",
                   "weight": "Bolder"
                 },
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{description}}",
+                  "text": "",
                   "type": "TextBlock",
                   "wrap": true
                 }
@@ -106,7 +106,7 @@
                 {
                   "isSubtle": true,
                   "size": "Small",
-                  "text": "{{status}}",
+                  "text": "{{i18n:card.onboarding_checklist_card.body_3_items_0_columns_2_items_0.text}}",
                   "type": "TextBlock"
                 }
               ],

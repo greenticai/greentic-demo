@@ -6,7 +6,7 @@
         "action_id": "back",
         "routeToCardId": "welcome_card"
       },
-      "title": "{{i18n:cards.completion_card.actions.i0.title}}",
+      "title": "{{i18n:card.completion_card.actions_0.title}}",
       "type": "Action.Submit"
     }
   ],
@@ -17,13 +17,13 @@
           "color": "Good",
           "horizontalAlignment": "Center",
           "size": "Large",
-          "text": "{{i18n:cards.completion_card.body.i0.items.i0.text}}",
+          "text": "{{i18n:card.completion_card.body_0_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
         {
           "horizontalAlignment": "Center",
-          "text": "Congratulations, {{employee_name}}! Your onboarding is now complete.",
+          "text": "{{i18n:card.completion_card.body_0_items_1.text}}",
           "type": "TextBlock",
           "wrap": true
         }
@@ -34,31 +34,31 @@
     {
       "items": [
         {
-          "text": "{{i18n:cards.completion_card.body.i1.items.i0.text}}",
+          "text": "{{i18n:card.completion_card.body_1_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
         {
           "facts": [
             {
-              "title": "{{i18n:cards.completion_card.body.i1.items.i1.facts.i0.title}}",
-              "value": "{{employee_name}}"
+              "title": "{{i18n:card.completion_card.body_1_items_1_facts_0.title}}",
+              "value": "Jane Smith"
             },
             {
-              "title": "{{i18n:cards.completion_card.body.i1.items.i1.facts.i1.title}}",
-              "value": "{{department}}"
+              "title": "{{i18n:card.completion_card.body_1_items_1_facts_1.title}}",
+              "value": "Engineering"
             },
             {
-              "title": "{{i18n:cards.completion_card.body.i1.items.i1.facts.i2.title}}",
-              "value": "{{role}}"
+              "title": "{{i18n:card.completion_card.body_1_items_1_facts_2.title}}",
+              "value": "Software Engineer"
             },
             {
-              "title": "{{i18n:cards.completion_card.body.i1.items.i1.facts.i3.title}}",
-              "value": "{{start_date}}"
+              "title": "{{i18n:card.completion_card.body_1_items_1_facts_3.title}}",
+              "value": "2026-04-15"
             },
             {
-              "title": "{{i18n:cards.completion_card.body.i1.items.i1.facts.i4.title}}",
-              "value": "{{manager_name}}"
+              "title": "{{i18n:card.completion_card.body_1_items_1_facts_4.title}}",
+              "value": "John Doe"
             }
           ],
           "type": "FactSet"
@@ -71,22 +71,22 @@
     {
       "items": [
         {
-          "text": "{{i18n:cards.completion_card.body.i2.items.i0.text}}",
+          "text": "{{i18n:card.completion_card.body_2_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
         {
           "facts": [
             {
-              "title": "{{i18n:cards.completion_card.body.i2.items.i1.facts.i0.title}}",
+              "title": "{{i18n:card.completion_card.body_2_items_1_facts_0.title}}",
               "value": "Complete"
             },
             {
-              "title": "{{i18n:cards.completion_card.body.i2.items.i1.facts.i1.title}}",
+              "title": "{{i18n:card.completion_card.body_2_items_1_facts_1.title}}",
               "value": "Complete"
             },
             {
-              "title": "{{i18n:cards.completion_card.body.i2.items.i1.facts.i2.title}}",
+              "title": "{{i18n:card.completion_card.body_2_items_1_facts_2.title}}",
               "value": "Complete"
             }
           ],
@@ -100,12 +100,12 @@
     {
       "items": [
         {
-          "text": "{{i18n:cards.completion_card.body.i3.items.i0.text}}",
+          "text": "{{i18n:card.completion_card.body_3_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
         {
-          "text": "{{i18n:cards.completion_card.body.i3.items.i1.text}}",
+          "text": "{{i18n:card.completion_card.body_3_items_1.text}}",
           "type": "TextBlock",
           "wrap": true
         }
@@ -117,7 +117,7 @@
       "isSubtle": true,
       "size": "Small",
       "spacing": "Medium",
-      "text": "{{i18n:cards.completion_card.body.i4.text}}",
+      "text": "{{i18n:card.completion_card.body_4.text}}",
       "type": "TextBlock",
       "wrap": true
     }

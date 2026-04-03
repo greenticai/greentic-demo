@@ -1,0 +1,98 @@
+{
+    "wizard_id": "greentic-dev.wizard.launcher.main",
+    "schema_id": "greentic-dev.launcher.main",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+        "selected_action": "bundle",
+        "delegate_answer_document": {
+            "wizard_id": "greentic-bundle.wizard.run",
+            "schema_id": "greentic-bundle.wizard.answers",
+            "schema_version": "1.0.0",
+            "locale": "en-GB",
+            "answers": {
+                "access_rules": [
+                    {
+                        "policy": "public",
+                        "rule_path": "quickstart-event-pack",
+                        "tenant": "default"
+                    }
+                ],
+                "advanced_setup": false,
+                "app_pack_entries": [
+                    {
+                        "detected_kind": "local_file",
+                        "display_name": "Quickstart Event Demo Pack",
+                        "mapping": { "scope": "global" },
+                        "pack_id": "quickstart-event-pack",
+                        "reference": "demos/quickstart-event.gtpack"
+                    }
+                ],
+                "app_packs": ["demos/quickstart-event.gtpack"],
+                "bundle_id": "quickstart-event-demo",
+                "bundle_name": "quickstart-event-demo",
+                "export_intent": false,
+                "extension_provider_entries": [
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Webchat GUI (latest)",
+                        "provider_id": "greentic.messaging.webchat-gui.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Events Webhook (latest)",
+                        "provider_id": "greentic.events.webhook.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Events Timer (latest)",
+                        "provider_id": "greentic.events.timer.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/events/events-timer:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Events Email SendGrid (latest)",
+                        "provider_id": "greentic.events.email-sendgrid.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/events/events-email-sendgrid:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Events SMS Twilio (latest)",
+                        "provider_id": "greentic.events.sms-twilio.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:latest",
+                        "version": "latest"
+                    }
+                ],
+                "extension_providers": [
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+                    "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
+                    "oci://ghcr.io/greenticai/packs/events/events-timer:latest",
+                    "oci://ghcr.io/greenticai/packs/events/events-email-sendgrid:latest",
+                    "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:latest"
+                ],
+                "mode": "create",
+                "output_dir": "./quickstart-event-demo-bundle",
+                "remote_catalogs": [],
+                "capabilities": ["greentic.cap.bundle_assets.read.v1"],
+                "setup_answers": {},
+                "setup_execution_intent": false,
+                "setup_specs": {}
+            },
+            "locks": {
+                "cache_policy": "workspace-local",
+                "catalogs": [],
+                "execution": "execute",
+                "lock_file": "bundle.lock.json",
+                "requested_mode": "create",
+                "setup_state_files": [],
+                "workspace_root": "bundle.yaml"
+            }
+        }
+    }
+}

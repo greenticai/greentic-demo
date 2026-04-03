@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "flow": "on_message.flow.yaml",
+  "nodes": {
+    "about_card": {
+      "component_id": "component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:54195f66805c7fbfc84c127e22943406f7bb4eea8099c0b152ab809d62a14551"
+    },
+    "architecture_card": {
+      "component_id": "component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:54195f66805c7fbfc84c127e22943406f7bb4eea8099c0b152ab809d62a14551"
+    },
+    "capabilities_card": {
+      "component_id": "component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:54195f66805c7fbfc84c127e22943406f7bb4eea8099c0b152ab809d62a14551"
+    },
+    "getting_started_card": {
+      "component_id": "component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:54195f66805c7fbfc84c127e22943406f7bb4eea8099c0b152ab809d62a14551"
+    },
+    "welcome_card": {
+      "component_id": "component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      },
+      "digest": "sha256:54195f66805c7fbfc84c127e22943406f7bb4eea8099c0b152ab809d62a14551"
+    }
+  }
+}

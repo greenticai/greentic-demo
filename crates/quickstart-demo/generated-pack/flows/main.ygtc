@@ -1,0 +1,90 @@
+# Quickstart Demo Flow — Adaptive Card menu
+id: on_message
+type: messaging
+start: welcome_card
+parameters: {}
+tags: []
+schema_version: 2
+entrypoints: {}
+nodes:
+  welcome_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: welcome_card
+      card_spec:
+        asset_path: assets/cards/welcome_card.json
+        template_params:
+          greeting: "Welcome to Greentic!"
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - condition: response.action == "about"
+        to: about_card
+      - condition: response.action == "getting_started"
+        to: getting_started_card
+      - condition: response.action == "capabilities"
+        to: capabilities_card
+      - condition: response.action == "architecture"
+        to: architecture_card
+      - to: welcome_card
+
+  about_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: about_card
+      card_spec:
+        asset_path: assets/cards/about_card.json
+        template_params:
+          version: "0.4"
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: welcome_card
+
+  getting_started_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: getting_started_card
+      card_spec:
+        asset_path: assets/cards/getting_started_card.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: welcome_card
+
+  capabilities_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: capabilities_card
+      card_spec:
+        asset_path: assets/cards/capabilities_card.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: welcome_card
+
+  architecture_card:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: architecture_card
+      card_spec:
+        asset_path: assets/cards/architecture_card.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: welcome_card

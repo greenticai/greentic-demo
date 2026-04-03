@@ -1,0 +1,28 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Large",
+      "weight": "Bolder",
+      "text": "Webhook Event Received",
+      "color": "Good"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Event Type", "value": "webhook" },
+        { "title": "Source", "value": "HTTP POST" },
+        { "title": "Status", "value": "Processed" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "The webhook payload was received and processed by the event flow.",
+      "wrap": true,
+      "isSubtle": true
+    }
+  ]
+}

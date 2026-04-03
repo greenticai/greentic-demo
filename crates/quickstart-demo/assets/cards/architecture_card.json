@@ -1,0 +1,55 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "🔧 How It Works",
+      "size": "Large",
+      "weight": "Bolder"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Greentic uses a layered architecture where everything runs as sandboxed WebAssembly components:",
+      "wrap": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "```\nUser Message\n    │\n    ▼\n┌─────────────────────┐\n│   Provider Pack     │  Slack, Teams, WebChat...\n│   (WASM Component)  │  Ingress → Normalize\n└─────────────────────┘\n    │\n    ▼\n┌─────────────────────┐\n│   Flow Engine       │  .ygtc flow DAG\n│   (Runner Host)     │  Steps → Components\n└─────────────────────┘\n    │\n    ▼\n┌─────────────────────┐\n│   Component Pack    │  Cards, Templates,\n│   (WASM Components) │  LLM, Scripts, MCP\n└─────────────────────┘\n    │\n    ▼\n   Response\n```",
+          "wrap": true,
+          "fontType": "Monospace",
+          "size": "Small"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Large",
+      "facts": [
+        { "title": "Packs", "value": "ZIP archives with WASM, flows, assets, signatures" },
+        { "title": "Flows", "value": ".ygtc YAML DAG with pause/resume sessions" },
+        { "title": "Components", "value": "WASI P2 modules — sandboxed, portable, ~1MB each" },
+        { "title": "Runtime", "value": "Wasmtime 43 with hot-reload (30s polling)" }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "📖 Architecture Docs",
+      "url": "https://docs.greentic.ai/concepts/architecture/"
+    },
+    {
+      "type": "Action.Submit",
+      "title": "← Back to menu",
+      "data": { "action": "welcome_card" }
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+id: on_message
+type: messaging
+start: about_card
+parameters: {}
+tags: []
+schema_version: 2
+entrypoints: {}
+nodes:
+  about_card:
+    routing:
+    - to: architecture_card
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/about_card.json
+          mode: renderAndValidate
+          node_id: about_card
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/about_card.json
+      mode: renderAndValidate
+      node_id: about_card
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  architecture_card:
+    routing:
+    - to: capabilities_card
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/architecture_card.json
+          mode: renderAndValidate
+          node_id: architecture_card
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/architecture_card.json
+      mode: renderAndValidate
+      node_id: architecture_card
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  capabilities_card:
+    routing:
+    - to: getting_started_card
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/capabilities_card.json
+          mode: renderAndValidate
+          node_id: capabilities_card
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/capabilities_card.json
+      mode: renderAndValidate
+      node_id: capabilities_card
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  getting_started_card:
+    routing:
+    - to: welcome_card
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/getting_started_card.json
+          mode: renderAndValidate
+          node_id: getting_started_card
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/getting_started_card.json
+      mode: renderAndValidate
+      node_id: getting_started_card
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  welcome_card:
+    routing: out
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/welcome_card.json
+          mode: renderAndValidate
+          node_id: welcome_card
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/welcome_card.json
+      mode: renderAndValidate
+      node_id: welcome_card
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn

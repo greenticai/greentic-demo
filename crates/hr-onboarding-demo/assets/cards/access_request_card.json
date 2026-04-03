@@ -1,152 +1,117 @@
 {
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-  "actions": [
-    {
-      "data": {
-        "action_id": "submit_access_request"
-      },
-      "style": "positive",
-      "title": "{{i18n:cards.access_request_card.actions.i0.title}}",
-      "type": "Action.Submit"
-    },
-    {
-      "data": {
-        "action_id": "back",
-        "routeToCardId": "welcome_card"
-      },
-      "title": "{{i18n:cards.access_request_card.actions.i1.title}}",
-      "type": "Action.Submit"
-    }
-  ],
   "body": [
     {
       "size": "Large",
-      "text": "{{i18n:cards.access_request_card.body.i0.text}}",
+      "text": "{{i18n:card.access_request_card.body_0.text}}",
       "type": "TextBlock",
       "weight": "Bolder"
     },
     {
-      "columns": [
-        {
-          "items": [
-            {
-              "isSubtle": true,
-              "text": "{{employee_name}} - {{department}} ({{role}})",
-              "type": "TextBlock",
-              "wrap": true
-            }
-          ],
-          "type": "Column",
-          "width": "stretch"
-        },
-        {
-          "items": [
-            {
-              "color": "Good",
-              "text": "{{provisioned_count}}/{{total_count}} Active",
-              "type": "TextBlock",
-              "weight": "Bolder"
-            }
-          ],
-          "type": "Column",
-          "width": "auto"
-        }
-      ],
-      "type": "ColumnSet"
+      "isSubtle": true,
+      "text": "{{i18n:card.access_request_card.body_1.text}}",
+      "type": "TextBlock",
+      "wrap": true
     },
     {
-      "isSubtle": true,
-      "spacing": "Small",
-      "text": "{{i18n:cards.access_request_card.body.i2.text}}",
+      "spacing": "Medium",
+      "text": "{{i18n:card.access_request_card.body_2.text}}",
       "type": "TextBlock",
       "wrap": true
     },
     {
       "items": [
         {
-          "spacing": "Small",
-          "text": "{{i18n:cards.access_request_card.body.i3.items.i0.text}}",
+          "text": "{{i18n:card.access_request_card.body_3_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
         {
-          "id": "corporate_email",
-          "title": "{{i18n:cards.access_request_card.body.i3.items.i1.title}}",
-          "type": "Input.Toggle",
-          "value": "true",
-          "valueOff": "false",
-          "valueOn": "true"
-        },
-        {
-          "id": "slack",
-          "title": "{{i18n:cards.access_request_card.body.i3.items.i2.title}}",
-          "type": "Input.Toggle",
-          "value": "true",
-          "valueOff": "false",
-          "valueOn": "true"
+          "facts": [
+            {
+              "title": "{{i18n:card.access_request_card.body_3_items_1_facts_0.title}}",
+              "value": "Outlook/Gmail"
+            },
+            {
+              "title": "{{i18n:card.access_request_card.body_3_items_1_facts_1.title}}",
+              "value": "Team messaging"
+            }
+          ],
+          "type": "FactSet"
         }
       ],
-      "spacing": "Medium",
       "style": "emphasis",
       "type": "Container"
     },
     {
       "items": [
         {
-          "spacing": "Small",
-          "text": "{{i18n:cards.access_request_card.body.i4.items.i0.text}}",
+          "text": "{{i18n:card.access_request_card.body_4_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
         {
-          "id": "github",
-          "title": "{{i18n:cards.access_request_card.body.i4.items.i1.title}}",
-          "type": "Input.Toggle",
-          "value": "false",
-          "valueOff": "false",
-          "valueOn": "true"
-        },
-        {
-          "id": "jira",
-          "title": "{{i18n:cards.access_request_card.body.i4.items.i2.title}}",
-          "type": "Input.Toggle",
-          "value": "false",
-          "valueOff": "false",
-          "valueOn": "true"
+          "facts": [
+            {
+              "title": "{{i18n:card.access_request_card.body_4_items_1_facts_0.title}}",
+              "value": "Source code repositories"
+            },
+            {
+              "title": "{{i18n:card.access_request_card.body_4_items_1_facts_1.title}}",
+              "value": "Project tracking"
+            }
+          ],
+          "type": "FactSet"
         }
       ],
-      "spacing": "Small",
       "style": "emphasis",
       "type": "Container"
     },
     {
       "items": [
         {
-          "spacing": "Small",
-          "text": "{{i18n:cards.access_request_card.body.i5.items.i0.text}}",
+          "text": "{{i18n:card.access_request_card.body_5_items_0.text}}",
           "type": "TextBlock",
           "weight": "Bolder"
         },
         {
-          "id": "vpn",
-          "title": "{{i18n:cards.access_request_card.body.i5.items.i1.title}}",
-          "type": "Input.Toggle",
-          "value": "true",
-          "valueOff": "false",
-          "valueOn": "true"
-        },
-        {
-          "id": "building_access",
-          "title": "{{i18n:cards.access_request_card.body.i5.items.i2.title}}",
-          "type": "Input.Toggle",
-          "value": "true",
-          "valueOff": "false",
-          "valueOn": "true"
+          "facts": [
+            {
+              "title": "{{i18n:card.access_request_card.body_5_items_1_facts_0.title}}",
+              "value": "Remote network access"
+            },
+            {
+              "title": "{{i18n:card.access_request_card.body_5_items_1_facts_1.title}}",
+              "value": "Badge/keycard"
+            }
+          ],
+          "type": "FactSet"
         }
       ],
-      "spacing": "Small",
       "style": "emphasis",
       "type": "Container"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "submit_access",
+            "routeToCardId": "completion_card"
+          },
+          "style": "positive",
+          "title": "{{i18n:card.access_request_card.body_6_actions_0.title}}",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "back",
+            "routeToCardId": "welcome_card"
+          },
+          "title": "{{i18n:card.access_request_card.body_6_actions_1.title}}",
+          "type": "Action.Submit"
+        }
+      ],
+      "type": "ActionSet"
     }
   ],
   "type": "AdaptiveCard",

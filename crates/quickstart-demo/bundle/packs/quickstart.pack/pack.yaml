@@ -1,0 +1,34 @@
+pack_id: quickstart-demo
+version: 0.1.0
+kind: application
+publisher: Greentic
+components:
+- id: ai.greentic.component-adaptive-card
+  version: 0.1.25
+  world: greentic:component/component-v0-v6-v0@0.6.0
+  supports:
+  - messaging
+  profiles:
+    default: default
+    supported:
+    - default
+  capabilities:
+    wasi:
+      random: false
+      clocks: false
+    host: {}
+  wasm: components/ai.greentic.component-adaptive-card/component.wasm
+dependencies: []
+flows:
+- id: on_message
+  file: flows/main.ygtc
+  tags:
+  - default
+  entrypoints:
+  - default
+assets:
+- path: assets/cards/welcome_card.json
+- path: assets/cards/about_card.json
+- path: assets/cards/getting_started_card.json
+- path: assets/cards/capabilities_card.json
+- path: assets/cards/architecture_card.json
