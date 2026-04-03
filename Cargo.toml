@@ -16,7 +16,7 @@ resolver = "3"
 version = "0.1.30"
 edition = "2024"
 license = "MIT"
-repository = "https://github.com/greentic-ai/greentic-demo"
+repository = "https://github.com/greenticai/greentic-demo"
 publish = false
 
 [workspace.lints.clippy]

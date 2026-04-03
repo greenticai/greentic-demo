@@ -8,47 +8,85 @@
     "create_pack_scaffold": true,
     "dry_run": false,
     "flow_wizard_answers": {
-      "answers": {
-        "flow.ops": "M",
-        "flow.select": "1",
-        "main.exit.save": true,
-        "main.menu": "0"
-      },
-      "events": [
-        "2",
-        "1",
-        "3",
-        "1",
-        "2",
-        "1",
-        "1",
-        "2",
-        "assets/card1.json",
-        "false",
-        "3",
-        "2",
-        "1",
-        "2",
-        "1",
-        "1",
-        "2",
-        "assets/card2.json",
-        "false",
-        "3",
-        "3",
-        "1",
-        "2",
-        "1",
-        "1",
-        "2",
-        "assets/card3.json",
-        "false",
-        "M",
-        "0",
-        "Y"
-      ],
-      "schema_id": "greentic-flow.wizard.menu.replay",
-      "schema_version": "1.0.0"
+      "schema_id": "greentic-flow.wizard.plan",
+      "schema_version": "2.0.0",
+      "actions": [
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "show_card_1",
+          "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+          "mode": "default",
+          "answers": {
+            "card_source": "asset",
+            "default_card_asset": "assets/card1.json",
+            "default_card_inline": {
+              "type": "AdaptiveCard",
+              "version": "1.6",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{i18n:adaptive_card.default.title}}"
+                }
+              ]
+            },
+            "default_card_remote": "",
+            "multilingual": false,
+            "language_mode": "all",
+            "supported_locales": "en"
+          }
+        },
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "show_card_2",
+          "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+          "mode": "default",
+          "answers": {
+            "card_source": "asset",
+            "default_card_asset": "assets/card2.json",
+            "default_card_inline": {
+              "type": "AdaptiveCard",
+              "version": "1.6",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{i18n:adaptive_card.default.title}}"
+                }
+              ]
+            },
+            "default_card_remote": "",
+            "multilingual": false,
+            "language_mode": "all",
+            "supported_locales": "en"
+          }
+        },
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "show_card_3",
+          "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+          "mode": "default",
+          "answers": {
+            "card_source": "asset",
+            "default_card_asset": "assets/card3.json",
+            "default_card_inline": {
+              "type": "AdaptiveCard",
+              "version": "1.6",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{i18n:adaptive_card.default.title}}"
+                }
+              ]
+            },
+            "default_card_remote": "",
+            "multilingual": false,
+            "language_mode": "all",
+            "supported_locales": "en"
+          }
+        }
+      ]
     },
     "mode": "interactive",
     "pack_dir": "./cards-demo.pack",

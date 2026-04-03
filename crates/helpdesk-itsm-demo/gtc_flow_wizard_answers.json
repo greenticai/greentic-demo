@@ -1,0 +1,36 @@
+{
+  "schema_id": "greentic-flow.wizard.plan",
+  "schema_version": "2.0.0",
+  "actions": [
+    {
+      "action": "add-flow",
+      "flow": "flows/create_ticket_flow.ygtc",
+      "flow_id": "create_ticket_flow",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/jira_oauth_flow.ygtc",
+      "flow_id": "jira_oauth_flow",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/knowledge_base_flow.ygtc",
+      "flow_id": "knowledge_base_flow",
+      "flow_type": "messaging"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/on_event.ygtc",
+      "flow_id": "on_event",
+      "flow_type": "event"
+    },
+    {
+      "action": "add-flow",
+      "flow": "flows/on_message.ygtc",
+      "flow_id": "on_message",
+      "flow_type": "messaging"
+    }
+  ]
+}

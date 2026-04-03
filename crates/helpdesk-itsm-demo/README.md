@@ -77,30 +77,13 @@ The following Atlassian OAuth scopes are requested:
 
 ### Jira Project Configuration
 
-The default project key is `ITSM`. To change it, update `parameters.jira_project_key` in `pack.yaml` and the flow files.
+The default project key is `ITSM`. To change it, update `parameters.jira_project_key` in the generated pack and corresponding flow definitions.
 
 ## Pack Structure
 
-```
-helpdesk-itsm/
-├── pack.yaml                   # Pack manifest
-├── bindings.yaml               # Tenant bindings
-├── greentic.demo.yaml          # Demo runtime configuration
-├── wizard-answers.yaml         # Wizard answers template
-├── flows/
-│   ├── on_message.ygtc         # Main message handler
-│   ├── on_event.ygtc           # Jira webhook event handler
-│   ├── jira_oauth_flow.ygtc    # OAuth connection flow
-│   ├── create_ticket_flow.ygtc # Ticket creation flow
-│   └── knowledge_base_flow.ygtc # KB search flow
-└── assets/
-    ├── welcome_card.json       # Helpdesk menu card
-    ├── jira_connect_card.json  # OAuth connection card
-    ├── create_ticket_card.json # Ticket creation form
-    ├── ticket_status_card.json # Ticket detail/status card
-    ├── kb_results_card.json    # Knowledge base results card
-    └── escalation_card.json    # Ticket escalation form
-```
+- Pack manifest is generated from wizard answers during packaging.
+- Flows are generated from `gtc_flow_wizard_answers.json` during packaging.
+- Assets are checked in under `assets/`.
 
 ## Components
 

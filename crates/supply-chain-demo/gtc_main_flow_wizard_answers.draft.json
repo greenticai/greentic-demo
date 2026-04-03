@@ -6,35 +6,35 @@
   "answers": {
     "dry_run": true,
     "flow_wizard_answers": {
-      "answers": {
-        "flow.ops": "0",
-        "flow.select": "0",
-        "main.exit.save": true,
-        "main.menu": "0"
-      },
-      "events": [
-        "2",
-        "1",
-        "3",
-        "1",
-        "2",
-        "1",
-        "1",
-        "2",
-        "assets/cards/welcome_card.json",
-        "false",
-        "default",
-        "0",
-        "4",
-        "0",
-        "Y",
-        "2",
-        "0",
-        "0",
-        "Y"
-      ],
-      "schema_id": "greentic-flow.wizard.menu.replay",
-      "schema_version": "1.0.0"
+      "schema_id": "greentic-flow.wizard.plan",
+      "schema_version": "2.0.0",
+      "actions": [
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "show_welcome_card",
+          "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+          "mode": "default",
+          "answers": {
+            "card_source": "asset",
+            "default_card_asset": "assets/cards/welcome_card.json",
+            "default_card_inline": {
+              "type": "AdaptiveCard",
+              "version": "1.6",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "{{i18n:adaptive_card.default.title}}"
+                }
+              ]
+            },
+            "default_card_remote": "",
+            "multilingual": false,
+            "language_mode": "all",
+            "supported_locales": "en"
+          }
+        }
+      ]
     },
     "mode": "interactive-dry-run",
     "pack_dir": ".",

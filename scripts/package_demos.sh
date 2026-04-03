@@ -7,6 +7,7 @@ CRATES_DIR="$ROOT_DIR/crates"
 DEMOS_DIR="$ROOT_DIR/demos"
 TMP_ROOT="${TMPDIR:-/tmp}/greentic-demo-package"
 DEFAULT_PACK_ANSWERS="$TMP_ROOT/pack-update-answers.json"
+LOCAL_PACK_INPUT_DIR="$TMP_ROOT/local-pack-inputs"
 
 if ! command -v greentic-pack >/dev/null 2>&1; then
     echo "greentic-pack not found; skipping demo packaging."
@@ -26,6 +27,7 @@ fi
 mkdir -p "$CRATES_DIR" "$DEMOS_DIR"
 rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
+mkdir -p "$LOCAL_PACK_INPUT_DIR"
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -delete
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
 
@@ -61,9 +63,10 @@ pack_dirs=("$CRATES_DIR"/*/bundle/packs/*.pack)
 generated_pack_answers=("$CRATES_DIR"/*/gtc_pack_create_wizard_answers.json)
 bundle_answers=("$DEMOS_DIR"/*-create-answers.json)
 packaged_any=0
+missing_expected=0
 
-if [ ${#pack_dirs[@]} -eq 0 ]; then
-    echo "No demo pack directories found under crates/. Nothing to package."
+if [ ${#pack_dirs[@]} -eq 0 ] && [ ${#generated_pack_answers[@]} -eq 0 ]; then
+    echo "No demo pack sources found under crates/. Nothing to package." >&2
     exit 1
 fi
 
@@ -72,6 +75,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     crate_dir="$(cd "$source_pack_dir/../../.." && pwd)"
     source_assets_dir="$source_pack_dir/assets"
     source_components_dir="$source_pack_dir/components"
+    source_flows_dir="$source_pack_dir/flows"
     pack_answers="$DEFAULT_PACK_ANSWERS"
     create_answers="$crate_dir/gtc_pack_create_wizard_answers.json"
     flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
@@ -98,11 +102,15 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         source_components_dir="$crate_dir/components"
     fi
 
+    if [ -d "$crate_dir/flows" ]; then
+        source_flows_dir="$crate_dir/flows"
+    fi
+
     if [ -f "$crate_dir/gtc_pack_wizard_answers.json" ]; then
         pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
     fi
 
-    if [ -f "$create_answers" ] && [ -f "$flow_answers" ]; then
+    if [ -f "$create_answers" ]; then
         temp_pack_parent="$TMP_ROOT/packs-create/$pack_name"
         temp_pack_dir="$temp_pack_parent/$pack_name.pack"
         built_pack="$temp_pack_dir/dist/$pack_name.gtpack"
@@ -118,6 +126,11 @@ for source_pack_dir in "${pack_dirs[@]}"; do
             continue
         fi
 
+        if [ -d "$source_pack_dir" ] && [ ! -f "$crate_dir/pack.yaml" ] && [ ! -d "$crate_dir/flows" ]; then
+            # Preserve the legacy demo pack content while still creating the pack via answers.
+            rsync -a --exclude 'dist/' "$source_pack_dir/" "$temp_pack_dir/"
+        fi
+
         if [ -d "$source_assets_dir" ]; then
             mkdir -p "$temp_pack_dir/assets"
             cp -R "$source_assets_dir/." "$temp_pack_dir/assets/"
@@ -128,9 +141,11 @@ for source_pack_dir in "${pack_dirs[@]}"; do
             cp -R "$source_components_dir/." "$temp_pack_dir/components/"
         fi
 
-        if ! greentic-flow wizard "$temp_pack_dir" --answers-file "$flow_answers" >/dev/null; then
-            echo "Skipping $pack_name: flow wizard replay failed" >&2
-            continue
+        if [ -f "$flow_answers" ]; then
+            if ! greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
+                echo "Skipping $pack_name: flow wizard replay failed" >&2
+                continue
+            fi
         fi
 
         if ! (
@@ -155,6 +170,12 @@ for source_pack_dir in "${pack_dirs[@]}"; do
             mkdir -p "$temp_pack_dir/components"
             rm -rf "$temp_pack_dir/components"
             cp -R "$source_components_dir" "$temp_pack_dir/components"
+        fi
+
+        if [ -d "$source_flows_dir" ]; then
+            mkdir -p "$temp_pack_dir/flows"
+            rm -rf "$temp_pack_dir/flows"
+            cp -R "$source_flows_dir" "$temp_pack_dir/flows"
         fi
 
         if ! (
@@ -182,23 +203,24 @@ for create_answers in "${generated_pack_answers[@]}"; do
     pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
     source_assets_dir="$crate_dir/assets"
     source_components_dir="$crate_dir/components"
+    source_flows_dir="$crate_dir/flows"
     pack_dir_name="$(jq -r '.answers.pack_dir' "$create_answers" | xargs basename)"
     pack_id="$(jq -r '.answers.create_pack_id' "$create_answers")"
     pack_name="${pack_id%.pack}"
+    pack_slug="${pack_dir_name%.pack}"
 
     if compgen -G "$crate_dir/bundle/packs/*.pack" >/dev/null; then
         continue
     fi
 
-    if [ ! -f "$flow_answers" ] || [ ! -f "$pack_answers" ]; then
-        echo "Skipping $pack_name: missing flow or pack wizard answers" >&2
-        continue
+    if [ ! -f "$pack_answers" ]; then
+        pack_answers="$DEFAULT_PACK_ANSWERS"
     fi
 
     temp_pack_parent="$TMP_ROOT/packs-create/$pack_name"
     temp_pack_dir="$temp_pack_parent/$pack_dir_name"
     built_pack="$temp_pack_dir/dist/$pack_dir_name.gtpack"
-    target_pack="$DEMOS_DIR/$pack_name.gtpack"
+    target_pack="$DEMOS_DIR/$pack_slug.gtpack"
 
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
         expected_pack_file="$(jq -r '
@@ -232,9 +254,11 @@ for create_answers in "${generated_pack_answers[@]}"; do
         cp -R "$source_components_dir/." "$temp_pack_dir/components/"
     fi
 
-    if ! greentic-flow wizard "$temp_pack_dir" --answers-file "$flow_answers" >/dev/null; then
-        echo "Skipping $pack_name: flow wizard replay failed" >&2
-        continue
+    if [ -f "$flow_answers" ]; then
+        if ! greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
+            echo "Skipping $pack_name: flow wizard replay failed" >&2
+            continue
+        fi
     fi
 
     if ! (
@@ -251,7 +275,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
     fi
 
     cp "$built_pack" "$target_pack"
-    echo "Created demos/$pack_name.gtpack"
+    echo "Created demos/$(basename "$target_pack")"
     packaged_any=1
 done
 
@@ -268,13 +292,13 @@ for source_answers in "${bundle_answers[@]}"; do
     built_bundle="$output_dir/dist/${bundle_id}.gtbundle"
     target_bundle="$DEMOS_DIR/${bundle_id}.gtbundle"
 
-    jq --arg demos_dir "$DEMOS_DIR" --arg out "$output_dir" '
+    jq --arg local_pack_dir "$LOCAL_PACK_INPUT_DIR" --arg out "$output_dir" '
       .answers.delegate_answer_document.answers.output_dir = $out
       | .answers.delegate_answer_document.answers.app_pack_entries |= map(
           if (.reference | test("/download/[^/]+\\.gtpack$")) then
             .reference as $ref
             | ($ref | capture("/download/(?<file>[^/]+\\.gtpack)$").file) as $file
-            | .reference = ($demos_dir + "/" + $file)
+            | .reference = ($local_pack_dir + "/" + $file)
             | .detected_kind = "local_file"
           else
             .
@@ -283,7 +307,7 @@ for source_answers in "${bundle_answers[@]}"; do
       | .answers.delegate_answer_document.answers.app_packs |= map(
           if test("/download/[^/]+\\.gtpack$") then
             capture("/download/(?<file>[^/]+\\.gtpack)$").file as $file
-            | ($demos_dir + "/" + $file)
+            | ($local_pack_dir + "/" + $file)
           else
             .
           end
@@ -293,6 +317,18 @@ for source_answers in "${bundle_answers[@]}"; do
     if ! gtc wizard --answers "$temp_answers" >/dev/null; then
         echo "Skipping $bundle_id: bundle wizard create failed" >&2
         continue
+    fi
+
+    # Some create-answer documents produce a workspace (bundle.yaml + providers/packs)
+    # but do not emit dist/*.gtbundle directly. Build explicitly in that case.
+    if [ ! -f "$built_bundle" ] && [ -f "$output_dir/bundle.yaml" ]; then
+        if ! (
+            cd "$output_dir"
+            greentic-bundle build >/dev/null
+        ); then
+            echo "Skipping $bundle_id: bundle build failed after wizard create" >&2
+            continue
+        fi
     fi
 
     if [ ! -f "$built_bundle" ]; then
@@ -307,5 +343,34 @@ done
 
 if [ "$packaged_any" -eq 0 ]; then
     echo "No demo artifacts were packaged successfully." >&2
+    exit 1
+fi
+
+# Bundle creation may consume local pack inputs. Use temp copies instead of demos/*.gtpack.
+find "$LOCAL_PACK_INPUT_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
+find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -exec cp {} "$LOCAL_PACK_INPUT_DIR/" \;
+
+for source_answers in "${bundle_answers[@]}"; do
+    demo_basename="$(basename "$source_answers" -create-answers.json)"
+    bundle_id="$(jq -r '.answers.delegate_answer_document.answers.bundle_id' "$source_answers")"
+    expected_bundle="$DEMOS_DIR/${bundle_id}.gtbundle"
+    expected_pack="$(jq -r '
+      .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
+      | capture("(?<file>[^/]+\\.gtpack)$").file? // empty
+    ' "$source_answers")"
+
+    if [ ! -f "$expected_bundle" ]; then
+        echo "Missing expected bundle for $demo_basename: $expected_bundle" >&2
+        missing_expected=1
+    fi
+
+    if [ -n "$expected_pack" ] && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
+        echo "Missing expected pack for $demo_basename: $DEMOS_DIR/$expected_pack" >&2
+        missing_expected=1
+    fi
+done
+
+if [ "$missing_expected" -ne 0 ]; then
+    echo "One or more expected demo artifacts were not produced." >&2
     exit 1
 fi
