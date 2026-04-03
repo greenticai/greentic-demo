@@ -1,5 +1,5 @@
 Cargo.lock
-Cargo.toml
+SECURITY_FIX_REPORT.md
 crates/github-mcp-demo/Cargo.toml
 crates/github-mcp-demo/bundle/bundle.yaml
 crates/github-mcp-demo/bundle/greentic.demo.yaml
