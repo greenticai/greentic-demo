@@ -35,12 +35,12 @@ run_bundle_build() {
     local root="$1"
     local output="$2"
 
-    if command -v greentic-bundle >/dev/null 2>&1; then
-        greentic-bundle build --root "$root" --output "$output" >/dev/null
+    if command -v greentic-setup >/dev/null 2>&1; then
+        greentic-setup bundle build --bundle "$root" --out "$output" >/dev/null
     else
         (
             cd "$ROOT_DIR"
-            cargo run -q -p greentic-bundle -- build --root "$root" --output "$output" >/dev/null
+            cargo run -q -p greentic-setup --bin greentic-setup -- bundle build --bundle "$root" --out "$output" >/dev/null
         )
     fi
 }
@@ -301,6 +301,7 @@ fi
 for source_answers in "${bundle_answers[@]}"; do
     demo_basename="$(basename "$source_answers" -create-answers.json)"
     temp_answers="$TMP_ROOT/${demo_basename}-bundle-answers.json"
+    setup_answers="$DEMOS_DIR/${demo_basename}-setup-answers.json"
     output_dir="$TMP_ROOT/${demo_basename}-bundle"
     bundle_id="$(jq -r '.answers.delegate_answer_document.answers.bundle_id' "$source_answers")"
     built_bundle="$output_dir/dist/${bundle_id}.gtbundle"
@@ -331,6 +332,13 @@ for source_answers in "${bundle_answers[@]}"; do
     if ! gtc wizard --answers "$temp_answers" >/dev/null; then
         echo "Skipping $bundle_id: bundle wizard create failed" >&2
         continue
+    fi
+
+    if [ -f "$setup_answers" ]; then
+        if ! gtc setup --answers "$setup_answers" "$output_dir" >/dev/null; then
+            echo "Skipping $bundle_id: bundle setup failed" >&2
+            continue
+        fi
     fi
 
     # Some create-answer documents produce a workspace (bundle.yaml + providers/packs)
