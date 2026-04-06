@@ -18,12 +18,16 @@
       "public_base_url": "http://localhost:8080",
       "route": "webchat"
     },
-    "oauth-github": {
+    "oauth-oidc-generic": {
+      "provider_id": "github",
+      "auth_url": "https://github.com/login/oauth/authorize",
+      "token_url": "https://github.com/login/oauth/access_token",
+      "public_base_url": "http://localhost:8080",
       "client_id": "",
       "client_secret": "",
-      "scopes": "repo,security_events",
-      "authorize_url": "https://github.com/login/oauth/authorize",
-      "token_url": "https://github.com/login/oauth/access_token"
+      "client_id_key": "OAUTH_CLIENT_ID",
+      "client_secret_key": "OAUTH_CLIENT_SECRET",
+      "default_scopes": "repo security_events"
     }
   },
   "team": null,
