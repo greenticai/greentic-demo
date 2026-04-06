@@ -14,7 +14,7 @@
         "access_rules": [
           {
             "policy": "public",
-            "rule_path": "cards-demo",
+            "rule_path": "cloud-deploy-demo-app",
             "tenant": "default"
           }
         ],
@@ -22,16 +22,16 @@
         "app_pack_entries": [
           {
             "detected_kind": "https",
-            "display_name": "Cards Demo",
+            "display_name": "Cloud Deploy Demo App",
             "mapping": {
               "scope": "global"
             },
-            "pack_id": "cards-demo",
-            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/cards-demo.gtpack"
+            "pack_id": "cloud-deploy-demo-app",
+            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/cloud-deploy-demo-app.gtpack"
           }
         ],
         "app_packs": [
-          "https://github.com/greenticai/greentic-demo/releases/latest/download/cards-demo.gtpack"
+          "https://github.com/greenticai/greentic-demo/releases/latest/download/cloud-deploy-demo-app.gtpack"
         ],
         "bundle_id": "cloud-deploy-demo",
         "bundle_name": "Cloud Deploy Demo",
