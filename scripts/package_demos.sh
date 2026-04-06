@@ -28,8 +28,22 @@ mkdir -p "$CRATES_DIR" "$DEMOS_DIR"
 rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
 mkdir -p "$LOCAL_PACK_INPUT_DIR"
-find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -delete
+find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -exec rm -rf {} +
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
+
+run_bundle_build() {
+    local root="$1"
+    local output="$2"
+
+    if command -v greentic-bundle >/dev/null 2>&1; then
+        greentic-bundle build --root "$root" --output "$output" >/dev/null
+    else
+        (
+            cd "$ROOT_DIR"
+            cargo run -q -p greentic-bundle -- build --root "$root" --output "$output" >/dev/null
+        )
+    fi
+}
 
 cat > "$DEFAULT_PACK_ANSWERS" <<'EOF'
 {
@@ -322,10 +336,7 @@ for source_answers in "${bundle_answers[@]}"; do
     # Some create-answer documents produce a workspace (bundle.yaml + providers/packs)
     # but do not emit dist/*.gtbundle directly. Build explicitly in that case.
     if [ ! -f "$built_bundle" ] && [ -f "$output_dir/bundle.yaml" ]; then
-        if ! (
-            cd "$output_dir"
-            greentic-bundle build >/dev/null
-        ); then
+        if ! run_bundle_build "$output_dir" "$built_bundle"; then
             echo "Skipping $bundle_id: bundle build failed after wizard create" >&2
             continue
         fi
@@ -336,6 +347,7 @@ for source_answers in "${bundle_answers[@]}"; do
         continue
     fi
 
+    rm -rf "$target_bundle"
     cp "$built_bundle" "$target_bundle"
     echo "Created demos/${bundle_id}.gtbundle"
     packaged_any=1
