@@ -263,6 +263,17 @@ jobs:
           path: .artifacts/pack-refs.txt
           if-no-files-found: ignore
 
+      - name: Ensure release exists
+        if: steps.artifacts.outputs.found == 'true' && needs.resolve-version.outputs.publish_version != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ needs.resolve-version.outputs.publish_version }}
+        run: |
+          set -euo pipefail
+          if ! gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            gh release create "$TAG_NAME" --title "$TAG_NAME" --notes ""
+          fi
+
       - name: Attach bundles and answers to release
         if: steps.artifacts.outputs.found == 'true' && needs.resolve-version.outputs.publish_version != ''
         env:
