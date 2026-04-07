@@ -8,6 +8,8 @@ DEMOS_DIR="$ROOT_DIR/demos"
 TMP_ROOT="${TMPDIR:-/tmp}/greentic-demo-package"
 DEFAULT_PACK_ANSWERS="$TMP_ROOT/pack-update-answers.json"
 LOCAL_PACK_INPUT_DIR="$TMP_ROOT/local-pack-inputs"
+# Max seconds per wizard/setup command before it is killed.
+WIZARD_TIMEOUT="${WIZARD_TIMEOUT:-180}"
 
 if ! command -v greentic-pack >/dev/null 2>&1; then
     echo "greentic-pack not found; skipping demo packaging."
@@ -44,11 +46,11 @@ run_bundle_build() {
     local output="$2"
 
     if command -v greentic-setup >/dev/null 2>&1; then
-        greentic-setup bundle build --bundle "$root" --out "$output" >/dev/null
+        timeout "$WIZARD_TIMEOUT" greentic-setup bundle build --bundle "$root" --out "$output" >/dev/null
     else
         (
             cd "$ROOT_DIR"
-            cargo run -q -p greentic-setup --bin greentic-setup -- bundle build --bundle "$root" --out "$output" >/dev/null
+            timeout "$WIZARD_TIMEOUT" cargo run -q -p greentic-setup --bin greentic-setup -- bundle build --bundle "$root" --out "$output" >/dev/null
         )
     fi
 }
@@ -142,7 +144,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
         if ! (
             cd "$temp_pack_parent"
-            greentic-pack wizard apply --answers "$create_answers" >/dev/null
+            timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$create_answers" >/dev/null
         ); then
             echo "Skipping $pack_name: pack scaffold wizard create failed" >&2
             continue
@@ -164,7 +166,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         fi
 
         if [ -f "$flow_answers" ]; then
-            if ! greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
+            if ! timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
                 echo "Skipping $pack_name: flow wizard replay failed" >&2
                 continue
             fi
@@ -172,7 +174,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
         if ! (
             cd "$temp_pack_dir"
-            greentic-pack wizard apply --answers "$pack_answers" >/dev/null
+            timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
         ); then
             echo "Skipping $pack_name: pack wizard build failed after scaffold replay" >&2
             continue
@@ -202,7 +204,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
         if ! (
             cd "$temp_pack_dir"
-            greentic-pack wizard apply --answers "$pack_answers" >/dev/null
+            timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
         ); then
             echo "Skipping $pack_name: pack wizard build failed" >&2
             continue
@@ -260,7 +262,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
 
     if ! (
         cd "$temp_pack_parent"
-        greentic-pack wizard apply --answers "$create_answers" >/dev/null
+        timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$create_answers" >/dev/null
     ); then
         echo "Skipping $pack_name: pack scaffold wizard create failed" >&2
         continue
@@ -277,7 +279,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
     fi
 
     if [ -f "$flow_answers" ]; then
-        if ! greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
+        if ! timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
             echo "Skipping $pack_name: flow wizard replay failed" >&2
             continue
         fi
@@ -285,7 +287,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
 
     if ! (
         cd "$temp_pack_dir"
-        greentic-pack wizard apply --answers "$pack_answers" >/dev/null
+        timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
     ); then
         echo "Skipping $pack_name: pack wizard build failed after scaffold replay" >&2
         continue
@@ -337,13 +339,13 @@ for source_answers in "${bundle_answers[@]}"; do
         )
     ' "$source_answers" > "$temp_answers"
 
-    if ! gtc wizard --answers "$temp_answers" >/dev/null; then
+    if ! timeout "$WIZARD_TIMEOUT" gtc wizard --answers "$temp_answers" >/dev/null; then
         echo "Skipping $bundle_id: bundle wizard create failed" >&2
         continue
     fi
 
     if [ -f "$setup_answers" ]; then
-        if ! gtc setup --answers "$setup_answers" "$output_dir" >/dev/null; then
+        if ! timeout "$WIZARD_TIMEOUT" gtc setup --answers "$setup_answers" "$output_dir" >/dev/null; then
             echo "Skipping $bundle_id: bundle setup failed" >&2
             continue
         fi
