@@ -26,13 +26,13 @@
         "advanced_setup": false,
         "app_pack_entries": [
           {
-            "detected_kind": "local_dir",
+            "detected_kind": "https",
             "display_name": "Redbutton Demo Pack",
             "mapping": {
               "scope": "global"
             },
             "pack_id": "redbutton-demo-pack",
-            "reference": "packs/redbutton-demo.pack"
+            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/redbutton-demo.gtpack"
           },
           {
             "detected_kind": "local_file",
@@ -45,7 +45,7 @@
           }
         ],
         "app_packs": [
-          "packs/redbutton-demo.pack",
+          "https://github.com/greenticai/greentic-demo/releases/latest/download/redbutton-demo.gtpack",
           "public-deployer-aws-vm"
         ],
         "bundle_id": "redbutton-demo",
