@@ -3,62 +3,62 @@ version: 0.1.0
 kind: application
 publisher: Greentic
 components:
-  - id: ai.greentic.component-adaptive-card
-    version: 0.1.25
-    world: greentic:component/component-v0-v6-v0@0.6.0
-    supports:
-      - messaging
-    profiles:
-      default: stateless
-      supported:
-        - stateless
-    capabilities:
-      wasi:
-        random: true
-        clocks: true
-      host: {}
-    wasm: components/ai.greentic.component-adaptive-card/component.wasm
-  - id: mcp.exec
-    version: 0.1.0
-    world: root:component/root
-    supports:
-      - messaging
-    profiles:
-      default: default
-      supported:
-        - default
-    capabilities:
-      wasi:
-        random: false
-        clocks: false
-      host:
-        state:
-          read: true
-          write: true
-    wasm: components/mcp.exec/component.wasm
+- id: ai.greentic.component-adaptive-card
+  version: 0.1.25
+  world: greentic:component/component-v0-v6-v0@0.6.0
+  supports:
+  - messaging
+  profiles:
+    default: stateless
+    supported:
+    - stateless
+  capabilities:
+    wasi:
+      random: true
+      clocks: true
+    host: {}
+  wasm: components/ai.greentic.component-adaptive-card/component.wasm
+- id: mcp.exec
+  version: 0.1.0
+  world: root:component/root
+  supports:
+  - messaging
+  profiles:
+    default: default
+    supported:
+    - default
+  capabilities:
+    wasi:
+      random: false
+      clocks: false
+    host:
+      state:
+        read: true
+        write: true
+  wasm: components/mcp.exec/component.wasm
 dependencies:
-  - alias: oauth
-    pack_id: io.greentic.capabilities.oauth
-    version_req: ^1.0.0
-    required_capabilities:
-      - greentic.cap.oauth.broker.v1
-  - alias: state-memory
-    pack_id: state-memory
-    version_req: '>=0.1.0'
-    required_capabilities:
-      - greentic:state/state-store
+- alias: oauth
+  pack_id: io.greentic.capabilities.oauth
+  version_req: ^1.0.0
+  required_capabilities:
+  - greentic.cap.oauth.broker.v1
+- alias: state-memory
+  pack_id: state-memory
+  version_req: '>=0.1.0'
+  required_capabilities:
+  - greentic:state/state-store
 flows:
-  - id: on_message
-    file: flows/on_message.ygtc
-    tags:
-      - default
-      - messaging
-    entrypoints:
-      - default
+- id: on_message
+  file: flows/on_message.ygtc
+  tags:
+  - default
+  - messaging
+  entrypoints:
+  - default
 assets:
-  - path: assets/cards/oauth_connect_card.json
-  - path: assets/cards/pat_input_card.json
-  - path: assets/cards/repo_input_card.json
-  - path: assets/cards/security_results_card.json
-  - path: assets/i18n/_manifest.json
-  - path: assets/i18n/en.json
+- path: assets/cards/oauth_connect_card.json
+- path: assets/cards/pat_input_card.json
+- path: assets/cards/repo_input_card.json
+- path: assets/cards/security_results_card.json
+- path: assets/i18n/_manifest.json
+- path: assets/i18n/en.json
