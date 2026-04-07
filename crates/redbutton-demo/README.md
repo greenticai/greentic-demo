@@ -11,13 +11,7 @@ It wires a global webhook event into a red button scenario that selects a random
 Testing webhook:
 
 ```bash
-curl -X POST http://127.0.0.1:8080/events/redbutton \
+curl -X POST http://127.0.0.1:8080/v1/events/ingress/webhook/demo/default \
   -H 'content-type: application/json' \
   -d '{"source":"red-button","pressed":true}'
 ```
-
-Current toolchain note:
-
-- `greentic-bundle wizard apply --answers demos/redbutton-create-answers.json` validates and materializes the bundle workspace.
-- On this machine, `gtc wizard --answers ...` still routes to `greentic-dev wizard`, which does not accept `--answers`.
-- On this machine, `gtc setup --answers ...` still expects `greentic.demo.yaml` instead of a `bundle.yaml` workspace, so the checked-in setup answers document is preparatory rather than executable until that router/setup mismatch is fixed upstream.

@@ -11,7 +11,7 @@ This repository provides prebuilt answer documents per demo so you can launch ea
 ## Available Demos
 
 The demos below have both `*-create-answers.json` and `*-setup-answers.json` published in releases and are runnable with the 3-step flow.
-`cards-demo.gtpack` is also published as an artifact, but does not currently have a paired create/setup answer-document flow listed here.
+Standalone app-pack artifacts may also be published alongside these demos for reuse in other bundle flows.
 
 ### quickstart
 
