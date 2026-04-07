@@ -1,0 +1,71 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "warning",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Review required",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Choose the next action for the discrepancy.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Expected", "value": "£2,880.00" },
+        { "title": "Invoice", "value": "£2,700.00" },
+        { "title": "Variance", "value": "£180.00" },
+        { "title": "Supplier", "value": "Acme Office Supplies" }
+      ]
+    },
+    {
+      "type": "Input.Text",
+      "id": "comment",
+      "placeholder": "Add context for the follow-up",
+      "isMultiline": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Request clarification",
+          "data": { "scenario": "discrepancy_detected", "step": "review_required", "action": "discrepancy_clarification_requested" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Reject invoice",
+          "data": { "scenario": "discrepancy_detected", "step": "review_required", "action": "discrepancy_rejected" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Override approve",
+          "data": { "scenario": "discrepancy_detected", "step": "review_required", "action": "discrepancy_override_approve" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to scenarios",
+          "data": { "scenario": "discrepancy_detected", "step": "review_required", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}

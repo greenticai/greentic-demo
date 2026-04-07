@@ -1,0 +1,63 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "emphasis",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Invoice Approval Showcase",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "Choose a scripted invoice path. Each route is deterministic and ready for WebChat or embedded demo use.",
+          "wrap": true,
+          "spacing": "Small",
+          "isSubtle": true
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Scenario", "value": "Launcher" },
+        { "title": "Flow", "value": "Summary -> Validation -> Approval -> Outcome" },
+        { "title": "Mode", "value": "Scripted demo" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Pick a path to review.",
+      "weight": "Bolder",
+      "spacing": "Medium"
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Valid invoice",
+          "data": { "scenario": "valid_invoice", "step": "selector", "action": "valid_invoice_summary" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Discrepancy detected",
+          "data": { "scenario": "discrepancy_detected", "step": "selector", "action": "discrepancy_invoice_summary" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "High-value escalation",
+          "data": { "scenario": "high_value_escalation", "step": "selector", "action": "high_value_invoice_summary" }
+        }
+      ]
+    }
+  ]
+}

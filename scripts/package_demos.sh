@@ -105,6 +105,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
     temp_pack_dir="$TMP_ROOT/packs/$pack_name"
     built_pack="$temp_pack_dir/dist/$pack_name.gtpack"
+    alt_built_pack="$temp_pack_dir/dist/$pack_name.pack.gtpack"
     target_pack="$DEMOS_DIR/$pack_name.gtpack"
 
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
@@ -211,6 +212,10 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         fi
     fi
 
+    if [ ! -f "$built_pack" ] && [ -f "$alt_built_pack" ]; then
+        built_pack="$alt_built_pack"
+    fi
+
     if [ ! -f "$built_pack" ]; then
         echo "Skipping $pack_name: wizard did not produce $built_pack" >&2
         continue
@@ -244,6 +249,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
     temp_pack_parent="$TMP_ROOT/packs-create/$pack_name"
     temp_pack_dir="$temp_pack_parent/$pack_dir_name"
     built_pack="$temp_pack_dir/dist/$pack_dir_name.gtpack"
+    alt_built_pack="$temp_pack_dir/dist/$pack_dir_name.pack.gtpack"
     target_pack="$DEMOS_DIR/$pack_slug.gtpack"
 
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
@@ -291,6 +297,10 @@ for create_answers in "${generated_pack_answers[@]}"; do
     ); then
         echo "Skipping $pack_name: pack wizard build failed after scaffold replay" >&2
         continue
+    fi
+
+    if [ ! -f "$built_pack" ] && [ -f "$alt_built_pack" ]; then
+        built_pack="$alt_built_pack"
     fi
 
     if [ ! -f "$built_pack" ]; then

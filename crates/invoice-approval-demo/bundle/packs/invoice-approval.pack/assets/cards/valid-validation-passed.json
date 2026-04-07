@@ -1,0 +1,63 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "good",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Validation passed",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Totals and policy checks are consistent.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Line items", "value": "Match" },
+        { "title": "VAT", "value": "Match" },
+        { "title": "Total", "value": "Correct" },
+        { "title": "Supplier", "value": "Known" },
+        { "title": "PO", "value": "Matched" },
+        { "title": "Route", "value": "Finance Manager" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "The invoice can move to approval.",
+      "wrap": true,
+      "spacing": "Medium",
+      "isSubtle": true
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Open approval request",
+          "data": { "scenario": "valid_invoice", "step": "validation_passed", "action": "valid_approval_request" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to scenarios",
+          "data": { "scenario": "valid_invoice", "step": "validation_passed", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}

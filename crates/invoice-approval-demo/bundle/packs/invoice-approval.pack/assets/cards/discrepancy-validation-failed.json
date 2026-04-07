@@ -1,0 +1,61 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "attention",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Validation failed",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "The invoice total does not match the expected amount.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Expected total", "value": "£2,880.00" },
+        { "title": "Invoice total", "value": "£2,700.00" },
+        { "title": "Mismatch", "value": "£180.00" },
+        { "title": "Recommendation", "value": "Request clarification" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "A reviewer should confirm the price variance before payment is released.",
+      "wrap": true,
+      "spacing": "Medium",
+      "isSubtle": true
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Open review card",
+          "data": { "scenario": "discrepancy_detected", "step": "validation_failed", "action": "discrepancy_review_required" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to scenarios",
+          "data": { "scenario": "discrepancy_detected", "step": "validation_failed", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}

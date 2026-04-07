@@ -1,0 +1,63 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "good",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Validation passed",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "The invoice is correct and ready for finance director routing.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Line items", "value": "Match" },
+        { "title": "VAT", "value": "Match" },
+        { "title": "Total", "value": "Correct" },
+        { "title": "Supplier", "value": "Known" },
+        { "title": "PO", "value": "Matched" },
+        { "title": "Route", "value": "Finance Director" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Because of the amount, the approval chain escalates to the director.",
+      "wrap": true,
+      "spacing": "Medium",
+      "isSubtle": true
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Open approval request",
+          "data": { "scenario": "high_value_escalation", "step": "validation_passed", "action": "high_value_approval_request" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to scenarios",
+          "data": { "scenario": "high_value_escalation", "step": "validation_passed", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}

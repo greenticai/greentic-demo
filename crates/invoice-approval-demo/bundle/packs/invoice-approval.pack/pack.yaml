@@ -1,0 +1,44 @@
+pack_id: invoice-approval
+version: 0.1.2
+kind: application
+publisher: Greentic
+components:
+- id: ai.greentic.component-adaptive-card
+  version: 0.1.2
+  world: greentic:component/component@0.6.0
+  supports:
+  - messaging
+  profiles:
+    default: stateless
+    supported:
+    - stateless
+  capabilities:
+    wasi:
+      random: true
+      clocks: true
+    host: {}
+  wasm: components/ai.greentic.component-adaptive-card.wasm
+dependencies: []
+flows:
+- id: on_message
+  file: flows/main.ygtc
+  tags:
+  - default
+  - messaging
+  entrypoints:
+  - default
+assets:
+- path: assets/cards/scenario-selector.json
+- path: assets/cards/valid-invoice-summary.json
+- path: assets/cards/valid-validation-passed.json
+- path: assets/cards/valid-approval-request.json
+- path: assets/cards/valid-approved-outcome.json
+- path: assets/cards/discrepancy-invoice-summary.json
+- path: assets/cards/discrepancy-validation-failed.json
+- path: assets/cards/discrepancy-review-required.json
+- path: assets/cards/discrepancy-clarification-requested.json
+- path: assets/cards/high-value-invoice-summary.json
+- path: assets/cards/high-value-validation-passed.json
+- path: assets/cards/high-value-approval-request.json
+- path: assets/cards/high-value-approved-outcome.json
+- path: scripts/scenario-map.json

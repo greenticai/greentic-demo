@@ -25,6 +25,18 @@ gtc setup ./quickstart-demo-bundle --answers https://github.com/greenticai/green
 gtc start ./quickstart-demo-bundle
 ```
 
+### invoice-approval
+
+Outcome:
+- Runs a scripted invoice approval assistant that showcases adaptive-card-based extraction, validation, discrepancy review, approval, and escalation.
+
+Run:
+```bash
+gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/invoice-approval-create-answers.json
+gtc setup ./invoice-approval-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/invoice-approval-setup-answers.json
+gtc start ./invoice-approval-bundle
+```
+
 ### hr-onboarding
 
 Outcome:

@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "default_locale": "en-GB",
+  "start_node": "scenario_selector",
+  "scenarios": [
+    {
+      "id": "launcher",
+      "label": "Scenario selector",
+      "steps": [
+        {
+          "node": "scenario_selector",
+          "assistant_message": "Choose a scripted invoice path to review."
+        }
+      ]
+    },
+    {
+      "id": "valid_invoice",
+      "label": "Valid invoice",
+      "steps": [
+        {
+          "node": "valid_invoice_summary",
+          "assistant_message": "I reviewed the uploaded invoice and extracted the key details.",
+          "routes": {
+            "valid_validation_passed": "valid_validation_passed",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "valid_validation_passed",
+          "assistant_message": "I validated the totals and approval policy.",
+          "routes": {
+            "valid_approval_request": "valid_approval_request",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "valid_approval_request",
+          "assistant_message": "This invoice is ready for finance manager approval.",
+          "routes": {
+            "valid_approved_outcome": "valid_approved_outcome",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "valid_approved_outcome",
+          "assistant_message": "The decision has been recorded."
+        }
+      ]
+    },
+    {
+      "id": "discrepancy_detected",
+      "label": "Discrepancy detected",
+      "steps": [
+        {
+          "node": "discrepancy_invoice_summary",
+          "assistant_message": "I reviewed the uploaded invoice and extracted the key details.",
+          "routes": {
+            "discrepancy_validation_failed": "discrepancy_validation_failed",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "discrepancy_validation_failed",
+          "assistant_message": "The totals do not match the expected purchase order amount.",
+          "routes": {
+            "discrepancy_review_required": "discrepancy_review_required",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "discrepancy_review_required",
+          "assistant_message": "I recommend requesting clarification before any payment decision.",
+          "routes": {
+            "discrepancy_clarification_requested": "discrepancy_clarification_requested",
+            "discrepancy_rejected": "discrepancy_clarification_requested",
+            "discrepancy_override_approve": "discrepancy_clarification_requested",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "discrepancy_clarification_requested",
+          "assistant_message": "The follow-up has been created."
+        }
+      ]
+    },
+    {
+      "id": "high_value_escalation",
+      "label": "High-value escalation",
+      "steps": [
+        {
+          "node": "high_value_invoice_summary",
+          "assistant_message": "I reviewed the uploaded invoice and extracted the key details.",
+          "routes": {
+            "high_value_validation_passed": "high_value_validation_passed",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "high_value_validation_passed",
+          "assistant_message": "I validated the totals and applied the escalation policy.",
+          "routes": {
+            "high_value_approval_request": "high_value_approval_request",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "high_value_approval_request",
+          "assistant_message": "This invoice requires finance director approval.",
+          "routes": {
+            "high_value_approved_outcome": "high_value_approved_outcome",
+            "scenario_selector": "scenario_selector"
+          }
+        },
+        {
+          "node": "high_value_approved_outcome",
+          "assistant_message": "The decision has been recorded."
+        }
+      ]
+    }
+  ]
+}

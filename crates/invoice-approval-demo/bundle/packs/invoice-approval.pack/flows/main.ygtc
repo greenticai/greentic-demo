@@ -1,0 +1,189 @@
+# Invoice Approval Demo Flow
+id: on_message
+type: messaging
+start: scenario-selector
+parameters: {}
+tags: []
+schema_version: 2
+entrypoints: {}
+nodes:
+  scenario-selector:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: scenario-selector
+      card_spec:
+        asset_path: assets/cards/scenario-selector.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: valid-invoice-summary
+
+  valid-invoice-summary:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: valid-invoice-summary
+      card_spec:
+        asset_path: assets/cards/valid-invoice-summary.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: valid-validation-passed
+
+  valid-validation-passed:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: valid-validation-passed
+      card_spec:
+        asset_path: assets/cards/valid-validation-passed.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: valid-approval-request
+
+  valid-approval-request:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: valid-approval-request
+      card_spec:
+        asset_path: assets/cards/valid-approval-request.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: valid-approved-outcome
+
+  valid-approved-outcome:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: valid-approved-outcome
+      card_spec:
+        asset_path: assets/cards/valid-approved-outcome.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: discrepancy-invoice-summary
+
+  discrepancy-invoice-summary:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: discrepancy-invoice-summary
+      card_spec:
+        asset_path: assets/cards/discrepancy-invoice-summary.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: discrepancy-validation-failed
+
+  discrepancy-validation-failed:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: discrepancy-validation-failed
+      card_spec:
+        asset_path: assets/cards/discrepancy-validation-failed.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: discrepancy-review-required
+
+  discrepancy-review-required:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: discrepancy-review-required
+      card_spec:
+        asset_path: assets/cards/discrepancy-review-required.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: discrepancy-clarification-requested
+
+  discrepancy-clarification-requested:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: discrepancy-clarification-requested
+      card_spec:
+        asset_path: assets/cards/discrepancy-clarification-requested.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: high-value-invoice-summary
+
+  high-value-invoice-summary:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: high-value-invoice-summary
+      card_spec:
+        asset_path: assets/cards/high-value-invoice-summary.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: high-value-validation-passed
+
+  high-value-validation-passed:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: high-value-validation-passed
+      card_spec:
+        asset_path: assets/cards/high-value-validation-passed.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: high-value-approval-request
+
+  high-value-approval-request:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: high-value-approval-request
+      card_spec:
+        asset_path: assets/cards/high-value-approval-request.json
+      payload: {}
+      session: {}
+      state: {}
+    routing:
+      - to: high-value-approved-outcome
+
+  high-value-approved-outcome:
+    card:
+      card_source: asset
+      mode: renderAndValidate
+      validation_mode: warn
+      node_id: high-value-approved-outcome
+      card_spec:
+        asset_path: assets/cards/high-value-approved-outcome.json
+      payload: {}
+      session: {}
+      state: {}
+    routing: out

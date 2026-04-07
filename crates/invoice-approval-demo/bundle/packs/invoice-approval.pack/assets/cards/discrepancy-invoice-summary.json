@@ -1,0 +1,66 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "warning",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Invoice received",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Acme Office Supplies invoice INV-20481 has a pricing exception.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Supplier", "value": "Acme Office Supplies" },
+        { "title": "Invoice", "value": "INV-20481" },
+        { "title": "Date", "value": "2026-04-03" },
+        { "title": "PO", "value": "PO-11892" },
+        { "title": "Currency", "value": "GBP" },
+        { "title": "Subtotal", "value": "£2,250.00" },
+        { "title": "VAT", "value": "£450.00" },
+        { "title": "Total", "value": "£2,700.00" },
+        { "title": "Confidence", "value": "89%" }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "The invoice family is known, but the total is lower than expected.",
+      "wrap": true,
+      "spacing": "Medium",
+      "isSubtle": true
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Continue to validation",
+          "data": { "scenario": "discrepancy_detected", "step": "summary", "action": "discrepancy_validation_failed" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to scenarios",
+          "data": { "scenario": "discrepancy_detected", "step": "summary", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}

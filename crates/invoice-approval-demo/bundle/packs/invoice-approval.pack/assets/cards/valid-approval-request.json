@@ -1,0 +1,64 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "accent",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Approval request",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "Finance manager review is required before release.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Invoice", "value": "INV-20481" },
+        { "title": "Supplier", "value": "Acme Office Supplies" },
+        { "title": "Department", "value": "Operations" },
+        { "title": "Cost centre", "value": "CC-140" },
+        { "title": "Total", "value": "£2,880.00" },
+        { "title": "Validation", "value": "Passed" },
+        { "title": "Route", "value": "Finance Manager" }
+      ]
+    },
+    {
+      "type": "Input.Text",
+      "id": "comment",
+      "placeholder": "Optional comment for the approver",
+      "isMultiline": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Approve invoice",
+          "data": { "scenario": "valid_invoice", "step": "approval_request", "action": "valid_approved_outcome" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to scenarios",
+          "data": { "scenario": "valid_invoice", "step": "approval_request", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}

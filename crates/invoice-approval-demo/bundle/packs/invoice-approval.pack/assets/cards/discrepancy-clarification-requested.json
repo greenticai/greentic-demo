@@ -1,0 +1,48 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "good",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Clarification requested",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "A follow-up task has been created for the supplier and reviewer.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Status", "value": "Awaiting clarification" },
+        { "title": "Follow-up", "value": "Created" },
+        { "title": "Next step", "value": "Wait for supplier response" }
+      ]
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Review another invoice",
+          "data": { "scenario": "discrepancy_detected", "step": "clarification_requested", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}

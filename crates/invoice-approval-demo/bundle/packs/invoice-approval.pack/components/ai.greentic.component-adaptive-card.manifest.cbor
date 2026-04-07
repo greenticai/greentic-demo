@@ -1,0 +1,34 @@
+™bidx#ai.greentic.component-adaptive-cardeworldx"greentic:component/component@0.6.0gversione0.1.2hprofiles¢gdefaultistatelessisupportedÅistatelesshsupportsÅimessagingidev_flows¢fcustom¢egraph§bidx*ai.greentic.component-adaptive-card.customdkindpcomponent-configenodes¢jask_config¢groutingÅ°btokemit_configiquestions°ffieldsä•bidkcard_sourcedtypedenumfpromptxWhere to load the card from.gdefaultfinlinegoptionsÉfinlineeassetgcatalog§bidicard_specdtypefstringfpromptx&Details for resolving the card source.gdefault°kinline_json†£bidhenvelopedtypefstringfpromptx/Optional Greentic invocation envelope metadata.£bidkinteractiondtypefstringfpromptlInteraction:•biddmodedtypedenumfpromptx*Whether to render, validate only, or both.gdefaultqrenderAndValidategoptionsÉfrenderhvalidateqrenderAndValidate£bidgnode_iddtypefstringfpromptxBOptional node id used to scope persisted state and helper context.£bidgpayloaddtypefstringfpromptx>Explicit input payload used for binding/expression resolution.£bidgsessiondtypefstringfpromptx@Optional explicit session metadata (not injected by the runner).£bidestatedtypefstringfpromptxEOptional explicit state override (persistent state uses state-store).•bidovalidation_modedtypedenumfpromptx2How to handle invocation schema validation issues.gdefaultdwarngoptionsÉcoffdwarneerrorkemit_config°htemplateyS{
+  "node_id": "component-adaptive-card",
+  "node": {
+    "card": {
+      "input": {
+        "card_source": "{{state.card_source}}",
+        "card_spec": "{{state.card_spec}}",
+        "envelope": "{{state.envelope}}",
+        "interaction": "{{state.interaction}}",
+        "mode": "{{state.mode}}",
+        "node_id": "{{state.node_id}}",
+        "payload": "{{state.payload}}",
+        "session": "{{state.session}}",
+        "state": "{{state.state}}",
+        "validation_mode": "{{state.validation_mode}}"
+      }
+    },
+    "routing": [
+      { "to": "NEXT_NODE_PLACEHOLDER" }
+    ]
+  }
+}kdescriptionxDAuto-generated custom config for ai.greentic.component-adaptive-cardfformatlflow-ir-jsongdefault¢egraph§bidx+ai.greentic.component-adaptive-card.defaultdkindpcomponent-configenodes°kemit_config°htemplatex–{
+  "node_id": "component-adaptive-card",
+  "node": {
+    "card": {
+      "input": {
+        "card_spec": {"inline_json":{}}
+      }
+    },
+    "routing": [
+      { "to": "NEXT_NODE_PLACEHOLDER" }
+    ]
+  }
+}kdescriptionxEAuto-generated default config for ai.greentic.component-adaptive-cardfformatlflow-ir-jsoniresources†joperationsÅ£dnamedcardlinput_schema•dtypefobjectetitlexAdaptive Card invocation inputg$schemax,https://json-schema.org/draft/2020-12/schemahrequiredÅicard_specjproperties™dmode§denumÉfrenderhvalidateqrenderAndValidatedtypefstringgdefaultqrenderAndValidatekdescriptionx*Whether to render, validate only, or both.estate¢dtypeÉfobjectearraydnullkdescriptionxEOptional explicit state override (persistent state uses state-store).gnode_id¢dtypefstringkdescriptionxBOptional node id used to scope persisted state and helper context.gpayload¢dtypeÉfobjectearraydnullkdescriptionx>Explicit input payload used for binding/expression resolution.gsession¢dtypeÉfobjectearraydnullkdescriptionx@Optional explicit session metadata (not injected by the runner).henvelope¢dtypefobjectkdescriptionx/Optional Greentic invocation envelope metadata.icard_spec§dtypefobjectgdefault°kinline_json†jproperties•jasset_path°dtypefstringkinline_json°dtypeÇfobjectearraylcatalog_name°dtypefstringnasset_registry£dtypefobjectkdescriptionx=Optional mapping of asset or catalog names to concrete paths.tadditionalProperties°dtypefstringotemplate_params°dtypeÇfobjectearraykdescriptionx&Details for resolving the card source.kcard_source§denumÉfinlineeassetgcatalogdtypefstringgdefaultfinlinekdescriptionxWhere to load the card from.kinteraction£dtypefobjecthrequiredÉpinteraction_typeiaction_idpcard_instance_idjpropertiesßdverb°dtypeÇfstringdnullgenabled°dtypegbooleanhmetadata°dtypeÉfobjectearraydnulliaction_id°dtypefstringjraw_inputs°dtypeÑfobjectearrayfstringdnullpcard_instance_id°dtypefstringpinteraction_type¢denumÖfSubmitgExecutegOpenUrlhShowCardpToggleVisibilitydtypefstringovalidation_mode§denumÉcoffdwarneerrordtypefstringgdefaultdwarnkdescriptionx2How to handle invocation schema validation issues.moutput_schema§dtypefobjectetitlexAdaptive Card result outputg$schemax,https://json-schema.org/draft/2020-12/schemajpropertiesßeevent°dtypeÇfobjectdnullmcard_features¢dtypefobjectjproperties®gversion°dtypeÇfstringdnulliuses_auth°dtypegbooleanjuses_media°dtypegbooleanlused_actions¢dtypeearrayeitems°dtypefstringmused_elements¢dtypeearrayeitems°dtypefstringnuses_show_card°dtypegbooleanqrequires_features°dtypeÉfobjectearraydnullvuses_toggle_visibility°dtypegbooleanmrendered_card°dtypeÉfobjectearraydnullmstate_updates¢dtypeearrayeitems°dtypefobjectosession_updates¢dtypeearrayeitems°dtypefobjectptelemetry_events¢dtypeearrayeitems°dtypefobjectqvalidation_issues¢dtypeearrayeitems°dtypefobjectlcapabilities¢dhost§estate¢dreadıewriteıgsecrets°hrequiredÄimessaging¢ginboundıhoutboundıitelemetry°escopednodedwasi£fclocksıfrandomıjfilesystem¢dmodeiread_onlyfmountsÅ£dnameiworkspacejguest_patha.jhost_classccwdmconfig_schema•dtypefobjectetitlex/component-adaptive-card component configurationg$schemax,https://json-schema.org/draft/2020-12/schemajproperties¢oasset_base_path§dtypefstringgdefaultfassetskdescriptionx?Optional base path for resolving catalog or asset-backed cards.qx-default-appliedıucatalog_registry_file£dtypefstringjx-optionalıkdescriptionx`Optional path to a JSON map of catalog names to asset paths (fallback for env-based resolution).tadditionalPropertiesÙ

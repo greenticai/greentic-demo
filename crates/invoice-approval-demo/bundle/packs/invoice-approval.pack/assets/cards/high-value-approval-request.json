@@ -1,0 +1,64 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "style": "accent",
+      "bleed": true,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Director approval required",
+          "size": "Large",
+          "weight": "Bolder",
+          "wrap": true,
+          "color": "Light"
+        },
+        {
+          "type": "TextBlock",
+          "text": "This invoice is above the standard approval threshold.",
+          "wrap": true,
+          "spacing": "Small",
+          "color": "Light"
+        }
+      ]
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        { "title": "Invoice", "value": "INV-78122" },
+        { "title": "Supplier", "value": "Vertex Industrial Systems" },
+        { "title": "Department", "value": "Operations" },
+        { "title": "Cost centre", "value": "CC-980" },
+        { "title": "Total", "value": "£21,600.00" },
+        { "title": "Validation", "value": "Passed" },
+        { "title": "Route", "value": "Finance Director" }
+      ]
+    },
+    {
+      "type": "Input.Text",
+      "id": "comment",
+      "placeholder": "Optional note for the director",
+      "isMultiline": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "ActionSet",
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "Approve invoice",
+          "data": { "scenario": "high_value_escalation", "step": "approval_request", "action": "high_value_approved_outcome" }
+        },
+        {
+          "type": "Action.Submit",
+          "title": "Back to scenarios",
+          "data": { "scenario": "high_value_escalation", "step": "approval_request", "action": "scenario_selector" }
+        }
+      ]
+    }
+  ]
+}
