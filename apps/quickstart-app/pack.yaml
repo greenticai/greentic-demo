@@ -5,7 +5,7 @@ publisher: BimaPangestu28
 components:
 - id: component-events2msg
   version: 0.1.0
-  world: greentic:component/component@0.6.0
+  world: greentic:component/component-v0-v6-v0@0.6.0
   supports:
   - messaging
   profiles:
@@ -20,7 +20,7 @@ components:
   wasm: components/component-events2msg.wasm
 - id: component-msg2events
   version: 0.1.0
-  world: greentic:component/component@0.6.0
+  world: greentic:component/component-v0-v6-v0@0.6.0
   supports:
   - messaging
   profiles:
