@@ -24,6 +24,10 @@ if ! command -v jq >/dev/null 2>&1; then
     exit 0
 fi
 
+# Close stdin so wizard/setup commands that attempt interactive prompts
+# (e.g. secret reads) fail immediately instead of hanging in CI.
+exec < /dev/null
+
 mkdir -p "$CRATES_DIR" "$DEMOS_DIR"
 rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
