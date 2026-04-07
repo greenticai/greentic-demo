@@ -28,6 +28,10 @@ mkdir -p "$CRATES_DIR" "$DEMOS_DIR"
 rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
 mkdir -p "$LOCAL_PACK_INPUT_DIR"
+# Seed LOCAL_PACK_INPUT_DIR with committed packs before cleanup so that
+# pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
+# remain available for bundle creation.
+find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -exec cp {} "$LOCAL_PACK_INPUT_DIR/" \;
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -exec rm -rf {} +
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
 
