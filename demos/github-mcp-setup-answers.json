@@ -28,7 +28,8 @@
       "client_id_key": "OAUTH_CLIENT_ID",
       "client_secret_key": "OAUTH_CLIENT_SECRET",
       "default_scopes": "repo security_events"
-    }
+    },
+    "state-memory": {}
   },
   "team": null,
   "tenant": "demo"

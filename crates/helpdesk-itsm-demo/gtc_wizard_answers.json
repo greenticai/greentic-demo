@@ -53,12 +53,20 @@
                         "provider_id": "greentic.messaging.teams.latest",
                         "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
                         "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic State Memory (latest)",
+                        "provider_id": "state-memory",
+                        "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+                        "version": "latest"
                     }
                 ],
                 "extension_providers": [
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest"
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
+                    "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
                 "output_dir": "./helpdesk-itsm-demo-bundle",

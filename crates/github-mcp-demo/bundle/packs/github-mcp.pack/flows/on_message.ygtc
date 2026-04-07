@@ -1,8 +1,8 @@
 id: on_message
-title: GitHub Security Dashboard
-description: Scan GitHub repos for security vulnerabilities via MCP.
+title: GitHub MCP Assistant
+description: Interact with GitHub via MCP using OAuth or PAT authentication.
 type: messaging
-start: show_repo_input
+start: show_auth_choice
 parameters:
   oauth_provider: github
 tags:
@@ -11,7 +11,31 @@ tags:
 schema_version: 2
 entrypoints: {}
 nodes:
-  show_repo_input:
+  show_auth_choice:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: cards/oauth_connect_card.json
+        mode: renderAndValidate
+    routing:
+      - condition: response.action == "use_pat"
+        to: show_pat_input
+      - to: show_ready
+
+  show_pat_input:
+    card:
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: cards/pat_input_card.json
+        mode: renderAndValidate
+    routing:
+      - condition: response.action == "go_back"
+        to: show_auth_choice
+      - to: show_ready
+
+  show_ready:
     card:
       input:
         card_source: asset
@@ -19,6 +43,8 @@ nodes:
           asset_path: cards/repo_input_card.json
         mode: renderAndValidate
     routing:
+      - condition: response.action == "disconnect"
+        to: show_auth_choice
       - to: call_mcp
 
   call_mcp:
@@ -28,8 +54,7 @@ nodes:
       input:
         tool: echo
         arguments:
-          owner: greenticai
-          scan_type: security
+          prompt: state.user_prompt
     routing:
       - to: show_result_card
 
@@ -40,4 +65,7 @@ nodes:
         card_spec:
           asset_path: cards/security_results_card.json
         mode: renderAndValidate
-    routing: out
+    routing:
+      - condition: response.action == "try_again"
+        to: show_ready
+      - to: show_auth_choice

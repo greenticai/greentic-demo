@@ -14,6 +14,7 @@ app_pack_mappings:
     scope: global
 extension_providers:
   - oci://ghcr.io/greenticai/packs/events/events-webhook:latest
+  - oci://ghcr.io/greenticai/packs/state/state-memory:latest
 remote_catalogs: []
 hooks: []
 subscriptions: []

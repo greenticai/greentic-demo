@@ -67,6 +67,13 @@
                         "provider_id": "greentic.events.sms-twilio.latest",
                         "reference": "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:latest",
                         "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic State Memory (latest)",
+                        "provider_id": "state-memory",
+                        "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+                        "version": "latest"
                     }
                 ],
                 "extension_providers": [
@@ -74,7 +81,8 @@
                     "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
                     "oci://ghcr.io/greenticai/packs/events/events-timer:latest",
                     "oci://ghcr.io/greenticai/packs/events/events-email-sendgrid:latest",
-                    "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:latest"
+                    "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:latest",
+                    "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
                 "output_dir": "./quickstart-event-demo-bundle",

@@ -11,7 +11,8 @@
     }
   },
   "setup_answers": {
-    "greentic.events.webhook": {}
+    "greentic.events.webhook": {},
+    "state-memory": {}
   },
   "team": null,
   "tenant": "default"

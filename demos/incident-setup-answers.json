@@ -18,7 +18,8 @@
     "messaging-webex": {
       "bot_token": "MDgwNzIyYjktZWNmNy00ODZhLWEyMTUtZmI2NDUxNzIxY2VmMjUzNTc1NDItMjNm_P0A1_bdd2aed2-da17-481d-bd6f-b43037ee90b7",
       "public_base_url": "https://some-helicopter-jake-pictures.trycloudflare.com"
-    }
+    },
+    "state-memory": {}
   },
   "team": null,
   "tenant": "default"
