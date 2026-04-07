@@ -4,7 +4,7 @@ kind: application
 publisher: Greentic
 components:
 - id: ai.greentic.component-adaptive-card
-  version: 0.1.2
+  version: 0.1.25
   world: greentic:component/component-v0-v6-v0@0.6.0
   supports:
   - messaging
@@ -17,7 +17,7 @@ components:
       random: true
       clocks: true
     host: {}
-  wasm: components/ai.greentic.component-adaptive-card.wasm
+  wasm: components/ai.greentic.component-adaptive-card/component.wasm
 dependencies: []
 flows:
 - id: on_message
