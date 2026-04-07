@@ -2,53 +2,53 @@
   "schema_version": 1,
   "flow": "on_message.ygtc",
   "nodes": {
-    "welcome": {
+    "access_request": {
+      "component_id": "ai.greentic.component-adaptive-card",
       "source": {
-        "kind": "local",
-        "path": "../components/ai.greentic.component-adaptive-card.wasm"
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
       },
-      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6",
-      "component_id": "ai.greentic.component-adaptive-card"
-    },
-    "employee_form": {
-      "source": {
-        "kind": "local",
-        "path": "../components/ai.greentic.component-adaptive-card.wasm"
-      },
-      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6",
-      "component_id": "ai.greentic.component-adaptive-card"
+      "digest": "sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
     },
     "checklist": {
+      "component_id": "ai.greentic.component-adaptive-card",
       "source": {
-        "kind": "local",
-        "path": "../components/ai.greentic.component-adaptive-card.wasm"
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
       },
-      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6",
-      "component_id": "ai.greentic.component-adaptive-card"
-    },
-    "document_upload": {
-      "source": {
-        "kind": "local",
-        "path": "../components/ai.greentic.component-adaptive-card.wasm"
-      },
-      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6",
-      "component_id": "ai.greentic.component-adaptive-card"
-    },
-    "access_request": {
-      "source": {
-        "kind": "local",
-        "path": "../components/ai.greentic.component-adaptive-card.wasm"
-      },
-      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6",
-      "component_id": "ai.greentic.component-adaptive-card"
+      "digest": "sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
     },
     "completion": {
+      "component_id": "ai.greentic.component-adaptive-card",
       "source": {
-        "kind": "local",
-        "path": "../components/ai.greentic.component-adaptive-card.wasm"
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
       },
-      "digest": "sha256:bcb229fa7c33a4621494b95a1216af3adec8b8f266002cddf733dae0b12381d6",
-      "component_id": "ai.greentic.component-adaptive-card"
+      "digest": "sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
+    },
+    "document_upload": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
+      },
+      "digest": "sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
+    },
+    "employee_form": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
+      },
+      "digest": "sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
+    },
+    "welcome": {
+      "component_id": "ai.greentic.component-adaptive-card",
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
+      },
+      "digest": "sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2"
     }
   }
 }
