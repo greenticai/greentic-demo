@@ -418,6 +418,15 @@ if [ "$packaged_any" -eq 0 ]; then
     exit 1
 fi
 
+# Restore pre-seeded packs that weren't rebuilt (e.g. cloud-deploy-demo-app.gtpack).
+for seeded in "$LOCAL_PACK_INPUT_DIR"/*.gtpack; do
+    [ -f "$seeded" ] || continue
+    seeded_name="$(basename "$seeded")"
+    if [ ! -f "$DEMOS_DIR/$seeded_name" ]; then
+        cp "$seeded" "$DEMOS_DIR/$seeded_name"
+    fi
+done
+
 # Bundle creation may consume local pack inputs. Use temp copies instead of demos/*.gtpack.
 find "$LOCAL_PACK_INPUT_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -exec cp {} "$LOCAL_PACK_INPUT_DIR/" \;
