@@ -104,7 +104,8 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     create_answers="$crate_dir/gtc_pack_create_wizard_answers.json"
     flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
     temp_pack_dir="$TMP_ROOT/packs/$pack_name"
-    built_pack="$temp_pack_dir/dist/$pack_name.gtpack"
+    pack_dir_basename="$(basename "$source_pack_dir")"
+    built_pack="$temp_pack_dir/dist/$pack_dir_basename.gtpack"
     target_pack="$DEMOS_DIR/$pack_name.gtpack"
 
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
@@ -137,7 +138,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     if [ -f "$create_answers" ]; then
         temp_pack_parent="$TMP_ROOT/packs-create/$pack_name"
         temp_pack_dir="$temp_pack_parent/$pack_name.pack"
-        built_pack="$temp_pack_dir/dist/$pack_name.gtpack"
+        built_pack="$temp_pack_dir/dist/$pack_name.pack.gtpack"
 
         rm -rf "$temp_pack_parent"
         mkdir -p "$temp_pack_parent"
@@ -152,7 +153,8 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
         if [ -d "$source_pack_dir" ] && [ ! -f "$crate_dir/pack.yaml" ] && [ ! -d "$crate_dir/flows" ]; then
             # Preserve the legacy demo pack content while still creating the pack via answers.
-            rsync -a --exclude 'dist/' "$source_pack_dir/" "$temp_pack_dir/"
+            # Exclude dist, resolve files (scaffold wizard creates OCI-resolved ones), and components.
+            rsync -a --exclude 'dist/' --exclude '*.resolve.json' --exclude '*.resolve.summary.json' --exclude 'components/' "$source_pack_dir/" "$temp_pack_dir/"
         fi
 
         if [ -d "$source_assets_dir" ]; then
@@ -160,10 +162,8 @@ for source_pack_dir in "${pack_dirs[@]}"; do
             cp -R "$source_assets_dir/." "$temp_pack_dir/assets/"
         fi
 
-        if [ -d "$source_components_dir" ]; then
-            mkdir -p "$temp_pack_dir/components"
-            cp -R "$source_components_dir/." "$temp_pack_dir/components/"
-        fi
+        # Components are resolved from OCI by the scaffold wizard; skip local copy
+        # to avoid hash conflicts between local WASM and OCI-resolved artifacts.
 
         if [ -f "$flow_answers" ]; then
             if ! timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
@@ -345,9 +345,8 @@ for source_answers in "${bundle_answers[@]}"; do
     fi
 
     if [ -f "$setup_answers" ]; then
-        if ! timeout "$WIZARD_TIMEOUT" gtc setup --answers "$setup_answers" "$output_dir" >/dev/null; then
-            echo "Skipping $bundle_id: bundle setup failed" >&2
-            continue
+        if ! timeout "$WIZARD_TIMEOUT" gtc setup --answers "$setup_answers" "$output_dir" >/dev/null 2>&1; then
+            echo "Warning: $bundle_id: bundle setup failed (missing secrets?), attempting build anyway" >&2
         fi
     fi
 

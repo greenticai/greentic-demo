@@ -4,7 +4,7 @@
   "schema_version": "1.0.0",
   "locale": "en-GB",
   "answers": {
-    "create_pack_id": "quickstart.pack",
+    "create_pack_id": "quickstart",
     "create_pack_scaffold": true,
     "dry_run": false,
     "mode": "interactive",
