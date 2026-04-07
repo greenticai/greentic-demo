@@ -204,6 +204,12 @@ jobs:
           toolchain: 1.94.0
           targets: wasm32-wasip2
 
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: Install gtc
+        run: cargo binstall -y gtc && gtc install
+
       - name: Install ORAS
         uses: oras-project/setup-oras@v1
 
@@ -313,6 +319,20 @@ jobs:
             name="$(basename "$file")"
             if ! grep -Fxq "$name" <<<"$release_assets"; then
               echo "Missing release asset: $name" >&2
+              missing=1
+            fi
+          done
+
+          # Every create-answers.json must have a corresponding .gtbundle in the release.
+          # This catches the case where packaging silently skips a demo.
+          for answers in demos/*-create-answers.json; do
+            bundle_id="$(jq -r '.answers.delegate_answer_document.answers.bundle_id // empty' "$answers")"
+            if [[ -z "$bundle_id" ]]; then
+              continue
+            fi
+            expected="${bundle_id}.gtbundle"
+            if ! grep -Fxq "$expected" <<<"$release_assets"; then
+              echo "Missing expected bundle for $(basename "$answers"): $expected" >&2
               missing=1
             fi
           done
