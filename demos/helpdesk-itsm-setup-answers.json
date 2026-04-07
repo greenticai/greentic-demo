@@ -41,7 +41,8 @@
       "default_to_person_email": "",
       "public_base_url": "",
       "webex_bot_token": ""
-    }
+    },
+    "state-memory": {}
   },
   "team": null,
   "tenant": "demo"

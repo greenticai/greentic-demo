@@ -37,7 +37,8 @@
       "account_sid": "AC00000000000000000000000000000000",
       "auth_token": "demo-auth-token-not-real",
       "from_number": "+10000000000"
-    }
+    },
+    "state-memory": {}
   },
   "team": null,
   "tenant": "demo"

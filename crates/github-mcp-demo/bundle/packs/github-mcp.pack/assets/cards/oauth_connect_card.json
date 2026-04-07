@@ -5,36 +5,101 @@
   "body": [
     {
       "type": "TextBlock",
-      "text": "GitHub Authorization Required",
+      "text": "GitHub Authentication",
       "weight": "Bolder",
-      "size": "Medium",
+      "size": "Large",
       "wrap": true
     },
     {
       "type": "TextBlock",
-      "text": "Connect your GitHub account to access repository security data. This requires read access to your repositories and security alerts.",
+      "text": "Choose how you want to connect to GitHub. You can use OAuth for secure login, or enter a Personal Access Token (PAT) directly.",
       "wrap": true,
       "isSubtle": true
     },
     {
-      "type": "FactSet",
-      "facts": [
-        { "title": "Provider", "value": "GitHub" },
-        { "title": "Scopes", "value": "repo, security_events" }
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🔐",
+              "size": "ExtraLarge"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "OAuth Login",
+              "weight": "Bolder",
+              "wrap": true
+            },
+            {
+              "type": "TextBlock",
+              "text": "Sign in with your GitHub account. Secure and easy.",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🔑",
+              "size": "ExtraLarge"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Personal Access Token",
+              "weight": "Bolder",
+              "wrap": true
+            },
+            {
+              "type": "TextBlock",
+              "text": "Paste a GitHub PAT with repo access.",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small"
+            }
+          ]
+        }
       ]
     }
   ],
   "actions": [
     {
-      "type": "Action.Submit",
-      "title": "Connect GitHub",
+      "type": "Action.OpenUrl",
+      "title": "Login with OAuth",
       "style": "positive",
-      "data": { "action_id": "connect_github" }
+      "url": "oauth://start"
     },
     {
       "type": "Action.Submit",
-      "title": "Cancel",
-      "data": { "action_id": "cancel" }
+      "title": "Use PAT instead",
+      "data": { "action_id": "use_pat" }
     }
   ]
 }

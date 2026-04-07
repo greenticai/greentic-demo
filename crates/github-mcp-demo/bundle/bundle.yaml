@@ -11,7 +11,8 @@ app_pack_mappings:
     scope: global
 extension_providers:
   - oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest
-  - oci://ghcr.io/greenticai/packs/oauth/oauth-github:latest
+  - oci://ghcr.io/greenticai/oauth-oidc-generic-pack:latest
+  - oci://ghcr.io/greenticai/packs/state/state-memory:latest
 remote_catalogs: []
 hooks: []
 subscriptions: []

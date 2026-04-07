@@ -9,25 +9,11 @@ tags:
   - event-demo
 schema_version: 2
 entrypoints: {}
-meta:
-  greentic:
-    bindings_hints:
-      component-adaptive-card: []
-    components:
-      component-adaptive-card:
-        abi_version: 0.6.0
-        component_id: oci://ghcr.io/greenticai/components/component-adaptive-card:latest
-        exported_ops_seen:
-        - describe
-        - invoke
-        resolved_digest: sha256:54195f66805c7fbfc84c127e22943406f7bb4eea8099c0b152ab809d62a14551
-    secrets_hints:
-      component-adaptive-card: []
 nodes:
   component-adaptive-card:
     routing: out
     run:
-      component: oci://ghcr.io/greenticai/components/component-adaptive-card:latest
+      component: ai.greentic.component-adaptive-card
       config:
         default_card_asset: assets/cards/welcome_card.json
         default_source: asset

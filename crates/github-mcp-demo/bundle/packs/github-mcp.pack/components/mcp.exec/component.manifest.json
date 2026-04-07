@@ -14,7 +14,8 @@
     },
     "host": {
       "http": { "client": true },
-      "secrets": { "required": [{ "key": "github_token", "required": false }] }
+      "secrets": { "required": [{ "key": "github_token", "required": false }] },
+      "state": { "read": true, "write": true }
     }
   },
   "artifacts": {

@@ -12,6 +12,7 @@ app_pack_mappings:
 extension_providers:
   - oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest
   - oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest
+  - oci://ghcr.io/greenticai/packs/state/state-memory:latest
 remote_catalogs: []
 hooks: []
 subscriptions: []
