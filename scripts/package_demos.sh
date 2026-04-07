@@ -65,7 +65,7 @@ cat > "$DEFAULT_PACK_ANSWERS" <<'EOF'
     "dry_run": false,
     "mode": "interactive",
     "pack_dir": ".",
-    "run_build": true,
+    "run_build": false,
     "run_delegate_component": false,
     "run_delegate_flow": false,
     "run_doctor": false,
@@ -176,7 +176,22 @@ for source_pack_dir in "${pack_dirs[@]}"; do
             cd "$temp_pack_dir"
             timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
         ); then
-            echo "Skipping $pack_name: pack wizard build failed after scaffold replay" >&2
+            echo "Skipping $pack_name: pack wizard update failed after scaffold replay" >&2
+            continue
+        fi
+
+        # Restore committed resolve/summary files — the wizard's internal resolve
+        # may overwrite them with empty entries when components are unavailable in CI.
+        if [ -d "$source_flows_dir" ]; then
+            find "$source_flows_dir" \( -name '*.resolve.json' -o -name '*.resolve.summary.json' \) 2>/dev/null |
+            while read -r rf; do
+                cp "$rf" "$temp_pack_dir/flows/$(basename "$rf")" 2>/dev/null || true
+            done
+        fi
+
+        # Build separately after resolve files are restored.
+        if ! (cd "$temp_pack_dir" && timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+            echo "Skipping $pack_name: pack build failed after scaffold replay" >&2
             continue
         fi
     else
@@ -206,7 +221,20 @@ for source_pack_dir in "${pack_dirs[@]}"; do
             cd "$temp_pack_dir"
             timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
         ); then
-            echo "Skipping $pack_name: pack wizard build failed" >&2
+            echo "Skipping $pack_name: pack wizard update failed" >&2
+            continue
+        fi
+
+        # Restore committed resolve/summary files — the wizard's internal resolve
+        # may overwrite them with empty entries when components are unavailable in CI.
+        find "$source_flows_dir" \( -name '*.resolve.json' -o -name '*.resolve.summary.json' \) 2>/dev/null |
+        while read -r rf; do
+            cp "$rf" "$temp_pack_dir/flows/$(basename "$rf")" 2>/dev/null || true
+        done
+
+        # Build separately after resolve files are restored.
+        if ! (cd "$temp_pack_dir" && timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+            echo "Skipping $pack_name: pack build failed" >&2
             continue
         fi
     fi
@@ -289,7 +317,22 @@ for create_answers in "${generated_pack_answers[@]}"; do
         cd "$temp_pack_dir"
         timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
     ); then
-        echo "Skipping $pack_name: pack wizard build failed after scaffold replay" >&2
+        echo "Skipping $pack_name: pack wizard update failed after scaffold replay" >&2
+        continue
+    fi
+
+    # Restore committed resolve/summary files — the wizard's internal resolve
+    # may overwrite them with empty entries when components are unavailable in CI.
+    if [ -d "$source_flows_dir" ]; then
+        find "$source_flows_dir" \( -name '*.resolve.json' -o -name '*.resolve.summary.json' \) 2>/dev/null |
+        while read -r rf; do
+            cp "$rf" "$temp_pack_dir/flows/$(basename "$rf")" 2>/dev/null || true
+        done
+    fi
+
+    # Build separately after resolve files are restored.
+    if ! (cd "$temp_pack_dir" && timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+        echo "Skipping $pack_name: pack build failed after scaffold replay" >&2
         continue
     fi
 
