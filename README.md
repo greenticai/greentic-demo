@@ -108,3 +108,15 @@ gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest
 gtc setup ./cloud-deploy-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/cloud-deploy-demo-setup-answers.json
 gtc start ./cloud-deploy-demo-bundle
 ```
+
+### weather-mcp-demo
+
+Outcome:
+- Runs a weather assistant that fetches current conditions and forecast data, then renders adaptive-card responses.
+
+Run:
+```bash
+gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/weather-mcp-demo-create-answers.json
+gtc setup ./weather-mcp-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/weather-mcp-demo-setup-answers.json
+gtc start ./weather-mcp-demo-bundle
+```

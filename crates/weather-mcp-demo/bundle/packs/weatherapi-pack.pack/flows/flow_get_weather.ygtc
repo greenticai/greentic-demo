@@ -1,0 +1,28 @@
+id: flow_get_weather
+type: messaging
+start: call_weather
+nodes:
+  call_weather:
+    component.exec:
+      component: weatherapi_current.component
+      operation: get_weather
+      input:
+        key: "{{in.input.metadata.key}}"
+        q: "{{in.input.metadata.q}}"
+        aqi: "no"
+    routing:
+      - to: render_current_card
+
+  render_current_card:
+    component.exec:
+      component: ai.greentic.component-adaptive-card
+      operation: card
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: assets/weather_current_result_card.json
+        payload:
+          request: "{{in.input.metadata}}"
+          result: "{{node.call_weather.result.structured_content}}"
+    routing:
+      - out: true

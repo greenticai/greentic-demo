@@ -240,8 +240,13 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     fi
 
     if [ ! -f "$built_pack" ]; then
-        echo "Skipping $pack_name: wizard did not produce $built_pack" >&2
-        continue
+        dist_packs=("$temp_pack_dir"/dist/*.gtpack)
+        if [ ${#dist_packs[@]} -eq 1 ]; then
+            built_pack="${dist_packs[0]}"
+        else
+            echo "Skipping $pack_name: wizard did not produce $built_pack" >&2
+            continue
+        fi
     fi
 
     cp "$built_pack" "$target_pack"
