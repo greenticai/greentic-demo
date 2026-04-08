@@ -45,3 +45,7 @@ version = "0.1.43"
 [[package]]
 name = "supply-chain-demo"
 version = "0.1.43"
+
+[[package]]
+name = "weather-mcp-demo"
+version = "0.1.43"
