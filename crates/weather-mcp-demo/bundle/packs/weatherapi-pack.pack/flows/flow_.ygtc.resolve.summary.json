@@ -6,12 +6,12 @@
       "component_id": "ai.greentic.component-adaptive-card",
       "source": {
         "kind": "local",
-        "path": "../components/adaptive-card/component_adaptive_card.wasm"
+        "path": "../components/ai.greentic.component-adaptive-card/component.wasm"
       },
-      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656",
+      "digest": "sha256:6c4963c76277102a2e3e3517acc18125e04896747639b62dedaffb5d5f2c0f78",
       "manifest": {
-        "world": "greentic:component/component@0.6.0",
-        "version": "0.1.0"
+        "world": "greentic:component/component-v0-v6-v0@0.6.0",
+        "version": "0.1.25"
       }
     }
   }

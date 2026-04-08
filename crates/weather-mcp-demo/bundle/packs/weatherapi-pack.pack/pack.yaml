@@ -4,8 +4,8 @@ kind: application
 publisher: Greentic
 components:
 - id: ai.greentic.component-adaptive-card
-  version: 0.1.0
-  world: root:component/root
+  version: 0.1.25
+  world: greentic:component/component-v0-v6-v0@0.6.0
   supports:
   - messaging
   profiles:
@@ -17,7 +17,7 @@ components:
       random: false
       clocks: false
     host: {}
-  wasm: components/adaptive-card/component_adaptive_card.wasm
+  wasm: components/ai.greentic.component-adaptive-card/component.wasm
 - id: weatherapi_current.component
   version: 0.1.0
   world: root:component/root
@@ -64,6 +64,5 @@ flows:
   - default
 assets:
 - path: assets/weather_forecast_card.json
-- path: assets/weather_forecast_payload.json
 - path: assets/weather_current_result_card.json
 - path: assets/weather_forecast_result_card.json

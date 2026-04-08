@@ -240,11 +240,9 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     fi
 
     if [ ! -f "$built_pack" ]; then
-        # Some pack builds name output after pack_id (e.g. weatherapi-pack.gtpack)
-        # instead of the source directory basename (<name>.pack.gtpack).
-        alt_built_pack="$temp_pack_dir/dist/$pack_name.gtpack"
-        if [ -f "$alt_built_pack" ]; then
-            built_pack="$alt_built_pack"
+        dist_packs=("$temp_pack_dir"/dist/*.gtpack)
+        if [ ${#dist_packs[@]} -eq 1 ]; then
+            built_pack="${dist_packs[0]}"
         else
             echo "Skipping $pack_name: wizard did not produce $built_pack" >&2
             continue
