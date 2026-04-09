@@ -1,0 +1,88 @@
+{
+  "bundle_source": ".",
+  "env": "dev",
+  "greentic_setup_version": "1.0.0",
+  "platform_setup": {
+    "deployment_targets": [],
+    "static_routes": {
+      "default_route_prefix_policy": "pack_declared",
+      "public_surface_policy": "disabled",
+      "public_web_enabled": false,
+      "tenant_path_policy": "pack_declared"
+    }
+  },
+  "setup_answers": {
+    "messaging-slack": {
+      "api_base_url": "https://slack.com/api",
+      "default_channel": "general",
+      "public_base_url": "http://localhost:8080",
+      "slack_app_id": "A0000000000",
+      "slack_bot_token": "xoxb-demo-greentic-ai-bot-token-not-real",
+      "slack_configuration_token": "xoxe-demo-greentic-ai-config-token-not-real"
+    },
+    "messaging-teams": {
+      "channel_id": "19:demo-channel-id@thread.tacv2",
+      "ms_bot_app_id": "00000000-0000-0000-0000-000000000000",
+      "ms_bot_app_password": "demo-greentic-ai-bot-password-not-real",
+      "public_base_url": "http://localhost:8080",
+      "team_id": "00000000-0000-0000-0000-000000000000"
+    },
+    "messaging-webchat-gui": {
+      "base_url": "http://localhost:8080",
+      "jwt_signing_key": "demo-jwt-signing-key-greentic-ai-0123456789abcdef",
+      "mode": "local_queue",
+      "oauth_custom_auth_url": "",
+      "oauth_custom_client_id": "",
+      "oauth_custom_label": "",
+      "oauth_custom_scopes": "openid profile email",
+      "oauth_custom_token_url": "",
+      "oauth_enable_custom": "false",
+      "oauth_enable_github": "false",
+      "oauth_enable_google": "false",
+      "oauth_enable_microsoft": "false",
+      "oauth_enabled": "false",
+      "oauth_github_client_id": "",
+      "oauth_github_client_secret": "",
+      "oauth_google_client_id": "",
+      "oauth_google_client_secret": "",
+      "oauth_microsoft_client_id": "",
+      "oauth_microsoft_client_secret": "",
+      "public_base_url": "http://localhost:8080",
+      "route": "webchat",
+      "tenant_channel_id": "demo-greentic-ai-webchat"
+    },
+    "messaging-webex": {
+      "api_base_url": "https://webexapis.com/v1",
+      "default_room_id": "Y2lzY29zcGFyazovL3VzL1JPT00vZGVtby1yb29tLWlk",
+      "default_to_person_email": "demo@example.com",
+      "public_base_url": "http://localhost:8080",
+      "webex_bot_token": "demo-greentic-ai-webex-bot-token-not-real"
+    },
+    "messaging-telegram": {
+      "api_base_url": "https://api.telegram.org",
+      "default_chat_id": "",
+      "public_base_url": "http://localhost:8080",
+      "telegram_bot_token": "0000000000:demo-greentic-ai-telegram-token-not-real"
+    },
+    "messaging-whatsapp": {
+      "api_base_url": "https://graph.facebook.com",
+      "api_version": "v21.0",
+      "business_account_id": "000000000000000",
+      "phone_number_id": "000000000000000",
+      "public_base_url": "http://localhost:8080",
+      "whatsapp_token": "demo-greentic-ai-whatsapp-token-not-real",
+      "whatsapp_verify_token": "demo-greentic-ai-whatsapp-verify-not-real"
+    },
+    "messaging-email": {
+      "from_address": "demo@greentic.ai",
+      "graph_tenant_id": "00000000-0000-0000-0000-000000000000",
+      "ms_graph_client_id": "00000000-0000-0000-0000-000000000000",
+      "ms_graph_client_secret": "demo-greentic-ai-graph-secret-not-real",
+      "ms_graph_refresh_token": "demo-greentic-ai-graph-refresh-token-not-real",
+      "public_base_url": "http://localhost:8080"
+    },
+    "state-memory": {}
+  },
+  "team": null,
+  "tenant": "demo"
+}

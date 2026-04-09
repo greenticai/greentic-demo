@@ -1,0 +1,26 @@
+schema_version: 1
+bundle_id: greentic-ai-demo
+bundle_name: greentic-ai-demo
+locale: en-GB
+mode: create
+advanced_setup: false
+app_packs:
+  - packs/greentic-ai.pack
+app_pack_mappings:
+  - reference: packs/greentic-ai.pack
+    scope: global
+extension_providers:
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-whatsapp:latest
+  - oci://ghcr.io/greenticai/packs/messaging/messaging-email:latest
+  - oci://ghcr.io/greenticai/packs/state/state-memory:latest
+remote_catalogs: []
+hooks: []
+subscriptions: []
+capabilities: []
+setup_execution_intent: false
+export_intent: false

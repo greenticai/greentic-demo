@@ -1,0 +1,81 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "leadType": "press_inquiry",
+        "routeToCardId": "journalist_confirmation"
+      },
+      "title": "{{i18n:card.journalist_form.actions_0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "routeToCardId": "journalist_intro"
+      },
+      "title": "{{i18n:card.journalist_form.actions_1.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "size": "Large",
+      "text": "{{i18n:card.journalist_form.body_0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "color": "Accent",
+      "size": "Medium",
+      "text": "{{i18n:card.journalist_form.body_1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "errorMessage": "{{i18n:card.journalist_form.body_2.errorMessage}}",
+      "id": "name",
+      "isRequired": true,
+      "label": "{{i18n:card.journalist_form.body_2.label}}",
+      "placeholder": "",
+      "spacing": "Small",
+      "style": "text",
+      "type": "Input.Text"
+    },
+    {
+      "errorMessage": "{{i18n:card.journalist_form.body_3.errorMessage}}",
+      "id": "publication",
+      "isRequired": true,
+      "label": "{{i18n:card.journalist_form.body_3.label}}",
+      "placeholder": "",
+      "spacing": "Small",
+      "style": "text",
+      "type": "Input.Text"
+    },
+    {
+      "errorMessage": "{{i18n:card.journalist_form.body_4.errorMessage}}",
+      "id": "questions",
+      "isMultiline": true,
+      "isRequired": true,
+      "label": "{{i18n:card.journalist_form.body_4.label}}",
+      "placeholder": "",
+      "spacing": "Small",
+      "style": "text",
+      "type": "Input.Text"
+    },
+    {
+      "id": "whatsapp",
+      "isRequired": false,
+      "label": "{{i18n:card.journalist_form.body_5.label}}",
+      "placeholder": "{{i18n:card.journalist_form.body_5.placeholder}}",
+      "spacing": "Small",
+      "style": "text",
+      "type": "Input.Text"
+    }
+  ],
+  "greentic": {
+    "cardId": "journalist_form"
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

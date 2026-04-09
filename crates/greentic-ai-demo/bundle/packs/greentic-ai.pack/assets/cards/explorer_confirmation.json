@@ -1,0 +1,23 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "body": [
+    {
+      "size": "Large",
+      "text": "{{i18n:card.explorer_confirmation.body_0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "spacing": "Small",
+      "text": "{{i18n:card.explorer_confirmation.body_1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    }
+  ],
+  "greentic": {
+    "cardId": "explorer_confirmation"
+  },
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}
