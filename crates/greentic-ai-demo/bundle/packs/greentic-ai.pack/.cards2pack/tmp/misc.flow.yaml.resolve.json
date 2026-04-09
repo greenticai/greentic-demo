@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "flow": "misc.flow.yaml",
+  "nodes": {
+    "developer_intro": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "explorer_confirmation": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "explorer_form": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "explorer_intro": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "journalist_confirmation": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "journalist_form": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "journalist_intro": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "main_menu": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "other_confirmation": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "other_form": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "reseller_confirmation": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "reseller_form": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "reseller_intro": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "technical_confirmation": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "technical_form": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "technical_intro": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    }
+  }
+}

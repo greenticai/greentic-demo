@@ -1,0 +1,125 @@
+{
+    "wizard_id": "greentic-dev.wizard.launcher.main",
+    "schema_id": "greentic-dev.launcher.main",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+        "selected_action": "bundle",
+        "delegate_answer_document": {
+            "wizard_id": "greentic-bundle.wizard.run",
+            "schema_id": "greentic-bundle.wizard.answers",
+            "schema_version": "1.0.0",
+            "locale": "en-GB",
+            "answers": {
+                "access_rules": [
+                    {
+                        "policy": "public",
+                        "rule_path": "greentic-ai-pack",
+                        "tenant": "default"
+                    }
+                ],
+                "advanced_setup": false,
+                "app_pack_entries": [
+                    {
+                        "detected_kind": "local",
+                        "display_name": "Greentic AI Lead Capture Pack",
+                        "mapping": {
+                            "scope": "global"
+                        },
+                        "pack_id": "greentic-ai-pack",
+                        "reference": "file://greentic-demo/demos/greentic-ai.gtpack"
+                    }
+                ],
+                "app_packs": [
+                    "file://greentic-demo/demos/greentic-ai.gtpack"
+                ],
+                "bundle_id": "greentic-ai-demo",
+                "bundle_name": "greentic-ai-demo",
+                "export_intent": false,
+                "extension_provider_entries": [
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Slack (latest)",
+                        "provider_id": "greentic.messaging.slack.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Teams (latest)",
+                        "provider_id": "greentic.messaging.teams.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Webchat GUI (latest)",
+                        "provider_id": "greentic.messaging.webchat-gui.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Webex (latest)",
+                        "provider_id": "greentic.messaging.webex.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Telegram (latest)",
+                        "provider_id": "greentic.messaging.telegram.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging WhatsApp (latest)",
+                        "provider_id": "greentic.messaging.whatsapp.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-whatsapp:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Email (latest)",
+                        "provider_id": "greentic.messaging.email.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-email:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
+                        "display_name": "Greentic State Memory (latest)",
+                        "provider_id": "state-memory",
+                        "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+                        "version": "latest"
+                    }
+                ],
+                "extension_providers": [
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-whatsapp:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-email:latest",
+                    "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+                ],
+                "mode": "create",
+                "output_dir": "./greentic-ai-demo-bundle",
+                "remote_catalogs": [],
+                "setup_answers": {},
+                "setup_execution_intent": false,
+                "setup_specs": {}
+            },
+            "locks": {
+                "cache_policy": "workspace-local",
+                "catalogs": [],
+                "execution": "execute",
+                "lock_file": "bundle.lock.json",
+                "requested_mode": "create",
+                "setup_state_files": [],
+                "workspace_root": "bundle.yaml"
+            }
+        }
+    }
+}
