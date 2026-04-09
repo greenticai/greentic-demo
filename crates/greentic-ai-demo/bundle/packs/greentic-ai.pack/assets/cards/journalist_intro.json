@@ -5,21 +5,21 @@
       "data": {
         "routeToCardId": "journalist_form"
       },
-      "title": "{{i18n:card.journalist_intro.actions_0.title}}",
+      "title": "{{i18n:cards.journalist_intro.actions.i0.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "main_menu"
       },
-      "title": "{{i18n:card.journalist_intro.actions_1.title}}",
+      "title": "{{i18n:cards.journalist_intro.actions.i1.title}}",
       "type": "Action.Submit"
     }
   ],
   "body": [
     {
       "size": "Large",
-      "text": "{{i18n:card.journalist_intro.body_0.text}}",
+      "text": "{{i18n:cards.journalist_intro.body.i0.text}}",
       "type": "TextBlock",
       "weight": "Bolder",
       "wrap": true
@@ -27,19 +27,19 @@
     {
       "color": "Accent",
       "size": "Medium",
-      "text": "{{i18n:card.journalist_intro.body_1.text}}",
+      "text": "{{i18n:cards.journalist_intro.body.i1.text}}",
       "type": "TextBlock",
       "wrap": true
     },
     {
       "spacing": "Small",
-      "text": "{{i18n:card.journalist_intro.body_2.text}}",
+      "text": "{{i18n:cards.journalist_intro.body.i2.text}}",
       "type": "TextBlock",
       "wrap": true
     },
     {
       "spacing": "Small",
-      "text": "{{i18n:card.journalist_intro.body_3.text}}",
+      "text": "{{i18n:cards.journalist_intro.body.i3.text}}",
       "type": "TextBlock",
       "wrap": true
     }

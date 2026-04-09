@@ -5,56 +5,56 @@
       "data": {
         "routeToCardId": "customer_intro"
       },
-      "title": "{{i18n:card.main_menu.actions_0.title}}",
+      "title": "{{i18n:cards.main_menu.actions.i0.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "technical_intro"
       },
-      "title": "{{i18n:card.main_menu.actions_1.title}}",
+      "title": "{{i18n:cards.main_menu.actions.i1.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "reseller_intro"
       },
-      "title": "{{i18n:card.main_menu.actions_2.title}}",
+      "title": "{{i18n:cards.main_menu.actions.i2.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "developer_intro"
       },
-      "title": "{{i18n:card.main_menu.actions_3.title}}",
+      "title": "{{i18n:cards.main_menu.actions.i3.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "explorer_intro"
       },
-      "title": "{{i18n:card.main_menu.actions_4.title}}",
+      "title": "{{i18n:cards.main_menu.actions.i4.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "journalist_intro"
       },
-      "title": "{{i18n:card.main_menu.actions_5.title}}",
+      "title": "{{i18n:cards.main_menu.actions.i5.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "other_form"
       },
-      "title": "{{i18n:card.main_menu.actions_6.title}}",
+      "title": "{{i18n:cards.main_menu.actions.i6.title}}",
       "type": "Action.Submit"
     }
   ],
   "body": [
     {
       "size": "ExtraLarge",
-      "text": "{{i18n:card.main_menu.body_0.text}}",
+      "text": "{{i18n:cards.main_menu.body.i0.text}}",
       "type": "TextBlock",
       "weight": "Bolder",
       "wrap": true
@@ -62,7 +62,7 @@
     {
       "color": "Accent",
       "size": "Medium",
-      "text": "{{i18n:card.main_menu.body_1.text}}",
+      "text": "{{i18n:cards.main_menu.body.i1.text}}",
       "type": "TextBlock",
       "wrap": true
     }

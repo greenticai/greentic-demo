@@ -2,6 +2,36 @@
   "schema_version": 1,
   "flow": "misc.flow.yaml",
   "nodes": {
+    "customer_confirmation": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "customer_form": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "customer_intro": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "developer_confirmation": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
+    "developer_form": {
+      "source": {
+        "kind": "oci",
+        "ref": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest"
+      }
+    },
     "developer_intro": {
       "source": {
         "kind": "oci",

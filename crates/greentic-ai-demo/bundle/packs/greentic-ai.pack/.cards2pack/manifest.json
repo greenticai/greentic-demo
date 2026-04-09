@@ -1,0 +1,649 @@
+{
+  "version": 1,
+  "generated_at": "2026-04-09T05:23:05.163286Z",
+  "input": {
+    "cards_dir": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards",
+    "group_by": null,
+    "default_flow": null
+  },
+  "flows": [
+    {
+      "flow_name": "misc",
+      "cards": [
+        {
+          "rel_path": "customer_confirmation.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/customer_confirmation.json",
+          "card_id": "customer_confirmation",
+          "flow_name": "misc",
+          "actions": []
+        },
+        {
+          "rel_path": "customer_form.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/customer_form.json",
+          "card_id": "customer_form",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.customer_form.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "leadType": "customer_lead",
+                "routeToCardId": "customer_confirmation"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.customer_form.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "customer_intro"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "customer_intro.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/customer_intro.json",
+          "card_id": "customer_intro",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.customer_intro.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "customer_form"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.customer_intro.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "main_menu"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "developer_confirmation.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/developer_confirmation.json",
+          "card_id": "developer_confirmation",
+          "flow_name": "misc",
+          "actions": []
+        },
+        {
+          "rel_path": "developer_form.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/developer_form.json",
+          "card_id": "developer_form",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.developer_form.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "leadType": "contributor_lead",
+                "routeToCardId": "developer_confirmation"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.developer_form.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "developer_intro"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "developer_intro.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/developer_intro.json",
+          "card_id": "developer_intro",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.developer_intro.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "developer_form"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.developer_intro.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "main_menu"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "explorer_confirmation.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/explorer_confirmation.json",
+          "card_id": "explorer_confirmation",
+          "flow_name": "misc",
+          "actions": []
+        },
+        {
+          "rel_path": "explorer_form.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/explorer_form.json",
+          "card_id": "explorer_form",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.explorer_form.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "leadType": "general_question",
+                "routeToCardId": "explorer_confirmation"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.explorer_form.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "explorer_intro"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "explorer_intro.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/explorer_intro.json",
+          "card_id": "explorer_intro",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.explorer_intro.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "explorer_form"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.explorer_intro.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "main_menu"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "journalist_confirmation.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/journalist_confirmation.json",
+          "card_id": "journalist_confirmation",
+          "flow_name": "misc",
+          "actions": []
+        },
+        {
+          "rel_path": "journalist_form.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/journalist_form.json",
+          "card_id": "journalist_form",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.journalist_form.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "leadType": "press_inquiry",
+                "routeToCardId": "journalist_confirmation"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.journalist_form.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "journalist_intro"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "journalist_intro.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/journalist_intro.json",
+          "card_id": "journalist_intro",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.journalist_intro.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "journalist_form"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.journalist_intro.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "main_menu"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "main_menu.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/main_menu.json",
+          "card_id": "main_menu",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.main_menu.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "customer_intro"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.main_menu.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "technical_intro"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.main_menu.actions.i2.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "reseller_intro"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.main_menu.actions.i3.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "developer_intro"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.main_menu.actions.i4.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "explorer_intro"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.main_menu.actions.i5.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "journalist_intro"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.main_menu.actions.i6.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "other_form"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "other_confirmation.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/other_confirmation.json",
+          "card_id": "other_confirmation",
+          "flow_name": "misc",
+          "actions": []
+        },
+        {
+          "rel_path": "other_form.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/other_form.json",
+          "card_id": "other_form",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.other_form.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "leadType": "general",
+                "routeToCardId": "other_confirmation"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.other_form.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "main_menu"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "reseller_confirmation.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/reseller_confirmation.json",
+          "card_id": "reseller_confirmation",
+          "flow_name": "misc",
+          "actions": []
+        },
+        {
+          "rel_path": "reseller_form.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/reseller_form.json",
+          "card_id": "reseller_form",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.reseller_form.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "leadType": "store_partner_lead",
+                "routeToCardId": "reseller_confirmation"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.reseller_form.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "reseller_intro"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "reseller_intro.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/reseller_intro.json",
+          "card_id": "reseller_intro",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.reseller_intro.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "reseller_form"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.reseller_intro.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "main_menu"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "technical_confirmation.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/technical_confirmation.json",
+          "card_id": "technical_confirmation",
+          "flow_name": "misc",
+          "actions": []
+        },
+        {
+          "rel_path": "technical_form.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/technical_form.json",
+          "card_id": "technical_form",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.technical_form.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "leadType": "repo_partner_lead",
+                "routeToCardId": "technical_confirmation"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.technical_form.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "technical_intro"
+              }
+            }
+          ]
+        },
+        {
+          "rel_path": "technical_intro.json",
+          "abs_path": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards/technical_intro.json",
+          "card_id": "technical_intro",
+          "flow_name": "misc",
+          "actions": [
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.technical_intro.actions.i0.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "technical_form"
+              }
+            },
+            {
+              "action_type": "Action.Submit",
+              "title": "{{i18n:cards.technical_intro.actions.i1.title}}",
+              "target": null,
+              "data": {
+                "routeToCardId": "main_menu"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for customer_intro.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for developer_confirmation.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for journalist_intro.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for technical_intro.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for explorer_confirmation.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for reseller_intro.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for other_confirmation.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for developer_form.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for reseller_form.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for developer_intro.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for journalist_confirmation.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for customer_form.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for main_menu.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for technical_form.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for explorer_intro.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for customer_confirmation.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for other_form.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for technical_confirmation.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for explorer_form.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for journalist_form.json; using misc"
+    },
+    {
+      "kind": "missing_flow",
+      "message": "flow name missing for reseller_confirmation.json; using misc"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for technical_intro; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for technical_form; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for technical_confirmation; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for reseller_intro; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for reseller_form; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for reseller_confirmation; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for other_form; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for other_confirmation; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for main_menu; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for journalist_intro; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for journalist_form; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for journalist_confirmation; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for explorer_intro; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for explorer_form; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for explorer_confirmation; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for developer_intro; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for developer_form; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for developer_confirmation; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for customer_intro; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for customer_form; using routing-out"
+    },
+    {
+      "kind": "missing_target",
+      "message": "no routes for customer_confirmation; using routing-out"
+    },
+    {
+      "kind": "validation",
+      "message": "greentic-pack resolve failed: greentic-pack resolve failed for crates/greentic-ai-demo/bundle/packs/greentic-ai.pack"
+    },
+    {
+      "kind": "validation",
+      "message": "greentic-pack doctor failed: greentic-pack doctor failed for crates/greentic-ai-demo/bundle/packs/greentic-ai.pack"
+    },
+    {
+      "kind": "validation",
+      "message": "greentic-pack build failed: greentic-pack failed (status exit status: 1):\nError: failed to generate flow resolve summary for /Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc\n\nCaused by:\n    0: component.manifest.json not found for node 'customer_confirmation' (/Users/bimapangestu/.greentic/cache/distribution/artifacts/sha256/54/9117304feeefefd20bd3f4fcde1a3152dd1537c4b798c38fe564a8ca198ea7/blob)\n    1: component.manifest.json not found for wasm /Users/bimapangestu/.greentic/cache/distribution/artifacts/sha256/54/9117304feeefefd20bd3f4fcde1a3152dd1537c4b798c38fe564a8ca198ea7/blob"
+    },
+    {
+      "kind": "pack_output",
+      "message": "gtpack not produced: no .gtpack file found in crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/dist"
+    }
+  ],
+  "diagnostics": {
+    "workspace_root": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack",
+    "dist_artifact": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/dist/greentic-ai.gtpack",
+    "flow_paths": [
+      "flows/main.ygtc"
+    ],
+    "cards_processed": 21,
+    "flows": [
+      {
+        "flow_name": "misc",
+        "card_count": 21
+      }
+    ],
+    "warnings_count": 46
+  }
+}

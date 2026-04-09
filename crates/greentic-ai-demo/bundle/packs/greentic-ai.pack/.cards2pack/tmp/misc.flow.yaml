@@ -1,11 +1,141 @@
 id: misc
 type: messaging
-start: developer_intro
+start: customer_confirmation
 parameters: {}
 tags: []
 schema_version: 2
 entrypoints: {}
 nodes:
+  customer_confirmation:
+    routing:
+    - to: customer_form
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/customer_confirmation.json
+          mode: renderAndValidate
+          node_id: customer_confirmation
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/customer_confirmation.json
+      mode: renderAndValidate
+      node_id: customer_confirmation
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  customer_form:
+    routing:
+    - to: customer_intro
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/customer_form.json
+          mode: renderAndValidate
+          node_id: customer_form
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/customer_form.json
+      mode: renderAndValidate
+      node_id: customer_form
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  customer_intro:
+    routing:
+    - to: developer_confirmation
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/customer_intro.json
+          mode: renderAndValidate
+          node_id: customer_intro
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/customer_intro.json
+      mode: renderAndValidate
+      node_id: customer_intro
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  developer_confirmation:
+    routing:
+    - to: developer_form
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/developer_confirmation.json
+          mode: renderAndValidate
+          node_id: developer_confirmation
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/developer_confirmation.json
+      mode: renderAndValidate
+      node_id: developer_confirmation
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
+  developer_form:
+    routing:
+    - to: developer_intro
+    card:
+      call:
+        metadata: []
+        op: render
+        payload:
+          card_source: asset
+          card_spec:
+            asset_path: assets/cards/developer_form.json
+          mode: renderAndValidate
+          node_id: developer_form
+          payload: {}
+          session: {}
+          state: {}
+          validation_mode: warn
+      card_source: asset
+      card_spec:
+        asset_path: assets/cards/developer_form.json
+      mode: renderAndValidate
+      node_id: developer_form
+      payload: {}
+      session: {}
+      state: {}
+      validation_mode: warn
   developer_intro:
     routing:
     - to: explorer_confirmation

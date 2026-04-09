@@ -3,14 +3,14 @@
   "body": [
     {
       "size": "Large",
-      "text": "{{i18n:card.other_confirmation.body_0.text}}",
+      "text": "{{i18n:cards.other_confirmation.body.i0.text}}",
       "type": "TextBlock",
       "weight": "Bolder",
       "wrap": true
     },
     {
       "spacing": "Small",
-      "text": "{{i18n:card.other_confirmation.body_1.text}}",
+      "text": "{{i18n:cards.other_confirmation.body.i1.text}}",
       "type": "TextBlock",
       "wrap": true
     }

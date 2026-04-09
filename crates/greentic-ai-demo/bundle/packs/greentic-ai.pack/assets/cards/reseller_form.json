@@ -6,21 +6,21 @@
         "leadType": "store_partner_lead",
         "routeToCardId": "reseller_confirmation"
       },
-      "title": "{{i18n:card.reseller_form.actions_0.title}}",
+      "title": "{{i18n:cards.reseller_form.actions.i0.title}}",
       "type": "Action.Submit"
     },
     {
       "data": {
         "routeToCardId": "reseller_intro"
       },
-      "title": "{{i18n:card.reseller_form.actions_1.title}}",
+      "title": "{{i18n:cards.reseller_form.actions.i1.title}}",
       "type": "Action.Submit"
     }
   ],
   "body": [
     {
       "size": "Large",
-      "text": "{{i18n:card.reseller_form.body_0.text}}",
+      "text": "{{i18n:cards.reseller_form.body.i0.text}}",
       "type": "TextBlock",
       "weight": "Bolder",
       "wrap": true
@@ -28,33 +28,33 @@
     {
       "color": "Accent",
       "size": "Medium",
-      "text": "{{i18n:card.reseller_form.body_1.text}}",
+      "text": "{{i18n:cards.reseller_form.body.i1.text}}",
       "type": "TextBlock",
       "wrap": true
     },
     {
-      "errorMessage": "{{i18n:card.reseller_form.body_2.errormessage}}",
+      "errorMessage": "{{i18n:cards.reseller_form.body.i2.errormessage}}",
       "id": "name",
       "isRequired": true,
-      "label": "{{i18n:card.reseller_form.body_2.label}}",
+      "label": "{{i18n:cards.reseller_form.body.i2.label}}",
       "placeholder": "",
       "style": "text",
       "type": "Input.Text"
     },
     {
-      "errorMessage": "{{i18n:card.reseller_form.body_3.errormessage}}",
+      "errorMessage": "{{i18n:cards.reseller_form.body.i3.errormessage}}",
       "id": "company",
       "isRequired": true,
-      "label": "{{i18n:card.reseller_form.body_3.label}}",
+      "label": "{{i18n:cards.reseller_form.body.i3.label}}",
       "placeholder": "",
       "style": "text",
       "type": "Input.Text"
     },
     {
-      "errorMessage": "{{i18n:card.reseller_form.body_4.errormessage}}",
+      "errorMessage": "{{i18n:cards.reseller_form.body.i4.errormessage}}",
       "id": "email",
       "isRequired": true,
-      "label": "{{i18n:card.reseller_form.body_4.label}}",
+      "label": "{{i18n:cards.reseller_form.body.i4.label}}",
       "placeholder": "",
       "style": "email",
       "type": "Input.Text"
@@ -62,7 +62,7 @@
     {
       "id": "jobTitle",
       "isRequired": false,
-      "label": "{{i18n:card.reseller_form.body_5.label}}",
+      "label": "{{i18n:cards.reseller_form.body.i5.label}}",
       "placeholder": "",
       "style": "text",
       "type": "Input.Text"
@@ -71,8 +71,8 @@
       "id": "marketFocus",
       "isMultiline": true,
       "isRequired": false,
-      "label": "{{i18n:card.reseller_form.body_6.label}}",
-      "placeholder": "{{i18n:card.reseller_form.body_6.placeholder}}",
+      "label": "{{i18n:cards.reseller_form.body.i6.label}}",
+      "placeholder": "{{i18n:cards.reseller_form.body.i6.placeholder}}",
       "style": "text",
       "type": "Input.Text"
     }

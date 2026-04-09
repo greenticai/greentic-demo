@@ -2,15 +2,49 @@ pack_id: greentic-ai
 version: 0.1.0
 kind: application
 publisher: Greentic
-
-components: []
-
-flows:
-  - id: main
-    file: flows/main.ygtc
-    tags: [default]
-    entrypoints: [default]
-
+components:
+- id: ai.greentic.component-adaptive-card
+  version: 0.1.25
+  world: greentic:component/component-v0-v6-v0@0.6.0
+  supports:
+  - messaging
+  profiles:
+    default: default
+    supported:
+    - default
+  capabilities:
+    wasi:
+      random: false
+      clocks: false
+    host: {}
+  wasm: components/ai.greentic.component-adaptive-card/component.wasm
 dependencies: []
-
-assets: []
+flows:
+- id: main
+  file: flows/main.ygtc
+  tags:
+  - default
+  entrypoints:
+  - default
+assets:
+- path: assets/cards/customer_confirmation.json
+- path: assets/cards/customer_form.json
+- path: assets/cards/customer_intro.json
+- path: assets/cards/developer_confirmation.json
+- path: assets/cards/developer_form.json
+- path: assets/cards/developer_intro.json
+- path: assets/cards/explorer_confirmation.json
+- path: assets/cards/explorer_form.json
+- path: assets/cards/explorer_intro.json
+- path: assets/cards/journalist_confirmation.json
+- path: assets/cards/journalist_form.json
+- path: assets/cards/journalist_intro.json
+- path: assets/cards/main_menu.json
+- path: assets/cards/other_confirmation.json
+- path: assets/cards/other_form.json
+- path: assets/cards/reseller_confirmation.json
+- path: assets/cards/reseller_form.json
+- path: assets/cards/reseller_intro.json
+- path: assets/cards/technical_confirmation.json
+- path: assets/cards/technical_form.json
+- path: assets/cards/technical_intro.json
