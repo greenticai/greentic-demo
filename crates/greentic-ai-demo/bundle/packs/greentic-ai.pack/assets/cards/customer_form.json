@@ -33,20 +33,22 @@
       "wrap": true
     },
     {
-      "errorMessage": "{{i18n:card.customer_form.body_2.errormessage}}",
+      "errorMessage": "{{i18n:card.customer_form.body_2.errorMessage}}",
       "id": "name",
       "isRequired": true,
       "label": "{{i18n:card.customer_form.body_2.label}}",
       "placeholder": "{{i18n:card.customer_form.body_2.placeholder}}",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
     {
-      "errorMessage": "{{i18n:card.customer_form.body_3.errormessage}}",
+      "errorMessage": "{{i18n:card.customer_form.body_3.errorMessage}}",
       "id": "company",
       "isRequired": true,
       "label": "{{i18n:card.customer_form.body_3.label}}",
       "placeholder": "{{i18n:card.customer_form.body_3.placeholder}}",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
@@ -55,15 +57,17 @@
       "isRequired": false,
       "label": "{{i18n:card.customer_form.body_4.label}}",
       "placeholder": "https://example.com",
+      "spacing": "Small",
       "style": "url",
       "type": "Input.Text"
     },
     {
-      "errorMessage": "{{i18n:card.customer_form.body_5.errormessage}}",
+      "errorMessage": "{{i18n:card.customer_form.body_5.errorMessage}}",
       "id": "email",
       "isRequired": true,
       "label": "{{i18n:card.customer_form.body_5.label}}",
       "placeholder": "{{i18n:card.customer_form.body_5.placeholder}}",
+      "spacing": "Small",
       "style": "email",
       "type": "Input.Text"
     },
@@ -72,6 +76,7 @@
       "isRequired": false,
       "label": "{{i18n:card.customer_form.body_6.label}}",
       "placeholder": "{{i18n:card.customer_form.body_6.placeholder}}",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
@@ -81,6 +86,7 @@
       "isRequired": false,
       "label": "{{i18n:card.customer_form.body_7.label}}",
       "placeholder": "{{i18n:card.customer_form.body_7.placeholder}}",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
@@ -89,6 +95,7 @@
       "isRequired": false,
       "label": "{{i18n:card.customer_form.body_8.label}}",
       "placeholder": "https://calendly.com/...",
+      "spacing": "Small",
       "style": "url",
       "type": "Input.Text"
     }

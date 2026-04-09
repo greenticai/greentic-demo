@@ -33,11 +33,12 @@
       "wrap": true
     },
     {
-      "errorMessage": "{{i18n:card.explorer_form.body_2.errormessage}}",
+      "errorMessage": "{{i18n:card.explorer_form.body_2.errorMessage}}",
       "id": "name",
       "isRequired": true,
       "label": "{{i18n:card.explorer_form.body_2.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
@@ -46,6 +47,7 @@
       "isRequired": false,
       "label": "{{i18n:card.explorer_form.body_3.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
@@ -54,16 +56,18 @@
       "isRequired": false,
       "label": "{{i18n:card.explorer_form.body_4.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
     {
-      "errorMessage": "{{i18n:card.explorer_form.body_5.errormessage}}",
+      "errorMessage": "{{i18n:card.explorer_form.body_5.errorMessage}}",
       "id": "reason",
       "isMultiline": true,
       "isRequired": true,
       "label": "{{i18n:card.explorer_form.body_5.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     }

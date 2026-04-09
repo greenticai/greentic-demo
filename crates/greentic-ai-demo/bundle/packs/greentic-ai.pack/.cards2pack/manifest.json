@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-09T06:09:22.690105Z",
+  "generated_at": "2026-04-09T10:05:34.887168Z",
   "input": {
     "cards_dir": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards",
     "group_by": null,
@@ -711,19 +711,7 @@
     },
     {
       "kind": "validation",
-      "message": "greentic-flow doctor failed: greentic-flow doctor failed for crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows"
-    },
-    {
-      "kind": "validation",
       "message": "greentic-pack doctor failed: greentic-pack doctor failed for crates/greentic-ai-demo/bundle/packs/greentic-ai.pack"
-    },
-    {
-      "kind": "validation",
-      "message": "greentic-pack build failed: greentic-pack failed (status exit status: 1):\nwarning: flow main has no resolve entries for nodes technical_intro, technical_form, reseller_intro, reseller_form, other_form, main_menu, journalist_intro, journalist_form, explorer_intro, explorer_form, developer_intro, developer_form, customer_intro, customer_form, customer_confirmation, developer_confirmation, explorer_confirmation, journalist_confirmation, other_confirmation, reseller_confirmation, technical_confirmation (/Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc.resolve.json); add mappings to the sidecar and rerun `greentic-pack resolve`\nwarning: flow main has no resolve entries for nodes technical_intro, technical_form, reseller_intro, reseller_form, other_form, main_menu, journalist_intro, journalist_form, explorer_intro, explorer_form, developer_intro, developer_form, customer_intro, customer_form, customer_confirmation, developer_confirmation, explorer_confirmation, journalist_confirmation, other_confirmation, reseller_confirmation, technical_confirmation (/Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc.resolve.json); add mappings to the sidecar and rerun `greentic-pack resolve`\nError: flow main is missing resolve summary entries for nodes technical_intro, technical_form, reseller_intro, reseller_form, other_form, main_menu, journalist_intro, journalist_form, explorer_intro, explorer_form, developer_intro, developer_form, customer_intro, customer_form, customer_confirmation, developer_confirmation, explorer_confirmation, journalist_confirmation, other_confirmation, reseller_confirmation, technical_confirmation (summary /Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc.resolve.summary.json). Regenerate the summary and rerun build."
-    },
-    {
-      "kind": "pack_output",
-      "message": "gtpack not produced: no .gtpack file found in crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/dist"
     }
   ],
   "diagnostics": {
@@ -739,6 +727,6 @@
         "card_count": 21
       }
     ],
-    "warnings_count": 45
+    "warnings_count": 42
   }
 }

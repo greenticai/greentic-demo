@@ -33,29 +33,32 @@
       "wrap": true
     },
     {
-      "errorMessage": "{{i18n:card.technical_form.body_2.errormessage}}",
+      "errorMessage": "{{i18n:card.technical_form.body_2.errorMessage}}",
       "id": "name",
       "isRequired": true,
       "label": "{{i18n:card.technical_form.body_2.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
     {
-      "errorMessage": "{{i18n:card.technical_form.body_3.errormessage}}",
+      "errorMessage": "{{i18n:card.technical_form.body_3.errorMessage}}",
       "id": "company",
       "isRequired": true,
       "label": "{{i18n:card.technical_form.body_3.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
     {
-      "errorMessage": "{{i18n:card.technical_form.body_4.errormessage}}",
+      "errorMessage": "{{i18n:card.technical_form.body_4.errorMessage}}",
       "id": "email",
       "isRequired": true,
       "label": "{{i18n:card.technical_form.body_4.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "email",
       "type": "Input.Text"
     },
@@ -64,6 +67,7 @@
       "isRequired": false,
       "label": "{{i18n:card.technical_form.body_5.label}}",
       "placeholder": "",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
@@ -73,6 +77,7 @@
       "isRequired": false,
       "label": "{{i18n:card.technical_form.body_6.label}}",
       "placeholder": "{{i18n:card.technical_form.body_6.placeholder}}",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     },
@@ -82,6 +87,7 @@
       "isRequired": false,
       "label": "{{i18n:card.technical_form.body_7.label}}",
       "placeholder": "{{i18n:card.technical_form.body_7.placeholder}}",
+      "spacing": "Small",
       "style": "text",
       "type": "Input.Text"
     }
