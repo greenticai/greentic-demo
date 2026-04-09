@@ -2,7 +2,6 @@ name: Publish Demo Bundles
 
 on:
   push:
-    branches: [main, master]
     tags:
       - "v*"
   workflow_dispatch:
@@ -44,7 +43,7 @@ jobs:
           set -euo pipefail
           if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
             publish_version="${GITHUB_REF_NAME}"
-          elif [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
+          elif [[ "${GITHUB_REF_TYPE}" == "branch" && ("${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master") ]]; then
             publish_version="${WORKSPACE_VERSION}"
           else
             publish_version=""
@@ -132,7 +131,7 @@ jobs:
               wkg oci push "$version_ref" "$artifact"
               echo "${component_name}_version=oci://${version_ref}" >> .artifacts/component-refs.txt
             fi
-            if [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
+            if [[ "${GITHUB_REF_TYPE}" == "tag" || "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
               latest_ref="ghcr.io/${OWNER}/greentic-demo-components/${component_name}:latest"
               wkg oci push "$latest_ref" "$artifact"
               echo "${component_name}_latest=oci://${latest_ref}" >> .artifacts/component-refs.txt
@@ -182,7 +181,7 @@ jobs:
               oras push "$version_ref" .
               echo "  -> ${version_ref}"
             fi
-            if [[ "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
+            if [[ "${GITHUB_REF_TYPE}" == "tag" || "${GITHUB_REF_NAME}" == "main" || "${GITHUB_REF_NAME}" == "master" ]]; then
               latest_ref="ghcr.io/${OWNER}/packs/apps/${pack_name}:latest"
               oras push "$latest_ref" .
               echo "  -> ${latest_ref}"
