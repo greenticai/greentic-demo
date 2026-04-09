@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-04-09T05:23:05.163286Z",
+  "generated_at": "2026-04-09T06:09:22.690105Z",
   "input": {
     "cards_dir": "crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/assets/cards",
     "group_by": null,
@@ -25,8 +25,11 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.customer_form.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.customer_form.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "customer_confirmation"
+              },
               "data": {
                 "leadType": "customer_lead",
                 "routeToCardId": "customer_confirmation"
@@ -34,8 +37,11 @@
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.customer_form.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.customer_form.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "customer_intro"
+              },
               "data": {
                 "routeToCardId": "customer_intro"
               }
@@ -50,16 +56,22 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.customer_intro.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.customer_intro.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "customer_form"
+              },
               "data": {
                 "routeToCardId": "customer_form"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.customer_intro.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.customer_intro.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "main_menu"
+              },
               "data": {
                 "routeToCardId": "main_menu"
               }
@@ -81,8 +93,11 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.developer_form.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.developer_form.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "developer_confirmation"
+              },
               "data": {
                 "leadType": "contributor_lead",
                 "routeToCardId": "developer_confirmation"
@@ -90,8 +105,11 @@
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.developer_form.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.developer_form.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "developer_intro"
+              },
               "data": {
                 "routeToCardId": "developer_intro"
               }
@@ -106,16 +124,22 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.developer_intro.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.developer_intro.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "developer_form"
+              },
               "data": {
                 "routeToCardId": "developer_form"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.developer_intro.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.developer_intro.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "main_menu"
+              },
               "data": {
                 "routeToCardId": "main_menu"
               }
@@ -137,8 +161,11 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.explorer_form.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.explorer_form.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "explorer_confirmation"
+              },
               "data": {
                 "leadType": "general_question",
                 "routeToCardId": "explorer_confirmation"
@@ -146,8 +173,11 @@
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.explorer_form.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.explorer_form.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "explorer_intro"
+              },
               "data": {
                 "routeToCardId": "explorer_intro"
               }
@@ -162,16 +192,22 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.explorer_intro.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.explorer_intro.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "explorer_form"
+              },
               "data": {
                 "routeToCardId": "explorer_form"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.explorer_intro.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.explorer_intro.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "main_menu"
+              },
               "data": {
                 "routeToCardId": "main_menu"
               }
@@ -193,8 +229,11 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.journalist_form.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.journalist_form.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "journalist_confirmation"
+              },
               "data": {
                 "leadType": "press_inquiry",
                 "routeToCardId": "journalist_confirmation"
@@ -202,8 +241,11 @@
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.journalist_form.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.journalist_form.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "journalist_intro"
+              },
               "data": {
                 "routeToCardId": "journalist_intro"
               }
@@ -218,16 +260,22 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.journalist_intro.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.journalist_intro.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "journalist_form"
+              },
               "data": {
                 "routeToCardId": "journalist_form"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.journalist_intro.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.journalist_intro.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "main_menu"
+              },
               "data": {
                 "routeToCardId": "main_menu"
               }
@@ -242,56 +290,77 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.main_menu.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.main_menu.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "customer_intro"
+              },
               "data": {
                 "routeToCardId": "customer_intro"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.main_menu.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.main_menu.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "technical_intro"
+              },
               "data": {
                 "routeToCardId": "technical_intro"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.main_menu.actions.i2.title}}",
-              "target": null,
+              "title": "{{i18n:card.main_menu.actions_2.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "reseller_intro"
+              },
               "data": {
                 "routeToCardId": "reseller_intro"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.main_menu.actions.i3.title}}",
-              "target": null,
+              "title": "{{i18n:card.main_menu.actions_3.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "developer_intro"
+              },
               "data": {
                 "routeToCardId": "developer_intro"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.main_menu.actions.i4.title}}",
-              "target": null,
+              "title": "{{i18n:card.main_menu.actions_4.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "explorer_intro"
+              },
               "data": {
                 "routeToCardId": "explorer_intro"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.main_menu.actions.i5.title}}",
-              "target": null,
+              "title": "{{i18n:card.main_menu.actions_5.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "journalist_intro"
+              },
               "data": {
                 "routeToCardId": "journalist_intro"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.main_menu.actions.i6.title}}",
-              "target": null,
+              "title": "{{i18n:card.main_menu.actions_6.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "other_form"
+              },
               "data": {
                 "routeToCardId": "other_form"
               }
@@ -313,8 +382,11 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.other_form.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.other_form.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "other_confirmation"
+              },
               "data": {
                 "leadType": "general",
                 "routeToCardId": "other_confirmation"
@@ -322,8 +394,11 @@
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.other_form.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.other_form.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "main_menu"
+              },
               "data": {
                 "routeToCardId": "main_menu"
               }
@@ -345,8 +420,11 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.reseller_form.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.reseller_form.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "reseller_confirmation"
+              },
               "data": {
                 "leadType": "store_partner_lead",
                 "routeToCardId": "reseller_confirmation"
@@ -354,8 +432,11 @@
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.reseller_form.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.reseller_form.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "reseller_intro"
+              },
               "data": {
                 "routeToCardId": "reseller_intro"
               }
@@ -370,16 +451,22 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.reseller_intro.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.reseller_intro.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "reseller_form"
+              },
               "data": {
                 "routeToCardId": "reseller_form"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.reseller_intro.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.reseller_intro.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "main_menu"
+              },
               "data": {
                 "routeToCardId": "main_menu"
               }
@@ -401,8 +488,11 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.technical_form.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.technical_form.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "technical_confirmation"
+              },
               "data": {
                 "leadType": "repo_partner_lead",
                 "routeToCardId": "technical_confirmation"
@@ -410,8 +500,11 @@
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.technical_form.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.technical_form.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "technical_intro"
+              },
               "data": {
                 "routeToCardId": "technical_intro"
               }
@@ -426,16 +519,22 @@
           "actions": [
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.technical_intro.actions.i0.title}}",
-              "target": null,
+              "title": "{{i18n:card.technical_intro.actions_0.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "technical_form"
+              },
               "data": {
                 "routeToCardId": "technical_form"
               }
             },
             {
               "action_type": "Action.Submit",
-              "title": "{{i18n:cards.technical_intro.actions.i1.title}}",
-              "target": null,
+              "title": "{{i18n:card.technical_intro.actions_1.title}}",
+              "action_id": null,
+              "target": {
+                "CardId": "main_menu"
+              },
               "data": {
                 "routeToCardId": "main_menu"
               }
@@ -532,23 +631,7 @@
     },
     {
       "kind": "missing_target",
-      "message": "no routes for technical_intro; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for technical_form; using routing-out"
-    },
-    {
-      "kind": "missing_target",
       "message": "no routes for technical_confirmation; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for reseller_intro; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for reseller_form; using routing-out"
     },
     {
       "kind": "missing_target",
@@ -556,23 +639,7 @@
     },
     {
       "kind": "missing_target",
-      "message": "no routes for other_form; using routing-out"
-    },
-    {
-      "kind": "missing_target",
       "message": "no routes for other_confirmation; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for main_menu; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for journalist_intro; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for journalist_form; using routing-out"
     },
     {
       "kind": "missing_target",
@@ -580,23 +647,7 @@
     },
     {
       "kind": "missing_target",
-      "message": "no routes for explorer_intro; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for explorer_form; using routing-out"
-    },
-    {
-      "kind": "missing_target",
       "message": "no routes for explorer_confirmation; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for developer_intro; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for developer_form; using routing-out"
     },
     {
       "kind": "missing_target",
@@ -604,19 +655,63 @@
     },
     {
       "kind": "missing_target",
-      "message": "no routes for customer_intro; using routing-out"
-    },
-    {
-      "kind": "missing_target",
-      "message": "no routes for customer_form; using routing-out"
-    },
-    {
-      "kind": "missing_target",
       "message": "no routes for customer_confirmation; using routing-out"
     },
     {
+      "kind": "inconsistent",
+      "message": "routing from customer_form to customer_intro omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from customer_intro to main_menu omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from developer_form to developer_intro omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from developer_intro to main_menu omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from explorer_form to explorer_intro omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from explorer_intro to main_menu omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from journalist_form to journalist_intro omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from journalist_intro to main_menu omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from main_menu to technical_intro omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from main_menu to reseller_intro omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from main_menu to other_form omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from reseller_form to reseller_intro omitted due to ordering; check for cycles"
+    },
+    {
+      "kind": "inconsistent",
+      "message": "routing from technical_form to technical_intro omitted due to ordering; check for cycles"
+    },
+    {
       "kind": "validation",
-      "message": "greentic-pack resolve failed: greentic-pack resolve failed for crates/greentic-ai-demo/bundle/packs/greentic-ai.pack"
+      "message": "greentic-flow doctor failed: greentic-flow doctor failed for crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows"
     },
     {
       "kind": "validation",
@@ -624,7 +719,7 @@
     },
     {
       "kind": "validation",
-      "message": "greentic-pack build failed: greentic-pack failed (status exit status: 1):\nError: failed to generate flow resolve summary for /Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc\n\nCaused by:\n    0: component.manifest.json not found for node 'customer_confirmation' (/Users/bimapangestu/.greentic/cache/distribution/artifacts/sha256/54/9117304feeefefd20bd3f4fcde1a3152dd1537c4b798c38fe564a8ca198ea7/blob)\n    1: component.manifest.json not found for wasm /Users/bimapangestu/.greentic/cache/distribution/artifacts/sha256/54/9117304feeefefd20bd3f4fcde1a3152dd1537c4b798c38fe564a8ca198ea7/blob"
+      "message": "greentic-pack build failed: greentic-pack failed (status exit status: 1):\nwarning: flow main has no resolve entries for nodes technical_intro, technical_form, reseller_intro, reseller_form, other_form, main_menu, journalist_intro, journalist_form, explorer_intro, explorer_form, developer_intro, developer_form, customer_intro, customer_form, customer_confirmation, developer_confirmation, explorer_confirmation, journalist_confirmation, other_confirmation, reseller_confirmation, technical_confirmation (/Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc.resolve.json); add mappings to the sidecar and rerun `greentic-pack resolve`\nwarning: flow main has no resolve entries for nodes technical_intro, technical_form, reseller_intro, reseller_form, other_form, main_menu, journalist_intro, journalist_form, explorer_intro, explorer_form, developer_intro, developer_form, customer_intro, customer_form, customer_confirmation, developer_confirmation, explorer_confirmation, journalist_confirmation, other_confirmation, reseller_confirmation, technical_confirmation (/Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc.resolve.json); add mappings to the sidecar and rerun `greentic-pack resolve`\nError: flow main is missing resolve summary entries for nodes technical_intro, technical_form, reseller_intro, reseller_form, other_form, main_menu, journalist_intro, journalist_form, explorer_intro, explorer_form, developer_intro, developer_form, customer_intro, customer_form, customer_confirmation, developer_confirmation, explorer_confirmation, journalist_confirmation, other_confirmation, reseller_confirmation, technical_confirmation (summary /Users/bimapangestu/Desktop/Works/personal/greentic/greentic-demo/crates/greentic-ai-demo/bundle/packs/greentic-ai.pack/flows/main.ygtc.resolve.summary.json). Regenerate the summary and rerun build."
     },
     {
       "kind": "pack_output",
@@ -644,6 +739,6 @@
         "card_count": 21
       }
     ],
-    "warnings_count": 46
+    "warnings_count": 45
   }
 }

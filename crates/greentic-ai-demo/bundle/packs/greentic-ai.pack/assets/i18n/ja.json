@@ -34,7 +34,7 @@
   "card.developer_confirmation.body_0.text": "ようこそ、開発者の皆さま！",
   "card.developer_confirmation.body_1.text": "あなたは今、Greenticコミュニティの一員です",
   "card.developer_confirmation.body_2.text": "アクセス情報とコントリビューター向けガイドラインをメールでご確認ください。",
-  "card.developer_form.actions_0.title": "ウェイティングリストに参加",
+  "card.developer_form.actions_0.title": "待機リストに参加",
   "card.developer_form.actions_1.title": "戻る",
   "card.developer_form.body_0.text": "開発者コミュニティに参加",
   "card.developer_form.body_1.errorMessage": "氏名は必須です",

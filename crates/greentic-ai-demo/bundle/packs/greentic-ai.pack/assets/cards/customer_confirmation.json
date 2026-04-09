@@ -3,7 +3,7 @@
   "body": [
     {
       "size": "Large",
-      "text": "{{i18n:cards.customer_confirmation.body.i0.text}}",
+      "text": "{{i18n:card.customer_confirmation.body_0.text}}",
       "type": "TextBlock",
       "weight": "Bolder",
       "wrap": true
@@ -11,19 +11,19 @@
     {
       "color": "Accent",
       "size": "Medium",
-      "text": "{{i18n:cards.customer_confirmation.body.i1.text}}",
+      "text": "{{i18n:card.customer_confirmation.body_1.text}}",
       "type": "TextBlock",
       "wrap": true
     },
     {
       "spacing": "Small",
-      "text": "{{i18n:cards.customer_confirmation.body.i2.text}}",
+      "text": "{{i18n:card.customer_confirmation.body_2.text}}",
       "type": "TextBlock",
       "wrap": true
     },
     {
       "spacing": "Small",
-      "text": "{{i18n:cards.customer_confirmation.body.i3.text}}",
+      "text": "{{i18n:card.customer_confirmation.body_3.text}}",
       "type": "TextBlock",
       "wrap": true
     }
