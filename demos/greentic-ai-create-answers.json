@@ -21,17 +21,17 @@
                 "advanced_setup": false,
                 "app_pack_entries": [
                     {
-                        "detected_kind": "local",
+                        "detected_kind": "https",
                         "display_name": "Greentic AI Lead Capture Pack",
                         "mapping": {
                             "scope": "global"
                         },
                         "pack_id": "greentic-ai-pack",
-                        "reference": "file://greentic-demo/demos/greentic-ai.gtpack"
+                        "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/greentic-ai.gtpack"
                     }
                 ],
                 "app_packs": [
-                    "file://greentic-demo/demos/greentic-ai.gtpack"
+                    "https://github.com/greenticai/greentic-demo/releases/latest/download/greentic-ai.gtpack"
                 ],
                 "bundle_id": "greentic-ai-demo",
                 "bundle_name": "greentic-ai-demo",
