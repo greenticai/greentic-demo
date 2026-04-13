@@ -1,0 +1,239 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_orders_list",
+        "routeToCardId": "orders_list"
+      },
+      "title": "Back to Orders",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "⬅️ Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "style": "heading",
+      "text": "Order Details",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "facts": [
+            {
+              "title": "Order #",
+              "value": "SC-20260411-0065"
+            },
+            {
+              "title": "Customer",
+              "value": "PT Mitra Nusantara"
+            },
+            {
+              "title": "Order Date",
+              "value": "Apr 11, 2026"
+            },
+            {
+              "title": "Status",
+              "value": "✅ Shipped"
+            },
+            {
+              "title": "Delivery ETA",
+              "value": "Apr 17, 2026"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "columns": [
+        {
+          "width": 2
+        },
+        {
+          "width": 1
+        },
+        {
+          "width": 1
+        }
+      ],
+      "firstRowAsHeader": true,
+      "gridStyle": "accent",
+      "rows": [
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Product",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "Qty",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "Subtotal",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        },
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Thermal Printer ZQ620",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "2",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "$960",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        },
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Zebra Ribbons (60m)",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "1",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "$260",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        },
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Shipping",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "color": "Good",
+                  "text": "$0",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        }
+      ],
+      "showGridLines": false,
+      "type": "Table"
+    },
+    {
+      "items": [
+        {
+          "color": "Good",
+          "size": "Large",
+          "text": "Total: $1,220",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        }
+      ],
+      "spacing": "Large",
+      "style": "good",
+      "type": "Container"
+    },
+    {
+      "color": "good",
+      "label": "Delivery Progress",
+      "type": "ProgressBar",
+      "value": 0.8
+    }
+  ],
+  "greentic": {
+    "cardId": "order_details",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Order details and status, including shipment timeline.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

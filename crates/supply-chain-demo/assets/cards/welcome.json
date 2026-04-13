@@ -1,0 +1,134 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_orders_search",
+        "routeToCardId": "orders_search"
+      },
+      "style": "positive",
+      "title": "📦 Track Orders",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_inventory_overview",
+        "routeToCardId": "inventory_overview"
+      },
+      "title": "🏠 Inventory Overview",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_shipments_menu",
+        "routeToCardId": "shipments_menu"
+      },
+      "title": "🚚 Manage Shipments",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_report_issue",
+        "routeToCardId": "report_issue"
+      },
+      "style": "destructive",
+      "title": "⚠️ Report Issue",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "Supply chain trolley icon",
+              "size": "Medium",
+              "type": "Image",
+              "url": "https://img.icons8.com/fluency/96/trolley.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Accent",
+              "size": "ExtraLarge",
+              "text": "Supply Chain Management Demo",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            },
+            {
+              "isSubtle": true,
+              "spacing": "None",
+              "text": "Orchestrate orders, inventory, shipment, and issues in one place.",
+              "type": "TextBlock",
+              "wrap": true
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        },
+        {
+          "items": [
+            {
+              "appearance": "tint",
+              "style": "informative",
+              "text": "Demo",
+              "type": "Badge"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "facts": [
+            {
+              "title": "Total SKUs:",
+              "value": "2,853"
+            },
+            {
+              "title": "Open Orders:",
+              "value": "84"
+            },
+            {
+              "title": "Active Shipments:",
+              "value": "15"
+            },
+            {
+              "title": "Pending Issues:",
+              "value": "3"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "size": "Large",
+      "spacing": "Large",
+      "text": "Select a module to continue:",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    }
+  ],
+  "greentic": {
+    "cardId": "welcome",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Supply Chain Management: track orders, view inventory, manage shipments, and report issues.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

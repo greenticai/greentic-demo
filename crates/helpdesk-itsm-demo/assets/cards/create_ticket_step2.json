@@ -1,0 +1,72 @@
+{
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Step 2 of 2 — Your Contact Info",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "text": "Let us know how to reach you about your ticket.",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "errorMessage": "Name is required.",
+      "id": "fullname",
+      "isRequired": true,
+      "label": "Full Name",
+      "placeholder": "Your name",
+      "type": "Input.Text"
+    },
+    {
+      "errorMessage": "Valid email is required.",
+      "id": "email",
+      "isRequired": true,
+      "label": "Contact Email",
+      "placeholder": "name@email.com",
+      "style": "Email",
+      "type": "Input.Text"
+    },
+    {
+      "id": "phone",
+      "isRequired": false,
+      "label": "Contact Number",
+      "placeholder": "E.g. 0800-555-123",
+      "style": "Tel",
+      "type": "Input.Text"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "goto_ticket_confirmation",
+            "routeToCardId": "ticket_confirmation"
+          },
+          "style": "positive",
+          "title": "Submit Ticket",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_create_ticket_step1",
+            "routeToCardId": "create_ticket_step1"
+          },
+          "title": "⬅️ Back",
+          "type": "Action.Submit"
+        }
+      ],
+      "spacing": "Large",
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "create_ticket_step2",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "Step 2. Enter your contact details.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

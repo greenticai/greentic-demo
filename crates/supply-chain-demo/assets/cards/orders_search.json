@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_orders_list",
+        "routeToCardId": "orders_list"
+      },
+      "style": "positive",
+      "title": "Find Order",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "⬅️ Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "Package tracking",
+              "type": "Image",
+              "url": "https://img.icons8.com/color/64/parcel-tracking.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Accent",
+              "size": "Large",
+              "text": "Track Order",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            },
+            {
+              "isSubtle": true,
+              "size": "Small",
+              "spacing": "None",
+              "text": "Step 1 of 3 - Search by order number or customer.",
+              "type": "TextBlock"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "items": [
+        {
+          "id": "order_number",
+          "label": "Order Number",
+          "placeholder": "Enter order number (e.g. SC-20260411-0065)",
+          "type": "Input.Text"
+        },
+        {
+          "id": "customer_name",
+          "label": "Customer Name",
+          "placeholder": "Enter customer name or company",
+          "type": "Input.Text"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    }
+  ],
+  "greentic": {
+    "cardId": "orders_search",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Search or track your supply chain orders.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

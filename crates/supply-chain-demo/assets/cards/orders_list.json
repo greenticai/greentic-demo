@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_order_details",
+        "routeToCardId": "order_details"
+      },
+      "style": "positive",
+      "title": "View Details",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_orders_search",
+        "routeToCardId": "orders_search"
+      },
+      "title": "⬅️ Back",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "style": "heading",
+      "text": "Order List",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "size": "Small",
+      "spacing": "None",
+      "text": "Step 2 of 3 — Select an order for details.",
+      "type": "TextBlock"
+    },
+    {
+      "items": [
+        {
+          "choices": [
+            {
+              "title": "SC-20260411-0065 · PT Mitra Nusantara · 3 items · $1,220",
+              "value": "SC-20260411-0065"
+            },
+            {
+              "title": "SC-20260407-0038 · PT Karya Sentosa · 1 item · $380",
+              "value": "SC-20260407-0038"
+            },
+            {
+              "title": "SC-20260402-0123 · CV Maju Jaya · 5 items · $2,420",
+              "value": "SC-20260402-0123"
+            }
+          ],
+          "id": "order_choice",
+          "label": "Orders found",
+          "style": "expanded",
+          "type": "Input.ChoiceSet"
+        }
+      ],
+      "type": "Container"
+    }
+  ],
+  "greentic": {
+    "cardId": "orders_list",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Here are your recent orders with status.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

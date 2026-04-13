@@ -1,0 +1,94 @@
+{
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "IT Support agent icon",
+              "size": "Medium",
+              "type": "Image",
+              "url": "https://img.icons8.com/fluency/96/technical-support.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Accent",
+              "size": "ExtraLarge",
+              "text": "IT Help Desk",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            },
+            {
+              "isSubtle": true,
+              "text": "Welcome! What do you need help with today?",
+              "type": "TextBlock",
+              "wrap": true
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "items": [
+        {
+          "isSubtle": true,
+          "size": "Medium",
+          "text": "Choose an option below to get started.",
+          "type": "TextBlock",
+          "wrap": true
+        }
+      ],
+      "spacing": "Medium",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "goto_create_ticket_step1",
+            "routeToCardId": "create_ticket_step1"
+          },
+          "style": "positive",
+          "title": "🎫 Create a Ticket",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_view_tickets",
+            "routeToCardId": "view_tickets"
+          },
+          "title": "🔎 My Tickets & Status",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_call_center",
+            "routeToCardId": "call_center"
+          },
+          "style": "destructive",
+          "title": "📞 Urgent: Call Center",
+          "type": "Action.Submit"
+        }
+      ],
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "welcome",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "IT Help Desk main menu with options to create a ticket, view ticket status, or contact the call center.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

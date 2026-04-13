@@ -1,0 +1,117 @@
+{
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Step 1 of 2 — Create IT Ticket",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "text": "Describe your IT issue and add details below.",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "choices": [
+            {
+              "title": "Hardware",
+              "value": "hardware"
+            },
+            {
+              "title": "Software",
+              "value": "software"
+            },
+            {
+              "title": "Network/Internet",
+              "value": "network"
+            },
+            {
+              "title": "Access/Password",
+              "value": "access"
+            },
+            {
+              "title": "Other",
+              "value": "other"
+            }
+          ],
+          "errorMessage": "Please select a category.",
+          "id": "category",
+          "isRequired": true,
+          "label": "Issue Category",
+          "type": "Input.ChoiceSet"
+        },
+        {
+          "choices": [
+            {
+              "title": "Low",
+              "value": "low"
+            },
+            {
+              "title": "Medium",
+              "value": "medium"
+            },
+            {
+              "title": "High",
+              "value": "high"
+            },
+            {
+              "title": "Urgent",
+              "value": "urgent"
+            }
+          ],
+          "errorMessage": "Please select a priority level.",
+          "id": "priority",
+          "isRequired": true,
+          "label": "Priority",
+          "type": "Input.ChoiceSet",
+          "value": "medium"
+        },
+        {
+          "errorMessage": "Description cannot be empty.",
+          "id": "description",
+          "isMultiline": true,
+          "isRequired": true,
+          "label": "Describe the problem",
+          "placeholder": "E.g. Laptop not turning on after update",
+          "type": "Input.Text"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "goto_create_ticket_step2",
+            "routeToCardId": "create_ticket_step2"
+          },
+          "style": "positive",
+          "title": "Next: Contact Details",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_welcome",
+            "routeToCardId": "welcome"
+          },
+          "title": "⬅️ Back",
+          "type": "Action.Submit"
+        }
+      ],
+      "spacing": "Large",
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "create_ticket_step1",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "Step 1 of 2. IT ticket submission: enter your issue details.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}
