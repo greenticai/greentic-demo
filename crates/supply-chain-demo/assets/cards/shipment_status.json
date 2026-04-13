@@ -1,0 +1,212 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_track_shipment",
+        "routeToCardId": "track_shipment"
+      },
+      "title": "Track Another Shipment",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_shipments_menu",
+        "routeToCardId": "shipments_menu"
+      },
+      "title": "Back to Shipments",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "⬅️ Main Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "style": "heading",
+      "text": "Shipment Status",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "facts": [
+        {
+          "title": "Reference #",
+          "value": "SHP-20260412-0007"
+        },
+        {
+          "title": "Carrier",
+          "value": "JNE"
+        },
+        {
+          "title": "Origin",
+          "value": "Jakarta Warehouse"
+        },
+        {
+          "title": "Destination",
+          "value": "Bandung Branch"
+        }
+      ],
+      "type": "FactSet"
+    },
+    {
+      "color": "accent",
+      "label": "Delivery Progress",
+      "type": "ProgressBar",
+      "value": 0.65
+    },
+    {
+      "columns": [
+        {
+          "width": 3
+        },
+        {
+          "width": 2
+        }
+      ],
+      "firstRowAsHeader": true,
+      "gridStyle": "good",
+      "rows": [
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Date/Event",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "text": "Status",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        },
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Apr 12, 2026 · Created",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "appearance": "tint",
+                  "style": "accent",
+                  "text": "Picked Up",
+                  "type": "Badge"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        },
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Apr 13, 2026 · Out for Delivery",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "appearance": "filled",
+                  "style": "informative",
+                  "text": "In Transit",
+                  "type": "Badge"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        },
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Apr 15, 2026 ·",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "appearance": "tint",
+                  "style": "good",
+                  "text": "Destination Arrived",
+                  "type": "Badge"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        },
+        {
+          "cells": [
+            {
+              "items": [
+                {
+                  "text": "Apr 17, 2026 · ETA",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "TableCell"
+            },
+            {
+              "items": [
+                {
+                  "appearance": "tint",
+                  "style": "informative",
+                  "text": "Expected",
+                  "type": "Badge"
+                }
+              ],
+              "type": "TableCell"
+            }
+          ],
+          "type": "TableRow"
+        }
+      ],
+      "type": "Table"
+    }
+  ],
+  "greentic": {
+    "cardId": "shipment_status",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Shipment status and delivery timeline.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

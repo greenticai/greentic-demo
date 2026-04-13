@@ -1,0 +1,59 @@
+{
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "Call confirmed icon",
+              "type": "Image",
+              "url": "https://img.icons8.com/color/48/ok.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Good",
+              "size": "ExtraLarge",
+              "text": "Call Back Requested",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "text": "Thank you! An IT support specialist will contact you at your requested time.",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "goto_welcome",
+            "routeToCardId": "welcome"
+          },
+          "title": "Back to Menu",
+          "type": "Action.Submit"
+        }
+      ],
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "callback_confirmation",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "Your call back request has been received. An agent will contact you soon.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

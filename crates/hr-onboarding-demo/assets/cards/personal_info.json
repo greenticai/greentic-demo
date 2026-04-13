@@ -1,0 +1,151 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_personal_info_review",
+        "routeToCardId": "personal_info_review"
+      },
+      "style": "positive",
+      "title": "Next: Review Info",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Step 1 of 4 – Enter Personal Information",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "altText": "Person avatar",
+                  "size": "Medium",
+                  "type": "Image",
+                  "url": "https://img.icons8.com/color/48/businessman.png"
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "size": "Large",
+                  "text": "Tell us about yourself",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "errorMessage": "Full name is required.",
+      "id": "full_name",
+      "isRequired": true,
+      "label": "Full Name",
+      "placeholder": "Enter your full name",
+      "type": "Input.Text"
+    },
+    {
+      "errorMessage": "Please enter a valid email address.",
+      "id": "email",
+      "isRequired": true,
+      "label": "Work Email",
+      "placeholder": "example@greentic.com",
+      "style": "Email",
+      "type": "Input.Text"
+    },
+    {
+      "choices": [
+        {
+          "title": "Engineering",
+          "value": "engineering"
+        },
+        {
+          "title": "Product",
+          "value": "product"
+        },
+        {
+          "title": "HR",
+          "value": "hr"
+        },
+        {
+          "title": "Finance",
+          "value": "finance"
+        },
+        {
+          "title": "Operations",
+          "value": "operations"
+        }
+      ],
+      "errorMessage": "Department is required.",
+      "id": "department",
+      "isRequired": true,
+      "label": "Department",
+      "type": "Input.ChoiceSet"
+    },
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "errorMessage": "Date of birth is required.",
+              "id": "dob",
+              "isRequired": true,
+              "label": "Date of Birth",
+              "type": "Input.Date"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        },
+        {
+          "items": [
+            {
+              "errorMessage": "Start date is required.",
+              "id": "start_date",
+              "isRequired": true,
+              "label": "Start Date",
+              "type": "Input.Date"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "personal_info",
+    "flow": "hr_onboarding_demo"
+  },
+  "speak": "Step 1 of 4, Personal information entry. Please provide your details to begin onboarding.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

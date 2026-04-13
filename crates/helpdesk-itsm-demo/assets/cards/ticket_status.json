@@ -1,0 +1,284 @@
+{
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Ticket Timeline & Status",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "facts": [
+            {
+              "title": "Ticket ID",
+              "value": "IT-20260517-1142"
+            },
+            {
+              "title": "Issue",
+              "value": "Laptop not turning on"
+            },
+            {
+              "title": "Priority",
+              "value": "Urgent"
+            },
+            {
+              "title": "Assigned To",
+              "value": "Dewi S."
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "spacing": "Small",
+      "text": "Current Phase:",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "appearance": "filled",
+      "size": "medium",
+      "style": "good",
+      "text": "Engineer Onsite",
+      "type": "Badge"
+    },
+    {
+      "color": "Accent",
+      "size": "Medium",
+      "spacing": "Medium",
+      "text": "Timeline",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "width": 2
+            },
+            {
+              "width": 3
+            },
+            {
+              "width": 2
+            }
+          ],
+          "firstRowAsHeader": true,
+          "gridStyle": "accent",
+          "rows": [
+            {
+              "cells": [
+                {
+                  "items": [
+                    {
+                      "text": "Phase",
+                      "type": "TextBlock",
+                      "weight": "Bolder"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "Time",
+                      "type": "TextBlock",
+                      "weight": "Bolder"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "Status",
+                      "type": "TextBlock",
+                      "weight": "Bolder"
+                    }
+                  ],
+                  "type": "TableCell"
+                }
+              ],
+              "type": "TableRow"
+            },
+            {
+              "cells": [
+                {
+                  "items": [
+                    {
+                      "text": "Ticket Created",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "May 17, 14:31",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "color": "Good",
+                      "name": "CheckmarkCircle",
+                      "style": "Filled",
+                      "type": "Icon"
+                    }
+                  ],
+                  "type": "TableCell"
+                }
+              ],
+              "type": "TableRow"
+            },
+            {
+              "cells": [
+                {
+                  "items": [
+                    {
+                      "text": "In Progress",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "May 17, 15:10",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "color": "Good",
+                      "name": "CheckmarkCircle",
+                      "style": "Filled",
+                      "type": "Icon"
+                    }
+                  ],
+                  "type": "TableCell"
+                }
+              ],
+              "type": "TableRow"
+            },
+            {
+              "cells": [
+                {
+                  "items": [
+                    {
+                      "text": "Engineer Onsite",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "May 17, 15:45",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "color": "Accent",
+                      "name": "MoreHorizontal",
+                      "style": "Filled",
+                      "type": "Icon"
+                    }
+                  ],
+                  "type": "TableCell"
+                }
+              ],
+              "type": "TableRow"
+            },
+            {
+              "cells": [
+                {
+                  "items": [
+                    {
+                      "text": "Resolved / Closed",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "text": "—",
+                      "type": "TextBlock"
+                    }
+                  ],
+                  "type": "TableCell"
+                },
+                {
+                  "items": [
+                    {
+                      "color": "Light",
+                      "name": "Circle",
+                      "style": "Regular",
+                      "type": "Icon"
+                    }
+                  ],
+                  "type": "TableCell"
+                }
+              ],
+              "type": "TableRow"
+            }
+          ],
+          "showGridLines": false,
+          "type": "Table"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "goto_view_tickets",
+            "routeToCardId": "view_tickets"
+          },
+          "title": "Back to Tickets",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_welcome",
+            "routeToCardId": "welcome"
+          },
+          "title": "Back to Menu",
+          "type": "Action.Submit"
+        }
+      ],
+      "spacing": "Medium",
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "ticket_status",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "Timeline and status for your selected IT support ticket.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

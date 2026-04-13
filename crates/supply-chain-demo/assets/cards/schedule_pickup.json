@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_pickup_confirmation",
+        "routeToCardId": "pickup_confirmation"
+      },
+      "style": "positive",
+      "title": "Schedule",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_shipments_menu",
+        "routeToCardId": "shipments_menu"
+      },
+      "title": "⬅️ Back to Shipments",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Schedule Pickup",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "size": "Small",
+      "spacing": "None",
+      "text": "Step 1 of 2 — Enter details to book a courier pickup.",
+      "type": "TextBlock"
+    },
+    {
+      "id": "pickup_location",
+      "label": "Pickup Location",
+      "placeholder": "e.g. Jakarta Main Warehouse",
+      "type": "Input.Text"
+    },
+    {
+      "id": "pickup_date",
+      "label": "Pickup Date",
+      "type": "Input.Date"
+    },
+    {
+      "id": "pickup_time",
+      "label": "Preferred Time",
+      "type": "Input.Time"
+    },
+    {
+      "id": "contact",
+      "label": "Contact Name",
+      "placeholder": "Contact Person at Pickup",
+      "type": "Input.Text"
+    },
+    {
+      "choices": [
+        {
+          "title": "Fedex",
+          "value": "Fedex"
+        },
+        {
+          "title": "JNE",
+          "value": "JNE"
+        },
+        {
+          "title": "DHL",
+          "value": "DHL"
+        },
+        {
+          "title": "Sicepat",
+          "value": "Sicepat"
+        }
+      ],
+      "id": "courier",
+      "label": "Select Courier",
+      "style": "compact",
+      "type": "Input.ChoiceSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "schedule_pickup",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Schedule a shipment pickup from warehouse.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

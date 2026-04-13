@@ -1,0 +1,83 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_upload_docs",
+        "routeToCardId": "upload_docs"
+      },
+      "title": "Upload Documents",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_it_progress",
+        "routeToCardId": "it_progress"
+      },
+      "title": "IT Setup",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Step 2 of 4 – Onboarding Checklist",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "facts": [
+            {
+              "title": "Personal Info",
+              "value": "✅ Submitted"
+            },
+            {
+              "title": "Upload Documents",
+              "value": "In Progress"
+            },
+            {
+              "title": "Complete IT Setup",
+              "value": "Pending"
+            },
+            {
+              "title": "Book Orientation",
+              "value": "✅ Done"
+            },
+            {
+              "title": "Meet Buddy",
+              "value": "Pending"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "size": "Medium",
+      "spacing": "Medium",
+      "text": "Select a task to continue:",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    }
+  ],
+  "greentic": {
+    "cardId": "checklist",
+    "flow": "hr_onboarding_demo"
+  },
+  "speak": "Onboarding checklist showing required tasks to complete.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

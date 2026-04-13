@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_shipment_status",
+        "routeToCardId": "shipment_status"
+      },
+      "style": "positive",
+      "title": "Check Status",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_shipments_menu",
+        "routeToCardId": "shipments_menu"
+      },
+      "title": "⬅️ Back",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Track Shipment",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "id": "shipment_ref",
+      "label": "Shipment Reference #",
+      "placeholder": "e.g. SHP-20260412-0007",
+      "type": "Input.Text"
+    },
+    {
+      "choices": [
+        {
+          "title": "Fedex",
+          "value": "Fedex"
+        },
+        {
+          "title": "JNE",
+          "value": "JNE"
+        },
+        {
+          "title": "Sicepat",
+          "value": "Sicepat"
+        },
+        {
+          "title": "DHL",
+          "value": "DHL"
+        }
+      ],
+      "id": "carrier",
+      "label": "Carrier",
+      "style": "compact",
+      "type": "Input.ChoiceSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "track_shipment",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Track shipment by reference number or carrier.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

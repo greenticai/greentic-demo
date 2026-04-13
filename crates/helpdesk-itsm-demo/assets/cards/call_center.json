@@ -1,0 +1,100 @@
+{
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "Phone support icon",
+              "size": "Medium",
+              "type": "Image",
+              "url": "https://img.icons8.com/fluency/96/phone-office.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Accent",
+              "size": "ExtraLarge",
+              "text": "IT Help Desk Call Center",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            },
+            {
+              "isSubtle": true,
+              "text": "For urgent IT issues, you can reach our call center directly.",
+              "type": "TextBlock",
+              "wrap": true
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "items": [
+        {
+          "facts": [
+            {
+              "title": "Phone:",
+              "value": "+1 800-555-ITSD"
+            },
+            {
+              "title": "Hours:",
+              "value": "24/7 (including holidays)"
+            },
+            {
+              "title": "Email:",
+              "value": "support@company.com"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "spacing": "Medium",
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "actions": [
+        {
+          "title": "📞 Call +1 800-555-ITSD",
+          "type": "Action.OpenUrl",
+          "url": "tel:+18005554873"
+        },
+        {
+          "data": {
+            "action_id": "goto_request_callback",
+            "routeToCardId": "request_callback"
+          },
+          "title": "Request Call Back",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_welcome",
+            "routeToCardId": "welcome"
+          },
+          "title": "⬅️ Back to Menu",
+          "type": "Action.Submit"
+        }
+      ],
+      "spacing": "Large",
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "call_center",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "Urgent help. Call center contact information, call or request callback.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}
