@@ -108,6 +108,15 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     built_pack="$temp_pack_dir/dist/$pack_dir_basename.gtpack"
     target_pack="$DEMOS_DIR/$pack_name.gtpack"
 
+    # If a pre-built pack was committed in demos/ (seeded into LOCAL_PACK_INPUT_DIR),
+    # skip the crate-source rebuild and use the committed pack directly.
+    if [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
+        cp "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" "$DEMOS_DIR/$pack_name.gtpack"
+        echo "Using committed demos/$pack_name.gtpack (skipping crate rebuild)"
+        packaged_any=1
+        continue
+    fi
+
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
         expected_pack_file="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
@@ -278,6 +287,27 @@ for create_answers in "${generated_pack_answers[@]}"; do
     temp_pack_dir="$temp_pack_parent/$pack_dir_name"
     built_pack="$temp_pack_dir/dist/$pack_dir_name.gtpack"
     target_pack="$DEMOS_DIR/$pack_slug.gtpack"
+
+    # Resolve expected pack filename from wizard answers (if available).
+    _seeded_name="$pack_slug.gtpack"
+    if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
+        _expected="$(jq -r '
+          .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
+          | select(test("(^|/)demos/[^/]+\\.gtpack$"))
+          | capture("(?<file>[^/]+\\.gtpack)$").file
+        ' "$crate_dir/gtc_wizard_answers.json")"
+        if [ -n "$_expected" ]; then
+            _seeded_name="$_expected"
+        fi
+    fi
+
+    # If a pre-built pack was committed in demos/, skip the crate-source rebuild.
+    if [ -f "$LOCAL_PACK_INPUT_DIR/$_seeded_name" ]; then
+        cp "$LOCAL_PACK_INPUT_DIR/$_seeded_name" "$DEMOS_DIR/$_seeded_name"
+        echo "Using committed demos/$_seeded_name (skipping crate rebuild)"
+        packaged_any=1
+        continue
+    fi
 
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
         expected_pack_file="$(jq -r '

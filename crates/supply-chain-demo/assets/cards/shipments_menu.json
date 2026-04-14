@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_track_shipment",
+        "routeToCardId": "track_shipment"
+      },
+      "style": "positive",
+      "title": "Track a Shipment",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_schedule_pickup",
+        "routeToCardId": "schedule_pickup"
+      },
+      "title": "Schedule Pickup",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "⬅️ Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "Delivery icon",
+              "type": "Image",
+              "url": "https://img.icons8.com/color/48/delivery-scooter.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Accent",
+              "size": "Large",
+              "text": "Manage Shipments",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "size": "Medium",
+      "spacing": "Large",
+      "text": "Select an action:",
+      "type": "TextBlock",
+      "weight": "Bolder",
+      "wrap": true
+    }
+  ],
+  "greentic": {
+    "cardId": "shipments_menu",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Manage and track your outgoing shipments.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

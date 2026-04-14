@@ -1,0 +1,78 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_personal_info_success",
+        "routeToCardId": "personal_info_success"
+      },
+      "style": "positive",
+      "title": "✅ Confirm & Continue",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_personal_info",
+        "routeToCardId": "personal_info"
+      },
+      "title": "Edit Info",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Review Your Information",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "bleed": true,
+      "items": [
+        {
+          "facts": [
+            {
+              "title": "Full Name",
+              "value": "${full_name}"
+            },
+            {
+              "title": "Work Email",
+              "value": "${email}"
+            },
+            {
+              "title": "Department",
+              "value": "${department}"
+            },
+            {
+              "title": "Date of Birth",
+              "value": "${dob}"
+            },
+            {
+              "title": "Start Date",
+              "value": "${start_date}"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    }
+  ],
+  "greentic": {
+    "cardId": "personal_info_review",
+    "flow": "hr_onboarding_demo"
+  },
+  "speak": "Review your entered personal information. Confirm details or go back to edit.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

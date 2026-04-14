@@ -1,0 +1,97 @@
+{
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Your Tickets & Status",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "text": "List of your recent IT help desk tickets, with the latest status and timeline. Select one to view detail.",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "altText": "Folder with documents",
+                  "size": "Small",
+                  "type": "Image",
+                  "url": "https://img.icons8.com/color/48/opened-folder.png"
+                }
+              ],
+              "type": "Column",
+              "verticalContentAlignment": "Center",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "choices": [
+                    {
+                      "title": "IT-20260517-1142 — Laptop not turning on",
+                      "value": "IT-20260517-1142"
+                    },
+                    {
+                      "title": "IT-20260510-9902 — VPN not working",
+                      "value": "IT-20260510-9902"
+                    },
+                    {
+                      "title": "IT-20260420-8719 — Password reset delay",
+                      "value": "IT-20260420-8719"
+                    }
+                  ],
+                  "id": "ticket_select",
+                  "label": "Select a Ticket",
+                  "placeholder": "Choose ticket to view details",
+                  "type": "Input.ChoiceSet"
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "goto_ticket_status",
+            "routeToCardId": "ticket_status"
+          },
+          "style": "positive",
+          "title": "View Ticket Timeline",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_welcome",
+            "routeToCardId": "welcome"
+          },
+          "title": "⬅️ Back to Menu",
+          "type": "Action.Submit"
+        }
+      ],
+      "spacing": "Medium",
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "view_tickets",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "See your active IT support tickets and their statuses.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

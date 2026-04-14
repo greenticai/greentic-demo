@@ -1,0 +1,84 @@
+{
+  "body": [
+    {
+      "color": "Accent",
+      "size": "Large",
+      "text": "Request Call Back",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "text": "Enter your details and our support agent will call you shortly.",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "errorMessage": "Name is required.",
+      "id": "cb_name",
+      "isRequired": true,
+      "label": "Your Name",
+      "placeholder": "Enter your name",
+      "type": "Input.Text"
+    },
+    {
+      "errorMessage": "Phone number required",
+      "id": "cb_number",
+      "isRequired": true,
+      "label": "Phone Number",
+      "placeholder": "E.g. 0800-555-234",
+      "style": "Tel",
+      "type": "Input.Text"
+    },
+    {
+      "choices": [
+        {
+          "title": "ASAP",
+          "value": "asap"
+        },
+        {
+          "title": "Morning (08:00–12:00)",
+          "value": "morning"
+        },
+        {
+          "title": "Afternoon (12:00–17:00)",
+          "value": "afternoon"
+        }
+      ],
+      "id": "cb_time",
+      "label": "Best time to call",
+      "type": "Input.ChoiceSet",
+      "value": "asap"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "goto_callback_confirmation",
+            "routeToCardId": "callback_confirmation"
+          },
+          "style": "positive",
+          "title": "Submit Call Back Request",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "goto_call_center",
+            "routeToCardId": "call_center"
+          },
+          "title": "⬅️ Back",
+          "type": "Action.Submit"
+        }
+      ],
+      "spacing": "Large",
+      "type": "ActionSet"
+    }
+  ],
+  "greentic": {
+    "cardId": "request_callback",
+    "flow": "it_helpdesk_portal"
+  },
+  "speak": "Request a callback from IT help desk.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

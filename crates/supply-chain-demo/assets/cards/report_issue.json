@@ -1,0 +1,87 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_issue_confirm",
+        "routeToCardId": "issue_confirm"
+      },
+      "style": "destructive",
+      "title": "Submit Issue",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "⬅️ Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "color": "Attention",
+      "size": "Large",
+      "text": "⚠️ Report an Issue",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "choices": [
+        {
+          "title": "Order Problem",
+          "value": "order"
+        },
+        {
+          "title": "Shipment Delay",
+          "value": "shipment"
+        },
+        {
+          "title": "Damaged Inventory",
+          "value": "inventory"
+        },
+        {
+          "title": "Other",
+          "value": "other"
+        }
+      ],
+      "id": "issue_type",
+      "label": "Issue Type",
+      "style": "expanded",
+      "type": "Input.ChoiceSet"
+    },
+    {
+      "id": "issue_subject",
+      "label": "Subject",
+      "placeholder": "Short title for your issue",
+      "type": "Input.Text"
+    },
+    {
+      "id": "issue_details",
+      "isMultiline": true,
+      "label": "Details",
+      "placeholder": "Describe the issue in detail",
+      "type": "Input.Text"
+    },
+    {
+      "id": "reporter_name",
+      "label": "Your Name",
+      "placeholder": "Type your name",
+      "type": "Input.Text"
+    },
+    {
+      "id": "reporter_email",
+      "label": "Your Email",
+      "placeholder": "e.g. you@company.com",
+      "style": "Email",
+      "type": "Input.Text"
+    }
+  ],
+  "greentic": {
+    "cardId": "report_issue",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Report an issue with an order, shipment, or inventory.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

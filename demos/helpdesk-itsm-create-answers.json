@@ -63,6 +63,13 @@
                     },
                     {
                         "detected_kind": "oci",
+                        "display_name": "Greentic Messaging Telegram (latest)",
+                        "provider_id": "greentic.messaging.telegram.latest",
+                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest",
+                        "version": "latest"
+                    },
+                    {
+                        "detected_kind": "oci",
                         "display_name": "Greentic State Memory (latest)",
                         "provider_id": "state-memory",
                         "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
@@ -74,6 +81,7 @@
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest",
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",

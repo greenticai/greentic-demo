@@ -1,0 +1,192 @@
+{
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_welcome",
+        "routeToCardId": "welcome"
+      },
+      "title": "⬅️ Back to Menu",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "Warehouse icon",
+              "type": "Image",
+              "url": "https://img.icons8.com/fluency/48/warehouse.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Accent",
+              "size": "Large",
+              "text": "Inventory Overview",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "spacing": "Medium",
+      "style": "heading",
+      "text": "Warehouse Status — April 2026",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "items": [
+        {
+          "columns": [
+            {
+              "items": [
+                {
+                  "horizontalAlignment": "Center",
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "Total SKUs",
+                  "type": "TextBlock"
+                },
+                {
+                  "color": "Accent",
+                  "horizontalAlignment": "Center",
+                  "size": "Large",
+                  "text": "2,853",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "Column",
+              "width": "1"
+            },
+            {
+              "items": [
+                {
+                  "horizontalAlignment": "Center",
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "Units In Stock",
+                  "type": "TextBlock"
+                },
+                {
+                  "color": "Good",
+                  "horizontalAlignment": "Center",
+                  "size": "Large",
+                  "text": "184,700",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "Column",
+              "width": "1"
+            },
+            {
+              "items": [
+                {
+                  "horizontalAlignment": "Center",
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "Low Stock",
+                  "type": "TextBlock"
+                },
+                {
+                  "color": "Attention",
+                  "horizontalAlignment": "Center",
+                  "size": "Large",
+                  "text": "26",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                }
+              ],
+              "type": "Column",
+              "width": "1"
+            }
+          ],
+          "type": "ColumnSet"
+        }
+      ],
+      "type": "Container"
+    },
+    {
+      "data": [
+        {
+          "color": "accent",
+          "legend": "Thermal Label 4x6\"",
+          "value": 18570
+        },
+        {
+          "color": "good",
+          "legend": "Scanner U450",
+          "value": 9780
+        },
+        {
+          "color": "accent",
+          "legend": "Zebra Ribbons (60m)",
+          "value": 8450
+        },
+        {
+          "color": "warning",
+          "legend": "Box Carton L",
+          "value": 7320
+        },
+        {
+          "color": "good",
+          "legend": "Packing Tape",
+          "value": 6180
+        }
+      ],
+      "title": "Top 5 Fastest Moving SKUs",
+      "type": "Chart.HorizontalBar"
+    },
+    {
+      "items": [
+        {
+          "color": "Attention",
+          "text": "⚠️ Low-Stock Alerts",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "facts": [
+            {
+              "title": "Zebra Ribbons:",
+              "value": "12 units"
+            },
+            {
+              "title": "Scanner U450:",
+              "value": "6 units"
+            },
+            {
+              "title": "Thermal Label 2x2:",
+              "value": "34 units"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "spacing": "Large",
+      "style": "attention",
+      "type": "Container"
+    }
+  ],
+  "greentic": {
+    "cardId": "inventory_overview",
+    "flow": "supply_chain_management_demo"
+  },
+  "speak": "Warehouse inventory dashboard with quick view of stock, trends, and low-stock alerts.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

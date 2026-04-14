@@ -1,0 +1,78 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action_id": "goto_it_support_success",
+        "routeToCardId": "it_support_success"
+      },
+      "style": "positive",
+      "title": "Send Message",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "goto_it_progress",
+        "routeToCardId": "it_progress"
+      },
+      "title": "Back to IT Progress",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "altText": "IT support icon",
+              "size": "Medium",
+              "type": "Image",
+              "url": "https://img.icons8.com/color/48/laptop-settings.png"
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "auto"
+        },
+        {
+          "items": [
+            {
+              "color": "Accent",
+              "size": "ExtraLarge",
+              "text": "IT Self-Service",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            },
+            {
+              "spacing": "None",
+              "text": "Found an issue or need help? Submit a message directly to IT and get support fast.",
+              "type": "TextBlock",
+              "wrap": true
+            }
+          ],
+          "type": "Column",
+          "verticalContentAlignment": "Center",
+          "width": "stretch"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "errorMessage": "Please write a message.",
+      "id": "support_message",
+      "isMultiline": true,
+      "isRequired": true,
+      "label": "Message to IT Support",
+      "placeholder": "Describe your issue (e.g. SSO not working)",
+      "type": "Input.Text"
+    }
+  ],
+  "greentic": {
+    "cardId": "it_support",
+    "flow": "hr_onboarding_demo"
+  },
+  "speak": "IT self-service card. Report issues or send message to IT helpdesk.",
+  "type": "AdaptiveCard",
+  "version": "1.6"
+}

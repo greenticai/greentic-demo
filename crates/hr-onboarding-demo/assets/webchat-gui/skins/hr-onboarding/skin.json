@@ -4,8 +4,8 @@
   "brand": {
     "name": "HR Onboarding Assistant",
     "favicon": "/skins/hr-onboarding/assets/favicon.ico",
-    "logo": "/skins/hr-onboarding/assets/logo.svg",
-    "primary": "#0F62FE"
+    "logo": "/skins/hr-onboarding/assets/greentic-logo.png",
+    "primary": "#22C39E"
   },
   "directLine": {},
   "webchat": {

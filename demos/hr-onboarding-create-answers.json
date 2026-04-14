@@ -13,8 +13,8 @@
             "answers": {
                 "access_rules": [{"policy": "public", "rule_path": "hr-onboarding-pack", "tenant": "default"}],
                 "advanced_setup": false,
-                "app_pack_entries": [{"detected_kind": "local_file", "display_name": "HR Onboarding Demo Pack", "mapping": {"scope": "global"}, "pack_id": "hr-onboarding-pack", "reference": "demos/hr-onboarding.gtpack"}],
-                "app_packs": ["demos/hr-onboarding.gtpack"],
+                "app_pack_entries": [{"detected_kind": "https", "display_name": "HR Onboarding Demo Pack", "mapping": {"scope": "global"}, "pack_id": "hr-onboarding-pack", "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/hr-onboarding.gtpack"}],
+                "app_packs": ["https://github.com/greenticai/greentic-demo/releases/latest/download/hr-onboarding.gtpack"],
                 "bundle_id": "hr-onboarding-demo",
                 "bundle_name": "hr-onboarding-demo",
                 "export_intent": false,
@@ -23,6 +23,7 @@
                     {"detected_kind": "oci", "display_name": "Greentic Messaging Slack (latest)", "provider_id": "greentic.messaging.slack.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic Messaging Teams (latest)", "provider_id": "greentic.messaging.teams.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic Messaging Webex (latest)", "provider_id": "greentic.messaging.webex.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Telegram (latest)", "provider_id": "greentic.messaging.telegram.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic State Memory (latest)", "provider_id": "state-memory", "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest", "version": "latest"}
                 ],
                 "extension_providers": [
@@ -30,6 +31,7 @@
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest",
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
