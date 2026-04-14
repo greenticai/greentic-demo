@@ -4,52 +4,52 @@ version = 4
 
 [[package]]
 name = "cards-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "cloud-deploy-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "github-mcp-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "greentic-ai-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "helpdesk-itsm-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "hr-onboarding-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "incident-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "quickstart-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "quickstart-event-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "redbutton-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "sales-crm-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "supply-chain-demo"
-version = "0.1.53"
+version = "0.1.54"
 
 [[package]]
 name = "weather-mcp-demo"
-version = "0.1.53"
+version = "0.1.54"

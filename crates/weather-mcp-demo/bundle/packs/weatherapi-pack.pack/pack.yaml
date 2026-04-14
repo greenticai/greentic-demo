@@ -1,11 +1,11 @@
-pack_id: weatherapi-pack
+pack_id: weatherapi_current
 version: 0.1.0
 kind: application
 publisher: Greentic
 components:
-- id: ai.greentic.component-adaptive-card
-  version: 0.1.25
-  world: greentic:component/component-v0-v6-v0@0.6.0
+- id: ai.greentic
+  version: 0.1.0
+  world: root:component/root
   supports:
   - messaging
   profiles:
@@ -17,8 +17,8 @@ components:
       random: false
       clocks: false
     host: {}
-  wasm: components/ai.greentic.component-adaptive-card/component.wasm
-- id: weatherapi_current.component
+  wasm: components/adaptive-card/component_adaptive_card.wasm
+- id: weatherapi_current
   version: 0.1.0
   world: root:component/root
   supports:
@@ -32,6 +32,22 @@ components:
       random: false
       clocks: false
     host:
+      secrets:
+        required:
+        - key: auth.param.get_weather.key
+          required: true
+          description: Shared WeatherAPI key used for current and forecast weather requests.
+          scope:
+            env: dev
+            tenant: demo
+          format: text
+        - key: auth.param.get_forecast_weather.key
+          required: true
+          description: Shared WeatherAPI key used for current and forecast weather requests.
+          scope:
+            env: dev
+            tenant: demo
+          format: text
       http:
         client: true
         server: false
@@ -50,6 +66,12 @@ flows:
   - internal
   entrypoints:
   - default
+- id: flow_error
+  file: flows/flow_error.ygtc
+  tags:
+  - internal
+  entrypoints:
+  - default
 - id: flow_get_forecast_weather
   file: flows/flow_get_forecast_weather.ygtc
   tags:
@@ -64,5 +86,7 @@ flows:
   - default
 assets:
 - path: assets/weather_forecast_card.json
+- path: assets/weather_forecast_payload.json
 - path: assets/weather_current_result_card.json
 - path: assets/weather_forecast_result_card.json
+- path: assets/weather_error_card.json

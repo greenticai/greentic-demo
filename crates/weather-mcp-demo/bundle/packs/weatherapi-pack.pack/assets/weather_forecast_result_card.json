@@ -2,62 +2,132 @@
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "type": "AdaptiveCard",
   "version": "1.5",
+  "backgroundImage": "https://adaptivecards.io/content/Mostly%20Cloudy-Background.jpg",
   "body": [
     {
-      "type": "TextBlock",
-      "size": "Large",
-      "weight": "Bolder",
-      "text": "Forecast Weather",
-      "wrap": true
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 35,
+          "items": [
+            {
+              "type": "Image",
+              "url": "https:${result.forecast.forecastday[0].day.condition.icon}",
+              "size": "Stretch",
+              "altText": "${result.forecast.forecastday[0].day.condition.text}"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 65,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Location: ${result.location.name}, ${result.location.country}",
+              "weight": "Bolder",
+              "size": "Large",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Today ${result.forecast.forecastday[0].date} - ${result.forecast.forecastday[0].day.condition.text}",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "High ${result.forecast.forecastday[0].day.maxtemp_c} C / Low ${result.forecast.forecastday[0].day.mintemp_c} C",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Chance of rain ${result.forecast.forecastday[0].day.daily_chance_of_rain}% | Wind ${result.forecast.forecastday[0].day.maxwind_kph} kph",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "TextBlock",
-      "text": "${result.location.name}",
-      "wrap": true,
-      "isSubtle": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "${result.location.region}",
-      "wrap": true,
-      "isSubtle": true,
-      "spacing": "None"
-    },
-    {
-      "type": "TextBlock",
-      "text": "${result.location.country}",
-      "wrap": true,
-      "isSubtle": true,
-      "spacing": "None"
-    },
-    {
-      "type": "TextBlock",
-      "text": "Requested days: ${request.days}",
-      "wrap": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "**${result.forecast.forecastday[0].date}** - ${result.forecast.forecastday[0].day.condition.text}",
-      "wrap": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "High ${result.forecast.forecastday[0].day.maxtemp_c} C / Low ${result.forecast.forecastday[0].day.mintemp_c} C",
-      "spacing": "None",
-      "wrap": true,
-      "isSubtle": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "**${result.forecast.forecastday[1].date}** - ${result.forecast.forecastday[1].day.condition.text}",
-      "wrap": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "High ${result.forecast.forecastday[1].day.maxtemp_c} C / Low ${result.forecast.forecastday[1].day.mintemp_c} C",
-      "spacing": "None",
-      "wrap": true,
-      "isSubtle": true
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 33,
+          "items": [
+            {
+              "type": "TextBlock",
+              "horizontalAlignment": "Center",
+              "text": "${result.forecast.forecastday[1].date}",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "Image",
+              "size": "Auto",
+              "url": "https:${result.forecast.forecastday[1].day.condition.icon}",
+              "altText": "${result.forecast.forecastday[1].day.condition.text}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "High ${result.forecast.forecastday[1].day.maxtemp_c} C",
+              "wrap": true,
+              "color": "Light",
+              "horizontalAlignment": "Center"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Low ${result.forecast.forecastday[1].day.mintemp_c} C",
+              "wrap": true,
+              "color": "Light",
+              "spacing": "None",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 33,
+          "items": [
+            {
+              "type": "TextBlock",
+              "horizontalAlignment": "Center",
+              "text": "${result.forecast.forecastday[2].date}",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "Image",
+              "size": "Auto",
+              "url": "https:${result.forecast.forecastday[2].day.condition.icon}",
+              "altText": "${result.forecast.forecastday[2].day.condition.text}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "High ${result.forecast.forecastday[2].day.maxtemp_c} C",
+              "wrap": true,
+              "color": "Light",
+              "horizontalAlignment": "Center"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Low ${result.forecast.forecastday[2].day.mintemp_c} C",
+              "wrap": true,
+              "color": "Light",
+              "spacing": "None",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        }
+      ]
     }
   ],
   "actions": [

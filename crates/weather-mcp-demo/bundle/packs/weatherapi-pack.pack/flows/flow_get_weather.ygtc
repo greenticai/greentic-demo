@@ -4,10 +4,9 @@ start: call_weather
 nodes:
   call_weather:
     component.exec:
-      component: weatherapi_current.component
+      component: "weatherapi_current"
       operation: get_weather
       input:
-        key: "{{in.input.metadata.key}}"
         q: "{{in.input.metadata.q}}"
         aqi: "no"
     routing:
@@ -15,7 +14,7 @@ nodes:
 
   render_current_card:
     component.exec:
-      component: ai.greentic.component-adaptive-card
+      component: "ai.greentic"
       operation: card
       input:
         card_source: asset

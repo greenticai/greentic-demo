@@ -12,17 +12,9 @@
     },
     {
       "type": "TextBlock",
-      "text": "Enter your WeatherAPI key and request values.",
+      "text": "WeatherAPI is configured via secrets. Enter the request values below.",
       "wrap": true,
       "isSubtle": true
-    },
-    {
-      "type": "Input.Text",
-      "id": "key",
-      "label": "WeatherAPI Key",
-      "placeholder": "Paste your API key",
-      "isRequired": true,
-      "errorMessage": "API key is required"
     },
     {
       "type": "Input.Text",

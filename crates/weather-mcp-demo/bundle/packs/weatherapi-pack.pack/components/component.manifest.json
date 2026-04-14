@@ -1,7 +1,7 @@
 {
   "$schema": "https://greentic-ai.github.io/greentic-component/schemas/v1/component.manifest.schema.json",
-  "id": "weatherapi_current.component",
-  "name": "weatherapi_current.component",
+  "id": "weatherapi_current",
+  "name": "weatherapi_current",
   "version": "0.1.0",
   "world": "greentic:component/component@0.6.0",
   "describe_export": "describe",
@@ -40,12 +40,37 @@
     "required": [],
     "additionalProperties": false
   },
-  "supports": ["messaging"],
+  "supports": [
+    "messaging"
+  ],
   "profiles": {
     "default": "default",
-    "supported": ["default"]
+    "supported": [
+      "default"
+    ]
   },
-  "secret_requirements": [],
+  "secret_requirements": [
+    {
+      "key": "auth_param_get_weather_key",
+      "required": true,
+      "description": "Shared WeatherAPI key used for current and forecast weather requests.",
+      "scope": {
+        "env": "dev",
+        "tenant": "demo"
+      },
+      "format": "text"
+    },
+    {
+      "key": "auth_param_get_forecast_weather_key",
+      "required": true,
+      "description": "Shared WeatherAPI key used for current and forecast weather requests.",
+      "scope": {
+        "env": "dev",
+        "tenant": "demo"
+      },
+      "format": "text"
+    }
+  ],
   "capabilities": {
     "wasi": {
       "filesystem": {
@@ -71,7 +96,28 @@
         "outbound": true
       },
       "secrets": {
-        "required": []
+        "required": [
+          {
+            "key": "auth_param_get_weather_key",
+            "required": true,
+            "description": "Shared WeatherAPI key used for current and forecast weather requests.",
+            "scope": {
+              "env": "dev",
+              "tenant": "demo"
+            },
+            "format": "text"
+          },
+          {
+            "key": "auth_param_get_forecast_weather_key",
+            "required": true,
+            "description": "Shared WeatherAPI key used for current and forecast weather requests.",
+            "scope": {
+              "env": "dev",
+              "tenant": "demo"
+            },
+            "format": "text"
+          }
+        ]
       },
       "telemetry": {
         "scope": "node"
