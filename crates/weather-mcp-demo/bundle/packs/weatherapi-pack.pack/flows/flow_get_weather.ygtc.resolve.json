@@ -12,9 +12,9 @@
     "render_current_card": {
       "source": {
         "kind": "local",
-        "path": "../components/ai.greentic.component-adaptive-card/component.wasm"
+        "path": "../components/adaptive-card/component_adaptive_card.wasm"
       },
-      "digest": "sha256:6c4963c76277102a2e3e3517acc18125e04896747639b62dedaffb5d5f2c0f78"
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656"
     }
   }
 }

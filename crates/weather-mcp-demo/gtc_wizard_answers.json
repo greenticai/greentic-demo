@@ -14,7 +14,7 @@
         "access_rules": [
           {
             "policy": "public",
-            "rule_path": "weatherapi-pack",
+            "rule_path": "weatherapi_current",
             "tenant": "default"
           }
         ],
@@ -26,7 +26,7 @@
             "mapping": {
               "scope": "global"
             },
-            "pack_id": "weatherapi-pack",
+            "pack_id": "weatherapi_current",
             "reference": "demos/weather-mcp-demo.gtpack"
           }
         ],

@@ -3,15 +3,48 @@ type: messaging
 start: render_weather_card
 nodes:
   render_weather_card:
-    component.exec:
-      component: ai.greentic.component-adaptive-card
-      operation: card
-      input:
-        card_source: asset
-        card_spec:
-          asset_path: assets/weather_forecast_card.json
-        payload:
-          request: "{{in}}"
-          result: {}
+    emit.response:
+      renderedCard:
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+        type: "AdaptiveCard"
+        version: "1.5"
+        body:
+          - type: "TextBlock"
+            size: "Large"
+            weight: "Bolder"
+            text: "Weather Assistant"
+            wrap: true
+          - type: "TextBlock"
+            text: "WeatherAPI is configured via secrets. Enter the request values below."
+            wrap: true
+            isSubtle: true
+          - type: "Input.Text"
+            id: "q"
+            label: "City / Location"
+            placeholder: "Nairobi"
+            isRequired: true
+            errorMessage: "Location is required"
+            value: "Nairobi"
+          - type: "Input.Number"
+            id: "days"
+            label: "Forecast days"
+            placeholder: "3"
+            min: 1
+            max: 10
+            value: 3
+        actions:
+          - type: "Action.OpenUrl"
+            title: "Get API Key"
+            url: "https://www.weatherapi.com/signup.aspx"
+          - type: "Action.Submit"
+            title: "Current Weather"
+            data:
+              operation: "get_weather"
+              method: "get_weather"
+          - type: "Action.Submit"
+            title: "Forecast Weather"
+            data:
+              operation: "get_forecast_weather"
+              method: "get_forecast_weather"
     routing:
       - out: true

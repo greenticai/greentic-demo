@@ -13,6 +13,10 @@
     }
   },
   "setup_answers": {
+    "weatherapi_current": {
+      "auth_param_get_weather_key": "${WEATHERAPI_API_KEY}",
+      "auth_param_get_forecast_weather_key": "${WEATHERAPI_API_KEY}"
+    },
     "messaging-webchat-gui": {
       "base_url": "http://127.0.0.1:8080",
       "jwt_signing_key": "weather-webchat-local-dev-signing-key",

@@ -2,59 +2,65 @@
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "type": "AdaptiveCard",
   "version": "1.5",
+  "backgroundImage": "https://adaptivecards.io/content/Mostly%20Cloudy-Background.jpg",
   "body": [
     {
-      "type": "TextBlock",
-      "size": "Large",
-      "weight": "Bolder",
-      "text": "Current Weather",
-      "wrap": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "${result.location.name}",
-      "wrap": true,
-      "isSubtle": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "${result.location.region}",
-      "wrap": true,
-      "isSubtle": true,
-      "spacing": "None"
-    },
-    {
-      "type": "TextBlock",
-      "text": "${result.location.country}",
-      "wrap": true,
-      "isSubtle": true,
-      "spacing": "None"
-    },
-    {
-      "type": "TextBlock",
-      "text": "${result.current.condition.text}",
-      "weight": "Bolder",
-      "size": "Medium",
-      "wrap": true
-    },
-    {
-      "type": "FactSet",
-      "facts": [
+      "type": "ColumnSet",
+      "columns": [
         {
-          "title": "Temperature",
-          "value": "${result.current.temp_c} C / ${result.current.temp_f} F"
+          "type": "Column",
+          "width": 35,
+          "items": [
+            {
+              "type": "Image",
+              "url": "https:${result.current.condition.icon}",
+              "size": "Stretch",
+              "altText": "${result.current.condition.text}"
+            }
+          ]
         },
         {
-          "title": "Feels Like",
-          "value": "${result.current.feelslike_c} C / ${result.current.feelslike_f} F"
-        },
-        {
-          "title": "Humidity",
-          "value": "${result.current.humidity}%"
-        },
-        {
-          "title": "Wind",
-          "value": "${result.current.wind_kph} kph (${result.current.wind_dir})"
+          "type": "Column",
+          "width": 65,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Location: ${result.location.name}, ${result.location.country}",
+              "weight": "Bolder",
+              "size": "Large",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "${result.current.condition.text}",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Temp ${result.current.temp_c} C / ${result.current.temp_f} F",
+              "size": "Medium",
+              "spacing": "Small",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Feels ${result.current.feelslike_c} C | Humidity ${result.current.humidity}%",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Wind ${result.current.wind_kph} kph ${result.current.wind_dir}",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            }
+          ]
         }
       ]
     }
