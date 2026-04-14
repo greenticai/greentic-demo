@@ -27,11 +27,11 @@
               "scope": "global"
             },
             "pack_id": "weatherapi_current",
-            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/weather-mcp-demo.gtpack"
+            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/weatherapi-pack.gtpack"
           }
         ],
         "app_packs": [
-          "https://github.com/greenticai/greentic-demo/releases/latest/download/weather-mcp-demo.gtpack"
+          "https://github.com/greenticai/greentic-demo/releases/latest/download/weatherapi-pack.gtpack"
         ],
         "bundle_id": "weather-mcp-demo",
         "bundle_name": "weather-mcp-demo",

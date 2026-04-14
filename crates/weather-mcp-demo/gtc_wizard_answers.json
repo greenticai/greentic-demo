@@ -27,11 +27,11 @@
               "scope": "global"
             },
             "pack_id": "weatherapi_current",
-            "reference": "demos/weather-mcp-demo.gtpack"
+            "reference": "demos/weatherapi-pack.gtpack"
           }
         ],
         "app_packs": [
-          "demos/weather-mcp-demo.gtpack"
+          "demos/weatherapi-pack.gtpack"
         ],
         "bundle_id": "weather-mcp-demo",
         "bundle_name": "weather-mcp-demo",
