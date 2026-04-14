@@ -14,24 +14,24 @@
         "access_rules": [
           {
             "policy": "public",
-            "rule_path": "weatherapi_current",
+            "rule_path": "weatherapi-pack",
             "tenant": "default"
           }
         ],
         "advanced_setup": false,
         "app_pack_entries": [
           {
-            "detected_kind": "https",
+            "detected_kind": "local_file",
             "display_name": "Weather API Pack (flows + adaptive cards)",
             "mapping": {
               "scope": "global"
             },
-            "pack_id": "weatherapi_current",
-            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/weatherapi-pack.gtpack"
+            "pack_id": "weatherapi-pack",
+            "reference": "demos/weatherapi-pack.gtpack"
           }
         ],
         "app_packs": [
-          "https://github.com/greenticai/greentic-demo/releases/latest/download/weatherapi-pack.gtpack"
+          "demos/weatherapi-pack.gtpack"
         ],
         "bundle_id": "weather-mcp-demo",
         "bundle_name": "weather-mcp-demo",
