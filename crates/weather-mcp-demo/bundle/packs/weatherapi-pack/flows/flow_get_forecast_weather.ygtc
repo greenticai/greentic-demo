@@ -1,0 +1,29 @@
+id: flow_get_forecast_weather
+type: messaging
+start: call_forecast
+nodes:
+  call_forecast:
+    component.exec:
+      component: "weatherapi_current"
+      operation: get_forecast_weather
+      input:
+        q: "{{in.input.metadata.q}}"
+        days: "{{in.input.metadata.days}}"
+        aqi: "no"
+        alerts: "no"
+    routing:
+      - to: render_forecast_card
+
+  render_forecast_card:
+    component.exec:
+      component: "ai.greentic"
+      operation: card
+      input:
+        card_source: asset
+        card_spec:
+          asset_path: assets/weather_forecast_result_card.json
+        payload:
+          request: "{{in.input.metadata}}"
+          result: "{{node.call_forecast.result.structured_content}}"
+    routing:
+      - out: true

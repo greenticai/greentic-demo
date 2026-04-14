@@ -1,0 +1,40 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "${error.title}",
+      "weight": "Bolder",
+      "size": "Large",
+      "wrap": true,
+      "color": "Attention"
+    },
+    {
+      "type": "TextBlock",
+      "text": "The weather request could not be completed. Check the configured WeatherAPI secrets and try again.",
+      "wrap": true
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Operation",
+          "value": "${error.operation}"
+        },
+        {
+          "title": "Details",
+          "value": "${error.message}"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Try Again",
+      "data": {}
+    }
+  ]
+}
