@@ -1,0 +1,65 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "speak": "Welcome to the Deep Research Digital Worker. Please enter your research question to begin.",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "verticalContentAlignment": "Center",
+          "items": [
+            {
+              "type": "Image",
+              "url": "https://img.icons8.com/fluency/96/science.png",
+              "altText": "Research icon",
+              "size": "Medium"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Deep Research Digital Worker",
+              "weight": "Bolder",
+              "size": "ExtraLarge",
+              "color": "Accent"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Enter your research question below to get started.",
+              "wrap": true,
+              "isSubtle": true,
+              "spacing": "None"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Input.Text",
+      "id": "user_question",
+      "label": "Research Question",
+      "placeholder": "What do you want to research?",
+      "isMultiline": true,
+      "isRequired": true,
+      "errorMessage": "Please enter a research question."
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Create Research Plan",
+      "style": "positive",
+      "data": {
+        "nextCardId": "research_planner"
+      }
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "wizard_id": "greentic-pack.wizard.run",
+  "schema_id": "greentic-pack.wizard.answers",
+  "schema_version": "1.0.0",
+  "locale": "en-GB",
+  "answers": {
+    "create_pack_id": "deep-research-demo",
+    "create_pack_scaffold": true,
+    "dry_run": false,
+    "flow_wizard_answers": {
+      "schema_id": "greentic-flow.wizard.plan",
+      "schema_version": "2.0.0",
+      "actions": [
+        {
+          "action": "edit-flow-summary",
+          "flow": "flows/main.ygtc",
+          "name": "Deep Research Demo",
+          "description": "Adaptive-card deep research flow with planner and analyst LLM steps"
+        },
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "main_menu",
+          "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+          "mode": "default",
+          "answers": {
+            "card_source": "asset",
+            "default_card_asset": "assets/cards/main_menu.json",
+            "default_card_inline": {
+              "type": "AdaptiveCard",
+              "version": "1.6",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Deep Research Demo"
+                }
+              ]
+            },
+            "default_card_remote": "",
+            "multilingual": false,
+            "language_mode": "all",
+            "supported_locales": "en"
+          }
+        },
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "research_planner",
+          "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+          "mode": "default",
+          "answers": {
+            "provider": "ollama",
+            "base_url": "http://127.0.0.1:11434/v1",
+            "default_model": "llama3.2",
+            "endpoint_requires_api_key": false,
+            "api_key_secret": ""
+          }
+        },
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "show_research_plan",
+          "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+          "mode": "default",
+          "answers": {
+            "card_source": "asset",
+            "default_card_asset": "assets/cards/research_plan.json",
+            "default_card_inline": {
+              "type": "AdaptiveCard",
+              "version": "1.6",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Research Plan"
+                }
+              ]
+            },
+            "default_card_remote": "",
+            "multilingual": false,
+            "language_mode": "all",
+            "supported_locales": "en"
+          }
+        },
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "research_analyst",
+          "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+          "mode": "default",
+          "answers": {
+            "provider": "ollama",
+            "base_url": "http://127.0.0.1:11434/v1",
+            "default_model": "llama3.2",
+            "endpoint_requires_api_key": false,
+            "api_key_secret": ""
+          }
+        },
+        {
+          "action": "add-step",
+          "flow": "flows/main.ygtc",
+          "step_id": "show_final_report",
+          "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+          "mode": "default",
+          "answers": {
+            "card_source": "asset",
+            "default_card_asset": "assets/cards/final_report.json",
+            "default_card_inline": {
+              "type": "AdaptiveCard",
+              "version": "1.6",
+              "body": [
+                {
+                  "type": "TextBlock",
+                  "text": "Final Report"
+                }
+              ]
+            },
+            "default_card_remote": "",
+            "multilingual": false,
+            "language_mode": "all",
+            "supported_locales": "en"
+          }
+        }
+      ]
+    },
+    "mode": "interactive",
+    "pack_dir": "./deep-research-demo.pack",
+    "run_build": false,
+    "run_delegate_component": false,
+    "run_delegate_flow": true,
+    "run_doctor": false,
+    "selected_actions": [
+      "main.create_application_pack",
+      "create_application_pack.start",
+      "main.exit"
+    ],
+    "sign": false
+  },
+  "locks": {}
+}

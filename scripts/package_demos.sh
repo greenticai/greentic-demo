@@ -84,7 +84,7 @@ EOF
 
 shopt -s nullglob
 pack_dirs=("$CRATES_DIR"/*/bundle/packs/*.pack)
-generated_pack_answers=("$CRATES_DIR"/*/gtc_pack_create_wizard_answers.json)
+generated_pack_answers=("$CRATES_DIR"/*/gtc_pack_create_wizard_answers.json "$CRATES_DIR"/*/pack_answers.json)
 bundle_answers=("$DEMOS_DIR"/*-create-answers.json)
 packaged_any=0
 missing_expected=0
@@ -265,11 +265,13 @@ done
 
 for create_answers in "${generated_pack_answers[@]}"; do
     crate_dir="$(cd "$(dirname "$create_answers")" && pwd)"
+    pack_build_script="$crate_dir/build_pack.sh"
     flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
     pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
     source_assets_dir="$crate_dir/assets"
     source_components_dir="$crate_dir/components"
     source_flows_dir="$crate_dir/flows"
+    source_pack_overlay_dir="$crate_dir/generated-pack"
     pack_dir_name="$(jq -r '.answers.pack_dir' "$create_answers" | xargs basename)"
     pack_id="$(jq -r '.answers.create_pack_id' "$create_answers")"
     pack_name="${pack_id%.pack}"
@@ -279,7 +281,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
         continue
     fi
 
-    if [ ! -f "$pack_answers" ]; then
+    if [ ! -f "$pack_answers" ] || [ "$pack_answers" = "$create_answers" ]; then
         pack_answers="$DEFAULT_PACK_ANSWERS"
     fi
 
@@ -301,14 +303,6 @@ for create_answers in "${generated_pack_answers[@]}"; do
         fi
     fi
 
-    # If a pre-built pack was committed in demos/, skip the crate-source rebuild.
-    if [ -f "$LOCAL_PACK_INPUT_DIR/$_seeded_name" ]; then
-        cp "$LOCAL_PACK_INPUT_DIR/$_seeded_name" "$DEMOS_DIR/$_seeded_name"
-        echo "Using committed demos/$_seeded_name (skipping crate rebuild)"
-        packaged_any=1
-        continue
-    fi
-
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
         expected_pack_file="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
@@ -318,6 +312,24 @@ for create_answers in "${generated_pack_answers[@]}"; do
         if [ -n "$expected_pack_file" ]; then
             target_pack="$DEMOS_DIR/$expected_pack_file"
         fi
+    fi
+
+    if [ -x "$pack_build_script" ]; then
+        if ! "$pack_build_script" "$target_pack" >/dev/null; then
+            echo "Skipping $pack_name: custom pack build script failed" >&2
+            continue
+        fi
+        echo "Created demos/$(basename "$target_pack")"
+        packaged_any=1
+        continue
+    fi
+
+    # If a pre-built pack was committed in demos/, skip the crate-source rebuild.
+    if [ -f "$LOCAL_PACK_INPUT_DIR/$_seeded_name" ]; then
+        cp "$LOCAL_PACK_INPUT_DIR/$_seeded_name" "$DEMOS_DIR/$_seeded_name"
+        echo "Using committed demos/$_seeded_name (skipping crate rebuild)"
+        packaged_any=1
+        continue
     fi
 
     rm -rf "$temp_pack_parent"
@@ -346,6 +358,14 @@ for create_answers in "${generated_pack_answers[@]}"; do
             echo "Skipping $pack_name: flow wizard replay failed" >&2
             continue
         fi
+    fi
+
+    if [ -d "$source_pack_overlay_dir" ]; then
+        rsync -a --exclude 'dist/' "$source_pack_overlay_dir/." "$temp_pack_dir/"
+    fi
+
+    if [ -d "$source_pack_overlay_dir/flows" ]; then
+        source_flows_dir="$source_pack_overlay_dir/flows"
     fi
 
     if ! (
