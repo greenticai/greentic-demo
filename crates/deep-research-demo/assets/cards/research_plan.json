@@ -1,0 +1,62 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Research Planner",
+      "weight": "Bolder",
+      "size": "Large",
+      "color": "Accent"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Question: ${user_question}",
+      "wrap": true,
+      "spacing": "Small"
+    },
+    {
+      "type": "Container",
+      "id": "generatingResearchPlanText",
+      "isVisible": "${generatingVisible}",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Generating research plan...",
+          "wrap": true,
+          "isSubtle": true
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "researchPlanContainer",
+      "isVisible": "${researchPlanVisible}",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${planner_output}",
+          "wrap": true
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Start Research Analysis",
+      "style": "positive",
+      "data": {
+        "nextCardId": "research_analyst"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Back to Main Menu",
+      "data": {
+        "nextCardId": "main_menu"
+      }
+    }
+  ]
+}
