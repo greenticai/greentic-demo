@@ -61,7 +61,7 @@ if [ "$MODE" = "check-components" ]; then
     found=0
     while IFS= read -r -d '' wasm; do
         name=$(basename "$wasm")
-        if grep -RFq --exclude-dir=bundle --exclude-dir=components "$name" "$CRATE" 2>/dev/null; then
+        if grep -RFq --exclude-dir=bundle --exclude-dir=components --exclude-dir=target --exclude-dir=.git "$name" "$CRATE" 2>/dev/null; then
             echo "REFERENCED $name"
         else
             echo "CACHE $name"
