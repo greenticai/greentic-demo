@@ -11,6 +11,10 @@ name = "cloud-deploy-demo"
 version = "0.1.55"
 
 [[package]]
+name = "deep-research-demo"
+version = "0.1.55"
+
+[[package]]
 name = "github-mcp-demo"
 version = "0.1.55"
 
