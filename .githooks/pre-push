@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Pre-push hook: runs fmt, clippy, and tests before allowing push.
+# Skips package_demos.sh (too slow for pre-push).
+#
+# Install: git config core.hooksPath .githooks
+
+set -euo pipefail
+
+echo "=== pre-push: cargo fmt ==="
+cargo fmt --all -- --check
+
+echo "=== pre-push: cargo clippy ==="
+cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+echo "=== pre-push: cargo test ==="
+cargo test --workspace
+
+echo "=== pre-push: all checks passed ==="

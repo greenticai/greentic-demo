@@ -100,8 +100,45 @@ cat > "$DEFAULT_PACK_ANSWERS" <<'EOF'
 EOF
 
 shopt -s nullglob
+
+# Helper: resolve wizard answer files from build-answer.json or legacy per-file layout.
+# Sets: _wizard _pack_create _pack _flow (paths to extracted or original files)
+resolve_answers() {
+    local crate_dir="$1"
+    local build_answer="$crate_dir/build-answer.json"
+    _wizard="" _pack_create="" _pack="" _flow=""
+    if [ -f "$build_answer" ]; then
+        local extract_dir="$TMP_ROOT/extracted-answers/$(basename "$crate_dir")"
+        mkdir -p "$extract_dir"
+        for section in wizard pack_create pack flow; do
+            local val
+            val=$(jq -r ".$section // empty" "$build_answer") || true
+            if [ -n "$val" ] && [ "$val" != "null" ]; then
+                jq ".$section" "$build_answer" > "$extract_dir/$section.json"
+                eval "_$section=\"$extract_dir/$section.json\""
+            fi
+        done
+    else
+        [ -f "$crate_dir/gtc_wizard_answers.json" ] && _wizard="$crate_dir/gtc_wizard_answers.json"
+        [ -f "$crate_dir/gtc_pack_create_wizard_answers.json" ] && _pack_create="$crate_dir/gtc_pack_create_wizard_answers.json" || true
+        [ -f "$crate_dir/pack_answers.json" ] && [ -z "$_pack_create" ] && _pack_create="$crate_dir/pack_answers.json" || true
+        [ -f "$crate_dir/gtc_pack_wizard_answers.json" ] && _pack="$crate_dir/gtc_pack_wizard_answers.json" || true
+        [ -f "$crate_dir/gtc_flow_wizard_answers.json" ] && _flow="$crate_dir/gtc_flow_wizard_answers.json" || true
+    fi
+}
+
 pack_dirs=("$CRATES_DIR"/*/bundle/packs/*.pack)
-generated_pack_answers=("$CRATES_DIR"/*/gtc_pack_create_wizard_answers.json "$CRATES_DIR"/*/pack_answers.json)
+# Discover pack create answers from build-answer.json OR legacy per-file layout.
+generated_pack_answers=()
+for _cdir in "$CRATES_DIR"/*/; do
+    if [ -f "$_cdir/build-answer.json" ] && jq -e '.pack_create' "$_cdir/build-answer.json" >/dev/null 2>&1; then
+        generated_pack_answers+=("$_cdir/build-answer.json")
+    elif [ -f "$_cdir/gtc_pack_create_wizard_answers.json" ]; then
+        generated_pack_answers+=("$_cdir/gtc_pack_create_wizard_answers.json")
+    elif [ -f "$_cdir/pack_answers.json" ]; then
+        generated_pack_answers+=("$_cdir/pack_answers.json")
+    fi
+done
 bundle_answers=("$DEMOS_DIR"/*-create-answers.json)
 packaged_any=0
 missing_expected=0
@@ -117,9 +154,10 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     source_assets_dir="$source_pack_dir/assets"
     source_components_dir="$source_pack_dir/components"
     source_flows_dir="$source_pack_dir/flows"
-    pack_answers="$DEFAULT_PACK_ANSWERS"
-    create_answers="$crate_dir/gtc_pack_create_wizard_answers.json"
-    flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
+    resolve_answers "$crate_dir"
+    pack_answers="${_pack:-$DEFAULT_PACK_ANSWERS}"
+    create_answers="${_pack_create:-}"
+    flow_answers="${_flow:-}"
     temp_pack_dir="$TMP_ROOT/packs/$pack_name"
     pack_dir_basename="$(basename "$source_pack_dir")"
     built_pack="$temp_pack_dir/dist/$pack_dir_basename.gtpack"
@@ -134,12 +172,12 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         continue
     fi
 
-    if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
+    if [ -n "$_wizard" ]; then
         expected_pack_file="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
           | select(test("(^|/)demos/[^/]+\\.gtpack$"))
           | capture("(?<file>[^/]+\\.gtpack)$").file
-        ' "$crate_dir/gtc_wizard_answers.json")"
+        ' "$_wizard")"
         if [ -n "$expected_pack_file" ]; then
             target_pack="$DEMOS_DIR/$expected_pack_file"
         fi
@@ -157,11 +195,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         source_flows_dir="$crate_dir/flows"
     fi
 
-    if [ -f "$crate_dir/gtc_pack_wizard_answers.json" ]; then
-        pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
-    fi
-
-    if [ -f "$create_answers" ]; then
+    if [ -n "$create_answers" ]; then
         temp_pack_parent="$TMP_ROOT/packs-create/$pack_name"
         temp_pack_dir="$temp_pack_parent/$pack_name.pack"
         built_pack="$temp_pack_dir/dist/$pack_name.pack.gtpack"
@@ -280,11 +314,14 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     packaged_any=1
 done
 
-for create_answers in "${generated_pack_answers[@]}"; do
-    crate_dir="$(cd "$(dirname "$create_answers")" && pwd)"
+for _gen_source in "${generated_pack_answers[@]}"; do
+    crate_dir="$(cd "$(dirname "$_gen_source")" && pwd)"
+    resolve_answers "$crate_dir"
+    create_answers="${_pack_create:-}"
+    [ -z "$create_answers" ] && continue
     pack_build_script="$crate_dir/build_pack.sh"
-    flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
-    pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
+    flow_answers="${_flow:-}"
+    pack_answers="${_pack:-}"
     source_assets_dir="$crate_dir/assets"
     source_components_dir="$crate_dir/components"
     source_flows_dir="$crate_dir/flows"
@@ -298,7 +335,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
         continue
     fi
 
-    if [ ! -f "$pack_answers" ] || [ "$pack_answers" = "$create_answers" ]; then
+    if [ -z "$pack_answers" ] || [ ! -f "$pack_answers" ] || [ "$pack_answers" = "$create_answers" ]; then
         pack_answers="$DEFAULT_PACK_ANSWERS"
     fi
 
@@ -309,23 +346,23 @@ for create_answers in "${generated_pack_answers[@]}"; do
 
     # Resolve expected pack filename from wizard answers (if available).
     _seeded_name="$pack_slug.gtpack"
-    if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
+    if [ -n "$_wizard" ]; then
         _expected="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
           | select(test("(^|/)demos/[^/]+\\.gtpack$"))
           | capture("(?<file>[^/]+\\.gtpack)$").file
-        ' "$crate_dir/gtc_wizard_answers.json")"
+        ' "$_wizard")"
         if [ -n "$_expected" ]; then
             _seeded_name="$_expected"
         fi
     fi
 
-    if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
+    if [ -n "$_wizard" ]; then
         expected_pack_file="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
           | select(test("(^|/)demos/[^/]+\\.gtpack$"))
           | capture("(?<file>[^/]+\\.gtpack)$").file
-        ' "$crate_dir/gtc_wizard_answers.json")"
+        ' "$_wizard")"
         if [ -n "$expected_pack_file" ]; then
             target_pack="$DEMOS_DIR/$expected_pack_file"
         fi
@@ -370,7 +407,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
         cp -R "$source_components_dir/." "$temp_pack_dir/components/"
     fi
 
-    if [ -f "$flow_answers" ]; then
+    if [ -n "$flow_answers" ] && [ -f "$flow_answers" ]; then
         if ! run_with_timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
             echo "Skipping $pack_name: flow wizard replay failed" >&2
             continue
