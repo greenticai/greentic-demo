@@ -1,0 +1,42 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "GitHub MCP Ready",
+      "weight": "Bolder",
+      "size": "Large",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "You're connected to GitHub! Enter a command or question about any GitHub repository.",
+      "wrap": true,
+      "isSubtle": true
+    },
+    {
+      "type": "Input.Text",
+      "id": "user_prompt",
+      "label": "What would you like to do?",
+      "placeholder": "e.g. List open issues in greenticai/greentic, scan for vulnerabilities...",
+      "isRequired": true,
+      "isMultiline": true,
+      "errorMessage": "Please enter a command or question."
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Execute",
+      "style": "positive",
+      "data": { "action_id": "execute_mcp" }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Disconnect",
+      "data": { "action_id": "disconnect" }
+    }
+  ]
+}
