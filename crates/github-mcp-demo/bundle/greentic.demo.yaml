@@ -1,9 +1,0 @@
-demo_id: github-mcp-demo
-title: GitHub MCP Security Dashboard
-description: Scan GitHub repositories for security vulnerabilities using MCP tools, OAuth authentication, and Adaptive Card UI.
-tags:
-  - github
-  - mcp
-  - oauth
-  - security
-  - adaptive-card
