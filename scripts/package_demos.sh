@@ -111,16 +111,19 @@ resolve_answers() {
         local extract_dir="$TMP_ROOT/extracted-answers/$(basename "$crate_dir")"
         mkdir -p "$extract_dir"
         for section in wizard pack_create pack flow; do
-            if jq -e ".$section" "$build_answer" >/dev/null 2>&1; then
+            local val
+            val=$(jq -r ".$section // empty" "$build_answer") || true
+            if [ -n "$val" ] && [ "$val" != "null" ]; then
                 jq ".$section" "$build_answer" > "$extract_dir/$section.json"
                 eval "_$section=\"$extract_dir/$section.json\""
             fi
         done
     else
         [ -f "$crate_dir/gtc_wizard_answers.json" ] && _wizard="$crate_dir/gtc_wizard_answers.json"
-        [ -f "$crate_dir/gtc_pack_create_wizard_answers.json" ] && _pack_create="$crate_dir/gtc_pack_create_wizard_answers.json"
-        [ -f "$crate_dir/gtc_pack_wizard_answers.json" ] && _pack="$crate_dir/gtc_pack_wizard_answers.json"
-        [ -f "$crate_dir/gtc_flow_wizard_answers.json" ] && _flow="$crate_dir/gtc_flow_wizard_answers.json"
+        [ -f "$crate_dir/gtc_pack_create_wizard_answers.json" ] && _pack_create="$crate_dir/gtc_pack_create_wizard_answers.json" || true
+        [ -f "$crate_dir/pack_answers.json" ] && [ -z "$_pack_create" ] && _pack_create="$crate_dir/pack_answers.json" || true
+        [ -f "$crate_dir/gtc_pack_wizard_answers.json" ] && _pack="$crate_dir/gtc_pack_wizard_answers.json" || true
+        [ -f "$crate_dir/gtc_flow_wizard_answers.json" ] && _flow="$crate_dir/gtc_flow_wizard_answers.json" || true
     fi
 }
 
