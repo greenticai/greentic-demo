@@ -1,8 +1,0 @@
-{
-  "cards.repo_input.title": "GitHub Security Dashboard",
-  "cards.repo_input.description": "Enter a GitHub owner to scan repositories for security vulnerabilities.",
-  "cards.oauth_connect.title": "GitHub Authorization Required",
-  "cards.oauth_connect.description": "Connect your GitHub account to access repository security data.",
-  "cards.security_results.title": "Security Dashboard",
-  "cards.security_results.summary": "repositories scanned, security issues found."
-}
