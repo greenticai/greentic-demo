@@ -48,7 +48,9 @@
       "title": "Start Research Analysis",
       "style": "positive",
       "data": {
-        "nextCardId": "research_analyst"
+        "nextCardId": "research_analyst",
+        "user_question": "${user_question}",
+        "planner_output": "${planner_output}"
       }
     },
     {

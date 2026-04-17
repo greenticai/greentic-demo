@@ -14,28 +14,35 @@
         "access_rules": [
           {
             "policy": "public",
-            "rule_path": "deep-research-pack",
+            "rule_path": "deep-research-demo",
             "tenant": "default"
+          },
+          {
+            "policy": "public",
+            "rule_path": "deep-research-demo",
+            "tenant": "demo"
           }
         ],
         "advanced_setup": false,
         "app_pack_entries": [
           {
-            "detected_kind": "local_file",
+            "detected_kind": "https",
             "display_name": "Deep Research Demo Pack",
             "mapping": {
               "scope": "global"
             },
-            "pack_id": "deep-research-pack",
-            "reference": "demos/deep-research-demo.gtpack"
+            "pack_id": "deep-research-demo",
+            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo.gtpack"
           }
         ],
         "app_packs": [
-          "demos/deep-research-demo.gtpack"
+          "https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo.gtpack"
         ],
         "bundle_id": "deep-research-demo-bundle",
         "bundle_name": "deep-research-demo-bundle",
-        "capabilities": [],
+        "capabilities": [
+          "greentic.cap.bundle_assets.read.v1"
+        ],
         "export_intent": false,
         "extension_provider_entries": [
           {
