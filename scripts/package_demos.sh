@@ -8,8 +8,29 @@ DEMOS_DIR="$ROOT_DIR/demos"
 TMP_ROOT="${TMPDIR:-/tmp}/greentic-demo-package"
 DEFAULT_PACK_ANSWERS="$TMP_ROOT/pack-update-answers.json"
 LOCAL_PACK_INPUT_DIR="$TMP_ROOT/local-pack-inputs"
+DEMO_FILTER="${1:-}"
 # Max seconds per wizard/setup command before it is killed.
 WIZARD_TIMEOUT="${WIZARD_TIMEOUT:-180}"
+
+if [ "$#" -gt 1 ]; then
+    echo "Usage: $0 [demo-name]" >&2
+    exit 1
+fi
+
+matches_demo_filter() {
+    if [ -z "$DEMO_FILTER" ]; then
+        return 0
+    fi
+
+    local candidate
+    for candidate in "$@"; do
+        if [ -n "$candidate" ] && [ "$candidate" = "$DEMO_FILTER" ]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
 
 run_with_timeout() {
     local seconds="$1"
@@ -55,8 +76,10 @@ mkdir -p "$LOCAL_PACK_INPUT_DIR"
 # pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
 # remain available for bundle creation.
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -exec cp {} "$LOCAL_PACK_INPUT_DIR/" \;
-find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -exec rm -rf {} +
-find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
+if [ -z "$DEMO_FILTER" ]; then
+    find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -exec rm -rf {} +
+    find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
+fi
 
 run_bundle_build() {
     local root="$1"
@@ -114,6 +137,7 @@ fi
 for source_pack_dir in "${pack_dirs[@]}"; do
     pack_name="$(basename "$source_pack_dir" .pack)"
     crate_dir="$(cd "$source_pack_dir/../../.." && pwd)"
+    crate_name="$(basename "$crate_dir")"
     source_assets_dir="$source_pack_dir/assets"
     source_components_dir="$source_pack_dir/components"
     source_flows_dir="$source_pack_dir/flows"
@@ -125,15 +149,6 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     built_pack="$temp_pack_dir/dist/$pack_dir_basename.gtpack"
     target_pack="$DEMOS_DIR/$pack_name.gtpack"
 
-    # If a pre-built pack was committed in demos/ (seeded into LOCAL_PACK_INPUT_DIR),
-    # skip the crate-source rebuild and use the committed pack directly.
-    if [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
-        cp "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" "$DEMOS_DIR/$pack_name.gtpack"
-        echo "Using committed demos/$pack_name.gtpack (skipping crate rebuild)"
-        packaged_any=1
-        continue
-    fi
-
     if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
         expected_pack_file="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
@@ -143,6 +158,19 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         if [ -n "$expected_pack_file" ]; then
             target_pack="$DEMOS_DIR/$expected_pack_file"
         fi
+    fi
+
+    if ! matches_demo_filter "$crate_name" "$pack_name" "$(basename "$target_pack" .gtpack)"; then
+        continue
+    fi
+
+    # If a pre-built pack was committed in demos/ (seeded into LOCAL_PACK_INPUT_DIR),
+    # skip the crate-source rebuild and use the committed pack directly.
+    if [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
+        cp "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" "$DEMOS_DIR/$pack_name.gtpack"
+        echo "Using committed demos/$pack_name.gtpack (skipping crate rebuild)"
+        packaged_any=1
+        continue
     fi
 
     if [ -d "$crate_dir/assets" ]; then
@@ -282,6 +310,7 @@ done
 
 for create_answers in "${generated_pack_answers[@]}"; do
     crate_dir="$(cd "$(dirname "$create_answers")" && pwd)"
+    crate_name="$(basename "$crate_dir")"
     pack_build_script="$crate_dir/build_pack.sh"
     flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
     pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
@@ -329,6 +358,10 @@ for create_answers in "${generated_pack_answers[@]}"; do
         if [ -n "$expected_pack_file" ]; then
             target_pack="$DEMOS_DIR/$expected_pack_file"
         fi
+    fi
+
+    if ! matches_demo_filter "$crate_name" "$pack_name" "$pack_slug" "$(basename "$target_pack" .gtpack)"; then
+        continue
     fi
 
     if [ -x "$pack_build_script" ]; then
@@ -432,6 +465,10 @@ for source_answers in "${bundle_answers[@]}"; do
     built_bundle="$output_dir/dist/${bundle_id}.gtbundle"
     target_bundle="$DEMOS_DIR/${bundle_id}.gtbundle"
 
+    if ! matches_demo_filter "$demo_basename" "$bundle_id"; then
+        continue
+    fi
+
     jq --arg local_pack_dir "$LOCAL_PACK_INPUT_DIR" --arg out "$output_dir" '
       .answers.delegate_answer_document.answers.output_dir = $out
       | .answers.delegate_answer_document.answers.app_pack_entries |= map(
@@ -460,7 +497,7 @@ for source_answers in "${bundle_answers[@]}"; do
     fi
 
     if [ -f "$setup_answers" ]; then
-        if ! run_with_timeout "$WIZARD_TIMEOUT" gtc setup --answers "$setup_answers" "$output_dir" >/dev/null 2>&1; then
+        if ! run_with_timeout "$WIZARD_TIMEOUT" gtc setup --no-ui --answers "$setup_answers" "$output_dir" >/dev/null 2>&1; then
             echo "Warning: $bundle_id: bundle setup failed (missing secrets?), attempting build anyway" >&2
         fi
     fi
@@ -511,6 +548,10 @@ for source_answers in "${bundle_answers[@]}"; do
       .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
       | capture("(?<file>[^/]+\\.gtpack)$").file? // empty
     ' "$source_answers")"
+
+    if ! matches_demo_filter "$demo_basename" "$bundle_id" "${expected_pack%.gtpack}"; then
+        continue
+    fi
 
     if [ ! -f "$expected_bundle" ]; then
         echo "Missing expected bundle for $demo_basename: $expected_bundle" >&2

@@ -19,7 +19,7 @@
       "mode": "local_queue",
       "public_base_url": "http://127.0.0.1:8080",
       "route": "webchat",
-      "tenant_channel_id": "demo:deep-research-webchat"
+      "tenant_channel_id": "demo:webchat"
     },
     "state-memory": {}
   },

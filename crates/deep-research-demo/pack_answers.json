@@ -4,6 +4,14 @@
   "schema_version": "1.0.0",
   "locale": "en-GB",
   "answers": {
+    "asset_staging": [
+      {
+        "source": "./assets",
+        "destination": "assets",
+        "kind": "directory",
+        "recursive": true
+      }
+    ],
     "create_pack_id": "deep-research-demo",
     "create_pack_scaffold": true,
     "dry_run": false,
@@ -49,11 +57,11 @@
           "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
           "mode": "default",
           "answers": {
-            "provider": "ollama",
-            "base_url": "http://127.0.0.1:11434/v1",
-            "default_model": "llama3.2",
-            "endpoint_requires_api_key": false,
-            "api_key_secret": ""
+            "provider": "openai",
+            "base_url": "https://api.openai.com/v1",
+            "default_model": "gpt-4o-mini",
+            "endpoint_requires_api_key": true,
+            "api_key_secret": "openai_token"
           }
         },
         {
@@ -88,11 +96,11 @@
           "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
           "mode": "default",
           "answers": {
-            "provider": "ollama",
-            "base_url": "http://127.0.0.1:11434/v1",
-            "default_model": "llama3.2",
-            "endpoint_requires_api_key": false,
-            "api_key_secret": ""
+            "provider": "openai",
+            "base_url": "https://api.openai.com/v1",
+            "default_model": "gpt-4o-mini",
+            "endpoint_requires_api_key": true,
+            "api_key_secret": "openai_token"
           }
         },
         {
