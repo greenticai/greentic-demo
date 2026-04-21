@@ -73,24 +73,6 @@ rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
 mkdir -p "$LOCAL_PACK_INPUT_DIR"
 
-ensure_local_telco_webchat_provider_pack() {
-    if ! matches_demo_filter "telco-x-demo" "telco-x"; then
-        return 0
-    fi
-
-    local providers_root="$ROOT_DIR/../greentic-messaging-providers"
-    local provider_pack_dir="$providers_root/packs/messaging-webchat-gui"
-
-    if [ ! -d "$provider_pack_dir" ]; then
-        echo "warning: local messaging-webchat-gui pack source not found at $provider_pack_dir; telco-x-demo will fall back to whatever path its answers reference." >&2
-        return 0
-    fi
-
-    echo "Building local messaging-webchat-gui provider pack for telco-x-demo"
-    greentic-pack build --in "$provider_pack_dir" --allow-pack-schema --offline >/dev/null
-}
-
-ensure_local_telco_webchat_provider_pack
 # Seed LOCAL_PACK_INPUT_DIR with committed packs before cleanup so that
 # pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
 # remain available for bundle creation.
@@ -615,6 +597,9 @@ for source_answers in "${bundle_answers[@]}"; do
     demo_basename="$(basename "$source_answers" -create-answers.json)"
     bundle_id="$(jq -r '.answers.delegate_answer_document.answers.bundle_id' "$source_answers")"
     expected_bundle="$DEMOS_DIR/${bundle_id}.gtbundle"
+    expected_pack_ref="$(jq -r '
+      .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
+    ' "$source_answers")"
     expected_pack="$(jq -r '
       .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
       | capture("(?<file>[^/]+\\.gtpack)$").file? // empty
@@ -629,7 +614,9 @@ for source_answers in "${bundle_answers[@]}"; do
         missing_expected=1
     fi
 
-    if [ -n "$expected_pack" ] && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
+    if [ -n "$expected_pack" ] \
+        && [[ ! "$expected_pack_ref" =~ ^https?:// ]] \
+        && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
         echo "Missing expected pack for $demo_basename: $DEMOS_DIR/$expected_pack" >&2
         missing_expected=1
     fi
