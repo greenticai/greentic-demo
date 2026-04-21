@@ -1,0 +1,38 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "VM RCA",
+      "weight": "Bolder",
+      "size": "Medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Primary hypothesis: noisy neighbour pressure is driving degraded VM performance.",
+      "wrap": true
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Scope",
+          "value": "mobile-data cluster"
+        },
+        {
+          "title": "Confidence",
+          "value": "medium"
+        },
+        {
+          "title": "Correlated signal",
+          "value": "CPU steal and east-west traffic spike"
+        },
+        {
+          "title": "Next action",
+          "value": "Inspect neighbour workload placement"
+        }
+      ]
+    }
+  ]
+}

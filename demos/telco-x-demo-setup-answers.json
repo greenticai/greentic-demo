@@ -1,0 +1,30 @@
+{
+  "bundle_source": ".",
+  "env": "dev",
+  "greentic_setup_version": "1.0.0",
+  "platform_setup": {
+    "deployment_targets": [],
+    "static_routes": {
+      "default_route_prefix_policy": "pack_declared",
+      "public_base_url": "http://127.0.0.1:8080",
+      "public_surface_policy": "enabled",
+      "public_web_enabled": true,
+      "tenant_path_policy": "pack_declared"
+    },
+    "tunnel": {
+      "mode": "off"
+    }
+  },
+  "setup_answers": {
+    "messaging-webchat-gui": {
+      "base_url": "http://127.0.0.1:8080",
+      "jwt_signing_key": "telco-x-demo-local-dev-signing-key",
+      "mode": "local_queue",
+      "public_base_url": "http://127.0.0.1:8080",
+      "route": "webchat",
+      "tenant_channel_id": "demo:webchat"
+    }
+  },
+  "team": "default",
+  "tenant": "demo"
+}
