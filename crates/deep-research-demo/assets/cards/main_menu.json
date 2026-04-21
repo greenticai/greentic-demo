@@ -58,7 +58,7 @@
       "title": "Create Research Plan",
       "style": "positive",
       "data": {
-        "nextCardId": "research_planner"
+        "action": "create_research_plan"
       }
     }
   ]

@@ -1,21 +1,27 @@
 title: Deep Research Setup
 description: Configure the OpenAI-compatible endpoint used by the planner and analyst LLM components.
 questions:
+  - name: provider
+    kind: string
+    required: false
+    title: LLM provider
+    help: Provider style for the OpenAI-compatible API. Use ollama for a local Ollama server.
+    default: ollama
+    placeholder: ollama
   - name: url
     kind: string
     required: false
-    title: OpenAI / ChatGPT API URL
-    help: Base URL for the OpenAI-compatible API. Leave the default for OpenAI.
-    default: https://api.openai.com/v1
-    placeholder: https://api.openai.com/v1
-  - name: openai_token
-    secret_key: openai_token
+    title: LLM API URL
+    help: Base URL for the OpenAI-compatible API. Use http://127.0.0.1:11434/v1 for Ollama or leave the default for OpenAI.
+    default: http://127.0.0.1:11434/v1
+    placeholder: http://127.0.0.1:11434/v1
+  - name: model
     kind: string
     required: false
-    secret: true
-    title: OpenAI token
-    help: Optional API token used by the planner and analyst LLM components.
-    placeholder: sk-...
+    title: LLM model
+    help: Model name for the configured OpenAI-compatible API. For local Ollama, llama3:8b is a known-good default.
+    default: llama3:8b
+    placeholder: llama3:8b
   - name: planner_system_prompt
     kind: string
     required: false
