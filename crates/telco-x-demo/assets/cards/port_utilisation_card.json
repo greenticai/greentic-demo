@@ -1,0 +1,38 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Port Utilisation",
+      "weight": "Bolder",
+      "size": "Medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Found 1 ports with peak utilisation at or above 85.0%",
+      "wrap": true
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Device",
+          "value": "aci-p1-n2201"
+        },
+        {
+          "title": "Interface",
+          "value": "eth1/2"
+        },
+        {
+          "title": "Peak",
+          "value": "92.5%"
+        },
+        {
+          "title": "Source",
+          "value": "APIC"
+        }
+      ]
+    }
+  ]
+}

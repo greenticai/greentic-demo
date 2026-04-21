@@ -1,0 +1,34 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Telco-X Demo",
+      "weight": "Bolder",
+      "size": "Large"
+    },
+    {
+      "type": "TextBlock",
+      "text": "This demo shows pre-rendered Telco-X operational results through the standard Webchat GUI bundle path.",
+      "wrap": true
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Use cases",
+          "value": "Port utilisation, change correlation, VM RCA"
+        },
+        {
+          "title": "Channel",
+          "value": "Webchat GUI"
+        },
+        {
+          "title": "Origin",
+          "value": "Telco-X neutral presentation model"
+        }
+      ]
+    }
+  ]
+}

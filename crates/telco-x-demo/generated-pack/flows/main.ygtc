@@ -1,0 +1,15 @@
+id: main
+title: Telco-X Live Demo
+description: Live Telco-X demo flow backed by a local presentation component.
+type: messaging
+start: present_telco
+
+nodes:
+  present_telco:
+    component.exec:
+      component: component-telco-present
+      operation: present
+      query: "{{in.input.text}}"
+      source_provider: webchat
+    routing:
+      - out: true
