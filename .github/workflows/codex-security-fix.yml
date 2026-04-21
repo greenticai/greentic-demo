@@ -1,7 +1,8 @@
 name: Codex Security Fix
 on:
-  pull_request:
-    branches: [main]
+  schedule:
+    # 04:35 UTC — staggered to avoid hot-spots.
+    - cron: "35 4 * * *"
   workflow_dispatch:
     inputs:
       branch:

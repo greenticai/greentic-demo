@@ -72,6 +72,7 @@ mkdir -p "$CRATES_DIR" "$DEMOS_DIR"
 rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
 mkdir -p "$LOCAL_PACK_INPUT_DIR"
+
 # Seed LOCAL_PACK_INPUT_DIR with committed packs before cleanup so that
 # pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
 # remain available for bundle creation.
@@ -205,7 +206,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
     # If a pre-built pack was committed in demos/ (seeded into LOCAL_PACK_INPUT_DIR),
     # skip the crate-source rebuild and use the committed pack directly.
-    if [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
+    if [ -z "$DEMO_FILTER" ] && [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
         cp "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" "$DEMOS_DIR/$pack_name.gtpack"
         echo "Using committed demos/$pack_name.gtpack (skipping crate rebuild)"
         packaged_any=1
@@ -229,7 +230,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
     # If a pre-built pack was committed in demos/ (seeded into LOCAL_PACK_INPUT_DIR),
     # skip the crate-source rebuild and use the committed pack directly.
-    if [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
+    if [ -z "$DEMO_FILTER" ] && [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
         cp "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" "$DEMOS_DIR/$pack_name.gtpack"
         echo "Using committed demos/$pack_name.gtpack (skipping crate rebuild)"
         packaged_any=1
@@ -369,6 +370,13 @@ done
 
 for _gen_source in "${generated_pack_answers[@]}"; do
     crate_dir="$(cd "$(dirname "$_gen_source")" && pwd)"
+    crate_name="$(basename "$crate_dir")"
+    if [ -f "$crate_dir/prepare_demo.sh" ]; then
+        if ! bash "$crate_dir/prepare_demo.sh" >/dev/null; then
+            echo "Skipping $crate_name: prepare_demo.sh failed" >&2
+            continue
+        fi
+    fi
     resolve_answers "$crate_dir"
     create_answers="${_pack_create:-}"
     [ -z "$create_answers" ] && continue
@@ -436,7 +444,7 @@ for _gen_source in "${generated_pack_answers[@]}"; do
     fi
 
     # If a pre-built pack was committed in demos/, skip the crate-source rebuild.
-    if [ -f "$LOCAL_PACK_INPUT_DIR/$_seeded_name" ]; then
+    if [ -z "$DEMO_FILTER" ] && [ -f "$LOCAL_PACK_INPUT_DIR/$_seeded_name" ]; then
         cp "$LOCAL_PACK_INPUT_DIR/$_seeded_name" "$DEMOS_DIR/$_seeded_name"
         echo "Using committed demos/$_seeded_name (skipping crate rebuild)"
         packaged_any=1
@@ -605,6 +613,9 @@ for source_answers in "${bundle_answers[@]}"; do
     demo_basename="$(basename "$source_answers" -create-answers.json)"
     bundle_id="$(jq -r '.answers.delegate_answer_document.answers.bundle_id' "$source_answers")"
     expected_bundle="$DEMOS_DIR/${bundle_id}.gtbundle"
+    expected_pack_ref="$(jq -r '
+      .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
+    ' "$source_answers")"
     expected_pack="$(jq -r '
       .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
       | capture("(?<file>[^/]+\\.gtpack)$").file? // empty
@@ -619,7 +630,10 @@ for source_answers in "${bundle_answers[@]}"; do
         missing_expected=1
     fi
 
-    if [ -n "$expected_pack" ] && was_seeded_pack "$expected_pack" && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
+    if [ -n "$expected_pack" ] \
+        && was_seeded_pack "$expected_pack" \
+        && [[ ! "$expected_pack_ref" =~ ^https?:// ]] \
+        && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
         echo "Missing expected pack for $demo_basename: $DEMOS_DIR/$expected_pack" >&2
         missing_expected=1
     fi

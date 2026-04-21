@@ -1,0 +1,26 @@
+[package]
+name = "component-telco-present"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+publish = false
+description = "Local Telco-X presentation bridge component for greentic-demo"
+
+[workspace]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[package.metadata.component]
+package = "greentic:component"
+
+[package.metadata.component.target]
+world = "greentic:component/component@0.6.0"
+
+[dependencies]
+greentic-interfaces-guest = { version = "0.4", default-features = false, features = ["component-v0-6"] }
+greentic-types = { version = "0.4" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+telco-x = { path = "../../../../telco-x" }
+greentic-messaging-renderer = { path = "../../../../greentic-messaging-providers/crates/greentic-messaging-renderer" }

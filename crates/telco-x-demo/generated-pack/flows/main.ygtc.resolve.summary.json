@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "flow": "main.ygtc",
+  "nodes": {
+    "present_telco": {
+      "component_id": "component-telco-present",
+      "source": {
+        "kind": "local",
+        "path": "../components/component-telco-present/component.wasm"
+      },
+      "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  }
+}
