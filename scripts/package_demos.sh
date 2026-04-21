@@ -77,10 +77,26 @@ mkdir -p "$LOCAL_PACK_INPUT_DIR"
 # pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
 # remain available for bundle creation.
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -exec cp {} "$LOCAL_PACK_INPUT_DIR/" \;
+seeded_pack_names=()
+for seeded_pack in "$LOCAL_PACK_INPUT_DIR"/*.gtpack; do
+    [ -f "$seeded_pack" ] || continue
+    seeded_pack_names+=("$(basename "$seeded_pack")")
+done
 if [ -z "$DEMO_FILTER" ]; then
     find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -exec rm -rf {} +
     find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
 fi
+
+was_seeded_pack() {
+    local needle="$1"
+    local seeded
+    for seeded in "${seeded_pack_names[@]}"; do
+        if [ "$seeded" = "$needle" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
 
 run_bundle_build() {
     local root="$1"
@@ -615,6 +631,7 @@ for source_answers in "${bundle_answers[@]}"; do
     fi
 
     if [ -n "$expected_pack" ] \
+        && was_seeded_pack "$expected_pack" \
         && [[ ! "$expected_pack_ref" =~ ^https?:// ]] \
         && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
         echo "Missing expected pack for $demo_basename: $DEMOS_DIR/$expected_pack" >&2

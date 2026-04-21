@@ -48,7 +48,7 @@
       "type": "Action.Submit",
       "title": "Back to Main Menu",
       "data": {
-        "nextCardId": "main_menu"
+        "routeToCardId": "main_menu"
       }
     }
   ]

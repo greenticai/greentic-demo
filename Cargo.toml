@@ -1,6 +1,19 @@
 [workspace]
 members = [
-    "crates/*",
+    "crates/cards-demo",
+    "crates/cloud-deploy-demo",
+    "crates/deep-research-demo",
+    "crates/github-mcp-demo",
+    "crates/greentic-ai-demo",
+    "crates/helpdesk-itsm-demo",
+    "crates/hr-onboarding-demo",
+    "crates/incident-demo",
+    "crates/quickstart-demo",
+    "crates/quickstart-event-demo",
+    "crates/redbutton-demo",
+    "crates/sales-crm-demo",
+    "crates/supply-chain-demo",
+    "crates/weather-mcp-demo",
 ]
 # WASM component sub-crates require greentic-interfaces WIT root and
 # wasm32-wasip2 target; they are built separately, not via workspace checks.

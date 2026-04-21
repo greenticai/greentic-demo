@@ -13,6 +13,11 @@
     }
   },
   "setup_answers": {
+    "deep-research-demo": {
+      "provider": "ollama",
+      "model": "llama3:8b",
+      "url": "http://127.0.0.1:11434/v1"
+    },
     "messaging-webchat-gui": {
       "base_url": "http://127.0.0.1:8080",
       "jwt_signing_key": "deep-research-demo-local-dev-signing-key",
