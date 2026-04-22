@@ -1,8 +1,8 @@
 name: Codex Security Fix
 on:
   schedule:
-    # 04:35 UTC — staggered to avoid hot-spots.
-    - cron: "35 4 * * *"
+    # 03:16 UTC — staggered to avoid hot-spots. See plans/binary-bifurcation.md Phase A.7.2.
+    - cron: "16 3 * * *"
   workflow_dispatch:
     inputs:
       branch:
