@@ -23,8 +23,10 @@ questions:
     default: llama3:8b
     placeholder: llama3:8b
   - name: api_key
+    secret_key: api_key
     kind: string
     required: false
+    secret: true
     title: LLM API key
     help: Placeholder API key persisted for providers or runtimes that still expect a non-empty key. For local Ollama, any dummy value is fine.
     default: ollama-placeholder
