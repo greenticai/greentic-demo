@@ -14,7 +14,7 @@
   },
   "setup_answers": {
     "deep-research-demo": {
-      "api_key": "ollama-placeholder",
+      "api_key_secret": "ollama-placeholder",
       "provider": "ollama",
       "model": "llama3:8b",
       "url": "http://127.0.0.1:11434/v1"
