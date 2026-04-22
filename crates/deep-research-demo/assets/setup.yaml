@@ -22,6 +22,15 @@ questions:
     help: Model name for the configured OpenAI-compatible API. For local Ollama, llama3:8b is a known-good default.
     default: llama3:8b
     placeholder: llama3:8b
+  - name: api_key_secret
+    secret_key: api_key_secret
+    kind: string
+    required: false
+    secret: true
+    title: LLM API key secret
+    help: Secret reference value passed through to the LLM component. For local Ollama, a dummy non-empty value is fine if the runtime still validates this field.
+    default: ollama-placeholder
+    placeholder: ollama-placeholder
   - name: planner_system_prompt
     kind: string
     required: false

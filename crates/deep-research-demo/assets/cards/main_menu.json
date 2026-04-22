@@ -2,7 +2,7 @@
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "type": "AdaptiveCard",
   "version": "1.6",
-  "speak": "Welcome to the Deep Research Digital Worker. Please enter your research question to begin.",
+  "speak": "Welcome to the Deep Research Digital Worker. Enter your question, then choose single shot for a direct answer or agentic for planning plus execution.",
   "body": [
     {
       "type": "ColumnSet",
@@ -33,7 +33,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "Enter your research question below to get started.",
+              "text": "Enter your research question, then choose a fast single-shot answer or the full agentic workflow.",
               "wrap": true,
               "isSubtle": true,
               "spacing": "None"
@@ -55,10 +55,17 @@
   "actions": [
     {
       "type": "Action.Submit",
-      "title": "Create Research Plan",
+      "title": "Single Shot",
+      "data": {
+        "action": "single_shot"
+      }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Agentic",
       "style": "positive",
       "data": {
-        "action": "create_research_plan"
+        "action": "agentic"
       }
     }
   ]
