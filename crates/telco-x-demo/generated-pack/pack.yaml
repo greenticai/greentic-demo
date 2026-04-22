@@ -1,0 +1,28 @@
+pack_id: telco-x
+version: 0.1.0
+kind: application
+publisher: greentic
+components:
+  - id: component-telco-present
+    version: 0.1.0
+    world: greentic:component/component@0.6.0
+    supports:
+      - messaging
+    profiles:
+      default: stateless
+      supported:
+        - stateless
+    capabilities:
+      wasi:
+        random: false
+        clocks: false
+      host: {}
+    wasm: components/component-telco-present/component.wasm
+flows:
+  - id: main
+    file: flows/main.ygtc
+    tags:
+      - messaging
+      - default
+    entrypoints:
+      - default

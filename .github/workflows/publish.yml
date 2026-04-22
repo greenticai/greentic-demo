@@ -79,9 +79,9 @@ jobs:
 
       - name: Install Rust
         if: steps.component-changes.outputs.components == 'true'
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@1.95.0
         with:
-          toolchain: 1.94.0
+          toolchain: 1.95.0
           targets: wasm32-wasip2
 
       - name: Install cargo-binstall
@@ -198,9 +198,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@1.95.0
         with:
-          toolchain: 1.94.0
+          toolchain: 1.95.0
           targets: wasm32-wasip2
 
       - name: Install cargo-binstall

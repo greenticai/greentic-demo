@@ -105,7 +105,7 @@ Outcome:
 Run:
 ```bash
 gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/cloud-deploy-demo-create-answers.json
-gtc setup ./cloud-deploy-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/cloud-deploy-demo-setup-answers.json
+gtc setup --no-ui ./cloud-deploy-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/cloud-deploy-demo-setup-answers.json
 gtc start ./cloud-deploy-demo-bundle
 ```
 
@@ -119,4 +119,16 @@ Run:
 gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/weather-mcp-demo-create-answers.json
 gtc setup ./weather-mcp-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/weather-mcp-demo-setup-answers.json
 gtc start ./weather-mcp-demo-bundle
+```
+
+### telco-x-demo
+
+Outcome:
+- Runs a Telco-X assistant in Webchat with category menus, multi-playbook telco flows, and adaptive-card results for traffic, capacity, RCA, and service-assurance scenarios.
+
+Run:
+```bash
+gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/telco-x-demo-create-answers.json
+gtc setup ./telco-x-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/telco-x-demo-setup-answers.json
+gtc start ./telco-x-demo-bundle
 ```

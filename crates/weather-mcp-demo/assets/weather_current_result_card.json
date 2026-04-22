@@ -1,0 +1,75 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "backgroundImage": "https://adaptivecards.io/content/Mostly%20Cloudy-Background.jpg",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": 35,
+          "items": [
+            {
+              "type": "Image",
+              "url": "https:${result.current.condition.icon}",
+              "size": "Stretch",
+              "altText": "${result.current.condition.text}"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": 65,
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Location: ${result.location.name}, ${result.location.country}",
+              "weight": "Bolder",
+              "size": "Large",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "${result.current.condition.text}",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Temp ${result.current.temp_c} C / ${result.current.temp_f} F",
+              "size": "Medium",
+              "spacing": "Small",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Feels ${result.current.feelslike_c} C | Humidity ${result.current.humidity}%",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Wind ${result.current.wind_kph} kph ${result.current.wind_dir}",
+              "spacing": "None",
+              "wrap": true,
+              "color": "Light"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Check Another Location",
+      "data": {}
+    }
+  ]
+}

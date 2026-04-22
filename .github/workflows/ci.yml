@@ -1,45 +1,16 @@
 name: CI
-
 on:
   workflow_call:
-  push:
-    branches: [main]
   pull_request:
-
 permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  CARGO_TERM_COLOR: always
-  CARGO_HOME: ${{ github.workspace }}/.cargo-home
-  CARGO_TARGET_DIR: ${{ github.workspace }}/.target
-  CARGO_NET_OFFLINE: "false"
-
 jobs:
-  local-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: 1.91.0
-          targets: wasm32-wasip2
-
-      - name: Cache cargo state
-        uses: actions/cache@v4
-        with:
-          path: |
-            ${{ env.CARGO_HOME }}/registry
-            ${{ env.CARGO_HOME }}/git
-            ${{ env.CARGO_TARGET_DIR }}
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock', '**/Cargo.toml') }}
-
-      - name: Run local checks
-        run: ci/local_check.sh
+  ci:
+    uses: greenticai/.github/.github/workflows/pr-ci.yml@main
+    with:
+      variant: host

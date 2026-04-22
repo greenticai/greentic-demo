@@ -8,8 +8,46 @@ DEMOS_DIR="$ROOT_DIR/demos"
 TMP_ROOT="${TMPDIR:-/tmp}/greentic-demo-package"
 DEFAULT_PACK_ANSWERS="$TMP_ROOT/pack-update-answers.json"
 LOCAL_PACK_INPUT_DIR="$TMP_ROOT/local-pack-inputs"
+DEMO_FILTER="${1:-}"
 # Max seconds per wizard/setup command before it is killed.
 WIZARD_TIMEOUT="${WIZARD_TIMEOUT:-180}"
+
+if [ "$#" -gt 1 ]; then
+    echo "Usage: $0 [demo-name]" >&2
+    exit 1
+fi
+
+matches_demo_filter() {
+    if [ -z "$DEMO_FILTER" ]; then
+        return 0
+    fi
+
+    local candidate
+    for candidate in "$@"; do
+        if [ -n "$candidate" ] && [ "$candidate" = "$DEMO_FILTER" ]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+run_with_timeout() {
+    local seconds="$1"
+    shift
+
+    if command -v timeout >/dev/null 2>&1; then
+        timeout "$seconds" "$@"
+        return
+    fi
+
+    if command -v gtimeout >/dev/null 2>&1; then
+        gtimeout "$seconds" "$@"
+        return
+    fi
+
+    "$@"
+}
 
 if ! command -v greentic-pack >/dev/null 2>&1; then
     echo "greentic-pack not found; skipping demo packaging."
@@ -34,23 +72,42 @@ mkdir -p "$CRATES_DIR" "$DEMOS_DIR"
 rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
 mkdir -p "$LOCAL_PACK_INPUT_DIR"
+
 # Seed LOCAL_PACK_INPUT_DIR with committed packs before cleanup so that
 # pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
 # remain available for bundle creation.
 find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -exec cp {} "$LOCAL_PACK_INPUT_DIR/" \;
-find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -exec rm -rf {} +
-find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
+seeded_pack_names=()
+for seeded_pack in "$LOCAL_PACK_INPUT_DIR"/*.gtpack; do
+    [ -f "$seeded_pack" ] || continue
+    seeded_pack_names+=("$(basename "$seeded_pack")")
+done
+if [ -z "$DEMO_FILTER" ]; then
+    find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -exec rm -rf {} +
+    find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtpack' -delete
+fi
+
+was_seeded_pack() {
+    local needle="$1"
+    local seeded
+    for seeded in "${seeded_pack_names[@]}"; do
+        if [ "$seeded" = "$needle" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
 
 run_bundle_build() {
     local root="$1"
     local output="$2"
 
     if command -v greentic-setup >/dev/null 2>&1; then
-        timeout "$WIZARD_TIMEOUT" greentic-setup bundle build --bundle "$root" --out "$output" >/dev/null
+        run_with_timeout "$WIZARD_TIMEOUT" greentic-setup bundle build --bundle "$root" --out "$output" >/dev/null
     else
         (
             cd "$ROOT_DIR"
-            timeout "$WIZARD_TIMEOUT" cargo run -q -p greentic-setup --bin greentic-setup -- bundle build --bundle "$root" --out "$output" >/dev/null
+            run_with_timeout "$WIZARD_TIMEOUT" cargo run -q -p greentic-setup --bin greentic-setup -- bundle build --bundle "$root" --out "$output" >/dev/null
         )
     fi
 }
@@ -83,8 +140,45 @@ cat > "$DEFAULT_PACK_ANSWERS" <<'EOF'
 EOF
 
 shopt -s nullglob
+
+# Helper: resolve wizard answer files from build-answer.json or legacy per-file layout.
+# Sets: _wizard _pack_create _pack _flow (paths to extracted or original files)
+resolve_answers() {
+    local crate_dir="$1"
+    local build_answer="$crate_dir/build-answer.json"
+    _wizard="" _pack_create="" _pack="" _flow=""
+    if [ -f "$build_answer" ]; then
+        local extract_dir="$TMP_ROOT/extracted-answers/$(basename "$crate_dir")"
+        mkdir -p "$extract_dir"
+        for section in wizard pack_create pack flow; do
+            local val
+            val=$(jq -r ".$section // empty" "$build_answer") || true
+            if [ -n "$val" ] && [ "$val" != "null" ]; then
+                jq ".$section" "$build_answer" > "$extract_dir/$section.json"
+                eval "_$section=\"$extract_dir/$section.json\""
+            fi
+        done
+    else
+        [ -f "$crate_dir/gtc_wizard_answers.json" ] && _wizard="$crate_dir/gtc_wizard_answers.json"
+        [ -f "$crate_dir/gtc_pack_create_wizard_answers.json" ] && _pack_create="$crate_dir/gtc_pack_create_wizard_answers.json" || true
+        [ -f "$crate_dir/pack_answers.json" ] && [ -z "$_pack_create" ] && _pack_create="$crate_dir/pack_answers.json" || true
+        [ -f "$crate_dir/gtc_pack_wizard_answers.json" ] && _pack="$crate_dir/gtc_pack_wizard_answers.json" || true
+        [ -f "$crate_dir/gtc_flow_wizard_answers.json" ] && _flow="$crate_dir/gtc_flow_wizard_answers.json" || true
+    fi
+}
+
 pack_dirs=("$CRATES_DIR"/*/bundle/packs/*.pack)
-generated_pack_answers=("$CRATES_DIR"/*/gtc_pack_create_wizard_answers.json)
+# Discover pack create answers from build-answer.json OR legacy per-file layout.
+generated_pack_answers=()
+for _cdir in "$CRATES_DIR"/*/; do
+    if [ -f "$_cdir/build-answer.json" ] && jq -e '.pack_create' "$_cdir/build-answer.json" >/dev/null 2>&1; then
+        generated_pack_answers+=("$_cdir/build-answer.json")
+    elif [ -f "$_cdir/gtc_pack_create_wizard_answers.json" ]; then
+        generated_pack_answers+=("$_cdir/gtc_pack_create_wizard_answers.json")
+    elif [ -f "$_cdir/pack_answers.json" ]; then
+        generated_pack_answers+=("$_cdir/pack_answers.json")
+    fi
+done
 bundle_answers=("$DEMOS_DIR"/*-create-answers.json)
 packaged_any=0
 missing_expected=0
@@ -97,12 +191,14 @@ fi
 for source_pack_dir in "${pack_dirs[@]}"; do
     pack_name="$(basename "$source_pack_dir" .pack)"
     crate_dir="$(cd "$source_pack_dir/../../.." && pwd)"
+    crate_name="$(basename "$crate_dir")"
     source_assets_dir="$source_pack_dir/assets"
     source_components_dir="$source_pack_dir/components"
     source_flows_dir="$source_pack_dir/flows"
-    pack_answers="$DEFAULT_PACK_ANSWERS"
-    create_answers="$crate_dir/gtc_pack_create_wizard_answers.json"
-    flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
+    resolve_answers "$crate_dir"
+    pack_answers="${_pack:-$DEFAULT_PACK_ANSWERS}"
+    create_answers="${_pack_create:-}"
+    flow_answers="${_flow:-}"
     temp_pack_dir="$TMP_ROOT/packs/$pack_name"
     pack_dir_basename="$(basename "$source_pack_dir")"
     built_pack="$temp_pack_dir/dist/$pack_dir_basename.gtpack"
@@ -110,22 +206,35 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
     # If a pre-built pack was committed in demos/ (seeded into LOCAL_PACK_INPUT_DIR),
     # skip the crate-source rebuild and use the committed pack directly.
-    if [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
+    if [ -z "$DEMO_FILTER" ] && [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
         cp "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" "$DEMOS_DIR/$pack_name.gtpack"
         echo "Using committed demos/$pack_name.gtpack (skipping crate rebuild)"
         packaged_any=1
         continue
     fi
 
-    if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
+    if [ -n "$_wizard" ]; then
         expected_pack_file="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
           | select(test("(^|/)demos/[^/]+\\.gtpack$"))
           | capture("(?<file>[^/]+\\.gtpack)$").file
-        ' "$crate_dir/gtc_wizard_answers.json")"
+        ' "$_wizard")"
         if [ -n "$expected_pack_file" ]; then
             target_pack="$DEMOS_DIR/$expected_pack_file"
         fi
+    fi
+
+    if ! matches_demo_filter "$crate_name" "$pack_name" "$(basename "$target_pack" .gtpack)"; then
+        continue
+    fi
+
+    # If a pre-built pack was committed in demos/ (seeded into LOCAL_PACK_INPUT_DIR),
+    # skip the crate-source rebuild and use the committed pack directly.
+    if [ -z "$DEMO_FILTER" ] && [ -f "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" ]; then
+        cp "$LOCAL_PACK_INPUT_DIR/$pack_name.gtpack" "$DEMOS_DIR/$pack_name.gtpack"
+        echo "Using committed demos/$pack_name.gtpack (skipping crate rebuild)"
+        packaged_any=1
+        continue
     fi
 
     if [ -d "$crate_dir/assets" ]; then
@@ -140,11 +249,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         source_flows_dir="$crate_dir/flows"
     fi
 
-    if [ -f "$crate_dir/gtc_pack_wizard_answers.json" ]; then
-        pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
-    fi
-
-    if [ -f "$create_answers" ]; then
+    if [ -n "$create_answers" ]; then
         temp_pack_parent="$TMP_ROOT/packs-create/$pack_name"
         temp_pack_dir="$temp_pack_parent/$pack_name.pack"
         built_pack="$temp_pack_dir/dist/$pack_name.pack.gtpack"
@@ -154,7 +259,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
         if ! (
             cd "$temp_pack_parent"
-            timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$create_answers" >/dev/null
+            run_with_timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$create_answers" >/dev/null
         ); then
             echo "Skipping $pack_name: pack scaffold wizard create failed" >&2
             continue
@@ -175,7 +280,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         # to avoid hash conflicts between local WASM and OCI-resolved artifacts.
 
         if [ -f "$flow_answers" ]; then
-            if ! timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
+            if ! run_with_timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
                 echo "Skipping $pack_name: flow wizard replay failed" >&2
                 continue
             fi
@@ -183,7 +288,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
         if ! (
             cd "$temp_pack_dir"
-            timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
+            run_with_timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
         ); then
             echo "Skipping $pack_name: pack wizard update failed after scaffold replay" >&2
             continue
@@ -199,7 +304,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         fi
 
         # Build separately after resolve files are restored.
-        if ! (cd "$temp_pack_dir" && timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+        if ! (cd "$temp_pack_dir" && run_with_timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
             echo "Skipping $pack_name: pack build failed after scaffold replay" >&2
             continue
         fi
@@ -228,7 +333,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
 
         if ! (
             cd "$temp_pack_dir"
-            timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
+            run_with_timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
         ); then
             echo "Skipping $pack_name: pack wizard update failed" >&2
             continue
@@ -242,7 +347,7 @@ for source_pack_dir in "${pack_dirs[@]}"; do
         done
 
         # Build separately after resolve files are restored.
-        if ! (cd "$temp_pack_dir" && timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+        if ! (cd "$temp_pack_dir" && run_with_timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
             echo "Skipping $pack_name: pack build failed" >&2
             continue
         fi
@@ -263,13 +368,25 @@ for source_pack_dir in "${pack_dirs[@]}"; do
     packaged_any=1
 done
 
-for create_answers in "${generated_pack_answers[@]}"; do
-    crate_dir="$(cd "$(dirname "$create_answers")" && pwd)"
-    flow_answers="$crate_dir/gtc_flow_wizard_answers.json"
-    pack_answers="$crate_dir/gtc_pack_wizard_answers.json"
+for _gen_source in "${generated_pack_answers[@]}"; do
+    crate_dir="$(cd "$(dirname "$_gen_source")" && pwd)"
+    crate_name="$(basename "$crate_dir")"
+    if [ -f "$crate_dir/prepare_demo.sh" ]; then
+        if ! bash "$crate_dir/prepare_demo.sh" >/dev/null; then
+            echo "Skipping $crate_name: prepare_demo.sh failed" >&2
+            continue
+        fi
+    fi
+    resolve_answers "$crate_dir"
+    create_answers="${_pack_create:-}"
+    [ -z "$create_answers" ] && continue
+    pack_build_script="$crate_dir/build_pack.sh"
+    flow_answers="${_flow:-}"
+    pack_answers="${_pack:-}"
     source_assets_dir="$crate_dir/assets"
     source_components_dir="$crate_dir/components"
     source_flows_dir="$crate_dir/flows"
+    source_pack_overlay_dir="$crate_dir/generated-pack"
     pack_dir_name="$(jq -r '.answers.pack_dir' "$create_answers" | xargs basename)"
     pack_id="$(jq -r '.answers.create_pack_id' "$create_answers")"
     pack_name="${pack_id%.pack}"
@@ -279,7 +396,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
         continue
     fi
 
-    if [ ! -f "$pack_answers" ]; then
+    if [ -z "$pack_answers" ] || [ ! -f "$pack_answers" ] || [ "$pack_answers" = "$create_answers" ]; then
         pack_answers="$DEFAULT_PACK_ANSWERS"
     fi
 
@@ -290,34 +407,48 @@ for create_answers in "${generated_pack_answers[@]}"; do
 
     # Resolve expected pack filename from wizard answers (if available).
     _seeded_name="$pack_slug.gtpack"
-    if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
+    if [ -n "$_wizard" ]; then
         _expected="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
           | select(test("(^|/)demos/[^/]+\\.gtpack$"))
           | capture("(?<file>[^/]+\\.gtpack)$").file
-        ' "$crate_dir/gtc_wizard_answers.json")"
+        ' "$_wizard")"
         if [ -n "$_expected" ]; then
             _seeded_name="$_expected"
         fi
     fi
 
-    # If a pre-built pack was committed in demos/, skip the crate-source rebuild.
-    if [ -f "$LOCAL_PACK_INPUT_DIR/$_seeded_name" ]; then
-        cp "$LOCAL_PACK_INPUT_DIR/$_seeded_name" "$DEMOS_DIR/$_seeded_name"
-        echo "Using committed demos/$_seeded_name (skipping crate rebuild)"
-        packaged_any=1
-        continue
-    fi
-
-    if [ -f "$crate_dir/gtc_wizard_answers.json" ]; then
+    if [ -n "$_wizard" ]; then
         expected_pack_file="$(jq -r '
           .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
           | select(test("(^|/)demos/[^/]+\\.gtpack$"))
           | capture("(?<file>[^/]+\\.gtpack)$").file
-        ' "$crate_dir/gtc_wizard_answers.json")"
+        ' "$_wizard")"
         if [ -n "$expected_pack_file" ]; then
             target_pack="$DEMOS_DIR/$expected_pack_file"
         fi
+    fi
+
+    if ! matches_demo_filter "$crate_name" "$pack_name" "$pack_slug" "$(basename "$target_pack" .gtpack)"; then
+        continue
+    fi
+
+    if [ -x "$pack_build_script" ]; then
+        if ! "$pack_build_script" "$target_pack" >/dev/null; then
+            echo "Skipping $pack_name: custom pack build script failed" >&2
+            continue
+        fi
+        echo "Created demos/$(basename "$target_pack")"
+        packaged_any=1
+        continue
+    fi
+
+    # If a pre-built pack was committed in demos/, skip the crate-source rebuild.
+    if [ -z "$DEMO_FILTER" ] && [ -f "$LOCAL_PACK_INPUT_DIR/$_seeded_name" ]; then
+        cp "$LOCAL_PACK_INPUT_DIR/$_seeded_name" "$DEMOS_DIR/$_seeded_name"
+        echo "Using committed demos/$_seeded_name (skipping crate rebuild)"
+        packaged_any=1
+        continue
     fi
 
     rm -rf "$temp_pack_parent"
@@ -325,7 +456,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
 
     if ! (
         cd "$temp_pack_parent"
-        timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$create_answers" >/dev/null
+        run_with_timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$create_answers" >/dev/null
     ); then
         echo "Skipping $pack_name: pack scaffold wizard create failed" >&2
         continue
@@ -341,16 +472,24 @@ for create_answers in "${generated_pack_answers[@]}"; do
         cp -R "$source_components_dir/." "$temp_pack_dir/components/"
     fi
 
-    if [ -f "$flow_answers" ]; then
-        if ! timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
+    if [ -n "$flow_answers" ] && [ -f "$flow_answers" ]; then
+        if ! run_with_timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
             echo "Skipping $pack_name: flow wizard replay failed" >&2
             continue
         fi
     fi
 
+    if [ -d "$source_pack_overlay_dir" ]; then
+        rsync -a --exclude 'dist/' "$source_pack_overlay_dir/." "$temp_pack_dir/"
+    fi
+
+    if [ -d "$source_pack_overlay_dir/flows" ]; then
+        source_flows_dir="$source_pack_overlay_dir/flows"
+    fi
+
     if ! (
         cd "$temp_pack_dir"
-        timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
+        run_with_timeout "$WIZARD_TIMEOUT" greentic-pack wizard apply --answers "$pack_answers" >/dev/null
     ); then
         echo "Skipping $pack_name: pack wizard update failed after scaffold replay" >&2
         continue
@@ -366,7 +505,7 @@ for create_answers in "${generated_pack_answers[@]}"; do
     fi
 
     # Build separately after resolve files are restored.
-    if ! (cd "$temp_pack_dir" && timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+    if ! (cd "$temp_pack_dir" && run_with_timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
         echo "Skipping $pack_name: pack build failed after scaffold replay" >&2
         continue
     fi
@@ -395,6 +534,10 @@ for source_answers in "${bundle_answers[@]}"; do
     built_bundle="$output_dir/dist/${bundle_id}.gtbundle"
     target_bundle="$DEMOS_DIR/${bundle_id}.gtbundle"
 
+    if ! matches_demo_filter "$demo_basename" "$bundle_id"; then
+        continue
+    fi
+
     jq --arg local_pack_dir "$LOCAL_PACK_INPUT_DIR" --arg out "$output_dir" '
       .answers.delegate_answer_document.answers.output_dir = $out
       | .answers.delegate_answer_document.answers.app_pack_entries |= map(
@@ -417,13 +560,13 @@ for source_answers in "${bundle_answers[@]}"; do
         )
     ' "$source_answers" > "$temp_answers"
 
-    if ! timeout "$WIZARD_TIMEOUT" gtc wizard --answers "$temp_answers" >/dev/null; then
+    if ! run_with_timeout "$WIZARD_TIMEOUT" gtc wizard --answers "$temp_answers" >/dev/null; then
         echo "Skipping $bundle_id: bundle wizard create failed" >&2
         continue
     fi
 
     if [ -f "$setup_answers" ]; then
-        if ! timeout "$WIZARD_TIMEOUT" gtc setup --answers "$setup_answers" "$output_dir" >/dev/null 2>&1; then
+        if ! run_with_timeout "$WIZARD_TIMEOUT" gtc setup --no-ui --answers "$setup_answers" "$output_dir" >/dev/null 2>&1; then
             echo "Warning: $bundle_id: bundle setup failed (missing secrets?), attempting build anyway" >&2
         fi
     fi
@@ -470,17 +613,27 @@ for source_answers in "${bundle_answers[@]}"; do
     demo_basename="$(basename "$source_answers" -create-answers.json)"
     bundle_id="$(jq -r '.answers.delegate_answer_document.answers.bundle_id' "$source_answers")"
     expected_bundle="$DEMOS_DIR/${bundle_id}.gtbundle"
+    expected_pack_ref="$(jq -r '
+      .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
+    ' "$source_answers")"
     expected_pack="$(jq -r '
       .answers.delegate_answer_document.answers.app_pack_entries[0].reference // empty
       | capture("(?<file>[^/]+\\.gtpack)$").file? // empty
     ' "$source_answers")"
+
+    if ! matches_demo_filter "$demo_basename" "$bundle_id" "${expected_pack%.gtpack}"; then
+        continue
+    fi
 
     if [ ! -f "$expected_bundle" ]; then
         echo "Missing expected bundle for $demo_basename: $expected_bundle" >&2
         missing_expected=1
     fi
 
-    if [ -n "$expected_pack" ] && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
+    if [ -n "$expected_pack" ] \
+        && was_seeded_pack "$expected_pack" \
+        && [[ ! "$expected_pack_ref" =~ ^https?:// ]] \
+        && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
         echo "Missing expected pack for $demo_basename: $DEMOS_DIR/$expected_pack" >&2
         missing_expected=1
     fi

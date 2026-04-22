@@ -15,7 +15,7 @@
   "setup_answers": {
     "messaging-webchat-gui": {
       "base_url": "http://127.0.0.1:8080",
-      "jwt_signing_key": "weather-webchat-local-dev-signing-key",
+      "jwt_signing_key": "weather-mcp-demo-local-dev-signing-key",
       "mode": "local_queue",
       "public_base_url": "http://127.0.0.1:8080",
       "route": "webchat",

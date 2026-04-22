@@ -1,0 +1,9 @@
+[package]
+name = "telco-x-demo"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "Greentic Telco-X demo bundle for Webchat with category menus and telco playbook flows."
+
+[lib]
+path = "src/lib.rs"

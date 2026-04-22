@@ -1,0 +1,55 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Research Analyst",
+      "weight": "Bolder",
+      "size": "Large",
+      "color": "Accent"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Question: ${user_question}",
+      "wrap": true,
+      "spacing": "Small"
+    },
+    {
+      "type": "Container",
+      "id": "processingText",
+      "isVisible": "${processingVisible}",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Processing final report...",
+          "wrap": true,
+          "isSubtle": true
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "final_report_container",
+      "isVisible": "${finalReportVisible}",
+      "items": [
+        {
+          "type": "TextBlock",
+          "id": "report_output",
+          "text": "${report_output}",
+          "wrap": true
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Back to Main Menu",
+      "data": {
+        "routeToCardId": "main_menu"
+      }
+    }
+  ]
+}

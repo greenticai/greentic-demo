@@ -1,0 +1,175 @@
+{
+  "schema_id": "greentic-demo.build-answer",
+  "schema_version": "1.0.0",
+  "wizard": {
+    "wizard_id": "greentic-dev.wizard.launcher.main",
+    "schema_id": "greentic-dev.launcher.main",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+      "selected_action": "bundle",
+      "delegate_answer_document": {
+        "wizard_id": "greentic-bundle.wizard.run",
+        "schema_id": "greentic-bundle.wizard.answers",
+        "schema_version": "1.0.0",
+        "locale": "en-GB",
+        "answers": {
+          "access_rules": [
+            {
+              "policy": "public",
+              "rule_path": "supply-chain-pack",
+              "tenant": "default"
+            }
+          ],
+          "advanced_setup": false,
+          "app_pack_entries": [
+            {
+              "detected_kind": "local_file",
+              "display_name": "Supply Chain Demo Pack",
+              "mapping": {
+                "scope": "global"
+              },
+              "pack_id": "supply-chain-pack",
+              "reference": "demos/supply-chain.gtpack"
+            }
+          ],
+          "app_packs": [
+            "demos/supply-chain.gtpack"
+          ],
+          "bundle_id": "supply-chain-demo",
+          "bundle_name": "supply-chain-demo",
+          "export_intent": false,
+          "extension_provider_entries": [
+            {
+              "detected_kind": "oci",
+              "display_name": "Greentic Messaging Webchat (latest)",
+              "provider_id": "greentic.messaging.webchat.latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+              "version": "latest"
+            },
+            {
+              "detected_kind": "oci",
+              "display_name": "Greentic Messaging Slack (latest)",
+              "provider_id": "greentic.messaging.slack.latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
+              "version": "latest"
+            },
+            {
+              "detected_kind": "oci",
+              "display_name": "Greentic Messaging Teams (latest)",
+              "provider_id": "greentic.messaging.teams.latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
+              "version": "latest"
+            },
+            {
+              "detected_kind": "oci",
+              "display_name": "Greentic State Memory (latest)",
+              "provider_id": "state-memory",
+              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+              "version": "latest"
+            }
+          ],
+          "extension_providers": [
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
+            "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+          ],
+          "mode": "create",
+          "output_dir": "./supply-chain-demo-bundle",
+          "remote_catalogs": [],
+          "setup_answers": {},
+          "setup_execution_intent": false,
+          "setup_specs": {}
+        },
+        "locks": {
+          "cache_policy": "workspace-local",
+          "catalogs": [],
+          "execution": "execute",
+          "lock_file": "bundle.lock.json",
+          "requested_mode": "create",
+          "setup_state_files": [],
+          "workspace_root": "bundle.yaml"
+        }
+      }
+    }
+  },
+  "pack_create": {
+    "wizard_id": "greentic-pack.wizard.run",
+    "schema_id": "greentic-pack.wizard.answers",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+      "create_pack_id": "greentic.supply-chain.demo",
+      "create_pack_scaffold": true,
+      "dry_run": false,
+      "mode": "interactive",
+      "pack_dir": "./supply-chain.pack",
+      "run_build": false,
+      "run_delegate_component": false,
+      "run_delegate_flow": false,
+      "run_doctor": false,
+      "selected_actions": [
+        "main.create_application_pack",
+        "create_application_pack.start",
+        "main.exit"
+      ],
+      "sign": false
+    },
+    "locks": {}
+  },
+  "pack": {
+    "wizard_id": "greentic-pack.wizard.run",
+    "schema_id": "greentic-pack.wizard.answers",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+      "dry_run": false,
+      "mode": "interactive",
+      "pack_dir": ".",
+      "run_build": true,
+      "run_delegate_component": false,
+      "run_delegate_flow": false,
+      "run_doctor": false,
+      "selected_actions": [
+        "main.update_application_pack",
+        "update_application_pack.run_update_validate",
+        "pipeline.update_validate",
+        "pipeline.sign_prompt.skip",
+        "main.exit"
+      ],
+      "sign": false
+    },
+    "locks": {}
+  },
+  "flow": {
+    "schema_id": "greentic-flow.wizard.plan",
+    "schema_version": "2.0.0",
+    "actions": [
+      {
+        "action": "add-flow",
+        "flow": "flows/on_message.ygtc",
+        "flow_id": "on_message",
+        "flow_type": "messaging"
+      },
+      {
+        "action": "add-flow",
+        "flow": "flows/order_tracking_flow.ygtc",
+        "flow_id": "order_tracking_flow",
+        "flow_type": "messaging"
+      },
+      {
+        "action": "add-flow",
+        "flow": "flows/reorder_flow.ygtc",
+        "flow_id": "reorder_flow",
+        "flow_type": "messaging"
+      },
+      {
+        "action": "add-flow",
+        "flow": "flows/stock_check_flow.ygtc",
+        "flow_id": "stock_check_flow",
+        "flow_type": "messaging"
+      }
+    ]
+  }
+}

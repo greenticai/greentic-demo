@@ -1,0 +1,38 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.6",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Change Correlation",
+      "weight": "Bolder",
+      "size": "Medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Found 2 recent changes in the incident window.",
+      "wrap": true
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        {
+          "title": "Service",
+          "value": "mobile-data"
+        },
+        {
+          "title": "Window",
+          "value": "15 minutes"
+        },
+        {
+          "title": "Top change",
+          "value": "router policy update"
+        },
+        {
+          "title": "Confidence",
+          "value": "medium"
+        }
+      ]
+    }
+  ]
+}
