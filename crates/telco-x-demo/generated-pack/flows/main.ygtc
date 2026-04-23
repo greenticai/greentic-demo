@@ -10,6 +10,13 @@ nodes:
       component: component-telco-present
       operation: present
       query: "{{in.input.text}}"
+      metadata: "{{in.input.metadata}}"
       source_provider: webchat
+    routing:
+      - next: respond_telco
+
+  respond_telco:
+    emit.response:
+      messages: "{{prev.messages}}"
     routing:
       - out: true
