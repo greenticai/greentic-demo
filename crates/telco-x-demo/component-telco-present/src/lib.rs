@@ -5,7 +5,8 @@ use telco_x::adapters::AdapterFixtures;
 use telco_x::playbooks::{
     default_port_utilisation_threshold_percent, run_bgp_advertisers, run_change_correlation,
     run_change_correlation_filtered, run_free_ports, run_noisy_neighbour, run_port_utilisation,
-    run_prefix_traffic, run_scope_health_sweep, run_slo_status, run_top_source_asns, run_vm_rca,
+    run_prefix_traffic, run_scope_health_sweep, run_slo_status, run_top_source_asns,
+    run_vm_rca, run_vm_rca_filtered,
 };
 use telco_x::presentation::{PresentationModel, PresentationSection, present_run};
 use telco_x::resolvers::ResolverCatalog;
@@ -737,7 +738,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
         } else {
             Some(cluster_value)
         };
-        let run = run_vm_rca(service, cluster, &resolvers, &fixtures);
+        let run = run_vm_rca_filtered(service, cluster, Some(time_window), &resolvers, &fixtures);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
         let adaptive_card = vm_rca_analysis_card(
