@@ -45,7 +45,7 @@
   "actions": [
     {
       "type": "Action.Submit",
-      "title": "Start Research Analysis",
+      "title": "Run Researcher",
       "style": "positive",
       "data": {
         "action": "start_research_analysis",

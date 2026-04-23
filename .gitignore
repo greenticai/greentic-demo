@@ -12,6 +12,7 @@ tmp_supply_*_answers.json
 **/bundle/packs/*.pack/dist/
 .DS_Store
 .greentic/
+/deep-research-demo-bundle
 
 # CI workflow artifacts (codex-security-fix, dependency-review, codex-semver-fix)
 all-dependabot-alerts.json
