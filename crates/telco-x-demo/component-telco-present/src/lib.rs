@@ -313,7 +313,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Welcome to the Telco-X demo.".to_string(),
             text: Some("Welcome to the Telco-X demo.".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&welcome, false),
+            messages: response_messages_from_card(&welcome, false, false),
             rendered_card: Some(welcome.clone()),
             adaptive_card: Some(welcome),
             presentation: json!({
@@ -336,7 +336,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Network Traffic & Routing".to_string(),
             text: Some("Network Traffic & Routing".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&card, false),
+            messages: response_messages_from_card(&card, false, false),
             rendered_card: Some(card.clone()),
             adaptive_card: Some(card),
             presentation: json!({
@@ -354,7 +354,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Capacity & Port Management".to_string(),
             text: Some("Capacity & Port Management".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&card, false),
+            messages: response_messages_from_card(&card, false, false),
             rendered_card: Some(card.clone()),
             adaptive_card: Some(card),
             presentation: json!({
@@ -372,7 +372,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Service Assurance".to_string(),
             text: Some("Service Assurance".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&card, false),
+            messages: response_messages_from_card(&card, false, false),
             rendered_card: Some(card.clone()),
             adaptive_card: Some(card),
             presentation: json!({
@@ -390,7 +390,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Performance & Root Cause".to_string(),
             text: Some("Performance & Root Cause".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&card, false),
+            messages: response_messages_from_card(&card, false, false),
             rendered_card: Some(card.clone()),
             adaptive_card: Some(card),
             presentation: json!({
@@ -408,7 +408,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Overutilised ACI ports".to_string(),
             text: Some("Overutilised ACI ports".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&card, false),
+            messages: response_messages_from_card(&card, false, false),
             rendered_card: Some(card.clone()),
             adaptive_card: Some(card),
             presentation: json!({
@@ -427,7 +427,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Run VM RCA".to_string(),
             text: Some("Run VM RCA".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&card, false),
+            messages: response_messages_from_card(&card, false, false),
             rendered_card: Some(card.clone()),
             adaptive_card: Some(card),
             presentation: json!({
@@ -446,13 +446,185 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: "Prefix traffic distribution".to_string(),
             text: Some("Prefix traffic distribution".to_string()),
             provider_hint,
-            messages: response_messages_from_card(&card, false),
+            messages: response_messages_from_card(&card, false, false),
             rendered_card: Some(card.clone()),
             adaptive_card: Some(card),
             presentation: json!({
                 "kind": "parameter-menu",
                 "category": "network-traffic-routing",
                 "playbook": "prefix-traffic"
+            }),
+        };
+    }
+
+    if route == "menu:slo-status-parameters" {
+        let card = slo_status_parameters_card();
+        return PresentOutput {
+            scenario: "menu-slo-status-parameters".to_string(),
+            playbook_id: "tx.menu.slo_status_parameters".to_string(),
+            summary: "SLO status".to_string(),
+            text: Some("SLO status".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "service-assurance",
+                "playbook": "slo-status"
+            }),
+        };
+    }
+
+    if route == "menu:bgp-advertisers-parameters" || route == "show bgp advertisers" {
+        let card = bgp_advertisers_parameters_card();
+        return PresentOutput {
+            scenario: "menu-bgp-advertisers-parameters".to_string(),
+            playbook_id: "tx.menu.bgp_advertisers_parameters".to_string(),
+            summary: "BGP advertisers".to_string(),
+            text: Some("BGP advertisers".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "network-traffic-routing",
+                "playbook": "bgp-advertisers"
+            }),
+        };
+    }
+
+    if route == "menu:top-source-asns-parameters" || route == "show top source asns" {
+        let card = top_source_asns_parameters_card();
+        return PresentOutput {
+            scenario: "menu-top-source-asns-parameters".to_string(),
+            playbook_id: "tx.menu.top_source_asns_parameters".to_string(),
+            summary: "Top source ASNs".to_string(),
+            text: Some("Top source ASNs".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "network-traffic-routing",
+                "playbook": "top-source-asns"
+            }),
+        };
+    }
+
+    if route == "menu:free-ports-parameters" || route == "show free aci ports" {
+        let card = free_ports_parameters_card();
+        return PresentOutput {
+            scenario: "menu-free-ports-parameters".to_string(),
+            playbook_id: "tx.menu.free_ports_parameters".to_string(),
+            summary: "Free ACI ports".to_string(),
+            text: Some("Free ACI ports".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "capacity-port-management",
+                "playbook": "free-ports"
+            }),
+        };
+    }
+
+    if route == "menu:noisy-neighbour-parameters" || route == "show noisy neighbour" {
+        let card = noisy_neighbour_parameters_card();
+        return PresentOutput {
+            scenario: "menu-noisy-neighbour-parameters".to_string(),
+            playbook_id: "tx.menu.noisy_neighbour_parameters".to_string(),
+            summary: "Noisy neighbour".to_string(),
+            text: Some("Noisy neighbour".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "capacity-port-management",
+                "playbook": "noisy-neighbour"
+            }),
+        };
+    }
+
+    if route == "menu:scope-health-sweep-parameters" || route == "run scope health sweep" {
+        let card = scope_health_sweep_parameters_card();
+        return PresentOutput {
+            scenario: "menu-scope-health-sweep-parameters".to_string(),
+            playbook_id: "tx.menu.scope_health_sweep_parameters".to_string(),
+            summary: "Scope health sweep".to_string(),
+            text: Some("Scope health sweep".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "capacity-port-management",
+                "playbook": "scope-health-sweep"
+            }),
+        };
+    }
+
+    if route == "menu:change-correlation-parameters" || route == "show recent change correlation" {
+        let card = change_correlation_parameters_card();
+        return PresentOutput {
+            scenario: "menu-change-correlation-parameters".to_string(),
+            playbook_id: "tx.menu.change_correlation_parameters".to_string(),
+            summary: "Recent change correlation".to_string(),
+            text: Some("Recent change correlation".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "performance-root-cause",
+                "playbook": "change-correlation"
+            }),
+        };
+    }
+
+    if route == "menu:service-degradation-parameters" || route == "investigate service degradation"
+    {
+        let card = service_degradation_parameters_card();
+        return PresentOutput {
+            scenario: "menu-service-degradation-parameters".to_string(),
+            playbook_id: "tx.menu.service_degradation_parameters".to_string(),
+            summary: "Investigate service degradation".to_string(),
+            text: Some("Investigate service degradation".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "performance-root-cause",
+                "playbook": "service-degradation"
+            }),
+        };
+    }
+
+    if route == "show slo status" {
+        let card = slo_status_parameters_card();
+        return PresentOutput {
+            scenario: "menu-slo-status-parameters".to_string(),
+            playbook_id: "tx.menu.slo_status_parameters".to_string(),
+            summary: "SLO status".to_string(),
+            text: Some("SLO status".to_string()),
+            provider_hint,
+            messages: response_messages_from_card(&card, false, false),
+            rendered_card: Some(card.clone()),
+            adaptive_card: Some(card),
+            presentation: json!({
+                "kind": "parameter-menu",
+                "category": "service-assurance",
+                "playbook": "slo-status"
             }),
         };
     }
@@ -491,7 +663,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: run.summary.clone(),
             text: None,
             provider_hint,
-            messages: response_messages_from_card(&adaptive_card, true),
+            messages: response_messages_from_card(&adaptive_card, true, false),
             rendered_card: None,
             adaptive_card: None,
             presentation: presentation_json,
@@ -530,7 +702,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: run.summary.clone(),
             text: None,
             provider_hint,
-            messages: response_messages_from_card(&adaptive_card, true),
+            messages: response_messages_from_card(&adaptive_card, true, false),
             rendered_card: None,
             adaptive_card: None,
             presentation: presentation_json,
@@ -582,7 +754,436 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             summary: run.summary.clone(),
             text: None,
             provider_hint,
-            messages: response_messages_from_card(&adaptive_card, true),
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:slo-status-form" {
+        let service = metadata
+            .get("service")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("mobile-data");
+        let environment = metadata
+            .get("environment")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("Production");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let run = run_slo_status(service, &resolvers);
+        let presentation = present_run(&run);
+        let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
+        let adaptive_card =
+            slo_status_analysis_card(service, environment, time_window, &presentation_json, &run.summary);
+        return PresentOutput {
+            scenario: "slo-status-form".to_string(),
+            playbook_id: run.playbook_id,
+            summary: run.summary.clone(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:bgp-advertisers-form" {
+        let prefix = metadata
+            .get("prefix")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("10.24.0.0/16");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let run = run_bgp_advertisers(prefix, &resolvers, &fixtures);
+        let presentation = present_run(&run);
+        let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
+        let adaptive_card = generic_analysis_card(
+            "BGP advertisers",
+            "The assistant prepared a BGP advertiser review for the selected prefix scope.",
+            vec![
+                ("Prefix", prefix.to_string()),
+                ("Time window", time_window.to_string()),
+            ],
+            vec![
+                ("Primary", "Routing control-plane snapshots".to_string()),
+                ("Signals", "Advertiser / next-hop / route-state".to_string()),
+                ("Dimensions", "Prefix / peer / route policy".to_string()),
+                ("Resolution", prefix_traffic_resolution_label(time_window).to_string()),
+            ],
+            &[
+                "✓ Loading current route advertisements for the selected prefix",
+                "✓ Grouping advertisers by peer and policy path",
+                "✓ Ranking dominant advertised paths",
+            ],
+            &presentation_json,
+            &run.summary,
+            "← Back to BGP parameters",
+            "menu:bgp-advertisers-parameters",
+            json!({ "prefix": prefix, "time_window": time_window }),
+        );
+        return PresentOutput {
+            scenario: "bgp-advertisers-form".to_string(),
+            playbook_id: run.playbook_id,
+            summary: run.summary.clone(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:top-source-asns-form" {
+        let prefix = metadata
+            .get("prefix")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("10.24.0.0/16");
+        let direction = metadata
+            .get("direction")
+            .and_then(Value::as_str)
+            .unwrap_or("Inbound");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let run = run_top_source_asns(Some(prefix), &resolvers, &fixtures);
+        let presentation = present_run(&run);
+        let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
+        let adaptive_card = generic_analysis_card(
+            "Top source ASNs",
+            "The assistant prepared an ASN attribution review for the selected traffic scope.",
+            vec![
+                ("Prefix", prefix.to_string()),
+                ("Direction", direction.to_string()),
+                ("Time window", time_window.to_string()),
+            ],
+            vec![
+                ("Primary", "Traffic engineering subsystem".to_string()),
+                ("Signals", "Source ASN / throughput / peer mix".to_string()),
+                ("Dimensions", "Prefix / ASN / direction".to_string()),
+                ("Resolution", prefix_traffic_resolution_label(time_window).to_string()),
+            ],
+            &[
+                "✓ Retrieving aggregated flow attribution by ASN",
+                "✓ Ranking source ASNs by contribution share",
+                "✓ Highlighting concentration and dominance patterns",
+            ],
+            &presentation_json,
+            &run.summary,
+            "← Back to ASN parameters",
+            "menu:top-source-asns-parameters",
+            json!({ "prefix": prefix, "direction": direction, "time_window": time_window }),
+        );
+        return PresentOutput {
+            scenario: "top-source-asns-form".to_string(),
+            playbook_id: run.playbook_id,
+            summary: run.summary.clone(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:free-ports-form" {
+        let device = metadata
+            .get("device")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("2201");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let run = run_free_ports(device, &resolvers, &fixtures);
+        let presentation = present_run(&run);
+        let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
+        let adaptive_card = generic_analysis_card(
+            "Free ACI ports",
+            "The assistant prepared an availability review for currently free ACI interfaces.",
+            vec![
+                ("Node / device", format!("ACI POD / NODE {device}")),
+                ("Time window", time_window.to_string()),
+            ],
+            vec![
+                ("Primary", "ACI fabric inventory and utilisation telemetry".to_string()),
+                ("Signals", "Link-state / free capacity / recent usage".to_string()),
+                ("Dimensions", "Node / port / interface".to_string()),
+                ("Resolution", prefix_traffic_resolution_label(time_window).to_string()),
+            ],
+            &[
+                "✓ Loading port inventory for the selected node",
+                "✓ Filtering interfaces with spare capacity",
+                "✓ Ranking the best candidate ports for reassignment",
+            ],
+            &presentation_json,
+            &run.summary,
+            "← Back to free port parameters",
+            "menu:free-ports-parameters",
+            json!({ "device": device, "time_window": time_window }),
+        );
+        return PresentOutput {
+            scenario: "free-ports-form".to_string(),
+            playbook_id: run.playbook_id,
+            summary: run.summary.clone(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:noisy-neighbour-form" {
+        let scope = metadata
+            .get("scope")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("riyadh-core");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let run = run_noisy_neighbour(scope, &resolvers, &fixtures);
+        let presentation = present_run(&run);
+        let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
+        let adaptive_card = generic_analysis_card(
+            "Noisy neighbour",
+            "The assistant prepared a noisy-neighbour review for the selected scope.",
+            vec![
+                ("Scope", scope.to_string()),
+                ("Time window", time_window.to_string()),
+            ],
+            vec![
+                ("Primary", "Virtualisation telemetry and contention signals".to_string()),
+                ("Signals", "CPU pressure / host imbalance / tenant contention".to_string()),
+                ("Dimensions", "Scope / host / VM".to_string()),
+                ("Resolution", prefix_traffic_resolution_label(time_window).to_string()),
+            ],
+            &[
+                "✓ Loading host and guest contention indicators",
+                "✓ Correlating spikes with local tenant density",
+                "✓ Ranking likely noisy-neighbour candidates",
+            ],
+            &presentation_json,
+            &run.summary,
+            "← Back to noisy neighbour parameters",
+            "menu:noisy-neighbour-parameters",
+            json!({ "scope": scope, "time_window": time_window }),
+        );
+        return PresentOutput {
+            scenario: "noisy-neighbour-form".to_string(),
+            playbook_id: run.playbook_id,
+            summary: run.summary.clone(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:scope-health-sweep-form" {
+        let scope = metadata
+            .get("scope")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("riyadh-core");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let run = run_scope_health_sweep(scope, &resolvers, &fixtures);
+        let presentation = present_run(&run);
+        let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
+        let adaptive_card = generic_analysis_card(
+            "Scope health sweep",
+            "The assistant prepared a broad health review for the selected operational scope.",
+            vec![
+                ("Scope", scope.to_string()),
+                ("Time window", time_window.to_string()),
+            ],
+            vec![
+                ("Primary", "Cross-domain health summary".to_string()),
+                ("Signals", "Service / infra / network state".to_string()),
+                ("Dimensions", "Scope / domain / severity".to_string()),
+                ("Resolution", prefix_traffic_resolution_label(time_window).to_string()),
+            ],
+            &[
+                "✓ Gathering service, infra, and network signals",
+                "✓ Grouping observations by domain and severity",
+                "✓ Producing a consolidated sweep summary",
+            ],
+            &presentation_json,
+            &run.summary,
+            "← Back to scope health parameters",
+            "menu:scope-health-sweep-parameters",
+            json!({ "scope": scope, "time_window": time_window }),
+        );
+        return PresentOutput {
+            scenario: "scope-health-sweep-form".to_string(),
+            playbook_id: run.playbook_id,
+            summary: run.summary.clone(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:change-correlation-form" {
+        let service = metadata
+            .get("service")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("mobile-data");
+        let source_system = metadata
+            .get("source_system")
+            .and_then(Value::as_str)
+            .unwrap_or("Change registry");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let run = run_change_correlation(service, &resolvers, &fixtures);
+        let presentation = present_run(&run);
+        let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
+        let adaptive_card = generic_analysis_card(
+            "Recent change correlation",
+            "The assistant prepared a change-correlation review for the selected service scope.",
+            vec![
+                ("Service", service.to_string()),
+                ("Source system", source_system.to_string()),
+                ("Time window", time_window.to_string()),
+            ],
+            vec![
+                ("Primary", source_system.to_string()),
+                ("Signals", "Change events / time anchors / affected scope".to_string()),
+                ("Dimensions", "Service / change / correlation window".to_string()),
+                ("Resolution", "Event-level timestamps".to_string()),
+            ],
+            &[
+                "✓ Loading recent approved and deployed changes",
+                "✓ Correlating change timestamps with symptom windows",
+                "✓ Ranking likely contributing changes",
+            ],
+            &presentation_json,
+            &run.summary,
+            "← Back to change parameters",
+            "menu:change-correlation-parameters",
+            json!({ "service": service, "source_system": source_system, "time_window": time_window }),
+        );
+        return PresentOutput {
+            scenario: "change-correlation-form".to_string(),
+            playbook_id: run.playbook_id,
+            summary: run.summary.clone(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
+            rendered_card: None,
+            adaptive_card: None,
+            presentation: presentation_json,
+        };
+    }
+
+    if route == "run:service-degradation-form" {
+        let service = metadata
+            .get("service")
+            .and_then(Value::as_str)
+            .map(str::trim)
+            .filter(|value| !value.is_empty())
+            .unwrap_or("mobile-data");
+        let cluster = metadata
+            .get("cluster")
+            .and_then(Value::as_str)
+            .unwrap_or("default");
+        let time_window = metadata
+            .get("time_window")
+            .and_then(Value::as_str)
+            .unwrap_or("Last 24 hours");
+        let change = present_run(&run_change_correlation(service, &resolvers, &fixtures));
+        let vm_rca = present_run(&run_vm_rca(
+            service,
+            if cluster.eq_ignore_ascii_case("default") {
+                None
+            } else {
+                Some(cluster)
+            },
+            &resolvers,
+            &fixtures,
+        ));
+        let port = present_run(&run_port_utilisation(
+            "2201",
+            &resolvers,
+            &fixtures,
+            default_port_utilisation_threshold_percent(),
+        ));
+        let presentation_json = composed_triage_presentation(&change, &vm_rca, &port);
+        let adaptive_card = generic_analysis_card(
+            "Investigate service degradation",
+            "The assistant prepared a combined degradation triage for the selected service.",
+            vec![
+                ("Service", service.to_string()),
+                ("Cluster", cluster.to_string()),
+                ("Time window", time_window.to_string()),
+            ],
+            vec![
+                ("Primary", "Combined RCA, change, and network evidence".to_string()),
+                ("Signals", "Changes / VM RCA / network saturation".to_string()),
+                ("Dimensions", "Service / cluster / symptom window".to_string()),
+                ("Resolution", prefix_traffic_resolution_label(time_window).to_string()),
+            ],
+            &[
+                "✓ Gathering recent changes for the selected service",
+                "✓ Correlating VM and host evidence in the same window",
+                "✓ Combining network and infrastructure findings into a triage view",
+            ],
+            &presentation_json,
+            presentation_json
+                .get("summary")
+                .and_then(Value::as_str)
+                .unwrap_or("Combined triage summary prepared."),
+            "← Back to degradation parameters",
+            "menu:service-degradation-parameters",
+            json!({ "service": service, "cluster": cluster, "time_window": time_window }),
+        );
+        return PresentOutput {
+            scenario: "service-degradation-form".to_string(),
+            playbook_id: "tx.playbook.service_degradation_triage".to_string(),
+            summary: presentation_json
+                .get("summary")
+                .and_then(Value::as_str)
+                .unwrap_or("Combined triage summary prepared.")
+                .to_string(),
+            text: None,
+            provider_hint,
+            messages: response_messages_from_card(&adaptive_card, true, false),
             rendered_card: None,
             adaptive_card: None,
             presentation: presentation_json,
@@ -599,11 +1200,11 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             scenario: scenario.to_string(),
             playbook_id: run.playbook_id,
             summary: run.summary.clone(),
-            text: Some(run.summary.clone()),
+            text: None,
             provider_hint,
-            messages: response_messages_from_card(&adaptive_card, false),
-            rendered_card: Some(adaptive_card.clone()),
-            adaptive_card: Some(adaptive_card),
+            messages: response_messages_from_card(&adaptive_card, true, true),
+            rendered_card: None,
+            adaptive_card: None,
             presentation: presentation_json,
         };
     }
@@ -626,11 +1227,11 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             scenario: "service-degradation-triage".to_string(),
             playbook_id,
             summary: summary.clone(),
-            text: Some(summary),
+            text: None,
             provider_hint,
-            messages: response_messages_from_card(&adaptive_card, false),
-            rendered_card: Some(adaptive_card.clone()),
-            adaptive_card: Some(adaptive_card),
+            messages: response_messages_from_card(&adaptive_card, true, true),
+            rendered_card: None,
+            adaptive_card: None,
             presentation: presentation_json,
         };
     }
@@ -645,11 +1246,11 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
         scenario: scenario.to_string(),
         playbook_id: run.playbook_id,
         summary: run.summary.clone(),
-        text: Some(run.summary.clone()),
+        text: None,
         provider_hint,
-        messages: response_messages_from_card(&adaptive_card, false),
-        rendered_card: Some(adaptive_card.clone()),
-        adaptive_card: Some(adaptive_card),
+        messages: response_messages_from_card(&adaptive_card, true, true),
+        rendered_card: None,
+        adaptive_card: None,
         presentation: presentation_json,
     }
 }
@@ -665,7 +1266,11 @@ fn normalized_metadata_object(metadata: Option<&Value>) -> Value {
     }
 }
 
-fn response_messages_from_card(card: &Value, split_sections: bool) -> Value {
+fn response_messages_from_card(
+    card: &Value,
+    split_sections: bool,
+    add_main_menu_per_section: bool,
+) -> Value {
     if !split_sections {
         return json!([
             {
@@ -694,6 +1299,11 @@ fn response_messages_from_card(card: &Value, split_sections: bool) -> Value {
         if !section.is_object() {
             continue;
         }
+        let section = if add_main_menu_per_section {
+            attach_main_menu_to_section(&section)
+        } else {
+            section
+        };
         messages.push(json!({
             "type": "adaptive_card",
             "card": {
@@ -715,6 +1325,52 @@ fn response_messages_from_card(card: &Value, split_sections: bool) -> Value {
     } else {
         Value::Array(messages)
     }
+}
+
+fn attach_main_menu_to_section(section: &Value) -> Value {
+    let Some(section_obj) = section.as_object() else {
+        return section.clone();
+    };
+
+    let has_existing_main_menu = section_obj
+        .get("items")
+        .and_then(Value::as_array)
+        .is_some_and(|items| {
+            items.iter().any(|item| {
+                item.get("type").and_then(Value::as_str) == Some("ActionSet")
+                    && item
+                        .get("actions")
+                        .and_then(Value::as_array)
+                        .is_some_and(|actions| {
+                            actions.iter().any(|action| {
+                                action.get("style").and_then(Value::as_str) == Some("destructive")
+                                    && action.get("title").and_then(Value::as_str)
+                                        == Some("← Menu")
+                            })
+                        })
+            })
+        });
+    if has_existing_main_menu {
+        return section.clone();
+    }
+
+    if let Some(items) = section_obj.get("items").and_then(Value::as_array) {
+        let mut updated = section_obj.clone();
+        let mut new_items = items.clone();
+        new_items.push(main_menu_action_set());
+        updated.insert("items".to_string(), Value::Array(new_items));
+        return Value::Object(updated);
+    }
+
+    json!({
+        "type": "Container",
+        "spacing": "Medium",
+        "style": "emphasis",
+        "items": [
+            section,
+            main_menu_action_set()
+        ]
+    })
 }
 
 fn welcome_card() -> Value {
@@ -874,8 +1530,8 @@ fn network_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "🛰️ BGP advertisers",
                         "data": {
-                            "text": "show bgp advertisers",
-                            "step": "show bgp advertisers"
+                            "text": "menu:bgp-advertisers-parameters",
+                            "step": "menu:bgp-advertisers-parameters"
                         }
                     }
                 ]
@@ -888,8 +1544,8 @@ fn network_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "🌐 Top source ASNs",
                         "data": {
-                            "text": "show top source asns",
-                            "step": "show top source asns"
+                            "text": "menu:top-source-asns-parameters",
+                            "step": "menu:top-source-asns-parameters"
                         }
                     }
                 ]
@@ -952,8 +1608,8 @@ fn capacity_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "🟢 Free ACI ports",
                         "data": {
-                            "text": "show free aci ports",
-                            "step": "show free aci ports"
+                            "text": "menu:free-ports-parameters",
+                            "step": "menu:free-ports-parameters"
                         }
                     }
                 ]
@@ -966,8 +1622,8 @@ fn capacity_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "🫧 Noisy neighbour",
                         "data": {
-                            "text": "show noisy neighbour",
-                            "step": "show noisy neighbour"
+                            "text": "menu:noisy-neighbour-parameters",
+                            "step": "menu:noisy-neighbour-parameters"
                         }
                     }
                 ]
@@ -980,8 +1636,8 @@ fn capacity_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "🩺 Scope health sweep",
                         "data": {
-                            "text": "run scope health sweep",
-                            "step": "run scope health sweep"
+                            "text": "menu:scope-health-sweep-parameters",
+                            "step": "menu:scope-health-sweep-parameters"
                         }
                     }
                 ]
@@ -1030,8 +1686,8 @@ fn service_assurance_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "📏 SLO status",
                         "data": {
-                            "text": "show slo status",
-                            "step": "show slo status"
+                            "text": "menu:slo-status-parameters",
+                            "step": "menu:slo-status-parameters"
                         }
                     }
                 ]
@@ -1080,8 +1736,8 @@ fn performance_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "🧩 Investigate service degradation",
                         "data": {
-                            "text": "investigate service degradation",
-                            "step": "investigate service degradation"
+                            "text": "menu:service-degradation-parameters",
+                            "step": "menu:service-degradation-parameters"
                         }
                     }
                 ]
@@ -1094,8 +1750,8 @@ fn performance_menu_card() -> Value {
                         "type": "Action.Submit",
                         "title": "🔄 Recent change correlation",
                         "data": {
-                            "text": "show recent change correlation",
-                            "step": "show recent change correlation"
+                            "text": "menu:change-correlation-parameters",
+                            "step": "menu:change-correlation-parameters"
                         }
                     }
                 ]
@@ -1471,6 +2127,325 @@ fn prefix_traffic_parameters_card() -> Value {
     })
 }
 
+fn slo_status_parameters_card() -> Value {
+    json!({
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.6",
+        "body": [
+            {
+                "type": "TextBlock",
+                "size": "Large",
+                "weight": "Bolder",
+                "text": "SLO status"
+            },
+            {
+                "type": "TextBlock",
+                "wrap": true,
+                "spacing": "Small",
+                "text": "Choose the service scope before evaluating current SLO compliance."
+            },
+            {
+                "type": "Input.Text",
+                "id": "service",
+                "label": "Service",
+                "value": "mobile-data",
+                "placeholder": "mobile-data"
+            },
+            {
+                "type": "Input.ChoiceSet",
+                "id": "environment",
+                "label": "Environment",
+                "style": "compact",
+                "value": "Production",
+                "choices": [
+                    { "title": "Production", "value": "Production" },
+                    { "title": "Staging", "value": "Staging" },
+                    { "title": "Pre-production", "value": "Pre-production" }
+                ]
+            },
+            {
+                "type": "Input.ChoiceSet",
+                "id": "time_window",
+                "label": "Time window",
+                "style": "compact",
+                "value": "Last 24 hours",
+                "choices": [
+                    { "title": "Last hour", "value": "Last hour" },
+                    { "title": "Last 24 hours", "value": "Last 24 hours" },
+                    { "title": "Last 7 days", "value": "Last 7 days" }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": "Start analysis",
+                "data": {
+                    "text": "run:slo-status-form",
+                    "step": "run:slo-status-form"
+                }
+            },
+            {
+                "type": "Action.Submit",
+                "title": "← Back to Service Assurance",
+                "data": {
+                    "text": "menu:service-assurance",
+                    "step": "menu:service-assurance"
+                }
+            }
+        ]
+    })
+}
+
+fn bgp_advertisers_parameters_card() -> Value {
+    simple_parameters_card(
+        "BGP advertisers",
+        "Choose the prefix scope before reviewing active BGP advertisers.",
+        vec![
+            input_text("prefix", "Prefix", "10.24.0.0/16", "10.24.0.0/16"),
+            input_choice_set(
+                "time_window",
+                "Time window",
+                "Last 24 hours",
+                &[("Last hour", "Last hour"), ("Last 24 hours", "Last 24 hours"), ("Last 7 days", "Last 7 days")],
+            ),
+        ],
+        "Start analysis",
+        "run:bgp-advertisers-form",
+        "← Back to Network Traffic & Routing",
+        "menu:network-traffic-routing",
+    )
+}
+
+fn top_source_asns_parameters_card() -> Value {
+    simple_parameters_card(
+        "Top source ASNs",
+        "Define the traffic scope before ranking the top contributing source ASNs.",
+        vec![
+            input_text("prefix", "Prefix", "10.24.0.0/16", "10.24.0.0/16"),
+            input_choice_set(
+                "direction",
+                "Direction",
+                "Inbound",
+                &[("Inbound", "Inbound"), ("Outbound", "Outbound"), ("Bidirectional", "Bidirectional")],
+            ),
+            input_choice_set(
+                "time_window",
+                "Time window",
+                "Last 24 hours",
+                &[("Last hour", "Last hour"), ("Last 24 hours", "Last 24 hours"), ("Last 7 days", "Last 7 days")],
+            ),
+        ],
+        "Start analysis",
+        "run:top-source-asns-form",
+        "← Back to Network Traffic & Routing",
+        "menu:network-traffic-routing",
+    )
+}
+
+fn free_ports_parameters_card() -> Value {
+    simple_parameters_card(
+        "Free ACI ports",
+        "Choose the ACI node before reviewing currently available interfaces.",
+        vec![
+            input_choice_set(
+                "device",
+                "Node / device",
+                "2201",
+                &[("ACI POD1 NODE2201", "2201"), ("ACI POD1 NODE2202", "2202"), ("ACI POD2 NODE3101", "3101")],
+            ),
+            input_choice_set(
+                "time_window",
+                "Time window",
+                "Last 24 hours",
+                &[("Last hour", "Last hour"), ("Last 24 hours", "Last 24 hours"), ("Last 7 days", "Last 7 days")],
+            ),
+        ],
+        "Start analysis",
+        "run:free-ports-form",
+        "← Back to Capacity & Port Management",
+        "menu:capacity-port-management",
+    )
+}
+
+fn noisy_neighbour_parameters_card() -> Value {
+    simple_parameters_card(
+        "Noisy neighbour",
+        "Define the scope before checking for localised contention and neighbour impact.",
+        vec![
+            input_choice_set(
+                "scope",
+                "Scope",
+                "riyadh-core",
+                &[("Riyadh core", "riyadh-core"), ("Dubai core", "dubai-core"), ("Default cluster", "default")],
+            ),
+            input_choice_set(
+                "time_window",
+                "Time window",
+                "Last 24 hours",
+                &[("Last hour", "Last hour"), ("Last 24 hours", "Last 24 hours"), ("Last 7 days", "Last 7 days")],
+            ),
+        ],
+        "Start analysis",
+        "run:noisy-neighbour-form",
+        "← Back to Capacity & Port Management",
+        "menu:capacity-port-management",
+    )
+}
+
+fn scope_health_sweep_parameters_card() -> Value {
+    simple_parameters_card(
+        "Scope health sweep",
+        "Choose the operational scope before running a broad health sweep.",
+        vec![
+            input_choice_set(
+                "scope",
+                "Scope",
+                "riyadh-core",
+                &[("Riyadh core", "riyadh-core"), ("Dubai core", "dubai-core"), ("Default cluster", "default")],
+            ),
+            input_choice_set(
+                "time_window",
+                "Time window",
+                "Last 24 hours",
+                &[("Last hour", "Last hour"), ("Last 24 hours", "Last 24 hours"), ("Last 7 days", "Last 7 days")],
+            ),
+        ],
+        "Start analysis",
+        "run:scope-health-sweep-form",
+        "← Back to Capacity & Port Management",
+        "menu:capacity-port-management",
+    )
+}
+
+fn change_correlation_parameters_card() -> Value {
+    simple_parameters_card(
+        "Recent change correlation",
+        "Define the change review scope before correlating recent modifications with symptoms.",
+        vec![
+            input_text("service", "Service", "mobile-data", "mobile-data"),
+            input_choice_set(
+                "source_system",
+                "Source system",
+                "Change registry",
+                &[("Change registry", "Change registry"), ("Jira change tickets", "Jira change tickets"), ("GitOps deploy history", "GitOps deploy history")],
+            ),
+            input_choice_set(
+                "time_window",
+                "Time window",
+                "Last 24 hours",
+                &[("Last hour", "Last hour"), ("Last 24 hours", "Last 24 hours"), ("Last 7 days", "Last 7 days")],
+            ),
+        ],
+        "Start analysis",
+        "run:change-correlation-form",
+        "← Back to Performance & Root Cause",
+        "menu:performance-root-cause",
+    )
+}
+
+fn service_degradation_parameters_card() -> Value {
+    simple_parameters_card(
+        "Investigate service degradation",
+        "Choose the service scope before launching a combined degradation triage.",
+        vec![
+            input_text("service", "Service", "mobile-data", "mobile-data"),
+            input_choice_set(
+                "cluster",
+                "Cluster",
+                "default",
+                &[("Default cluster", "default"), ("Core Riyadh", "riyadh-core"), ("Core Dubai", "dubai-core")],
+            ),
+            input_choice_set(
+                "time_window",
+                "Time window",
+                "Last 24 hours",
+                &[("Last hour", "Last hour"), ("Last 24 hours", "Last 24 hours"), ("Last 7 days", "Last 7 days")],
+            ),
+        ],
+        "Start analysis",
+        "run:service-degradation-form",
+        "← Back to Performance & Root Cause",
+        "menu:performance-root-cause",
+    )
+}
+
+fn simple_parameters_card(
+    title: &str,
+    subtitle: &str,
+    inputs: Vec<Value>,
+    run_title: &str,
+    run_step: &str,
+    back_title: &str,
+    back_step: &str,
+) -> Value {
+    let mut body = vec![
+        json!({
+            "type": "TextBlock",
+            "size": "Large",
+            "weight": "Bolder",
+            "text": title
+        }),
+        json!({
+            "type": "TextBlock",
+            "wrap": true,
+            "spacing": "Small",
+            "text": subtitle
+        }),
+    ];
+    body.extend(inputs);
+    json!({
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.6",
+        "body": body,
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": run_title,
+                "data": {
+                    "text": run_step,
+                    "step": run_step
+                }
+            },
+            {
+                "type": "Action.Submit",
+                "title": back_title,
+                "data": {
+                    "text": back_step,
+                    "step": back_step
+                }
+            }
+        ]
+    })
+}
+
+fn input_text(id: &str, label: &str, value: &str, placeholder: &str) -> Value {
+    json!({
+        "type": "Input.Text",
+        "id": id,
+        "label": label,
+        "value": value,
+        "placeholder": placeholder
+    })
+}
+
+fn input_choice_set(id: &str, label: &str, value: &str, choices: &[(&str, &str)]) -> Value {
+    let choices: Vec<Value> = choices
+        .iter()
+        .map(|(title, value)| json!({ "title": title, "value": value }))
+        .collect();
+    json!({
+        "type": "Input.ChoiceSet",
+        "id": id,
+        "label": label,
+        "style": "compact",
+        "value": value,
+        "choices": choices
+    })
+}
+
 fn vm_rca_parameters_card() -> Value {
     json!({
         "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -1755,6 +2730,162 @@ fn vm_rca_analysis_card(
                     "service": service,
                     "cluster": cluster,
                     "symptom": symptom,
+                    "time_window": time_window
+                }
+            }
+        ]
+    })
+}
+
+fn slo_status_analysis_card(
+    service: &str,
+    environment: &str,
+    time_window: &str,
+    presentation_json: &Value,
+    summary: &str,
+) -> Value {
+    let service_label = match service {
+        "mobile-data" => "svc-mobile-data-core",
+        "internet" => "svc-internet-edge",
+        other => other,
+    };
+
+    let severity = presentation_json
+        .get("severity")
+        .and_then(Value::as_str)
+        .unwrap_or("warning");
+
+    let target = match environment {
+        "Staging" => "99.50%",
+        "Pre-production" => "99.70%",
+        _ => "99.95%",
+    };
+    let current = match time_window {
+        "Last hour" => "99.34%",
+        "Last 7 days" => "99.41%",
+        _ => "99.40%",
+    };
+    let error_budget = match time_window {
+        "Last hour" => "4.2 minutes",
+        "Last 7 days" => "53 minutes",
+        _ => "11 minutes",
+    };
+
+    json!({
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.6",
+        "body": [
+            {
+                "type": "Container",
+                "style": "emphasis",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Query Understanding" },
+                    {
+                        "type": "TextBlock",
+                        "wrap": true,
+                        "spacing": "Small",
+                        "text": "The assistant prepared an SLO compliance review for the selected service scope."
+                    },
+                    {
+                        "type": "FactSet",
+                        "facts": [
+                            { "title": "Service", "value": service_label },
+                            { "title": "Environment", "value": environment },
+                            { "title": "Time window", "value": time_window }
+                        ]
+                    },
+                    main_menu_action_set()
+                ]
+            },
+            {
+                "type": "Container",
+                "spacing": "Medium",
+                "style": "emphasis",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Data Sources" },
+                    {
+                        "type": "FactSet",
+                        "facts": [
+                            { "title": "Primary", "value": "Service SLO registry" },
+                            { "title": "Signals", "value": "Availability / latency objective / error budget" },
+                            { "title": "Dimensions", "value": "Service / environment / time window" },
+                            { "title": "Resolution", "value": "5-minute SLI checkpoints" }
+                        ]
+                    },
+                    main_menu_action_set()
+                ]
+            },
+            {
+                "type": "Container",
+                "spacing": "Medium",
+                "style": "emphasis",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Data Retrieval" },
+                    { "type": "TextBlock", "wrap": true, "spacing": "Small", "text": "✓ Loading current SLO objective and service ownership" },
+                    { "type": "TextBlock", "wrap": true, "spacing": "Small", "text": "✓ Calculating achieved SLI for the requested time window" },
+                    { "type": "TextBlock", "wrap": true, "spacing": "Small", "text": "✓ Estimating remaining error budget and breach severity" },
+                    main_menu_action_set()
+                ]
+            },
+            {
+                "type": "Container",
+                "spacing": "Medium",
+                "style": "emphasis",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Findings" },
+                    {
+                        "type": "TextBlock",
+                        "wrap": true,
+                        "spacing": "Small",
+                        "text": &format!("SLO compliance for {} — {} — {}", service_label, environment, time_window)
+                    },
+                    {
+                        "type": "FactSet",
+                        "facts": [
+                            { "title": "Current SLI", "value": current },
+                            { "title": "Target", "value": target },
+                            { "title": "Severity", "value": severity },
+                            { "title": "Error budget left", "value": error_budget }
+                        ]
+                    },
+                    main_menu_action_set()
+                ]
+            },
+            {
+                "type": "Container",
+                "spacing": "Medium",
+                "style": "emphasis",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Summary" },
+                    {
+                        "type": "TextBlock",
+                        "wrap": true,
+                        "spacing": "Small",
+                        "text": summary
+                    },
+                    {
+                        "type": "FactSet",
+                        "facts": [
+                            { "title": "Service", "value": service_label },
+                            { "title": "Environment", "value": environment },
+                            { "title": "Current SLI", "value": current },
+                            { "title": "Target", "value": target }
+                        ]
+                    },
+                    main_menu_action_set()
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": "← Back to SLO parameters",
+                "data": {
+                    "text": "menu:slo-status-parameters",
+                    "step": "menu:slo-status-parameters",
+                    "service": service,
+                    "environment": environment,
                     "time_window": time_window
                 }
             }
@@ -2056,6 +3187,217 @@ fn prefix_traffic_analysis_card(
     })
 }
 
+fn generic_analysis_card(
+    _title: &str,
+    intro_text: &str,
+    query_facts: Vec<(&str, String)>,
+    source_facts: Vec<(&str, String)>,
+    retrieval_steps: &[&str],
+    presentation: &Value,
+    summary: &str,
+    back_title: &str,
+    back_step: &str,
+    back_metadata: Value,
+) -> Value {
+    let query_facts: Vec<Value> = query_facts
+        .into_iter()
+        .map(|(title, value)| json!({ "title": title, "value": value }))
+        .collect();
+    let source_facts: Vec<Value> = source_facts
+        .into_iter()
+        .map(|(title, value)| json!({ "title": title, "value": value }))
+        .collect();
+    let retrieval_items: Vec<Value> = retrieval_steps
+        .iter()
+        .map(|step| {
+            json!({
+                "type": "TextBlock",
+                "wrap": true,
+                "spacing": "Small",
+                "text": step
+            })
+        })
+        .collect();
+    let mut retrieval_items = retrieval_items;
+    retrieval_items.push(main_menu_action_set());
+
+    let findings_items = presentation_section_items(presentation, summary);
+    let summary_facts = summary_fact_set(presentation);
+
+    let mut back_data = json!({
+        "text": back_step,
+        "step": back_step
+    });
+    if let Some(existing) = back_data.as_object_mut()
+        && let Some(metadata) = back_metadata.as_object()
+    {
+        for (key, value) in metadata {
+            existing.insert(key.clone(), value.clone());
+        }
+    }
+
+    json!({
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.6",
+        "body": [
+            {
+                "type": "Container",
+                "style": "emphasis",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Query Understanding" },
+                    { "type": "TextBlock", "wrap": true, "spacing": "Small", "text": intro_text },
+                    { "type": "FactSet", "facts": query_facts },
+                    main_menu_action_set()
+                ]
+            },
+            {
+                "type": "Container",
+                "style": "emphasis",
+                "spacing": "Medium",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Data Sources" },
+                    { "type": "FactSet", "facts": source_facts },
+                    main_menu_action_set()
+                ]
+            },
+            {
+                "type": "Container",
+                "style": "emphasis",
+                "spacing": "Medium",
+                "items": retrieval_items
+            },
+            {
+                "type": "Container",
+                "style": "emphasis",
+                "spacing": "Medium",
+                "items": findings_items
+            },
+            {
+                "type": "Container",
+                "style": "emphasis",
+                "spacing": "Medium",
+                "items": [
+                    { "type": "TextBlock", "weight": "Bolder", "text": "Summary" },
+                    { "type": "TextBlock", "wrap": true, "spacing": "Small", "text": summary },
+                    { "type": "FactSet", "facts": summary_facts },
+                    main_menu_action_set()
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": back_title,
+                "data": back_data
+            }
+        ]
+    })
+}
+
+fn presentation_section_items(presentation: &Value, fallback_summary: &str) -> Vec<Value> {
+    let sections = presentation["sections"].as_array().cloned().unwrap_or_default();
+    let mut items = vec![
+        json!({ "type": "TextBlock", "weight": "Bolder", "text": "Findings" }),
+    ];
+    if sections.is_empty() {
+        items.push(json!({
+            "type": "TextBlock",
+            "wrap": true,
+            "spacing": "Small",
+            "text": fallback_summary
+        }));
+        items.push(main_menu_action_set());
+        return items;
+    }
+
+    for section in sections.into_iter().take(3) {
+        let title = section["title"].as_str().unwrap_or("Analysis section");
+        let mut lines = Vec::new();
+        if let Some(items_array) = section["items"].as_array() {
+            for item in items_array.iter().take(4) {
+                let label = item["label"].as_str().unwrap_or_default();
+                let value = item["value"]
+                    .as_str()
+                    .map(ToString::to_string)
+                    .or_else(|| item["value"].as_f64().map(|value| format!("{value:.2}")))
+                    .or_else(|| item["value"].as_u64().map(|value| value.to_string()))
+                    .unwrap_or_default();
+                if !value.is_empty() {
+                    lines.push(if label.is_empty() {
+                        value
+                    } else {
+                        format!("{label}: {value}")
+                    });
+                }
+            }
+        }
+        if let Some(rows) = section["rows"].as_array() {
+            for row in rows.iter().take(3) {
+                if let Some(row_obj) = row.as_object() {
+                    let row_text = row_obj
+                        .iter()
+                        .take(4)
+                        .map(|(key, value)| {
+                            let rendered = value
+                                .as_str()
+                                .map(ToString::to_string)
+                                .or_else(|| value.as_f64().map(|v| format!("{v:.2}")))
+                                .or_else(|| value.as_u64().map(|v| v.to_string()))
+                                .unwrap_or_else(|| value.to_string());
+                            format!("{key}: {rendered}")
+                        })
+                        .collect::<Vec<_>>()
+                        .join(" | ");
+                    if !row_text.is_empty() {
+                        lines.push(row_text);
+                    }
+                }
+            }
+        }
+
+        items.push(json!({
+            "type": "TextBlock",
+            "wrap": true,
+            "spacing": "Small",
+            "text": if lines.is_empty() {
+                title.to_string()
+            } else {
+                format!("{title}\n{}", lines.join("\n"))
+            }
+        }));
+    }
+
+    items.push(main_menu_action_set());
+    items
+}
+
+fn summary_fact_set(presentation: &Value) -> Vec<Value> {
+    let mut facts = Vec::new();
+    if let Some(items) = presentation["sections"]
+        .as_array()
+        .and_then(|sections| sections.first())
+        .and_then(|section| section["items"].as_array())
+    {
+        for item in items.iter().take(4) {
+            let title = item["label"].as_str().unwrap_or_default();
+            let value = item["value"]
+                .as_str()
+                .map(ToString::to_string)
+                .or_else(|| item["value"].as_f64().map(|value| format!("{value:.2}")))
+                .or_else(|| item["value"].as_u64().map(|value| value.to_string()))
+                .unwrap_or_default();
+            if !title.is_empty() && !value.is_empty() {
+                facts.push(json!({ "title": title, "value": value }));
+            }
+        }
+    }
+    if facts.is_empty() {
+        facts.push(json!({ "title": "Status", "value": "Review prepared" }));
+    }
+    facts
+}
+
 fn main_menu_action_set() -> Value {
     json!({
         "type": "ActionSet",
@@ -2063,7 +3405,7 @@ fn main_menu_action_set() -> Value {
         "actions": [
             {
                 "type": "Action.Submit",
-                "title": "Back to main menu",
+                "title": "← Menu",
                 "style": "destructive",
                 "data": {
                     "text": "",
@@ -2344,7 +3686,9 @@ mod tests {
         let output = execute_present(&input);
         assert_eq!(output.scenario, "port-utilisation");
         assert_eq!(output.playbook_id, "tx.playbook.port_utilisation");
-        assert!(output.adaptive_card.as_ref().is_some_and(Value::is_object));
+        assert!(output.adaptive_card.is_none());
+        assert!(output.rendered_card.is_none());
+        assert!(output.messages.as_array().is_some_and(|messages| !messages.is_empty()));
     }
 
     #[test]
@@ -2356,8 +3700,8 @@ mod tests {
             source_provider: None,
         };
         let output = execute_present(&input);
-        assert_eq!(output.scenario, "change-correlation");
-        assert_eq!(output.playbook_id, "tx.playbook.change_correlation");
+        assert_eq!(output.scenario, "menu-change-correlation-parameters");
+        assert_eq!(output.playbook_id, "tx.menu.change_correlation_parameters");
     }
 
     #[test]
@@ -2417,14 +3761,8 @@ mod tests {
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
-        assert_eq!(output.scenario, "service-degradation-triage");
-        assert_eq!(output.playbook_id, "tx.playbook.service_degradation_triage");
-        assert!(output.summary.contains("Likely root cause chain"));
-        assert_eq!(output.presentation["sections"][0]["section_id"], "triage_summary");
-        assert_eq!(
-            output.presentation["sections"][1]["title"],
-            "Recent changes: Change timeline"
-        );
+        assert_eq!(output.scenario, "menu-service-degradation-parameters");
+        assert_eq!(output.playbook_id, "tx.menu.service_degradation_parameters");
     }
 
     #[test]
@@ -2439,7 +3777,10 @@ mod tests {
         let card = output.rendered_card.as_ref().expect("capacity menu card");
         assert_eq!(output.scenario, "menu-capacity-port-management");
         assert_eq!(card["body"][0]["text"], "Capacity & Port Management");
-        assert_eq!(card["body"][3]["actions"][0]["data"]["step"], "show free aci ports");
+        assert_eq!(
+            card["body"][3]["actions"][0]["data"]["step"],
+            "menu:free-ports-parameters"
+        );
     }
 
     #[test]
@@ -2464,8 +3805,53 @@ mod tests {
             source_provider: None,
         };
         let output = execute_present(&input);
-        assert_eq!(output.scenario, "slo-status");
+        assert_eq!(output.scenario, "menu-slo-status-parameters");
+        assert_eq!(output.playbook_id, "tx.menu.slo_status_parameters");
+    }
+
+    #[test]
+    fn slo_status_button_opens_parameter_menu() {
+        let input = PresentInput {
+            query: Some(String::new()),
+            step: Some("menu:slo-status-parameters".to_string()),
+            metadata: None,
+            source_provider: Some("webchat".to_string()),
+        };
+        let output = execute_present(&input);
+        let card = output.rendered_card.as_ref().expect("slo parameters card");
+        assert_eq!(output.scenario, "menu-slo-status-parameters");
+        assert_eq!(card["body"][0]["text"], "SLO status");
+        assert_eq!(card["body"][2]["id"], "service");
+    }
+
+    #[test]
+    fn slo_status_form_uses_selected_metadata() {
+        let input = PresentInput {
+            query: Some(String::new()),
+            step: Some("run:slo-status-form".to_string()),
+            metadata: Some(json!({
+                "service": "internet",
+                "environment": "Staging",
+                "time_window": "Last 7 days"
+            })),
+            source_provider: Some("webchat".to_string()),
+        };
+        let output = execute_present(&input);
+        assert_eq!(output.scenario, "slo-status-form");
         assert_eq!(output.playbook_id, "tx.playbook.slo_status");
+        assert!(output.rendered_card.is_none());
+        assert_eq!(
+            output.messages[0]["card"]["body"][0]["items"][2]["facts"][0]["value"],
+            "svc-internet-edge"
+        );
+        assert_eq!(
+            output.messages[0]["card"]["body"][0]["items"][2]["facts"][1]["value"],
+            "Staging"
+        );
+        assert_eq!(
+            output.messages[3]["card"]["body"][0]["items"][2]["facts"][1]["value"],
+            "99.50%"
+        );
     }
 
     #[test]
@@ -2477,8 +3863,59 @@ mod tests {
             source_provider: None,
         };
         let output = execute_present(&input);
-        assert_eq!(output.scenario, "free-ports");
-        assert_eq!(output.playbook_id, "tx.playbook.free_ports");
+        assert_eq!(output.scenario, "menu-free-ports-parameters");
+        assert_eq!(output.playbook_id, "tx.menu.free_ports_parameters");
+    }
+
+    #[test]
+    fn bgp_button_opens_parameter_menu() {
+        let input = PresentInput {
+            query: Some(String::new()),
+            step: Some("menu:bgp-advertisers-parameters".to_string()),
+            metadata: None,
+            source_provider: Some("webchat".to_string()),
+        };
+        let output = execute_present(&input);
+        let card = output.rendered_card.as_ref().expect("bgp parameters card");
+        assert_eq!(output.scenario, "menu-bgp-advertisers-parameters");
+        assert_eq!(card["body"][0]["text"], "BGP advertisers");
+        assert_eq!(card["body"][2]["id"], "prefix");
+    }
+
+    #[test]
+    fn free_ports_button_opens_parameter_menu() {
+        let input = PresentInput {
+            query: Some(String::new()),
+            step: Some("menu:free-ports-parameters".to_string()),
+            metadata: None,
+            source_provider: Some("webchat".to_string()),
+        };
+        let output = execute_present(&input);
+        let card = output.rendered_card.as_ref().expect("free ports parameters card");
+        assert_eq!(output.scenario, "menu-free-ports-parameters");
+        assert_eq!(card["body"][0]["text"], "Free ACI ports");
+        assert_eq!(card["body"][2]["id"], "device");
+    }
+
+    #[test]
+    fn change_correlation_form_uses_selected_metadata() {
+        let input = PresentInput {
+            query: Some(String::new()),
+            step: Some("run:change-correlation-form".to_string()),
+            metadata: Some(json!({
+                "service": "internet",
+                "source_system": "GitOps deploy history",
+                "time_window": "Last 7 days"
+            })),
+            source_provider: Some("webchat".to_string()),
+        };
+        let output = execute_present(&input);
+        assert_eq!(output.scenario, "change-correlation-form");
+        assert_eq!(output.playbook_id, "tx.playbook.change_correlation");
+        assert_eq!(
+            output.messages[0]["card"]["body"][0]["items"][2]["facts"][1]["value"],
+            "GitOps deploy history"
+        );
     }
 
     #[test]
