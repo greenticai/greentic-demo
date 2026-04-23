@@ -69,6 +69,7 @@ build_pack_if_needed() {
     local pack_path="$2"
     local crate_dir="$CRATES_DIR/$demo_name"
     local build_script="$crate_dir/build_pack.sh"
+    local build_answers="$crate_dir/build-answer.json"
 
     if [[ -f "$pack_path" ]]; then
         return 0
@@ -79,8 +80,15 @@ build_pack_if_needed() {
         return 0
     fi
 
+    if [[ -f "$build_answers" ]]; then
+        "$ROOT_DIR/scripts/package_demos.sh" "$demo_name" >/dev/null
+        if [[ -f "$pack_path" ]]; then
+            return 0
+        fi
+    fi
+
     echo "Missing pack artifact: $pack_path" >&2
-    echo "No custom build script found at $build_script" >&2
+    echo "No shared build-answer.json or custom build script produced $pack_path" >&2
     exit 1
 }
 

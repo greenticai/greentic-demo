@@ -121,6 +121,25 @@ gtc setup ./weather-mcp-demo-bundle --answers https://github.com/greenticai/gree
 gtc start ./weather-mcp-demo-bundle
 ```
 
+### deep-research-demo
+
+Outcome:
+- Runs a deep-research assistant with `Single Shot` and `Agentic` modes, adaptive-card planning, and a final report flow.
+
+Run:
+```bash
+gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-create-answers.json
+gtc setup ./deep-research-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-setup-answers.json
+gtc start ./deep-research-demo-bundle
+```
+
+Notes:
+- By default this demo is configured for a local Ollama endpoint at `http://127.0.0.1:11434/v1` with `llama3:8b`.
+- To use Ollama locally, download it from `https://ollama.com/download`, install it, then pull or run the model with `ollama run llama3:8b`.
+- If you want to use OpenAI instead, use the OpenAI-compatible base URL `https://api.openai.com/v1` during `gtc setup`.
+- You can create or manage your OpenAI API keys at `https://platform.openai.com/api-keys`.
+- If you want to use another OpenAI-compatible provider, supply that provider's compatible base URL and API key secret during `gtc setup`.
+
 ### telco-x-demo
 
 Outcome:

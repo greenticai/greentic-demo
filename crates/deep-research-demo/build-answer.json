@@ -1,0 +1,358 @@
+{
+  "schema_id": "greentic-demo.build-answer",
+  "schema_version": "1.0.0",
+  "wizard": null,
+  "pack_create": {
+    "wizard_id": "greentic-pack.wizard.run",
+    "schema_id": "greentic-pack.wizard.answers",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+      "create_pack_id": "deep-research-demo",
+      "create_pack_scaffold": true,
+      "dry_run": false,
+      "flow_wizard_answers": {
+        "schema_id": "greentic-flow.wizard.plan",
+        "schema_version": "2.0.0",
+        "actions": [
+          {
+            "action": "edit-flow-summary",
+            "flow": "flows/main.ygtc",
+            "name": "Deep Research Demo",
+            "description": "Adaptive-card deep research flow with single-shot and agentic research modes"
+          },
+          {
+            "action": "add-step",
+            "flow": "flows/main.ygtc",
+            "step_id": "main_menu",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "mode": "default",
+            "answers": {
+              "card_source": "asset",
+              "default_card_asset": "assets/cards/main_menu.json",
+              "default_card_inline": {
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "{{i18n:adaptive_card.default.title}}"
+                  }
+                ]
+              },
+              "default_card_remote": "",
+              "multilingual": false,
+              "language_mode": "all",
+              "supported_locales": "en"
+            },
+            "routing": "out"
+          },
+          {
+            "action": "add-step",
+            "flow": "flows/main.ygtc",
+            "after": "main_menu",
+            "step_id": "research_planner",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "mode": "setup",
+            "answers": {
+              "provider": "ollama",
+              "base_url": "http://127.0.0.1:11434/v1",
+              "endpoint_requires_api_key": false,
+              "default_model": "llama3:8b"
+            },
+            "routing": "out"
+          },
+          {
+            "action": "add-step",
+            "flow": "flows/main.ygtc",
+            "after": "research_planner",
+            "step_id": "show_research_plan",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "mode": "default",
+            "answers": {
+              "card_source": "asset",
+              "default_card_asset": "assets/cards/research_plan.json",
+              "default_card_inline": {
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "{{i18n:adaptive_card.default.title}}"
+                  }
+                ]
+              },
+              "default_card_remote": "",
+              "multilingual": false,
+              "language_mode": "all",
+              "supported_locales": "en"
+            },
+            "in_map": {
+              "card_source": "asset",
+              "card_spec": {
+                "asset_path": "assets/cards/research_plan.json",
+                "template_params": {
+                  "generatingVisible": false,
+                  "planner_output": "{{prev.completion}}",
+                  "researchPlanVisible": true,
+                  "user_question": "{{entry.input.metadata.user_question}}"
+                }
+              },
+              "mode": "renderAndValidate"
+            },
+            "routing": "out"
+          },
+          {
+            "action": "add-step",
+            "flow": "flows/main.ygtc",
+            "after": "show_research_plan",
+            "step_id": "research_analyst",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "mode": "setup",
+            "answers": {
+              "provider": "ollama",
+              "base_url": "http://127.0.0.1:11434/v1",
+              "endpoint_requires_api_key": false,
+              "default_model": "llama3:8b"
+            },
+            "routing": "out"
+          },
+          {
+            "action": "add-step",
+            "flow": "flows/main.ygtc",
+            "after": "research_analyst",
+            "step_id": "show_final_report",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "mode": "default",
+            "answers": {
+              "card_source": "asset",
+              "default_card_asset": "assets/cards/final_report.json",
+              "default_card_inline": {
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "{{i18n:adaptive_card.default.title}}"
+                  }
+                ]
+              },
+              "default_card_remote": "",
+              "multilingual": false,
+              "language_mode": "all",
+              "supported_locales": "en"
+            },
+            "in_map": {
+              "card_source": "asset",
+              "card_spec": {
+                "asset_path": "assets/cards/final_report.json",
+                "template_params": {
+                  "finalReportVisible": true,
+                  "processingVisible": false,
+                  "report_output": "{{prev.completion}}",
+                  "user_question": "{{entry.input.metadata.user_question}}"
+                }
+              },
+              "mode": "renderAndValidate"
+            },
+            "routing": "out"
+          },
+          {
+            "action": "update-step",
+            "flow": "flows/main.ygtc",
+            "step_id": "research_planner",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "operation": "handle_message",
+            "mode": "setup",
+            "answers": {
+              "api_key_secret": "api_key_secret",
+              "provider": "ollama",
+              "base_url": "http://127.0.0.1:11434/v1",
+              "endpoint_requires_api_key": false,
+              "default_model": "llama3:8b"
+            },
+            "in_map": {
+              "config": {
+                "api_key_secret": "api_key_secret",
+                "provider": "ollama",
+                "default_model": "llama3:8b",
+                "base_url": "http://127.0.0.1:11434/v1"
+              },
+              "input": {
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are a Research Planner Agent. Turn the user's research goal into a focused, practical research plan with clear scope, key questions, assumptions, risks, sources, and sequenced next steps."
+                  },
+                  {
+                    "role": "user",
+                    "content": "{{entry.input.metadata.user_question}}"
+                  }
+                ]
+              }
+            },
+            "routing": [
+              {
+                "to": "show_research_plan"
+              }
+            ]
+          },
+          {
+            "action": "update-step",
+            "flow": "flows/main.ygtc",
+            "step_id": "show_research_plan",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "mode": "default",
+            "answers": {
+              "card_source": "asset",
+              "default_card_asset": "assets/cards/research_plan.json",
+              "default_card_inline": {
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "{{i18n:adaptive_card.default.title}}"
+                  }
+                ]
+              },
+              "default_card_remote": "",
+              "multilingual": false,
+              "language_mode": "all",
+              "supported_locales": "en"
+            },
+            "in_map": {
+              "card_source": "asset",
+              "card_spec": {
+                "asset_path": "assets/cards/research_plan.json",
+                "template_params": {
+                  "generatingVisible": false,
+                  "planner_output": "{{prev.completion}}",
+                  "researchPlanVisible": true,
+                  "user_question": "{{entry.input.metadata.user_question}}"
+                }
+              },
+              "mode": "renderAndValidate"
+            },
+            "routing": "out"
+          },
+          {
+            "action": "update-step",
+            "flow": "flows/main.ygtc",
+            "step_id": "research_analyst",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "operation": "handle_message",
+            "mode": "setup",
+            "answers": {
+              "api_key_secret": "api_key_secret",
+              "provider": "ollama",
+              "base_url": "http://127.0.0.1:11434/v1",
+              "endpoint_requires_api_key": false,
+              "default_model": "llama3:8b"
+            },
+            "in_map": {
+              "config": {
+                "api_key_secret": "api_key_secret",
+                "provider": "ollama",
+                "default_model": "llama3:8b",
+                "base_url": "http://127.0.0.1:11434/v1"
+              },
+              "input": {
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are a Research Execution Agent. Execute the supplied plan carefully, use reliable evidence, separate facts from assumptions, and produce a concise but useful final report."
+                  },
+                  {
+                    "role": "user",
+                    "content": "Research question: {{entry.input.metadata.user_question}}\n\nIf a research plan is supplied below, follow it. Otherwise perform a strong single-shot analysis.\n\nResearch plan:\n{{entry.input.metadata.planner_output}}"
+                  }
+                ]
+              }
+            },
+            "routing": [
+              {
+                "to": "show_final_report"
+              }
+            ]
+          },
+          {
+            "action": "update-step",
+            "flow": "flows/main.ygtc",
+            "step_id": "main_menu",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "mode": "default",
+            "answers": {
+              "card_source": "asset",
+              "default_card_asset": "assets/cards/main_menu.json",
+              "default_card_inline": {
+                "type": "AdaptiveCard",
+                "version": "1.6",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "{{i18n:adaptive_card.default.title}}"
+                  }
+                ]
+              },
+              "default_card_remote": "",
+              "multilingual": false,
+              "language_mode": "all",
+              "supported_locales": "en"
+            },
+            "routing": [
+              {
+                "condition": "response.action == \"agentic\"",
+                "to": "research_planner"
+              },
+              {
+                "condition": "response.action == \"single_shot\"",
+                "to": "research_analyst"
+              },
+              {
+                "condition": "response.action == \"start_research_analysis\"",
+                "to": "research_analyst"
+              },
+              {
+                "out": true
+              }
+            ]
+          }
+        ]
+      },
+      "mode": "interactive",
+      "pack_dir": "./deep-research-demo.pack",
+      "run_build": false,
+      "run_delegate_component": false,
+      "run_delegate_flow": true,
+      "run_doctor": false,
+      "sign": false
+    },
+    "locks": {}
+  },
+  "pack": {
+    "wizard_id": "greentic-pack.wizard.run",
+    "schema_id": "greentic-pack.wizard.answers",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+      "dry_run": false,
+      "mode": "interactive",
+      "pack_dir": ".",
+      "run_build": true,
+      "run_delegate_component": false,
+      "run_delegate_flow": false,
+      "run_doctor": false,
+      "selected_actions": [
+        "main.update_application_pack",
+        "update_application_pack.run_update_validate",
+        "pipeline.update_validate",
+        "pipeline.sign_prompt.skip",
+        "main.exit"
+      ],
+      "sign": false
+    },
+    "locks": {}
+  },
+  "flow": null
+}

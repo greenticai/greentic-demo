@@ -371,15 +371,24 @@ done
 for _gen_source in "${generated_pack_answers[@]}"; do
     crate_dir="$(cd "$(dirname "$_gen_source")" && pwd)"
     crate_name="$(basename "$crate_dir")"
+    resolve_answers "$crate_dir"
+    create_answers="${_pack_create:-}"
+    [ -z "$create_answers" ] && continue
+    pack_dir_name="$(jq -r '.answers.pack_dir' "$create_answers" | xargs basename)"
+    pack_id="$(jq -r '.answers.create_pack_id' "$create_answers")"
+    pack_name="${pack_id%.pack}"
+    pack_slug="${pack_dir_name%.pack}"
+
+    if ! matches_demo_filter "$crate_name" "$pack_name" "$pack_slug"; then
+        continue
+    fi
+
     if [ -f "$crate_dir/prepare_demo.sh" ]; then
         if ! bash "$crate_dir/prepare_demo.sh" >/dev/null; then
             echo "Skipping $crate_name: prepare_demo.sh failed" >&2
             continue
         fi
     fi
-    resolve_answers "$crate_dir"
-    create_answers="${_pack_create:-}"
-    [ -z "$create_answers" ] && continue
     pack_build_script="$crate_dir/build_pack.sh"
     flow_answers="${_flow:-}"
     pack_answers="${_pack:-}"
@@ -387,10 +396,6 @@ for _gen_source in "${generated_pack_answers[@]}"; do
     source_components_dir="$crate_dir/components"
     source_flows_dir="$crate_dir/flows"
     source_pack_overlay_dir="$crate_dir/generated-pack"
-    pack_dir_name="$(jq -r '.answers.pack_dir' "$create_answers" | xargs basename)"
-    pack_id="$(jq -r '.answers.create_pack_id' "$create_answers")"
-    pack_name="${pack_id%.pack}"
-    pack_slug="${pack_dir_name%.pack}"
 
     if compgen -G "$crate_dir/bundle/packs/*.pack" >/dev/null; then
         continue
