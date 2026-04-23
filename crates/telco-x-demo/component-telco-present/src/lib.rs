@@ -4,8 +4,8 @@ use serde_json::{Value, json};
 use telco_x::adapters::AdapterFixtures;
 use telco_x::playbooks::{
     default_port_utilisation_threshold_percent, run_bgp_advertisers, run_change_correlation,
-    run_free_ports, run_noisy_neighbour, run_port_utilisation, run_prefix_traffic,
-    run_scope_health_sweep, run_slo_status, run_top_source_asns, run_vm_rca,
+    run_change_correlation_filtered, run_free_ports, run_noisy_neighbour, run_port_utilisation,
+    run_prefix_traffic, run_scope_health_sweep, run_slo_status, run_top_source_asns, run_vm_rca,
 };
 use telco_x::presentation::{PresentationModel, PresentationSection, present_run};
 use telco_x::resolvers::ResolverCatalog;
@@ -1071,7 +1071,13 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             .get("time_window")
             .and_then(Value::as_str)
             .unwrap_or("Last 24 hours");
-        let run = run_change_correlation(service, &resolvers, &fixtures);
+        let run = run_change_correlation_filtered(
+            service,
+            Some(source_system),
+            Some(time_window),
+            &resolvers,
+            &fixtures,
+        );
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
         let adaptive_card = generic_analysis_card(
@@ -1127,7 +1133,13 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
             .get("time_window")
             .and_then(Value::as_str)
             .unwrap_or("Last 24 hours");
-        let change = present_run(&run_change_correlation(service, &resolvers, &fixtures));
+        let change = present_run(&run_change_correlation_filtered(
+            service,
+            None,
+            Some(time_window),
+            &resolvers,
+            &fixtures,
+        ));
         let vm_rca = present_run(&run_vm_rca(
             service,
             if cluster.eq_ignore_ascii_case("default") {
