@@ -26,17 +26,17 @@
         "advanced_setup": false,
         "app_pack_entries": [
           {
-            "detected_kind": "file",
+            "detected_kind": "https",
             "display_name": "Deep Research Demo Pack",
             "mapping": {
               "scope": "global"
             },
             "pack_id": "deep-research-demo",
-            "reference": "file://../demos/deep-research-demo.gtpack"
+            "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo.gtpack"
           }
         ],
         "app_packs": [
-          "file://../demos/deep-research-demo.gtpack"
+          "https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo.gtpack"
         ],
         "bundle_id": "deep-research-demo-bundle",
         "bundle_name": "deep-research-demo-bundle",
