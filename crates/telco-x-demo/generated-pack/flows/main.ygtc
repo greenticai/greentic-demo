@@ -11,6 +11,7 @@ nodes:
       operation: present
       query: "{{in.input.text}}"
       metadata: "{{in.input.metadata}}"
+      message: "{{in.input}}"
       source_provider: webchat
     routing:
       - next: respond_telco

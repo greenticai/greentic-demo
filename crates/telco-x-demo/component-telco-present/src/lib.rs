@@ -30,6 +30,8 @@ struct PresentInput {
     #[serde(default)]
     metadata: Option<Value>,
     #[serde(default)]
+    message: Option<Value>,
+    #[serde(default)]
     source_provider: Option<String>,
 }
 
@@ -303,7 +305,7 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
         .unwrap_or_else(|| "webchat".to_string());
     let query = input.query.clone().unwrap_or_default().trim().to_string();
     let step = input.step.clone().unwrap_or_default().trim().to_string();
-    let metadata = normalized_metadata_object(input.metadata.as_ref());
+    let metadata = merged_metadata(input.metadata.as_ref(), input.message.as_ref());
     let route = if !step.is_empty() { step } else { query };
 
     if route.is_empty() || route == "oauth_login_success" {
@@ -634,20 +636,12 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     let fixtures = AdapterFixtures::from_fixture().expect("adapter fixture");
 
     if route == "run:prefix-traffic-form" {
-        let prefix = metadata
-            .get("prefix")
-            .and_then(Value::as_str)
+        let prefix = metadata_text(&metadata, "prefix")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("10.24.0.0/16");
-        let direction = metadata
-            .get("direction")
-            .and_then(Value::as_str)
-            .unwrap_or("Inbound");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let direction = metadata_text(&metadata, "direction").unwrap_or("Inbound");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_prefix_traffic(prefix, &resolvers, &fixtures);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -672,26 +666,13 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:port-utilisation-form" {
-        let device = metadata
-            .get("device")
-            .and_then(Value::as_str)
+        let device = metadata_text(&metadata, "device")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("2201");
-        let threshold = metadata
-            .get("threshold")
-            .and_then(Value::as_f64)
-            .or_else(|| {
-                metadata
-                    .get("threshold")
-                    .and_then(Value::as_str)
-                    .and_then(|value| value.parse::<f64>().ok())
-            })
-            .unwrap_or(default_port_utilisation_threshold_percent());
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let threshold =
+            metadata_number(&metadata, "threshold").unwrap_or(default_port_utilisation_threshold_percent());
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_port_utilisation(device, &resolvers, &fixtures, threshold);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -711,28 +692,19 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:vm-rca-form" {
-        let service = metadata
-            .get("service")
-            .and_then(Value::as_str)
+        let service = metadata_text(&metadata, "service")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("mobile-data");
-        let cluster_value = metadata
-            .get("cluster")
-            .and_then(Value::as_str)
+        let cluster_value = metadata_text(&metadata, "cluster")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("default");
-        let symptom = metadata
-            .get("symptom")
-            .and_then(Value::as_str)
+        let symptom = metadata_text(&metadata, "symptom")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("Latency spike");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let cluster = if cluster_value.eq_ignore_ascii_case("default") {
             None
         } else {
@@ -763,22 +735,15 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:slo-status-form" {
-        let service = metadata
-            .get("service")
-            .and_then(Value::as_str)
+        let service = metadata_text(&metadata, "service")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("mobile-data");
-        let environment = metadata
-            .get("environment")
-            .and_then(Value::as_str)
+        let environment = metadata_text(&metadata, "environment")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("Production");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_slo_status(service, &resolvers);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -798,16 +763,11 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:bgp-advertisers-form" {
-        let prefix = metadata
-            .get("prefix")
-            .and_then(Value::as_str)
+        let prefix = metadata_text(&metadata, "prefix")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("10.24.0.0/16");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_bgp_advertisers(prefix, &resolvers, &fixtures);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -849,20 +809,12 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:top-source-asns-form" {
-        let prefix = metadata
-            .get("prefix")
-            .and_then(Value::as_str)
+        let prefix = metadata_text(&metadata, "prefix")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("10.24.0.0/16");
-        let direction = metadata
-            .get("direction")
-            .and_then(Value::as_str)
-            .unwrap_or("Inbound");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let direction = metadata_text(&metadata, "direction").unwrap_or("Inbound");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_top_source_asns(Some(prefix), &resolvers, &fixtures);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -905,16 +857,11 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:free-ports-form" {
-        let device = metadata
-            .get("device")
-            .and_then(Value::as_str)
+        let device = metadata_text(&metadata, "device")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("2201");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_free_ports(device, &resolvers, &fixtures);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -956,16 +903,11 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:noisy-neighbour-form" {
-        let scope = metadata
-            .get("scope")
-            .and_then(Value::as_str)
+        let scope = metadata_text(&metadata, "scope")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("riyadh-core");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_noisy_neighbour(scope, &resolvers, &fixtures);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -1007,16 +949,11 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:scope-health-sweep-form" {
-        let scope = metadata
-            .get("scope")
-            .and_then(Value::as_str)
+        let scope = metadata_text(&metadata, "scope")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("riyadh-core");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_scope_health_sweep(scope, &resolvers, &fixtures);
         let presentation = present_run(&run);
         let presentation_json = serde_json::to_value(&presentation).expect("presentation json");
@@ -1058,20 +995,12 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:change-correlation-form" {
-        let service = metadata
-            .get("service")
-            .and_then(Value::as_str)
+        let service = metadata_text(&metadata, "service")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("mobile-data");
-        let source_system = metadata
-            .get("source_system")
-            .and_then(Value::as_str)
-            .unwrap_or("Change registry");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let source_system = metadata_text(&metadata, "source_system").unwrap_or("Change registry");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let run = run_change_correlation_filtered(
             service,
             Some(source_system),
@@ -1120,20 +1049,12 @@ fn execute_present(input: &PresentInput) -> PresentOutput {
     }
 
     if route == "run:service-degradation-form" {
-        let service = metadata
-            .get("service")
-            .and_then(Value::as_str)
+        let service = metadata_text(&metadata, "service")
             .map(str::trim)
             .filter(|value| !value.is_empty())
             .unwrap_or("mobile-data");
-        let cluster = metadata
-            .get("cluster")
-            .and_then(Value::as_str)
-            .unwrap_or("default");
-        let time_window = metadata
-            .get("time_window")
-            .and_then(Value::as_str)
-            .unwrap_or("Last 24 hours");
+        let cluster = metadata_text(&metadata, "cluster").unwrap_or("default");
+        let time_window = metadata_text(&metadata, "time_window").unwrap_or("Last 24 hours");
         let change = present_run(&run_change_correlation_filtered(
             service,
             None,
@@ -1277,6 +1198,51 @@ fn normalized_metadata_object(metadata: Option<&Value>) -> Value {
             .unwrap_or_else(|| json!({})),
         _ => json!({}),
     }
+}
+
+fn merged_metadata(metadata: Option<&Value>, message: Option<&Value>) -> Value {
+    let direct = normalized_metadata_object(metadata);
+    if direct.as_object().is_some_and(|map| !map.is_empty()) {
+        return direct;
+    }
+
+    let from_message_metadata = message.and_then(|value| value.get("metadata"));
+    let nested = normalized_metadata_object(from_message_metadata);
+    if nested.as_object().is_some_and(|map| !map.is_empty()) {
+        return nested;
+    }
+
+    normalized_metadata_object(message)
+}
+
+fn metadata_lookup<'a>(metadata: &'a Value, key: &str) -> Option<&'a Value> {
+    metadata
+        .get(key)
+        .or_else(|| metadata.get("metadata").and_then(|value| value.get(key)))
+        .or_else(|| metadata.get("value").and_then(|value| value.get(key)))
+        .or_else(|| metadata.get("event").and_then(|value| value.get(key)))
+        .or_else(|| {
+            metadata
+                .get("metadata")
+                .and_then(|value| value.get("value"))
+                .and_then(|value| value.get(key))
+        })
+        .or_else(|| {
+            metadata
+                .get("event")
+                .and_then(|value| value.get("value"))
+                .and_then(|value| value.get(key))
+        })
+}
+
+fn metadata_text<'a>(metadata: &'a Value, key: &str) -> Option<&'a str> {
+    metadata_lookup(metadata, key).and_then(Value::as_str)
+}
+
+fn metadata_number(metadata: &Value, key: &str) -> Option<f64> {
+    metadata_lookup(metadata, key)
+        .and_then(Value::as_f64)
+        .or_else(|| metadata_text(metadata, key).and_then(|value| value.parse::<f64>().ok()))
 }
 
 fn response_messages_from_card(
@@ -3694,6 +3660,7 @@ mod tests {
             query: Some("show overutilised aci ports".to_string()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: Some("teams".to_string()),
         };
         let output = execute_present(&input);
@@ -3710,6 +3677,7 @@ mod tests {
             query: Some("show recent change correlation".to_string()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: None,
         };
         let output = execute_present(&input);
@@ -3723,6 +3691,7 @@ mod tests {
             query: Some("run vm rca".to_string()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: None,
         };
         let output = execute_present(&input);
@@ -3736,6 +3705,7 @@ mod tests {
             query: Some(String::new()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3771,6 +3741,7 @@ mod tests {
             query: Some("investigate service degradation".to_string()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3784,6 +3755,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("menu:capacity-port-management".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3802,6 +3774,7 @@ mod tests {
             query: Some("show prefix traffic".to_string()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: None,
         };
         let output = execute_present(&input);
@@ -3815,6 +3788,7 @@ mod tests {
             query: Some("show slo status".to_string()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: None,
         };
         let output = execute_present(&input);
@@ -3828,6 +3802,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("menu:slo-status-parameters".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3847,6 +3822,7 @@ mod tests {
                 "environment": "Staging",
                 "time_window": "Last 7 days"
             })),
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3873,6 +3849,7 @@ mod tests {
             query: Some("show free aci ports".to_string()),
             step: None,
             metadata: None,
+            message: None,
             source_provider: None,
         };
         let output = execute_present(&input);
@@ -3886,6 +3863,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("menu:bgp-advertisers-parameters".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3901,6 +3879,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("menu:free-ports-parameters".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3920,6 +3899,7 @@ mod tests {
                 "source_system": "GitOps deploy history",
                 "time_window": "Last 7 days"
             })),
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3937,6 +3917,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("menu:port-utilisation-parameters".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3952,6 +3933,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("menu:vm-rca-parameters".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3967,6 +3949,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("run:port-utilisation:device=2201:threshold=90".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -3988,6 +3971,7 @@ mod tests {
                 "threshold": "90",
                 "time_window": "Last 7 days"
             })),
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -4018,6 +4002,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("run:vm-rca:service=internet".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -4037,6 +4022,7 @@ mod tests {
                 "symptom": "Packet loss",
                 "time_window": "Last 7 days"
             })),
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -4067,6 +4053,7 @@ mod tests {
             query: Some(String::new()),
             step: Some("menu:prefix-traffic-parameters".to_string()),
             metadata: None,
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -4086,6 +4073,7 @@ mod tests {
                 "direction": "Inbound",
                 "time_window": "Last 24 hours"
             })),
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -4106,6 +4094,7 @@ mod tests {
                 "direction": "Outbound",
                 "time_window": "Last 7 days"
             })),
+            message: None,
             source_provider: Some("webchat".to_string()),
         };
         let output = execute_present(&input);
@@ -4121,6 +4110,57 @@ mod tests {
         assert_eq!(
             output.messages[4]["card"]["body"][0]["items"][2]["facts"][2]["value"],
             "Tuesday 14:35 UTC"
+        );
+    }
+
+    #[test]
+    fn prefix_traffic_form_uses_live_submit_envelope_shape() {
+        let input = PresentInput {
+            query: Some("run:prefix-traffic-form".to_string()),
+            step: None,
+            metadata: Some(json!({
+                "channel": "813f3e1f-a723-4b99-b766-0d0d89203bb6",
+                "from": {
+                    "id": "r_lu316td8gl",
+                    "kind": "user"
+                },
+                "id": "webchat-813f3e1f-a723-4b99-b766-0d0d89203bb6",
+                "metadata": {
+                    "direction": "Outbound",
+                    "env": "default",
+                    "locale": "en-US",
+                    "prefix": "10.24.0.0/16",
+                    "route": "813f3e1f-a723-4b99-b766-0d0d89203bb6",
+                    "step": "run:prefix-traffic-form",
+                    "tenant": "demo",
+                    "text": "run:prefix-traffic-form",
+                    "time_window": "Last 7 days",
+                    "universal": "true"
+                },
+                "session_id": "813f3e1f-a723-4b99-b766-0d0d89203bb6",
+                "tenant": {
+                    "attempt": 0,
+                    "env": "default",
+                    "tenant": "demo",
+                    "tenant_id": "demo"
+                },
+                "text": "run:prefix-traffic-form"
+            })),
+            message: None,
+            source_provider: Some("webchat".to_string()),
+        };
+        let output = execute_present(&input);
+        assert_eq!(
+            output.messages[0]["card"]["body"][0]["items"][2]["facts"][1]["value"],
+            "Outbound"
+        );
+        assert_eq!(
+            output.messages[0]["card"]["body"][0]["items"][2]["facts"][2]["value"],
+            "Last 7 days"
+        );
+        assert_eq!(
+            output.messages[3]["card"]["body"][0]["items"][1]["text"],
+            "Traffic distribution for 10.24.0.0/16 — Outbound — Last 7d"
         );
     }
 }
