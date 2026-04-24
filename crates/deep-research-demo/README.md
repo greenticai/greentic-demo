@@ -15,5 +15,5 @@ gtc start deep-research-demo-bundle
 - Pack build answers live in `build-answer.json`.
 - Pack setup prompts live in `assets/setup.yaml`.
 - The demo is configured for local Ollama by default, uses `llama3:8b` as the known-good default model, and does not require an API key secret.
-- `gtc setup` captures the OpenAI-compatible base URL and preferred model, and the LLM nodes now build their `component.exec` payload explicitly through `in_map` with metadata overrides plus local Ollama fallbacks.
+- `gtc setup` captures the OpenAI-compatible base URL and preferred model, and the LLM nodes should use the setup-applied component config instead of overriding model/provider/url in `in_map`.
 - The messaging flow is generated from `build-answer.json`, including adaptive-card submit routing by `action` metadata into the planner and analyst LLM steps.

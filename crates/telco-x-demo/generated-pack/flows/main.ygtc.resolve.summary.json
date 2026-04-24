@@ -9,6 +9,14 @@
         "path": "../components/component-telco-present/component.wasm"
       },
       "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "respond_telco": {
+      "component_id": "emit.response",
+      "source": {
+        "kind": "local",
+        "path": "../components/component_adaptive_card.wasm"
+      },
+      "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
     }
   }
 }
