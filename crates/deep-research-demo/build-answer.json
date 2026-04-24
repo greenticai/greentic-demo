@@ -58,7 +58,7 @@
               "provider": "ollama",
               "base_url": "http://127.0.0.1:11434/v1",
               "endpoint_requires_api_key": false,
-              "default_model": "llama3:8b"
+              "default_model": ""
             },
             "routing": "out"
           },
@@ -113,7 +113,7 @@
               "provider": "ollama",
               "base_url": "http://127.0.0.1:11434/v1",
               "endpoint_requires_api_key": false,
-              "default_model": "llama3:8b"
+              "default_model": ""
             },
             "routing": "out"
           },
@@ -169,16 +169,17 @@
               "provider": "ollama",
               "base_url": "http://127.0.0.1:11434/v1",
               "endpoint_requires_api_key": false,
-              "default_model": "llama3:8b"
+              "default_model": ""
             },
             "in_map": {
               "config": {
                 "api_key_secret": "api_key_secret",
-                "provider": "ollama",
-                "default_model": "llama3:8b",
-                "base_url": "http://127.0.0.1:11434/v1"
+                "provider": "{{entry.input.metadata.provider}}",
+                "default_model": "{{entry.input.metadata.model}}",
+                "base_url": "{{entry.input.metadata.url}}"
               },
               "input": {
+                "model": "{{entry.input.metadata.model}}",
                 "messages": [
                   {
                     "role": "system",
@@ -248,16 +249,17 @@
               "provider": "ollama",
               "base_url": "http://127.0.0.1:11434/v1",
               "endpoint_requires_api_key": false,
-              "default_model": "llama3:8b"
+              "default_model": ""
             },
             "in_map": {
               "config": {
                 "api_key_secret": "api_key_secret",
-                "provider": "ollama",
-                "default_model": "llama3:8b",
-                "base_url": "http://127.0.0.1:11434/v1"
+                "provider": "{{entry.input.metadata.provider}}",
+                "default_model": "{{entry.input.metadata.model}}",
+                "base_url": "{{entry.input.metadata.url}}"
               },
               "input": {
+                "model": "{{entry.input.metadata.model}}",
                 "messages": [
                   {
                     "role": "system",
