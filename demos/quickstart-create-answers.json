@@ -21,17 +21,17 @@
                 "advanced_setup": false,
                 "app_pack_entries": [
                     {
-                        "detected_kind": "local",
+                        "detected_kind": "https",
                         "display_name": "Quickstart Demo Pack",
                         "mapping": {
                             "scope": "global"
                         },
                         "pack_id": "quickstart-pack",
-                        "reference": "file://demos/quickstart.gtpack"
+                        "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/quickstart.gtpack"
                     }
                 ],
                 "app_packs": [
-                    "file://demos/quickstart.gtpack"
+                    "https://github.com/greenticai/greentic-demo/releases/latest/download/quickstart.gtpack"
                 ],
                 "bundle_id": "quickstart-demo",
                 "bundle_name": "quickstart-demo",
@@ -81,7 +81,7 @@
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
-                "output_dir": "./quickstart-demo-bundle",
+                "output_dir": "quickstart-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

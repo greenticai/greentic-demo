@@ -14,9 +14,9 @@
                 "access_rules": [{"policy": "public", "rule_path": "quickstart-event-pack", "tenant": "default"}],
                 "advanced_setup": false,
                 "app_pack_entries": [
-                    {"detected_kind": "local_file", "display_name": "Quickstart Event Demo Pack", "mapping": {"scope": "global"}, "pack_id": "quickstart-event-pack", "reference": "demos/quickstart-event.gtpack"}
+                    {"detected_kind": "https", "display_name": "Quickstart Event Demo Pack", "mapping": {"scope": "global"}, "pack_id": "quickstart-event-pack", "reference": "https://github.com/greenticai/greentic-demo/releases/latest/download/quickstart-event.gtpack"}
                 ],
-                "app_packs": ["demos/quickstart-event.gtpack"],
+                "app_packs": ["https://github.com/greenticai/greentic-demo/releases/latest/download/quickstart-event.gtpack"],
                 "bundle_id": "quickstart-event-demo",
                 "bundle_name": "quickstart-event-demo",
                 "export_intent": false,
@@ -37,7 +37,7 @@
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
-                "output_dir": "./quickstart-event-demo-bundle",
+                "output_dir": "quickstart-event-demo-bundle",
                 "remote_catalogs": [],
                 "capabilities": ["greentic.cap.bundle_assets.read.v1"],
                 "setup_answers": {},
