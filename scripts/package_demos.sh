@@ -112,6 +112,18 @@ run_bundle_build() {
     fi
 }
 
+sync_adaptive_card_component_version() {
+    local pack_yaml="$1"
+
+    [ -f "$pack_yaml" ] || return 0
+
+    if ! grep -q 'id: ai\.greentic\.component-adaptive-card' "$pack_yaml"; then
+        perl -0pi -e 's/components:\s*(?:\[\])?\n/components:\n- id: ai.greentic.component-adaptive-card\n  version: 0.1.2\n  world: root:component\/root\n  supports:\n  - messaging\n  profiles:\n    default: default\n    supported:\n    - default\n  capabilities:\n    wasi:\n      random: false\n      clocks: false\n    host: {}\n  wasm: components\/ai.greentic.component-adaptive-card.wasm\n/s' "$pack_yaml"
+    fi
+
+    perl -0pi -e 's/(id: ai\.greentic\.component-adaptive-card\n\s+version: )0\.1\.0/${1}0.1.2/' "$pack_yaml"
+}
+
 cat > "$DEFAULT_PACK_ANSWERS" <<'EOF'
 {
   "wizard_id": "greentic-pack.wizard.run",
@@ -477,6 +489,8 @@ for _gen_source in "${generated_pack_answers[@]}"; do
         cp -R "$source_components_dir/." "$temp_pack_dir/components/"
     fi
 
+    sync_adaptive_card_component_version "$temp_pack_dir/pack.yaml"
+
     if [ -n "$flow_answers" ] && [ -f "$flow_answers" ]; then
         if ! run_with_timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
             echo "Skipping $pack_name: flow wizard replay failed" >&2
@@ -500,6 +514,8 @@ for _gen_source in "${generated_pack_answers[@]}"; do
         continue
     fi
 
+    sync_adaptive_card_component_version "$temp_pack_dir/pack.yaml"
+
     # Restore committed resolve/summary files — the wizard's internal resolve
     # may overwrite them with empty entries when components are unavailable in CI.
     if [ -d "$source_flows_dir" ]; then
@@ -510,7 +526,11 @@ for _gen_source in "${generated_pack_answers[@]}"; do
     fi
 
     # Build separately after resolve files are restored.
-    if ! (cd "$temp_pack_dir" && run_with_timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+    if ! (
+        cd "$temp_pack_dir"
+        sync_adaptive_card_component_version pack.yaml
+        run_with_timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null
+    ); then
         echo "Skipping $pack_name: pack build failed after scaffold replay" >&2
         continue
     fi
