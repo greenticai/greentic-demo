@@ -35,7 +35,7 @@
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
-                "output_dir": "./supply-chain-demo-bundle",
+                "output_dir": "supply-chain-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

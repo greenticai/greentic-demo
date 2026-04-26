@@ -29,7 +29,7 @@
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
-                "output_dir": "./github-mcp-demo-bundle",
+                "output_dir": "github-mcp-demo-bundle",
                 "remote_catalogs": [],
                 "capabilities": ["greentic.cap.bundle_assets.read.v1"],
                 "setup_answers": {},
