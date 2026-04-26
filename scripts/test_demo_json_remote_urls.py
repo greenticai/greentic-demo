@@ -11,6 +11,7 @@ FORBIDDEN_PATTERNS = [
     re.compile(r"(?:^|\s)\.\./"),
     re.compile(r"(?:^|\s)demos/[^\" ]+"),
     re.compile(r"(?:^|\s)(?:\./|\.\./)?[^:/?#\s]+\.gtpack(?:$|[?#\s])"),
+    re.compile(r"github\.com/greenticai/greentic-demo/releases/download/"),
 ]
 
 
