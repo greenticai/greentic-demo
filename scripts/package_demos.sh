@@ -124,6 +124,33 @@ sync_adaptive_card_component_version() {
     perl -0pi -e 's/(id: ai\.greentic\.component-adaptive-card\n\s+version: )0\.1\.0/${1}0.1.2/' "$pack_yaml"
 }
 
+apply_pack_overlay_from_answers() {
+    local build_answer="$1"
+    local crate_dir="$2"
+    local temp_pack_dir="$3"
+
+    [ -f "$build_answer" ] || return 0
+
+    local file_count component_count i rel_path source target
+    file_count="$(jq '.pack_overlay.files | length // 0' "$build_answer")"
+    for ((i = 0; i < file_count; i++)); do
+        rel_path="$(jq -r ".pack_overlay.files[$i].path" "$build_answer")"
+        [ -n "$rel_path" ] && [ "$rel_path" != "null" ] || continue
+        mkdir -p "$(dirname "$temp_pack_dir/$rel_path")"
+        jq -r ".pack_overlay.files[$i].content" "$build_answer" > "$temp_pack_dir/$rel_path"
+    done
+
+    component_count="$(jq '.pack_overlay.external_components | length // 0' "$build_answer")"
+    for ((i = 0; i < component_count; i++)); do
+        source="$(jq -r ".pack_overlay.external_components[$i].source" "$build_answer")"
+        target="$(jq -r ".pack_overlay.external_components[$i].target" "$build_answer")"
+        [ -n "$source" ] && [ "$source" != "null" ] || continue
+        [ -n "$target" ] && [ "$target" != "null" ] || continue
+        mkdir -p "$(dirname "$temp_pack_dir/$target")"
+        cp "$crate_dir/$source" "$temp_pack_dir/$target"
+    done
+}
+
 cat > "$DEFAULT_PACK_ANSWERS" <<'EOF'
 {
   "wizard_id": "greentic-pack.wizard.run",
@@ -502,6 +529,8 @@ for _gen_source in "${generated_pack_answers[@]}"; do
         rsync -a --exclude 'dist/' "$source_pack_overlay_dir/." "$temp_pack_dir/"
     fi
 
+    apply_pack_overlay_from_answers "$crate_dir/build-answer.json" "$crate_dir" "$temp_pack_dir"
+
     if [ -d "$source_pack_overlay_dir/flows" ]; then
         source_flows_dir="$source_pack_overlay_dir/flows"
     fi
@@ -515,6 +544,7 @@ for _gen_source in "${generated_pack_answers[@]}"; do
     fi
 
     sync_adaptive_card_component_version "$temp_pack_dir/pack.yaml"
+    apply_pack_overlay_from_answers "$crate_dir/build-answer.json" "$crate_dir" "$temp_pack_dir"
 
     # Restore committed resolve/summary files — the wizard's internal resolve
     # may overwrite them with empty entries when components are unavailable in CI.
