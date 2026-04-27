@@ -1,5 +1,7 @@
 # incident-demo
 
+> Work in progress: this demo is not currently listed in the top-level demo catalog while the incident flow is still being stabilized.
+
 This demo bundle is scaffolded for:
 
 - `gtc wizard --answers demos/incident-create-answers.json`
