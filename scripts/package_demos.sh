@@ -657,7 +657,6 @@ for source_answers in "${bundle_answers[@]}"; do
 
     if [ -n "$expected_pack" ] \
         && was_seeded_pack "$expected_pack" \
-        && [[ ! "$expected_pack_ref" =~ ^https?:// ]] \
         && [ ! -f "$DEMOS_DIR/$expected_pack" ]; then
         echo "Missing expected pack for $demo_basename: $DEMOS_DIR/$expected_pack" >&2
         missing_expected=1
