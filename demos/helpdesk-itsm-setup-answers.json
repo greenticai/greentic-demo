@@ -12,35 +12,13 @@
     }
   },
   "setup_answers": {
-    "messaging-slack": {
-      "api_base_url": "https://slack.com/api",
-      "default_channel": "",
-      "public_base_url": "",
-      "slack_app_id": "",
-      "slack_bot_token": "",
-      "slack_configuration_token": ""
-    },
-    "messaging-teams": {
-      "channel_id": "",
-      "ms_bot_app_id": "",
-      "ms_bot_app_password": "",
-      "public_base_url": "",
-      "team_id": ""
-    },
     "messaging-webchat-gui": {
-      "base_url": "",
-      "jwt_signing_key": "",
+      "base_url": "http://localhost:8080",
+      "jwt_signing_key": "helpdesk-itsm-dev-only-jwt-key-replace-in-prod-32+chars",
       "mode": "local_queue",
       "public_base_url": "http://localhost:8080",
       "route": "webchat",
-      "tenant_channel_id": ""
-    },
-    "messaging-webex": {
-      "api_base_url": "https://webexapis.com/v1",
-      "default_room_id": "",
-      "default_to_person_email": "",
-      "public_base_url": "",
-      "webex_bot_token": ""
+      "tenant_channel_id": "demo"
     },
     "state-memory": {}
   },

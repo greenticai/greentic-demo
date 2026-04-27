@@ -46,27 +46,6 @@
                     },
                     {
                         "detected_kind": "oci",
-                        "display_name": "Greentic Messaging Slack (latest)",
-                        "provider_id": "greentic.messaging.slack.latest",
-                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
-                        "version": "latest"
-                    },
-                    {
-                        "detected_kind": "oci",
-                        "display_name": "Greentic Messaging Teams (latest)",
-                        "provider_id": "greentic.messaging.teams.latest",
-                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
-                        "version": "latest"
-                    },
-                    {
-                        "detected_kind": "oci",
-                        "display_name": "Greentic Messaging Webex (latest)",
-                        "provider_id": "greentic.messaging.webex.latest",
-                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
-                        "version": "latest"
-                    },
-                    {
-                        "detected_kind": "oci",
                         "display_name": "Greentic State Memory (latest)",
                         "provider_id": "state-memory",
                         "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
@@ -75,9 +54,6 @@
                 ],
                 "extension_providers": [
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
