@@ -31,11 +31,19 @@
             }
           ],
           "extension_providers": [
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
             "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
             "oci://ghcr.io/greenticai/oauth-oidc-generic-pack:latest",
             "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
           ],
           "extension_provider_entries": [
+            {
+              "detected_kind": "oci",
+              "display_name": "Greentic Messaging Webchat (latest)",
+              "provider_id": "greentic.messaging.webchat.latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+              "version": "latest"
+            },
             {
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Webchat GUI (latest)",

@@ -19,6 +19,7 @@
                 "bundle_name": "hr-onboarding-demo",
                 "export_intent": false,
                 "extension_provider_entries": [
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat (latest)", "provider_id": "greentic.messaging.webchat.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat GUI (latest)", "provider_id": "greentic.messaging.webchat-gui.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic Messaging Slack (latest)", "provider_id": "greentic.messaging.slack.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic Messaging Teams (latest)", "provider_id": "greentic.messaging.teams.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest", "version": "latest"},
@@ -27,6 +28,7 @@
                     {"detected_kind": "oci", "display_name": "Greentic State Memory (latest)", "provider_id": "state-memory", "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest", "version": "latest"}
                 ],
                 "extension_providers": [
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
