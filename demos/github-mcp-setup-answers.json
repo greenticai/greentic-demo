@@ -13,12 +13,6 @@
   },
   "setup_answers": {
     "messaging-webchat-gui": {
-      "mode": "local_queue",
-      "public_base_url": "http://localhost:8080",
-      "route": "webchat"
-    },
-    "messaging-webchat": {
-      "enabled": true,
       "jwt_signing_key": "secret",
       "mode": "local_queue",
       "public_base_url": "http://localhost:8080",

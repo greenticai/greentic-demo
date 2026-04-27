@@ -21,14 +21,6 @@
     },
     "messaging-webchat-gui": {
       "base_url": "http://127.0.0.1:8080",
-      "mode": "local_queue",
-      "public_base_url": "http://127.0.0.1:8080",
-      "route": "webchat",
-      "tenant_channel_id": "demo:webchat"
-    },
-    "messaging-webchat": {
-      "base_url": "http://127.0.0.1:8080",
-      "enabled": true,
       "jwt_signing_key": "deep-research-demo-local-dev-signing-key",
       "mode": "local_queue",
       "public_base_url": "http://127.0.0.1:8080",

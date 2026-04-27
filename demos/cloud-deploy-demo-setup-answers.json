@@ -28,11 +28,6 @@
   },
   "setup_answers": {
     "messaging-webchat-gui": {
-      "mode": "embedded",
-      "public_base_url": "https://example.com"
-    },
-    "messaging-webchat": {
-      "enabled": true,
       "jwt_signing_key": "secret",
       "mode": "embedded",
       "public_base_url": "https://example.com"
