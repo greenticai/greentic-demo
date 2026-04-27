@@ -19,13 +19,11 @@
                 "bundle_name": "GitHub MCP Security Dashboard Demo",
                 "export_intent": false,
                 "extension_provider_entries": [
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat (latest)", "provider_id": "greentic.messaging.webchat.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat GUI (latest)", "provider_id": "greentic.messaging.webchat-gui.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "OAuth OIDC Generic (latest)", "provider_id": "greentic.oauth.oidc-generic.latest", "reference": "oci://ghcr.io/greenticai/oauth-oidc-generic-pack:latest", "version": "latest"},
                     {"detected_kind": "oci", "display_name": "Greentic State Memory (latest)", "provider_id": "state-memory", "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest", "version": "latest"}
                 ],
                 "extension_providers": [
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
                     "oci://ghcr.io/greenticai/oauth-oidc-generic-pack:latest",
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"

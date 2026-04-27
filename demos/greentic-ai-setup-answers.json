@@ -29,6 +29,7 @@
     },
     "messaging-webchat-gui": {
       "base_url": "http://localhost:8080",
+      "jwt_signing_key": "demo-jwt-signing-key-greentic-ai-0123456789abcdef",
       "mode": "local_queue",
       "oauth_custom_auth_url": "",
       "oauth_custom_client_id": "",
@@ -46,15 +47,6 @@
       "oauth_google_client_secret": "",
       "oauth_microsoft_client_id": "",
       "oauth_microsoft_client_secret": "",
-      "public_base_url": "http://localhost:8080",
-      "route": "webchat",
-      "tenant_channel_id": "demo-greentic-ai-webchat"
-    },
-    "messaging-webchat": {
-      "base_url": "http://localhost:8080",
-      "enabled": true,
-      "jwt_signing_key": "demo-jwt-signing-key-greentic-ai-0123456789abcdef",
-      "mode": "local_queue",
       "public_base_url": "http://localhost:8080",
       "route": "webchat",
       "tenant_channel_id": "demo-greentic-ai-webchat"

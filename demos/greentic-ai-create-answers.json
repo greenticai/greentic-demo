@@ -39,13 +39,6 @@
                 "extension_provider_entries": [
                     {
                         "detected_kind": "oci",
-                        "display_name": "Greentic Messaging Webchat (latest)",
-                        "provider_id": "greentic.messaging.webchat.latest",
-                        "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
-                        "version": "latest"
-                    },
-                    {
-                        "detected_kind": "oci",
                         "display_name": "Greentic Messaging Slack (latest)",
                         "provider_id": "greentic.messaging.slack.latest",
                         "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
@@ -102,7 +95,6 @@
                     }
                 ],
                 "extension_providers": [
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
                     "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
