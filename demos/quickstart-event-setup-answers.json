@@ -13,16 +13,16 @@
   },
   "setup_answers": {
     "messaging-webchat-gui": {
-      "base_url": "",
+      "base_url": "http://localhost:8080",
       "jwt_signing_key": "demo-jwt-signing-key-quickstart-event-0123456789abcdef",
       "mode": "local_queue",
       "public_base_url": "http://localhost:8080",
       "route": "webchat",
-      "tenant_channel_id": ""
+      "tenant_channel_id": "demo-event-webchat"
     },
     "events-webhook": {
       "enabled": true,
-      "public_base_url": ""
+      "public_base_url": "http://localhost:8080"
     },
     "events-timer": {
       "enabled": true,
