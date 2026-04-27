@@ -85,6 +85,13 @@ gtc setup ./redbutton-demo-bundle --answers https://github.com/greenticai/greent
 gtc start ./redbutton-demo-bundle
 ```
 
+To send a message to the webhook for testing:
+```bash
+curl -i -X POST http://127.0.0.1:8080/v1/events/ingress/greentic.events.webhook/default/default \
+  -H "content-type: application/json" \
+  -d '{"event":"red_button","source":"demo","severity":"critical"}'
+```
+
 ### cloud-deploy-demo
 
 Outcome:
