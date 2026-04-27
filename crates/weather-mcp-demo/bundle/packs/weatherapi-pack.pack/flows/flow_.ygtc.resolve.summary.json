@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "flow": "flow_.ygtc",
+  "nodes": {
+    "render_weather_card": {
+      "component_id": "emit.response",
+      "source": {
+        "kind": "local",
+        "path": "../components/adaptive-card/component_adaptive_card.wasm"
+      },
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656",
+      "manifest": {
+        "world": "greentic:component/component@0.6.0",
+        "version": "0.1.0"
+      }
+    }
+  }
+}

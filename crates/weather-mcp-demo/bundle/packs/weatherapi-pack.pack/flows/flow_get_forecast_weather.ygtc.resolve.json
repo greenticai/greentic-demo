@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "flow": "flow_get_forecast_weather.ygtc",
+  "nodes": {
+    "call_forecast": {
+      "source": {
+        "kind": "local",
+        "path": "../components/weatherapi_current.component.wasm"
+      },
+      "digest": "sha256:2c432c1c4a023b07526903a9ee3723b069ad3b30a19372ff33529c54ac6a210a"
+    },
+    "render_forecast_card": {
+      "source": {
+        "kind": "local",
+        "path": "../components/adaptive-card/component_adaptive_card.wasm"
+      },
+      "digest": "sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656"
+    }
+  }
+}
