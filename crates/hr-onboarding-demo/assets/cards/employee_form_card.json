@@ -1,0 +1,97 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "body": [
+    {
+      "size": "Large",
+      "text": "{{i18n:card.employee_form_card.body_0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "isSubtle": true,
+      "text": "{{i18n:card.employee_form_card.body_1.text}}",
+      "type": "TextBlock",
+      "wrap": true
+    },
+    {
+      "items": [
+        {
+          "text": "{{i18n:card.employee_form_card.body_2_items_0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "facts": [
+            {
+              "title": "{{i18n:card.employee_form_card.body_2_items_1_facts_0.title}}",
+              "value": "Jane Smith"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_2_items_1_facts_1.title}}",
+              "value": "jane.smith@acmecorp.com"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "items": [
+        {
+          "text": "{{i18n:card.employee_form_card.body_3_items_0.text}}",
+          "type": "TextBlock",
+          "weight": "Bolder"
+        },
+        {
+          "facts": [
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_0.title}}",
+              "value": "Engineering"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_1.title}}",
+              "value": "Software Engineer"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_2.title}}",
+              "value": "April 15, 2026"
+            },
+            {
+              "title": "{{i18n:card.employee_form_card.body_3_items_1_facts_3.title}}",
+              "value": "John Doe"
+            }
+          ],
+          "type": "FactSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    },
+    {
+      "actions": [
+        {
+          "data": {
+            "action_id": "submit_registration",
+            "routeToCardId": "onboarding_checklist_card"
+          },
+          "style": "positive",
+          "title": "{{i18n:card.employee_form_card.body_4_actions_0.title}}",
+          "type": "Action.Submit"
+        },
+        {
+          "data": {
+            "action_id": "back",
+            "routeToCardId": "welcome_card"
+          },
+          "title": "{{i18n:card.employee_form_card.body_4_actions_1.title}}",
+          "type": "Action.Submit"
+        }
+      ],
+      "type": "ActionSet"
+    }
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}
