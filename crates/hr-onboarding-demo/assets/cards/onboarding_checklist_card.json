@@ -1,0 +1,127 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "actions": [
+    {
+      "data": {
+        "action_id": "upload_documents",
+        "routeToCardId": "document_upload_card"
+      },
+      "style": "positive",
+      "title": "{{i18n:card.onboarding_checklist_card.actions_0.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "request_access",
+        "routeToCardId": "access_request_card"
+      },
+      "title": "{{i18n:card.onboarding_checklist_card.actions_1.title}}",
+      "type": "Action.Submit"
+    },
+    {
+      "data": {
+        "action_id": "back",
+        "routeToCardId": "welcome_card"
+      },
+      "title": "{{i18n:card.onboarding_checklist_card.actions_2.title}}",
+      "type": "Action.Submit"
+    }
+  ],
+  "body": [
+    {
+      "size": "Large",
+      "text": "{{i18n:card.onboarding_checklist_card.body_0.text}}",
+      "type": "TextBlock",
+      "weight": "Bolder"
+    },
+    {
+      "columns": [
+        {
+          "items": [
+            {
+              "isSubtle": true,
+              "text": "{{i18n:card.onboarding_checklist_card.body_1_columns_0_items_0.text}}",
+              "type": "TextBlock"
+            }
+          ],
+          "type": "Column",
+          "width": "stretch"
+        },
+        {
+          "items": [
+            {
+              "color": "Good",
+              "text": "{{i18n:card.onboarding_checklist_card.body_1_columns_1_items_0.text}}",
+              "type": "TextBlock",
+              "weight": "Bolder"
+            }
+          ],
+          "type": "Column",
+          "width": "auto"
+        }
+      ],
+      "type": "ColumnSet"
+    },
+    {
+      "spacing": "Small",
+      "text": "{{i18n:card.onboarding_checklist_card.body_2.text}}",
+      "type": "TextBlock"
+    },
+    {
+      "items": [
+        {
+          "$data": "",
+          "columns": [
+            {
+              "items": [
+                {
+                  "size": "Medium",
+                  "text": "",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            },
+            {
+              "items": [
+                {
+                  "text": "{{i18n:card.onboarding_checklist_card.body_3_items_0_columns_1_items_0.text}}",
+                  "type": "TextBlock",
+                  "weight": "Bolder"
+                },
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "",
+                  "type": "TextBlock",
+                  "wrap": true
+                }
+              ],
+              "type": "Column",
+              "width": "stretch"
+            },
+            {
+              "items": [
+                {
+                  "isSubtle": true,
+                  "size": "Small",
+                  "text": "{{i18n:card.onboarding_checklist_card.body_3_items_0_columns_2_items_0.text}}",
+                  "type": "TextBlock"
+                }
+              ],
+              "type": "Column",
+              "width": "auto"
+            }
+          ],
+          "spacing": "Small",
+          "type": "ColumnSet"
+        }
+      ],
+      "style": "emphasis",
+      "type": "Container"
+    }
+  ],
+  "type": "AdaptiveCard",
+  "version": "1.3"
+}

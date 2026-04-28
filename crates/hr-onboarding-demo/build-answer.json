@@ -115,7 +115,7 @@
             "mode": "default",
             "answers": {
               "card_source": "asset",
-              "default_card_asset": "assets/cards/welcome.json",
+              "default_card_asset": "assets/cards/welcome_card.json",
               "default_card_inline": {
                 "type": "AdaptiveCard",
                 "version": "1.6",
@@ -140,7 +140,7 @@
             "mode": "default",
             "answers": {
               "card_source": "asset",
-              "default_card_asset": "assets/cards/personal_info.json",
+              "default_card_asset": "assets/cards/employee_form_card.json",
               "default_card_inline": {
                 "type": "AdaptiveCard",
                 "version": "1.6",
@@ -165,7 +165,7 @@
             "mode": "default",
             "answers": {
               "card_source": "asset",
-              "default_card_asset": "assets/cards/checklist.json",
+              "default_card_asset": "assets/cards/onboarding_checklist_card.json",
               "default_card_inline": {
                 "type": "AdaptiveCard",
                 "version": "1.6",
@@ -190,7 +190,7 @@
             "mode": "default",
             "answers": {
               "card_source": "asset",
-              "default_card_asset": "assets/cards/upload_docs.json",
+              "default_card_asset": "assets/cards/document_upload_card.json",
               "default_card_inline": {
                 "type": "AdaptiveCard",
                 "version": "1.6",
@@ -215,7 +215,7 @@
             "mode": "default",
             "answers": {
               "card_source": "asset",
-              "default_card_asset": "assets/cards/it_support.json",
+              "default_card_asset": "assets/cards/access_request_card.json",
               "default_card_inline": {
                 "type": "AdaptiveCard",
                 "version": "1.6",
@@ -240,7 +240,7 @@
             "mode": "default",
             "answers": {
               "card_source": "asset",
-              "default_card_asset": "assets/cards/buddy_intro.json",
+              "default_card_asset": "assets/cards/completion_card.json",
               "default_card_inline": {
                 "type": "AdaptiveCard",
                 "version": "1.6",
