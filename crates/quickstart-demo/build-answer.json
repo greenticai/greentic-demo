@@ -134,7 +134,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_welcome_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
         "mode": "default",
         "answers": {
           "card_source": "asset",
@@ -159,7 +159,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_about_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
         "mode": "default",
         "answers": {
           "card_source": "asset",
