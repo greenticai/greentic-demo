@@ -729,6 +729,16 @@ detect_provider_drift() {
         return 0
     fi
 
+    # `.gtbundle` is a Squashfs filesystem, not a ZIP. We need `unsquashfs`
+    # (from squashfs-tools) to read the inner `.gtpack` files. If it is not
+    # available, skip the drift gate with a clear warning rather than blocking
+    # the build — cache pinning above is the actual fix; this is verification.
+    if ! command -v unsquashfs >/dev/null 2>&1; then
+        echo "Warning: skipping provider drift check — unsquashfs not found." >&2
+        echo "         Install squashfs-tools to enable this verification gate." >&2
+        return 0
+    fi
+
     local digests_file="$drift_dir/digests.tsv"
     : > "$digests_file"
 
@@ -736,8 +746,8 @@ detect_provider_drift() {
         local bundle_name
         bundle_name="$(basename "$bundle")"
         local extract_dir="$drift_dir/$bundle_name"
-        mkdir -p "$extract_dir"
-        if ! unzip -qq -o "$bundle" -d "$extract_dir" 2>/dev/null; then
+        rm -rf "$extract_dir"
+        if ! unsquashfs -no-progress -quiet -d "$extract_dir" "$bundle" >/dev/null 2>&1; then
             echo "Warning: drift check could not extract $bundle_name" >&2
             continue
         fi
