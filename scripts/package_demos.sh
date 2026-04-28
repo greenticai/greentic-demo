@@ -128,10 +128,10 @@ sync_adaptive_card_component_version() {
     [ -f "$pack_yaml" ] || return 0
 
     if ! grep -q 'id: ai\.greentic\.component-adaptive-card' "$pack_yaml"; then
-        perl -0pi -e 's/components:\s*(?:\[\])?\n/components:\n- id: ai.greentic.component-adaptive-card\n  version: 0.1.2\n  world: root:component\/root\n  supports:\n  - messaging\n  profiles:\n    default: default\n    supported:\n    - default\n  capabilities:\n    wasi:\n      random: false\n      clocks: false\n    host: {}\n  wasm: components\/ai.greentic.component-adaptive-card.wasm\n/s' "$pack_yaml"
+        perl -0pi -e 's/components:\s*(?:\[\])?\n/components:\n- id: ai.greentic.component-adaptive-card\n  version: 0.2.0\n  world: root:component\/root\n  supports:\n  - messaging\n  profiles:\n    default: default\n    supported:\n    - default\n  capabilities:\n    wasi:\n      random: false\n      clocks: false\n    host: {}\n  wasm: components\/ai.greentic.component-adaptive-card.wasm\n/s' "$pack_yaml"
     fi
 
-    perl -0pi -e 's/(id: ai\.greentic\.component-adaptive-card\n\s+version: )0\.1\.0/${1}0.1.2/' "$pack_yaml"
+    perl -0pi -e 's/(id: ai\.greentic\.component-adaptive-card\n\s+version: )(0\.1\.\d+|0\.2\.0)/${1}0.2.0/' "$pack_yaml"
 }
 
 apply_pack_overlay_from_answers() {
