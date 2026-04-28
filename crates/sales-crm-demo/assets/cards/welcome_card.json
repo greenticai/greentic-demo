@@ -53,28 +53,32 @@
       "title": "New Lead",
       "style": "positive",
       "data": {
-        "action_id": "new_lead"
+        "action_id": "new_lead",
+        "routeToCardId": "lead_form_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "View Pipeline",
       "data": {
-        "action_id": "view_pipeline"
+        "action_id": "view_pipeline",
+        "routeToCardId": "pipeline_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "My Deals",
       "data": {
-        "action_id": "my_deals"
+        "action_id": "my_deals",
+        "routeToCardId": "deal_detail_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "Schedule Meeting",
       "data": {
-        "action_id": "schedule_meeting"
+        "action_id": "schedule_meeting",
+        "routeToCardId": "meeting_card"
       }
     },
     {
