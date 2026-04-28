@@ -32,7 +32,7 @@
                 },
                 {
                   "type": "TextBlock",
-                  "text": "Welcome, {{username}}!",
+                  "text": "Welcome back!",
                   "isSubtle": true
                 }
               ]
