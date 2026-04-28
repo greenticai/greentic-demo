@@ -120,6 +120,56 @@
         "flow": "flows/incident-create.ygtc",
         "flow_id": "incident_create",
         "flow_type": "messaging"
+      },
+      {
+        "action": "add-step",
+        "flow": "flows/main.ygtc",
+        "step_id": "show_create_incident",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+        "mode": "default",
+        "answers": {
+          "card_source": "asset",
+          "default_card_asset": "assets/cards/create-incident.json",
+          "default_card_inline": {
+            "type": "AdaptiveCard",
+            "version": "1.6",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "{{i18n:adaptive_card.default.title}}"
+              }
+            ]
+          },
+          "default_card_remote": "",
+          "multilingual": true,
+          "language_mode": "custom",
+          "supported_locales": "en"
+        }
+      },
+      {
+        "action": "add-step",
+        "flow": "flows/main.ygtc",
+        "step_id": "show_incident_result",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:6b34848f801c7a70b8ce88e111ce49cce61e358404de17f65afefe77b07bf2d2",
+        "mode": "default",
+        "answers": {
+          "card_source": "asset",
+          "default_card_asset": "assets/cards/incident-result.json",
+          "default_card_inline": {
+            "type": "AdaptiveCard",
+            "version": "1.6",
+            "body": [
+              {
+                "type": "TextBlock",
+                "text": "{{i18n:adaptive_card.default.title}}"
+              }
+            ]
+          },
+          "default_card_remote": "",
+          "multilingual": true,
+          "language_mode": "custom",
+          "supported_locales": "en"
+        }
       }
     ]
   }
