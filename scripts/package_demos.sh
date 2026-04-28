@@ -73,6 +73,16 @@ rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
 mkdir -p "$LOCAL_PACK_INPUT_DIR"
 
+# Pin the OCI pack cache to a fresh per-run directory so every bundle in
+# this CI run resolves `oci://…:latest` references against the same
+# snapshot. Without this, two bundles built in sequence could pick up
+# different `:latest` artifacts if an upstream tag rotated between
+# resolutions, or could reuse stale bytes from a previous run's cache.
+# The cache is a build cache only — wiping it costs at most one network
+# fetch per referenced pack within a run.
+export GREENTIC_PACK_CACHE_DIR="$TMP_ROOT/pack-cache"
+mkdir -p "$GREENTIC_PACK_CACHE_DIR"
+
 # Seed LOCAL_PACK_INPUT_DIR with committed packs before cleanup so that
 # pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
 # remain available for bundle creation.
@@ -696,5 +706,91 @@ done
 
 if [ "$missing_expected" -ne 0 ]; then
     echo "One or more expected demo artifacts were not produced." >&2
+    exit 1
+fi
+
+# Drift gate: every demo bundle in a single CI run must resolve each
+# provider pack to the same WASM bytes. Two bundles ending up with
+# different `messaging-webchat-gui` versions has happened before
+# (snapshot-at-build-time of `oci://…:latest`) and silently breaks
+# bundle-to-bundle parity. We compare per-provider pack sha256 across
+# all built bundles and fail loudly on divergence.
+detect_provider_drift() {
+    local drift_dir="$TMP_ROOT/drift-check"
+    rm -rf "$drift_dir"
+    mkdir -p "$drift_dir"
+
+    local bundles=()
+    while IFS= read -r b; do
+        bundles+=("$b")
+    done < <(find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -print)
+
+    if [ "${#bundles[@]}" -lt 2 ]; then
+        return 0
+    fi
+
+    # `.gtbundle` is a Squashfs filesystem, not a ZIP. We need `unsquashfs`
+    # (from squashfs-tools) to read the inner `.gtpack` files. If it is not
+    # available, skip the drift gate with a clear warning rather than blocking
+    # the build — cache pinning above is the actual fix; this is verification.
+    if ! command -v unsquashfs >/dev/null 2>&1; then
+        echo "Warning: skipping provider drift check — unsquashfs not found." >&2
+        echo "         Install squashfs-tools to enable this verification gate." >&2
+        return 0
+    fi
+
+    local digests_file="$drift_dir/digests.tsv"
+    : > "$digests_file"
+
+    for bundle in "${bundles[@]}"; do
+        local bundle_name
+        bundle_name="$(basename "$bundle")"
+        local extract_dir="$drift_dir/$bundle_name"
+        rm -rf "$extract_dir"
+        if ! unsquashfs -no-progress -quiet -d "$extract_dir" "$bundle" >/dev/null 2>&1; then
+            echo "Warning: drift check could not extract $bundle_name" >&2
+            continue
+        fi
+        find "$extract_dir" -name '*.gtpack' -print 2>/dev/null | while read -r gtpack; do
+            local provider_name
+            provider_name="$(basename "$gtpack")"
+            local sha
+            sha="$(shasum -a 256 "$gtpack" | awk '{print $1}')"
+            printf '%s\t%s\t%s\n' "$provider_name" "$sha" "$bundle_name"
+        done >> "$digests_file"
+    done
+
+    if [ ! -s "$digests_file" ]; then
+        return 0
+    fi
+
+    local drift_report="$drift_dir/drift.txt"
+    : > "$drift_report"
+    awk -F'\t' '{print $1}' "$digests_file" | sort -u | while read -r provider; do
+        local distinct
+        distinct="$(awk -F'\t' -v p="$provider" '$1==p {print $2}' "$digests_file" | sort -u | wc -l | tr -d ' ')"
+        if [ "$distinct" -gt 1 ]; then
+            {
+                echo "Drift detected for $provider — bundles disagree on the cached artifact:"
+                awk -F'\t' -v p="$provider" '$1==p {printf "  %s  %s\n", $2, $3}' "$digests_file" | sort -u
+            } >> "$drift_report"
+        fi
+    done
+
+    if [ -s "$drift_report" ]; then
+        echo "" >&2
+        echo "Provider pack drift across bundles:" >&2
+        cat "$drift_report" >&2
+        echo "" >&2
+        echo "All bundles in one CI run must resolve each provider to the same artifact." >&2
+        echo "If an upstream :latest tag rotated mid-run, retry; otherwise pin the" >&2
+        echo "provider to a specific version in the offending bundle.yaml." >&2
+        return 1
+    fi
+
+    return 0
+}
+
+if ! detect_provider_drift; then
     exit 1
 fi
