@@ -193,8 +193,7 @@ fn char_class_matches_locale_script() {
         for lang in locale_codes() {
             let stem_lower = lang.to_lowercase();
             let prefix_lower = locale_prefix.to_lowercase();
-            if !(stem_lower == prefix_lower
-                || stem_lower.starts_with(&format!("{prefix_lower}-")))
+            if !(stem_lower == prefix_lower || stem_lower.starts_with(&format!("{prefix_lower}-")))
             {
                 continue;
             }

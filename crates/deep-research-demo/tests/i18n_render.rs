@@ -22,7 +22,9 @@ fn crate_root() -> PathBuf {
 }
 
 fn load_bundle(name: &str) -> BTreeMap<String, String> {
-    let path = crate_root().join("assets/i18n").join(format!("{name}.json"));
+    let path = crate_root()
+        .join("assets/i18n")
+        .join(format!("{name}.json"));
     let raw = fs::read_to_string(&path).unwrap_or_else(|e| panic!("read {path:?}: {e}"));
     let parsed: Map<String, Value> =
         serde_json::from_str(&raw).unwrap_or_else(|e| panic!("parse {path:?}: {e}"));
@@ -31,9 +33,7 @@ fn load_bundle(name: &str) -> BTreeMap<String, String> {
         .map(|(k, v)| {
             (
                 k,
-                v.as_str()
-                    .expect("string-valued bundle entry")
-                    .to_string(),
+                v.as_str().expect("string-valued bundle entry").to_string(),
             )
         })
         .collect()
@@ -82,9 +82,7 @@ fn every_card_token_resolves_in_sampled_locales() {
         let bundle = load_bundle(locale);
         for token in &all_tokens {
             let resolved = bundle.get(token).unwrap_or_else(|| {
-                panic!(
-                    "{locale}: token `{token}` has no entry in bundle (would render as raw key)"
-                )
+                panic!("{locale}: token `{token}` has no entry in bundle (would render as raw key)")
             });
             assert!(
                 !resolved.trim().is_empty(),
