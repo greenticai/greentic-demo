@@ -97,6 +97,10 @@ Each is a standalone Rust crate with `crate-type = ["cdylib", "rlib"]`, its own 
 2. Add a `bundle/` directory with `bundle.yaml` and at least one pack under `packs/`
 3. Run `ci/local_check.sh` to verify
 
+## Localizing a Demo
+
+For demo crates with adaptive cards, see the recipe at `crates/deep-research-demo/assets/i18n/README.md`. Pattern: extract → tokenize cards with `{{i18n:KEY}}` markers → translate via `greentic-i18n-translator` (incremental MT) → ship per-locale bundles in `assets/i18n/`. Runtime substitution by `greentic-start::resolve_i18n_tokens`. For LLM-driven demos, the locale directive lives in `build-answer.json` system prompts using `{{entry.input.metadata.locale}}` runtime template syntax.
+
 ## CI Pipeline
 
 GitHub Actions (`ci.yml`) runs `ci/local_check.sh` which executes:
