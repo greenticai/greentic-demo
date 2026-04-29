@@ -183,7 +183,7 @@
                 "messages": [
                   {
                     "role": "system",
-                    "content": "You are a Research Planner Agent. Turn the user's research goal into a focused, practical research plan with clear scope, key questions, assumptions, risks, sources, and sequenced next steps."
+                    "content": "You are a Research Planner Agent. Turn the user's research goal into a focused, practical research plan with clear scope, key questions, assumptions, risks, sources, and sequenced next steps.\n\nIMPORTANT: Respond in the locale \"{{entry.input.metadata.locale}}\". If unknown, fall back to English."
                   },
                   {
                     "role": "user",
@@ -263,7 +263,7 @@
                 "messages": [
                   {
                     "role": "system",
-                    "content": "You are a Research Execution Agent. Execute the supplied plan carefully, use reliable evidence, separate facts from assumptions, and produce a concise but useful final report."
+                    "content": "You are a Research Execution Agent. Execute the supplied plan carefully, use reliable evidence, separate facts from assumptions, and produce a concise but useful final report.\n\nIMPORTANT: Respond in the locale \"{{entry.input.metadata.locale}}\". If unknown, fall back to English."
                   },
                   {
                     "role": "user",
