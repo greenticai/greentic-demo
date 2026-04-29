@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Kembali ke Menu Utama",
+  "card.final_report.body_0.text": "Analis Riset",
+  "card.final_report.body_1.text": "Pertanyaan: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Memproses laporan akhir...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Ikon riset",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Masukkan pertanyaan riset Anda, lalu pilih jawaban cepat Single Shot atau alur kerja Agentic lengkap.",
+  "card.main_menu.body_1.errorMessage": "Masukkan pertanyaan riset.",
+  "card.main_menu.body_1.label": "Pertanyaan Riset",
+  "card.main_menu.body_1.placeholder": "Apa yang ingin Anda riset?",
+  "card.main_menu.speak": "Selamat datang di Deep Research Digital Worker. Masukkan pertanyaan Anda, lalu pilih Single Shot untuk jawaban langsung atau Agentic untuk perencanaan dan eksekusi.",
+  "card.research_plan.actions_0.title": "Jalankan Researcher",
+  "card.research_plan.actions_1.title": "Kembali ke Menu Utama",
+  "card.research_plan.body_0.text": "Planner Riset",
+  "card.research_plan.body_1.text": "Pertanyaan: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Membuat rencana riset..."
+}

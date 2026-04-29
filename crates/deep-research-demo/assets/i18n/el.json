@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Πίσω στο κύριο μενού",
+  "card.final_report.body_0.text": "Αναλυτής Έρευνας",
+  "card.final_report.body_1.text": "Ερώτηση: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Γίνεται επεξεργασία της τελικής αναφοράς...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Εικονίδιο έρευνας",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Εισαγάγετε την ερευνητική ερώτησή σας και έπειτα επιλέξτε μια γρήγορη απάντηση Single Shot ή την πλήρη ροή εργασίας Agentic.",
+  "card.main_menu.body_1.errorMessage": "Εισαγάγετε μια ερευνητική ερώτηση.",
+  "card.main_menu.body_1.label": "Ερευνητική ερώτηση",
+  "card.main_menu.body_1.placeholder": "Τι θέλετε να ερευνήσετε;",
+  "card.main_menu.speak": "Καλώς ήρθατε στο Deep Research Digital Worker. Εισαγάγετε την ερώτησή σας και έπειτα επιλέξτε Single Shot για άμεση απάντηση ή Agentic για σχεδιασμό και εκτέλεση.",
+  "card.research_plan.actions_0.title": "Εκτέλεση Researcher",
+  "card.research_plan.actions_1.title": "Πίσω στο κύριο μενού",
+  "card.research_plan.body_0.text": "Planner Έρευνας",
+  "card.research_plan.body_1.text": "Ερώτηση: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Δημιουργία ερευνητικού πλάνου..."
+}

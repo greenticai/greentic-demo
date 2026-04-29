@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "പ്രധാന മെനുവിലേക്ക് മടങ്ങുക",
+  "card.final_report.body_0.text": "ഗവേഷണ വിശകലന വിദഗ്ധൻ",
+  "card.final_report.body_1.text": "ചോദ്യം: ${user_question}",
+  "card.final_report.body_2_items_0.text": "അവസാന റിപ്പോർട്ട് പ്രോസസ്സ് ചെയ്യുന്നു...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "ഗവേഷണ ഐക്കൺ",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "നിങ്ങളുടെ ഗവേഷണ ചോദ്യം നൽകുക, തുടർന്ന് വേഗത്തിലുള്ള Single Shot ഉത്തരം അല്ലെങ്കിൽ പൂർണ്ണ Agentic വർക്ക്‌ഫ്ലോ തിരഞ്ഞെടുക്കുക.",
+  "card.main_menu.body_1.errorMessage": "ദയവായി ഒരു ഗവേഷണ ചോദ്യം നൽകുക.",
+  "card.main_menu.body_1.label": "ഗവേഷണ ചോദ്യം",
+  "card.main_menu.body_1.placeholder": "നിങ്ങൾ എന്തിനെക്കുറിച്ചാണ് ഗവേഷണം ചെയ്യാൻ ആഗ്രഹിക്കുന്നത്?",
+  "card.main_menu.speak": "Deep Research Digital Worker-ലേക്ക് സ്വാഗതം. നിങ്ങളുടെ ചോദ്യം നൽകുക, തുടർന്ന് നേരിട്ടുള്ള ഉത്തരത്തിനായി Single Shot അല്ലെങ്കിൽ ആസൂത്രണവും നിർവഹണവും ഉൾപ്പെടെയുള്ള Agentic തിരഞ്ഞെടുക്കുക.",
+  "card.research_plan.actions_0.title": "Researcher പ്രവർത്തിപ്പിക്കുക",
+  "card.research_plan.actions_1.title": "പ്രധാന മെനുവിലേക്ക് മടങ്ങുക",
+  "card.research_plan.body_0.text": "ഗവേഷണ Planner",
+  "card.research_plan.body_1.text": "ചോദ്യം: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "ഗവേഷണ പദ്ധതി സൃഷ്ടിക്കുന്നു..."
+}

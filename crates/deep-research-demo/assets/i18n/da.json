@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Tilbage til hovedmenu",
+  "card.final_report.body_0.text": "Forskningsanalytiker",
+  "card.final_report.body_1.text": "Spørgsmål: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Behandler endelig rapport...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Forskningsikon",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Indtast dit researchspørgsmål, og vælg derefter et hurtigt Single Shot-svar eller det fulde Agentic-workflow.",
+  "card.main_menu.body_1.errorMessage": "Indtast et researchspørgsmål.",
+  "card.main_menu.body_1.label": "Researchspørgsmål",
+  "card.main_menu.body_1.placeholder": "Hvad vil du researche?",
+  "card.main_menu.speak": "Velkommen til Deep Research Digital Worker. Indtast dit spørgsmål, og vælg derefter Single Shot for et direkte svar eller Agentic for planlægning plus udførelse.",
+  "card.research_plan.actions_0.title": "Kør Researcher",
+  "card.research_plan.actions_1.title": "Tilbage til hovedmenu",
+  "card.research_plan.body_0.text": "Research Planner",
+  "card.research_plan.body_1.text": "Spørgsmål: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Genererer researchplan..."
+}

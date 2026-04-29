@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Takaisin päävalikkoon",
+  "card.final_report.body_0.text": "Tutkimusanalyytikko",
+  "card.final_report.body_1.text": "Kysymys: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Käsitellään loppuraporttia...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Tutkimuskuvake",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Syötä tutkimuskysymyksesi ja valitse sitten nopea Single Shot -vastaus tai täysi Agentic-työnkulku.",
+  "card.main_menu.body_1.errorMessage": "Syötä tutkimuskysymys.",
+  "card.main_menu.body_1.label": "Tutkimuskysymys",
+  "card.main_menu.body_1.placeholder": "Mitä haluat tutkia?",
+  "card.main_menu.speak": "Tervetuloa käyttämään Deep Research Digital Worker -ratkaisua. Syötä kysymyksesi ja valitse sitten Single Shot saadaksesi suoran vastauksen tai Agentic suunnittelua ja toteutusta varten.",
+  "card.research_plan.actions_0.title": "Suorita Researcher",
+  "card.research_plan.actions_1.title": "Takaisin päävalikkoon",
+  "card.research_plan.body_0.text": "Tutkimus-Planner",
+  "card.research_plan.body_1.text": "Kysymys: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Luodaan tutkimussuunnitelmaa..."
+}

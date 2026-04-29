@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Kembali ke Menu Utama",
+  "card.final_report.body_0.text": "Penganalisis Penyelidikan",
+  "card.final_report.body_1.text": "Soalan: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Memproses laporan akhir...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Ikon penyelidikan",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Masukkan soalan penyelidikan anda, kemudian pilih jawapan Single Shot yang pantas atau aliran kerja Agentic penuh.",
+  "card.main_menu.body_1.errorMessage": "Sila masukkan soalan penyelidikan.",
+  "card.main_menu.body_1.label": "Soalan Penyelidikan",
+  "card.main_menu.body_1.placeholder": "Apakah yang ingin anda selidiki?",
+  "card.main_menu.speak": "Selamat datang ke Deep Research Digital Worker. Masukkan soalan anda, kemudian pilih Single Shot untuk jawapan langsung atau Agentic untuk perancangan serta pelaksanaan.",
+  "card.research_plan.actions_0.title": "Jalankan Researcher",
+  "card.research_plan.actions_1.title": "Kembali ke Menu Utama",
+  "card.research_plan.body_0.text": "Planner Penyelidikan",
+  "card.research_plan.body_1.text": "Soalan: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Menjana pelan penyelidikan..."
+}

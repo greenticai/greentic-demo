@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Quay lại Menu chính",
+  "card.final_report.body_0.text": "Nhà phân tích nghiên cứu",
+  "card.final_report.body_1.text": "Câu hỏi: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Đang xử lý báo cáo cuối cùng...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Biểu tượng nghiên cứu",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Nhập câu hỏi nghiên cứu của bạn, sau đó chọn câu trả lời Single Shot nhanh hoặc quy trình Agentic đầy đủ.",
+  "card.main_menu.body_1.errorMessage": "Vui lòng nhập câu hỏi nghiên cứu.",
+  "card.main_menu.body_1.label": "Câu hỏi nghiên cứu",
+  "card.main_menu.body_1.placeholder": "Bạn muốn nghiên cứu điều gì?",
+  "card.main_menu.speak": "Chào mừng đến với Deep Research Digital Worker. Nhập câu hỏi của bạn, sau đó chọn Single Shot để nhận câu trả lời trực tiếp hoặc Agentic để lập kế hoạch cộng với thực thi.",
+  "card.research_plan.actions_0.title": "Chạy Researcher",
+  "card.research_plan.actions_1.title": "Quay lại Menu chính",
+  "card.research_plan.body_0.text": "Planner nghiên cứu",
+  "card.research_plan.body_1.text": "Câu hỏi: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Đang tạo kế hoạch nghiên cứu..."
+}

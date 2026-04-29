@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Vissza a főmenübe",
+  "card.final_report.body_0.text": "Kutatási elemző",
+  "card.final_report.body_1.text": "Kérdés: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Végső jelentés feldolgozása...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Kutatási ikon",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Add meg a kutatási kérdésedet, majd válassz egy gyors Single Shot választ vagy a teljes Agentic munkafolyamatot.",
+  "card.main_menu.body_1.errorMessage": "Adj meg egy kutatási kérdést.",
+  "card.main_menu.body_1.label": "Kutatási kérdés",
+  "card.main_menu.body_1.placeholder": "Mit szeretnél kutatni?",
+  "card.main_menu.speak": "Üdvözlünk a Deep Research Digital Workerben. Add meg a kérdésedet, majd válaszd a Single Shot lehetőséget közvetlen válaszért, vagy az Agentic lehetőséget tervezéssel és végrehajtással.",
+  "card.research_plan.actions_0.title": "Researcher futtatása",
+  "card.research_plan.actions_1.title": "Vissza a főmenübe",
+  "card.research_plan.body_0.text": "Kutatási Planner",
+  "card.research_plan.body_1.text": "Kérdés: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Kutatási terv létrehozása..."
+}

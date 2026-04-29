@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Retour au menu principal",
+  "card.final_report.body_0.text": "Analyste de recherche",
+  "card.final_report.body_1.text": "Question : ${user_question}",
+  "card.final_report.body_2_items_0.text": "Traitement du rapport final...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Icône de recherche",
+  "card.main_menu.body_0_columns_1_items_0.text": "Digital Worker Deep Research",
+  "card.main_menu.body_0_columns_1_items_1.text": "Saisissez votre question de recherche, puis choisissez une réponse rapide en Single Shot ou le workflow Agentic complet.",
+  "card.main_menu.body_1.errorMessage": "Veuillez saisir une question de recherche.",
+  "card.main_menu.body_1.label": "Question de recherche",
+  "card.main_menu.body_1.placeholder": "Que souhaitez-vous rechercher ?",
+  "card.main_menu.speak": "Bienvenue dans le Digital Worker Deep Research. Saisissez votre question, puis choisissez Single Shot pour une réponse directe ou Agentic pour la planification et l’exécution.",
+  "card.research_plan.actions_0.title": "Lancer Researcher",
+  "card.research_plan.actions_1.title": "Retour au menu principal",
+  "card.research_plan.body_0.text": "Planner de recherche",
+  "card.research_plan.body_1.text": "Question : ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Génération du plan de recherche..."
+}

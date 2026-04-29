@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "முதன்மை மெனுவிற்குத் திரும்பு",
+  "card.final_report.body_0.text": "ஆராய்ச்சி பகுப்பாய்வாளர்",
+  "card.final_report.body_1.text": "கேள்வி: ${user_question}",
+  "card.final_report.body_2_items_0.text": "இறுதி அறிக்கை செயலாக்கப்படுகிறது...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "ஆராய்ச்சி ஐகான்",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "உங்கள் ஆராய்ச்சி கேள்வியை உள்ளிடுங்கள், பின்னர் விரைவான Single Shot பதிலை அல்லது முழு Agentic பணிப்பாய்வைத் தேர்ந்தெடுக்கவும்.",
+  "card.main_menu.body_1.errorMessage": "ஆராய்ச்சி கேள்வியை உள்ளிடவும்.",
+  "card.main_menu.body_1.label": "ஆராய்ச்சி கேள்வி",
+  "card.main_menu.body_1.placeholder": "நீங்கள் எதை ஆராய விரும்புகிறீர்கள்?",
+  "card.main_menu.speak": "Deep Research Digital Worker-க்கு வரவேற்கிறோம். உங்கள் கேள்வியை உள்ளிடுங்கள், பின்னர் நேரடி பதிலுக்கு Single Shot அல்லது திட்டமிடல் மற்றும் செயலாக்கத்துக்கு Agentic என்பதைத் தேர்ந்தெடுக்கவும்.",
+  "card.research_plan.actions_0.title": "Researcher-ஐ இயக்கு",
+  "card.research_plan.actions_1.title": "முதன்மை மெனுவிற்குத் திரும்பு",
+  "card.research_plan.body_0.text": "ஆராய்ச்சி Planner",
+  "card.research_plan.body_1.text": "கேள்வி: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "ஆராய்ச்சி திட்டம் உருவாக்கப்படுகிறது..."
+}

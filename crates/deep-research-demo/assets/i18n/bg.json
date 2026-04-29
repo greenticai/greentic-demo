@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Назад към главното меню",
+  "card.final_report.body_0.text": "Изследователски анализатор",
+  "card.final_report.body_1.text": "Въпрос: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Обработване на финалния доклад...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Икона за изследване",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Въведете изследователския си въпрос, след което изберете бърз Single Shot отговор или пълния Agentic работен процес.",
+  "card.main_menu.body_1.errorMessage": "Моля, въведете изследователски въпрос.",
+  "card.main_menu.body_1.label": "Изследователски въпрос",
+  "card.main_menu.body_1.placeholder": "Какво искате да проучите?",
+  "card.main_menu.speak": "Добре дошли в Deep Research Digital Worker. Въведете въпроса си, след което изберете Single Shot за директен отговор или Agentic за планиране плюс изпълнение.",
+  "card.research_plan.actions_0.title": "Стартиране на Researcher",
+  "card.research_plan.actions_1.title": "Назад към главното меню",
+  "card.research_plan.body_0.text": "Изследователски Planner",
+  "card.research_plan.body_1.text": "Въпрос: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Генериране на изследователски план..."
+}

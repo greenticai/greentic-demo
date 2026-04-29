@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Вернуться в главное меню",
+  "card.final_report.body_0.text": "Аналитик-исследователь",
+  "card.final_report.body_1.text": "Вопрос: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Обработка итогового отчета...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Значок исследования",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Введите исследовательский вопрос, затем выберите быстрый ответ в режиме Single Shot или полный рабочий процесс Agentic.",
+  "card.main_menu.body_1.errorMessage": "Введите исследовательский вопрос.",
+  "card.main_menu.body_1.label": "Исследовательский вопрос",
+  "card.main_menu.body_1.placeholder": "Что вы хотите исследовать?",
+  "card.main_menu.speak": "Добро пожаловать в Deep Research Digital Worker. Введите вопрос, затем выберите Single Shot для прямого ответа или Agentic для планирования и выполнения.",
+  "card.research_plan.actions_0.title": "Запустить Researcher",
+  "card.research_plan.actions_1.title": "Вернуться в главное меню",
+  "card.research_plan.body_0.text": "Research Planner",
+  "card.research_plan.body_1.text": "Вопрос: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Создание плана исследования..."
+}

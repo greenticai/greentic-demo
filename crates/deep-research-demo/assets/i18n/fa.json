@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "بازگشت به منوی اصلی",
+  "card.final_report.body_0.text": "تحلیلگر پژوهش",
+  "card.final_report.body_1.text": "پرسش: ${user_question}",
+  "card.final_report.body_2_items_0.text": "در حال پردازش گزارش نهایی...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "آیکون پژوهش",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "پرسش پژوهشی خود را وارد کنید، سپس یک پاسخ سریع Single Shot یا گردش‌کار کامل Agentic را انتخاب کنید.",
+  "card.main_menu.body_1.errorMessage": "لطفاً یک پرسش پژوهشی وارد کنید.",
+  "card.main_menu.body_1.label": "پرسش پژوهشی",
+  "card.main_menu.body_1.placeholder": "چه چیزی را می‌خواهید پژوهش کنید؟",
+  "card.main_menu.speak": "به Deep Research Digital Worker خوش آمدید. پرسش خود را وارد کنید، سپس برای دریافت پاسخ مستقیم Single Shot یا برای برنامه‌ریزی به‌همراه اجرا Agentic را انتخاب کنید.",
+  "card.research_plan.actions_0.title": "اجرای Researcher",
+  "card.research_plan.actions_1.title": "بازگشت به منوی اصلی",
+  "card.research_plan.body_0.text": "Planner پژوهش",
+  "card.research_plan.body_1.text": "پرسش: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "در حال ایجاد برنامه پژوهش..."
+}

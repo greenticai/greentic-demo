@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "ပင်မမီနူးသို့ ပြန်သွားရန်",
+  "card.final_report.body_0.text": "သုတေသန ခွဲခြမ်းစိတ်ဖြာသူ",
+  "card.final_report.body_1.text": "မေးခွန်း: ${user_question}",
+  "card.final_report.body_2_items_0.text": "နောက်ဆုံးအစီရင်ခံစာကို လုပ်ဆောင်နေသည်...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "သုတေသန အိုင်ကွန်",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "သင်၏ သုတေသန မေးခွန်းကို ထည့်သွင်းပြီးနောက်၊ မြန်ဆန်သော Single Shot အဖြေ သို့မဟုတ် ပြည့်စုံသော Agentic လုပ်ငန်းစဉ်ကို ရွေးချယ်ပါ။",
+  "card.main_menu.body_1.errorMessage": "သုတေသန မေးခွန်းတစ်ခု ထည့်သွင်းပါ။",
+  "card.main_menu.body_1.label": "သုတေသန မေးခွန်း",
+  "card.main_menu.body_1.placeholder": "သင် ဘာကို သုတေသနလုပ်ချင်ပါသလဲ?",
+  "card.main_menu.speak": "Deep Research Digital Worker မှ ကြိုဆိုပါသည်။ သင့်မေးခွန်းကို ထည့်သွင်းပြီးနောက် တိုက်ရိုက်အဖြေအတွက် Single Shot ကို ရွေးပါ သို့မဟုတ် အစီအစဉ်ရေးဆွဲခြင်းနှင့် အကောင်အထည်ဖော်ခြင်းအတွက် Agentic ကို ရွေးပါ။",
+  "card.research_plan.actions_0.title": "Researcher ကို လုပ်ဆောင်ရန်",
+  "card.research_plan.actions_1.title": "ပင်မမီနူးသို့ ပြန်သွားရန်",
+  "card.research_plan.body_0.text": "သုတေသန Planner",
+  "card.research_plan.body_1.text": "မေးခွန်း: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "သုတေသန အစီအစဉ်ကို ထုတ်လုပ်နေသည်..."
+}

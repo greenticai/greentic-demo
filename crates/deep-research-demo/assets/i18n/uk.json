@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Назад до головного меню",
+  "card.final_report.body_0.text": "Аналітик досліджень",
+  "card.final_report.body_1.text": "Запитання: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Обробка фінального звіту...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Піктограма дослідження",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Введіть своє дослідницьке запитання, а потім оберіть швидку відповідь у режимі Single Shot або повний робочий процес Agentic.",
+  "card.main_menu.body_1.errorMessage": "Будь ласка, введіть дослідницьке запитання.",
+  "card.main_menu.body_1.label": "Дослідницьке запитання",
+  "card.main_menu.body_1.placeholder": "Що ви хочете дослідити?",
+  "card.main_menu.speak": "Ласкаво просимо до Deep Research Digital Worker. Введіть своє запитання, потім оберіть Single Shot для прямої відповіді або Agentic для планування та виконання.",
+  "card.research_plan.actions_0.title": "Запустити Researcher",
+  "card.research_plan.actions_1.title": "Назад до головного меню",
+  "card.research_plan.body_0.text": "Planner досліджень",
+  "card.research_plan.body_1.text": "Запитання: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Генерація плану дослідження..."
+}

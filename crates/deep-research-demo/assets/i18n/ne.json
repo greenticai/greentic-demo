@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "मुख्य मेनुमा फर्कनुहोस्",
+  "card.final_report.body_0.text": "अनुसन्धान विश्लेषक",
+  "card.final_report.body_1.text": "प्रश्न: ${user_question}",
+  "card.final_report.body_2_items_0.text": "अन्तिम प्रतिवेदन प्रशोधन गर्दै...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "अनुसन्धान आइकन",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "आफ्नो अनुसन्धान प्रश्न प्रविष्ट गर्नुहोस्, त्यसपछि छिटो Single Shot उत्तर वा पूर्ण Agentic कार्यप्रवाह छान्नुहोस्।",
+  "card.main_menu.body_1.errorMessage": "कृपया अनुसन्धान प्रश्न प्रविष्ट गर्नुहोस्।",
+  "card.main_menu.body_1.label": "अनुसन्धान प्रश्न",
+  "card.main_menu.body_1.placeholder": "तपाईं के अनुसन्धान गर्न चाहनुहुन्छ?",
+  "card.main_menu.speak": "Deep Research Digital Worker मा स्वागत छ। आफ्नो प्रश्न प्रविष्ट गर्नुहोस्, त्यसपछि प्रत्यक्ष उत्तरका लागि Single Shot वा योजना र कार्यान्वयनका लागि Agentic छान्नुहोस्।",
+  "card.research_plan.actions_0.title": "Researcher चलाउनुहोस्",
+  "card.research_plan.actions_1.title": "मुख्य मेनुमा फर्कनुहोस्",
+  "card.research_plan.body_0.text": "अनुसन्धान Planner",
+  "card.research_plan.body_1.text": "प्रश्न: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "अनुसन्धान योजना生成 गर्दै..."
+}

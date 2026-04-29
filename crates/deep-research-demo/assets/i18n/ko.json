@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "메인 메뉴로 돌아가기",
+  "card.final_report.body_0.text": "리서치 분석가",
+  "card.final_report.body_1.text": "질문: ${user_question}",
+  "card.final_report.body_2_items_0.text": "최종 보고서를 처리하는 중...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "리서치 아이콘",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "연구 질문을 입력한 다음, 빠른 Single Shot 답변 또는 전체 Agentic 워크플로를 선택하세요.",
+  "card.main_menu.body_1.errorMessage": "연구 질문을 입력하세요.",
+  "card.main_menu.body_1.label": "연구 질문",
+  "card.main_menu.body_1.placeholder": "무엇을 연구하고 싶으신가요?",
+  "card.main_menu.speak": "Deep Research Digital Worker에 오신 것을 환영합니다. 질문을 입력한 다음, 직접 답변을 원하면 Single Shot을 선택하고, 계획 수립과 실행을 원하면 Agentic을 선택하세요.",
+  "card.research_plan.actions_0.title": "Researcher 실행",
+  "card.research_plan.actions_1.title": "메인 메뉴로 돌아가기",
+  "card.research_plan.body_0.text": "Research Planner",
+  "card.research_plan.body_1.text": "질문: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "연구 계획을 생성하는 중..."
+}

@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "প্রধান মেনুতে ফিরে যান",
+  "card.final_report.body_0.text": "গবেষণা বিশ্লেষক",
+  "card.final_report.body_1.text": "প্রশ্ন: ${user_question}",
+  "card.final_report.body_2_items_0.text": "চূড়ান্ত প্রতিবেদন প্রক্রিয়াকরণ হচ্ছে...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "গবেষণা আইকন",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "আপনার গবেষণা প্রশ্ন লিখুন, তারপর দ্রুত Single Shot উত্তর বা সম্পূর্ণ Agentic ওয়ার্কফ্লো বেছে নিন।",
+  "card.main_menu.body_1.errorMessage": "অনুগ্রহ করে একটি গবেষণা প্রশ্ন লিখুন।",
+  "card.main_menu.body_1.label": "গবেষণা প্রশ্ন",
+  "card.main_menu.body_1.placeholder": "আপনি কী নিয়ে গবেষণা করতে চান?",
+  "card.main_menu.speak": "Deep Research Digital Worker-এ স্বাগতম। আপনার প্রশ্ন লিখুন, তারপর সরাসরি উত্তরের জন্য Single Shot অথবা পরিকল্পনা ও বাস্তবায়নের জন্য Agentic বেছে নিন।",
+  "card.research_plan.actions_0.title": "Researcher চালান",
+  "card.research_plan.actions_1.title": "প্রধান মেনুতে ফিরে যান",
+  "card.research_plan.body_0.text": "গবেষণা Planner",
+  "card.research_plan.body_1.text": "প্রশ্ন: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "গবেষণা পরিকল্পনা তৈরি হচ্ছে..."
+}

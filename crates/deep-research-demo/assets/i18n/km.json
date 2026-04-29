@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "ត្រឡប់ទៅម៉ឺនុយមេ",
+  "card.final_report.body_0.text": "អ្នកវិភាគស្រាវជ្រាវ",
+  "card.final_report.body_1.text": "សំណួរ៖ ${user_question}",
+  "card.final_report.body_2_items_0.text": "កំពុងដំណើរការរបាយការណ៍ចុងក្រោយ...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "រូបតំណាងស្រាវជ្រាវ",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "បញ្ចូលសំណួរស្រាវជ្រាវរបស់អ្នក បន្ទាប់មកជ្រើសរើសចម្លើយ Single Shot រហ័ស ឬលំហូរការងារ Agentic ពេញលេញ។",
+  "card.main_menu.body_1.errorMessage": "សូមបញ្ចូលសំណួរស្រាវជ្រាវ។",
+  "card.main_menu.body_1.label": "សំណួរស្រាវជ្រាវ",
+  "card.main_menu.body_1.placeholder": "តើអ្នកចង់ស្រាវជ្រាវអំពីអ្វី?",
+  "card.main_menu.speak": "សូមស្វាគមន៍មកកាន់ Deep Research Digital Worker។ បញ្ចូលសំណួររបស់អ្នក បន្ទាប់មកជ្រើសរើស Single Shot សម្រាប់ចម្លើយដោយផ្ទាល់ ឬ Agentic សម្រាប់ការរៀបចំផែនការ និងការអនុវត្ត។",
+  "card.research_plan.actions_0.title": "ដំណើរការ Researcher",
+  "card.research_plan.actions_1.title": "ត្រឡប់ទៅម៉ឺនុយមេ",
+  "card.research_plan.body_0.text": "អ្នករៀបចំផែនការស្រាវជ្រាវ",
+  "card.research_plan.body_1.text": "សំណួរ៖ ${user_question}",
+  "card.research_plan.body_2_items_0.text": "កំពុងបង្កើតផែនការស្រាវជ្រាវ..."
+}

@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "ກັບໄປທີ່ເມນູຫຼັກ",
+  "card.final_report.body_0.text": "ນັກວິເຄາະການຄົ້ນຄວ້າ",
+  "card.final_report.body_1.text": "ຄໍາຖາມ: ${user_question}",
+  "card.final_report.body_2_items_0.text": "ກໍາລັງປະມວນຜົນລາຍງານສຸດທ້າຍ...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "ໄອຄອນການຄົ້ນຄວ້າ",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "ປ້ອນຄໍາຖາມການຄົ້ນຄວ້າຂອງທ່ານ, ແລ້ວເລືອກຄໍາຕອບແບບ Single Shot ທີ່ໄວ ຫຼື workflow ແບບ Agentic ເຕັມຮູບແບບ.",
+  "card.main_menu.body_1.errorMessage": "ກະລຸນາປ້ອນຄໍາຖາມການຄົ້ນຄວ້າ.",
+  "card.main_menu.body_1.label": "ຄໍາຖາມການຄົ້ນຄວ້າ",
+  "card.main_menu.body_1.placeholder": "ທ່ານຕ້ອງການຄົ້ນຄວ້າຫຍັງ?",
+  "card.main_menu.speak": "ຍິນດີຕ້ອນຮັບສູ່ Deep Research Digital Worker. ປ້ອນຄໍາຖາມຂອງທ່ານ, ແລ້ວເລືອກ Single Shot ສໍາລັບຄໍາຕອບໂດຍກົງ ຫຼື Agentic ສໍາລັບການວາງແຜນພ້ອມການດໍາເນີນການ.",
+  "card.research_plan.actions_0.title": "ດໍາເນີນການ Researcher",
+  "card.research_plan.actions_1.title": "ກັບໄປທີ່ເມນູຫຼັກ",
+  "card.research_plan.body_0.text": "Planner ການຄົ້ນຄວ້າ",
+  "card.research_plan.body_1.text": "ຄໍາຖາມ: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "ກໍາລັງສ້າງແຜນການຄົ້ນຄວ້າ..."
+}

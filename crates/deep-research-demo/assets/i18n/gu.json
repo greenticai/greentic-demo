@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "મુખ્ય મેનુ પર પાછા જાઓ",
+  "card.final_report.body_0.text": "સંશોધન વિશ્લેષક",
+  "card.final_report.body_1.text": "પ્રશ્ન: ${user_question}",
+  "card.final_report.body_2_items_0.text": "અંતિમ અહેવાલ પ્રક્રિયા થઈ રહ્યો છે...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "સંશોધન ચિહ્ન",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "તમારો સંશોધન પ્રશ્ન દાખલ કરો, પછી ઝડપી Single Shot જવાબ અથવા સંપૂર્ણ Agentic કાર્યપ્રવાહ પસંદ કરો.",
+  "card.main_menu.body_1.errorMessage": "કૃપા કરીને સંશોધન પ્રશ્ન દાખલ કરો.",
+  "card.main_menu.body_1.label": "સંશોધન પ્રશ્ન",
+  "card.main_menu.body_1.placeholder": "તમે કયા વિષય પર સંશોધન કરવા માંગો છો?",
+  "card.main_menu.speak": "Deep Research Digital Worker માં આપનું સ્વાગત છે. તમારો પ્રશ્ન દાખલ કરો, પછી સીધા જવાબ માટે Single Shot અથવા આયોજન સાથે અમલીકરણ માટે Agentic પસંદ કરો.",
+  "card.research_plan.actions_0.title": "Researcher ચલાવો",
+  "card.research_plan.actions_1.title": "મુખ્ય મેનુ પર પાછા જાઓ",
+  "card.research_plan.body_0.text": "સંશોધન Planner",
+  "card.research_plan.body_1.text": "પ્રશ્ન: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "સંશોધન યોજના જનરેટ થઈ રહી છે..."
+}

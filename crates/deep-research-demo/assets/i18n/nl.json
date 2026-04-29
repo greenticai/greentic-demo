@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "Terug naar hoofdmenu",
+  "card.final_report.body_0.text": "Onderzoeksanalist",
+  "card.final_report.body_1.text": "Vraag: ${user_question}",
+  "card.final_report.body_2_items_0.text": "Eindrapport verwerken...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "Onderzoekspictogram",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "Voer je onderzoeksvraag in en kies daarna een snel Single Shot-antwoord of de volledige Agentic-workflow.",
+  "card.main_menu.body_1.errorMessage": "Voer een onderzoeksvraag in.",
+  "card.main_menu.body_1.label": "Onderzoeksvraag",
+  "card.main_menu.body_1.placeholder": "Wat wil je onderzoeken?",
+  "card.main_menu.speak": "Welkom bij de Deep Research Digital Worker. Voer je vraag in en kies daarna Single Shot voor een direct antwoord of Agentic voor planning plus uitvoering.",
+  "card.research_plan.actions_0.title": "Researcher uitvoeren",
+  "card.research_plan.actions_1.title": "Terug naar hoofdmenu",
+  "card.research_plan.body_0.text": "Research Planner",
+  "card.research_plan.body_1.text": "Vraag: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "Onderzoeksplan genereren..."
+}

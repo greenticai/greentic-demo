@@ -1,0 +1,20 @@
+{
+  "card.final_report.actions_0.title": "मुख्य मेनू पर वापस जाएँ",
+  "card.final_report.body_0.text": "अनुसंधान विश्लेषक",
+  "card.final_report.body_1.text": "प्रश्न: ${user_question}",
+  "card.final_report.body_2_items_0.text": "अंतिम रिपोर्ट प्रोसेस की जा रही है...",
+  "card.main_menu.actions_0.title": "Single Shot",
+  "card.main_menu.actions_1.title": "Agentic",
+  "card.main_menu.body_0_columns_0_items_0.altText": "अनुसंधान आइकन",
+  "card.main_menu.body_0_columns_1_items_0.text": "Deep Research Digital Worker",
+  "card.main_menu.body_0_columns_1_items_1.text": "अपना अनुसंधान प्रश्न दर्ज करें, फिर तेज़ Single Shot उत्तर या पूरा Agentic वर्कफ़्लो चुनें।",
+  "card.main_menu.body_1.errorMessage": "कृपया एक अनुसंधान प्रश्न दर्ज करें।",
+  "card.main_menu.body_1.label": "अनुसंधान प्रश्न",
+  "card.main_menu.body_1.placeholder": "आप किस पर अनुसंधान करना चाहते हैं?",
+  "card.main_menu.speak": "Deep Research Digital Worker में आपका स्वागत है। अपना प्रश्न दर्ज करें, फिर सीधे उत्तर के लिए Single Shot या योजना और निष्पादन के लिए Agentic चुनें।",
+  "card.research_plan.actions_0.title": "Researcher चलाएँ",
+  "card.research_plan.actions_1.title": "मुख्य मेनू पर वापस जाएँ",
+  "card.research_plan.body_0.text": "अनुसंधान Planner",
+  "card.research_plan.body_1.text": "प्रश्न: ${user_question}",
+  "card.research_plan.body_2_items_0.text": "अनुसंधान योजना तैयार की जा रही है..."
+}
