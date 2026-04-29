@@ -9,5 +9,6 @@
   "OpenAI": "OpenAI",
   "Ollama": "Ollama",
   "LLM": "LLM",
-  "Adaptive Card": "Adaptive Card"
+  "Adaptive Card": "Adaptive Card",
+  "${user_question}": "${user_question}"
 }
