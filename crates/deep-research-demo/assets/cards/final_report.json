@@ -5,14 +5,14 @@
   "body": [
     {
       "type": "TextBlock",
-      "text": "Research Analyst",
+      "text": "{{i18n:card.final_report.body_0.text}}",
       "weight": "Bolder",
       "size": "Large",
       "color": "Accent"
     },
     {
       "type": "TextBlock",
-      "text": "Question: ${user_question}",
+      "text": "{{i18n:card.final_report.body_1.text}}",
       "wrap": true,
       "spacing": "Small"
     },
@@ -23,7 +23,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "Processing final report...",
+          "text": "{{i18n:card.final_report.body_2_items_0.text}}",
           "wrap": true,
           "isSubtle": true
         }
@@ -46,7 +46,7 @@
   "actions": [
     {
       "type": "Action.Submit",
-      "title": "Back to Main Menu",
+      "title": "{{i18n:card.final_report.actions_0.title}}",
       "data": {
         "routeToCardId": "main_menu"
       }

@@ -5,14 +5,14 @@
   "body": [
     {
       "type": "TextBlock",
-      "text": "Research Planner",
+      "text": "{{i18n:card.research_plan.body_0.text}}",
       "weight": "Bolder",
       "size": "Large",
       "color": "Accent"
     },
     {
       "type": "TextBlock",
-      "text": "Question: ${user_question}",
+      "text": "{{i18n:card.research_plan.body_1.text}}",
       "wrap": true,
       "spacing": "Small"
     },
@@ -23,7 +23,7 @@
       "items": [
         {
           "type": "TextBlock",
-          "text": "Generating research plan...",
+          "text": "{{i18n:card.research_plan.body_2_items_0.text}}",
           "wrap": true,
           "isSubtle": true
         }
@@ -45,7 +45,7 @@
   "actions": [
     {
       "type": "Action.Submit",
-      "title": "Run Researcher",
+      "title": "{{i18n:card.research_plan.actions_0.title}}",
       "style": "positive",
       "data": {
         "action": "start_research_analysis",
@@ -55,7 +55,7 @@
     },
     {
       "type": "Action.Submit",
-      "title": "Back to Main Menu",
+      "title": "{{i18n:card.research_plan.actions_1.title}}",
       "data": {
         "routeToCardId": "main_menu"
       }

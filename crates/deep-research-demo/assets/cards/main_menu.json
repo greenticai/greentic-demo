@@ -2,7 +2,7 @@
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
   "type": "AdaptiveCard",
   "version": "1.6",
-  "speak": "Welcome to the Deep Research Digital Worker. Enter your question, then choose single shot for a direct answer or agentic for planning plus execution.",
+  "speak": "{{i18n:card.main_menu.speak}}",
   "body": [
     {
       "type": "ColumnSet",
@@ -15,7 +15,7 @@
             {
               "type": "Image",
               "url": "https://img.icons8.com/?size=100&id=WDI63NQbh3cO&format=png&color=000000",
-              "altText": "Research icon",
+              "altText": "{{i18n:card.main_menu.body_0_columns_0_items_0.altText}}",
               "size": "Medium"
             }
           ]
@@ -26,14 +26,14 @@
           "items": [
             {
               "type": "TextBlock",
-              "text": "Deep Research Digital Worker",
+              "text": "{{i18n:card.main_menu.body_0_columns_1_items_0.text}}",
               "weight": "Bolder",
               "size": "ExtraLarge",
               "color": "Accent"
             },
             {
               "type": "TextBlock",
-              "text": "Enter your research question, then choose a fast single-shot answer or the full agentic workflow.",
+              "text": "{{i18n:card.main_menu.body_0_columns_1_items_1.text}}",
               "wrap": true,
               "isSubtle": true,
               "spacing": "None"
@@ -45,24 +45,24 @@
     {
       "type": "Input.Text",
       "id": "user_question",
-      "label": "Research Question",
-      "placeholder": "What do you want to research?",
+      "label": "{{i18n:card.main_menu.body_1.label}}",
+      "placeholder": "{{i18n:card.main_menu.body_1.placeholder}}",
       "isMultiline": true,
       "isRequired": true,
-      "errorMessage": "Please enter a research question."
+      "errorMessage": "{{i18n:card.main_menu.body_1.errorMessage}}"
     }
   ],
   "actions": [
     {
       "type": "Action.Submit",
-      "title": "Single Shot",
+      "title": "{{i18n:card.main_menu.actions_0.title}}",
       "data": {
         "action": "single_shot"
       }
     },
     {
       "type": "Action.Submit",
-      "title": "Agentic",
+      "title": "{{i18n:card.main_menu.actions_1.title}}",
       "style": "positive",
       "data": {
         "action": "agentic"
