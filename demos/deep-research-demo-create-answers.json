@@ -65,7 +65,7 @@
           "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
         ],
         "mode": "create",
-        "output_dir": "./deep-research-demo-bundle",
+        "output_dir": "deep-research-demo-bundle",
         "remote_catalogs": [],
         "setup_answers": {},
         "setup_execution_intent": false,

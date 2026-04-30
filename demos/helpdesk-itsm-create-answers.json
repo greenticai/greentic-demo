@@ -85,7 +85,7 @@
                     "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
                 ],
                 "mode": "create",
-                "output_dir": "./helpdesk-itsm-demo-bundle",
+                "output_dir": "helpdesk-itsm-demo-bundle",
                 "remote_catalogs": [],
                 "setup_answers": {},
                 "setup_execution_intent": false,

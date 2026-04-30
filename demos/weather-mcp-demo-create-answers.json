@@ -57,7 +57,7 @@
           "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
         ],
         "mode": "create",
-        "output_dir": "./weather-mcp-demo-bundle",
+        "output_dir": "weather-mcp-demo-bundle",
         "remote_catalogs": [],
         "capabilities": [
           "greentic.cap.bundle_assets.read.v1"

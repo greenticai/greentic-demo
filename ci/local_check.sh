@@ -28,11 +28,15 @@ step() {
 
 hard_need cargo
 hard_need rustc
+hard_need python3
 hard_need tar
 
 step "Tool versions"
 rustc --version
 cargo --version
+
+step "demo answer URLs"
+python3 scripts/test_demo_json_remote_urls.py
 
 step "cargo metadata"
 cargo metadata --format-version 1 --no-deps >/dev/null

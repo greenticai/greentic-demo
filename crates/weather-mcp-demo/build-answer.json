@@ -81,7 +81,140 @@
       }
     }
   },
-  "pack_create": null,
-  "pack": null,
-  "flow": null
+  "pack_create": {
+    "wizard_id": "greentic-pack.wizard.run",
+    "schema_id": "greentic-pack.wizard.answers",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+      "create_pack_id": "weatherapi-pack",
+      "create_pack_scaffold": true,
+      "dry_run": false,
+      "mode": "interactive",
+      "pack_dir": "./weatherapi-pack.pack",
+      "run_build": false,
+      "run_delegate_component": false,
+      "run_delegate_flow": false,
+      "run_doctor": false,
+      "selected_actions": [
+        "main.create_application_pack",
+        "create_application_pack.start",
+        "main.exit"
+      ],
+      "sign": false
+    },
+    "locks": {}
+  },
+  "pack": {
+    "wizard_id": "greentic-pack.wizard.run",
+    "schema_id": "greentic-pack.wizard.answers",
+    "schema_version": "1.0.0",
+    "locale": "en-GB",
+    "answers": {
+      "dry_run": false,
+      "mode": "interactive",
+      "pack_dir": ".",
+      "run_build": false,
+      "run_delegate_component": false,
+      "run_delegate_flow": false,
+      "run_doctor": false,
+      "selected_actions": [
+        "main.update_application_pack",
+        "main.exit"
+      ],
+      "sign": false
+    },
+    "locks": {}
+  },
+  "flow": null,
+  "pack_overlay": {
+    "external_components": [
+      {
+        "source": "external-components/weatherapi_current.component.wasm",
+        "target": "components/weatherapi_current.component.wasm"
+      },
+      {
+        "source": "external-components/component_adaptive_card.wasm",
+        "target": "components/adaptive-card/component_adaptive_card.wasm"
+      }
+    ],
+    "files": [
+      {
+        "path": "pack.yaml",
+        "content": "pack_id: weatherapi-pack\nversion: 0.1.0\nkind: application\npublisher: Greentic\ncomponents:\n- id: ai.greentic\n  version: 0.1.0\n  world: root:component/root\n  supports:\n  - messaging\n  profiles:\n    default: default\n    supported:\n    - default\n  capabilities:\n    wasi:\n      random: false\n      clocks: false\n    host: {}\n  wasm: components/adaptive-card/component_adaptive_card.wasm\n- id: weatherapi_current\n  version: 0.1.0\n  world: root:component/root\n  supports:\n  - messaging\n  profiles:\n    default: default\n    supported:\n    - default\n  capabilities:\n    wasi:\n      random: false\n      clocks: false\n    host:\n      secrets:\n        required:\n        - key: auth.param.get_weather.key\n          required: true\n          description: Shared WeatherAPI key used for current and forecast weather requests.\n          scope:\n            env: dev\n            tenant: demo\n          format: text\n        - key: auth.param.get_forecast_weather.key\n          required: true\n          description: Shared WeatherAPI key used for current and forecast weather requests.\n          scope:\n            env: dev\n            tenant: demo\n          format: text\n      http:\n        client: true\n        server: false\n  wasm: components/weatherapi_current.component.wasm\ndependencies: []\nflows:\n- id: default\n  file: flows/main.ygtc\n  tags:\n  - default\n  entrypoints:\n  - default\n- id: flow_\n  file: flows/flow_.ygtc\n  tags:\n  - internal\n  entrypoints:\n  - default\n- id: flow_error\n  file: flows/flow_error.ygtc\n  tags:\n  - internal\n  entrypoints:\n  - default\n- id: flow_get_forecast_weather\n  file: flows/flow_get_forecast_weather.ygtc\n  tags:\n  - internal\n  entrypoints:\n  - default\n- id: flow_get_weather\n  file: flows/flow_get_weather.ygtc\n  tags:\n  - internal\n  entrypoints:\n  - default\nassets:\n- path: assets/weather_forecast_card.json\n- path: assets/weather_forecast_payload.json\n- path: assets/weather_current_result_card.json\n- path: assets/weather_forecast_result_card.json\n- path: assets/weather_error_card.json\n"
+      },
+      {
+        "path": ".packc/secret-requirements.json",
+        "content": "[\n  {\n    \"key\": \"auth.param.get_forecast_weather.key\",\n    \"required\": true,\n    \"description\": \"Shared WeatherAPI key used for current and forecast weather requests.\",\n    \"scope\": {\n      \"env\": \"dev\",\n      \"tenant\": \"demo\"\n    },\n    \"format\": \"text\"\n  },\n  {\n    \"key\": \"auth.param.get_weather.key\",\n    \"required\": true,\n    \"description\": \"Shared WeatherAPI key used for current and forecast weather requests.\",\n    \"scope\": {\n      \"env\": \"dev\",\n      \"tenant\": \"demo\"\n    },\n    \"format\": \"text\"\n  }\n]"
+      },
+      {
+        "path": "components/component.manifest.json",
+        "content": "{\n  \"$schema\": \"https://greentic-ai.github.io/greentic-component/schemas/v1/component.manifest.schema.json\",\n  \"id\": \"weatherapi_current\",\n  \"name\": \"weatherapi_current\",\n  \"version\": \"0.1.0\",\n  \"world\": \"greentic:component/component@0.6.0\",\n  \"describe_export\": \"describe\",\n  \"operations\": [\n    {\n      \"name\": \"get_weather\",\n      \"input_schema\": {\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"type\": \"object\",\n        \"additionalProperties\": true\n      },\n      \"output_schema\": {\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"type\": \"object\",\n        \"additionalProperties\": true\n      }\n    },\n    {\n      \"name\": \"get_forecast_weather\",\n      \"input_schema\": {\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"type\": \"object\",\n        \"additionalProperties\": true\n      },\n      \"output_schema\": {\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"type\": \"object\",\n        \"additionalProperties\": true\n      }\n    }\n  ],\n  \"default_operation\": \"get_weather\",\n  \"config_schema\": {\n    \"type\": \"object\",\n    \"properties\": {},\n    \"required\": [],\n    \"additionalProperties\": false\n  },\n  \"supports\": [\n    \"messaging\"\n  ],\n  \"profiles\": {\n    \"default\": \"default\",\n    \"supported\": [\n      \"default\"\n    ]\n  },\n  \"secret_requirements\": [\n    {\n      \"key\": \"auth_param_get_weather_key\",\n      \"required\": true,\n      \"description\": \"Shared WeatherAPI key used for current and forecast weather requests.\",\n      \"scope\": {\n        \"env\": \"dev\",\n        \"tenant\": \"demo\"\n      },\n      \"format\": \"text\"\n    },\n    {\n      \"key\": \"auth_param_get_forecast_weather_key\",\n      \"required\": true,\n      \"description\": \"Shared WeatherAPI key used for current and forecast weather requests.\",\n      \"scope\": {\n        \"env\": \"dev\",\n        \"tenant\": \"demo\"\n      },\n      \"format\": \"text\"\n    }\n  ],\n  \"capabilities\": {\n    \"wasi\": {\n      \"filesystem\": {\n        \"mode\": \"none\",\n        \"mounts\": []\n      },\n      \"random\": true,\n      \"clocks\": true\n    },\n    \"host\": {\n      \"http\": {\n        \"client\": true,\n        \"server\": false,\n        \"https\": true\n      },\n      \"state\": {\n        \"read\": true,\n        \"write\": true,\n        \"delete\": true\n      },\n      \"messaging\": {\n        \"inbound\": true,\n        \"outbound\": true\n      },\n      \"secrets\": {\n        \"required\": [\n          {\n            \"key\": \"auth_param_get_weather_key\",\n            \"required\": true,\n            \"description\": \"Shared WeatherAPI key used for current and forecast weather requests.\",\n            \"scope\": {\n              \"env\": \"dev\",\n              \"tenant\": \"demo\"\n            },\n            \"format\": \"text\"\n          },\n          {\n            \"key\": \"auth_param_get_forecast_weather_key\",\n            \"required\": true,\n            \"description\": \"Shared WeatherAPI key used for current and forecast weather requests.\",\n            \"scope\": {\n              \"env\": \"dev\",\n              \"tenant\": \"demo\"\n            },\n            \"format\": \"text\"\n          }\n        ]\n      },\n      \"telemetry\": {\n        \"scope\": \"node\"\n      }\n    }\n  },\n  \"limits\": {\n    \"memory_mb\": 128,\n    \"wall_time_ms\": 1000\n  },\n  \"artifacts\": {\n    \"component_wasm\": \"weatherapi_current.component.wasm\"\n  },\n  \"hashes\": {\n    \"component_wasm\": \"blake3:0000000000000000000000000000000000000000000000000000000000000000\"\n  }\n}"
+      },
+      {
+        "path": "components/adaptive-card/component.manifest.json",
+        "content": "{\n  \"$schema\": \"https://greentic-ai.github.io/greentic-component/schemas/v1/component.manifest.schema.json\",\n  \"id\": \"ai.greentic\",\n  \"name\": \"ai.greentic\",\n  \"version\": \"0.1.0\",\n  \"world\": \"greentic:component/component@0.6.0\",\n  \"describe_export\": \"describe\",\n  \"operations\": [\n    {\n      \"name\": \"card\",\n      \"input_schema\": {\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"type\": \"object\",\n        \"additionalProperties\": true\n      },\n      \"output_schema\": {\n        \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n        \"type\": \"object\",\n        \"additionalProperties\": true\n      }\n    }\n  ],\n  \"default_operation\": \"card\",\n  \"config_schema\": {\n    \"type\": \"object\",\n    \"properties\": {},\n    \"required\": [],\n    \"additionalProperties\": true\n  },\n  \"supports\": [\"messaging\"],\n  \"profiles\": {\n    \"default\": \"stateless\",\n    \"supported\": [\"stateless\"]\n  },\n  \"capabilities\": {\n    \"wasi\": {\n      \"filesystem\": {\n        \"mode\": \"none\",\n        \"mounts\": []\n      },\n      \"random\": true,\n      \"clocks\": true\n    },\n    \"host\": {\n      \"messaging\": {\n        \"inbound\": true,\n        \"outbound\": true\n      },\n      \"secrets\": {\n        \"required\": []\n      },\n      \"state\": {\n        \"read\": true,\n        \"write\": true,\n        \"delete\": true\n      },\n      \"telemetry\": {\n        \"scope\": \"node\"\n      }\n    }\n  },\n  \"artifacts\": {\n    \"component_wasm\": \"component_adaptive_card.wasm\"\n  }\n}\n"
+      },
+      {
+        "path": "flows/flow_.ygtc",
+        "content": "id: flow_\ntype: messaging\nstart: render_weather_card\nnodes:\n  render_weather_card:\n    emit.response:\n      renderedCard:\n        \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\"\n        type: \"AdaptiveCard\"\n        version: \"1.5\"\n        body:\n          - type: \"TextBlock\"\n            size: \"Large\"\n            weight: \"Bolder\"\n            text: \"Weather Assistant\"\n            wrap: true\n          - type: \"TextBlock\"\n            text: \"WeatherAPI is configured via secrets. Enter the request values below.\"\n            wrap: true\n            isSubtle: true\n          - type: \"Input.Text\"\n            id: \"q\"\n            label: \"City / Location\"\n            placeholder: \"Nairobi\"\n            isRequired: true\n            errorMessage: \"Location is required\"\n            value: \"Nairobi\"\n          - type: \"Input.Number\"\n            id: \"days\"\n            label: \"Forecast days\"\n            placeholder: \"3\"\n            min: 1\n            max: 10\n            value: 3\n        actions:\n          - type: \"Action.OpenUrl\"\n            title: \"Get API Key\"\n            url: \"https://www.weatherapi.com/signup.aspx\"\n          - type: \"Action.Submit\"\n            title: \"Current Weather\"\n            data:\n              operation: \"get_weather\"\n              method: \"get_weather\"\n          - type: \"Action.Submit\"\n            title: \"Forecast Weather\"\n            data:\n              operation: \"get_forecast_weather\"\n              method: \"get_forecast_weather\"\n    routing:\n      - out: true\n"
+      },
+      {
+        "path": "flows/flow_.ygtc.resolve.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flow_.ygtc\",\n  \"nodes\": {\n    \"render_weather_card\": {\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\"\n    }\n  }\n}\n"
+      },
+      {
+        "path": "flows/flow_.ygtc.resolve.summary.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flow_.ygtc\",\n  \"nodes\": {\n    \"render_weather_card\": {\n      \"component_id\": \"emit.response\",\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\",\n      \"manifest\": {\n        \"world\": \"greentic:component/component@0.6.0\",\n        \"version\": \"0.1.0\"\n      }\n    }\n  }\n}\n"
+      },
+      {
+        "path": "flows/flow_error.ygtc",
+        "content": "id: flow_error\ntype: messaging\nstart: render_error_card\nnodes:\n  render_error_card:\n    component.exec:\n      component: \"ai.greentic\"\n      operation: card\n      input:\n        card_source: asset\n        card_spec:\n          asset_path: assets/weather_error_card.json\n        payload:\n          request: \"{{in.input.metadata}}\"\n          error:\n            title: \"Weather request failed\"\n            operation: \"{{in.input.metadata.operation}}\"\n            message: \"{{in.input.metadata.error_message}}\"\n    routing:\n      - out: true\n"
+      },
+      {
+        "path": "flows/flow_error.ygtc.resolve.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flows/flow_error.ygtc\",\n  \"nodes\": {\n    \"render_error_card\": {\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\"\n    }\n  }\n}\n"
+      },
+      {
+        "path": "flows/flow_error.ygtc.resolve.summary.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flow_error.ygtc\",\n  \"nodes\": {\n    \"render_error_card\": {\n      \"component_id\": \"ai.greentic.component-adaptive-card\",\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\",\n      \"manifest\": {\n        \"world\": \"greentic:component/component@0.6.0\",\n        \"version\": \"0.1.0\"\n      }\n    }\n  }\n}\n"
+      },
+      {
+        "path": "flows/flow_get_forecast_weather.ygtc",
+        "content": "id: flow_get_forecast_weather\ntype: messaging\nstart: call_forecast\nnodes:\n  call_forecast:\n    component.exec:\n      component: \"weatherapi_current\"\n      operation: get_forecast_weather\n      input:\n        q: \"{{in.input.metadata.q}}\"\n        days: \"{{in.input.metadata.days}}\"\n        aqi: \"no\"\n        alerts: \"no\"\n    routing:\n      - to: render_forecast_card\n\n  render_forecast_card:\n    component.exec:\n      component: \"ai.greentic\"\n      operation: card\n      input:\n        card_source: asset\n        card_spec:\n          asset_path: assets/weather_forecast_result_card.json\n        payload:\n          request: \"{{in.input.metadata}}\"\n          result: \"{{node.call_forecast.result.structured_content}}\"\n    routing:\n      - out: true\n"
+      },
+      {
+        "path": "flows/flow_get_forecast_weather.ygtc.resolve.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flow_get_forecast_weather.ygtc\",\n  \"nodes\": {\n    \"call_forecast\": {\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/weatherapi_current.component.wasm\"\n      },\n      \"digest\": \"sha256:2c432c1c4a023b07526903a9ee3723b069ad3b30a19372ff33529c54ac6a210a\"\n    },\n    \"render_forecast_card\": {\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\"\n    }\n  }\n}\n"
+      },
+      {
+        "path": "flows/flow_get_forecast_weather.ygtc.resolve.summary.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flow_get_forecast_weather.ygtc\",\n  \"nodes\": {\n    \"call_forecast\": {\n      \"component_id\": \"weatherapi_current\",\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/weatherapi_current.component.wasm\"\n      },\n      \"digest\": \"sha256:2c432c1c4a023b07526903a9ee3723b069ad3b30a19372ff33529c54ac6a210a\",\n      \"manifest\": {\n        \"world\": \"greentic:component/component@0.6.0\",\n        \"version\": \"0.1.0\"\n      }\n    },\n    \"render_forecast_card\": {\n      \"component_id\": \"ai.greentic.component-adaptive-card\",\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\",\n      \"manifest\": {\n        \"world\": \"greentic:component/component@0.6.0\",\n        \"version\": \"0.1.0\"\n      }\n    }\n  }\n}"
+      },
+      {
+        "path": "flows/flow_get_weather.ygtc",
+        "content": "id: flow_get_weather\ntype: messaging\nstart: call_weather\nnodes:\n  call_weather:\n    component.exec:\n      component: \"weatherapi_current\"\n      operation: get_weather\n      input:\n        q: \"{{in.input.metadata.q}}\"\n        aqi: \"no\"\n    routing:\n      - to: render_current_card\n\n  render_current_card:\n    component.exec:\n      component: \"ai.greentic\"\n      operation: card\n      input:\n        card_source: asset\n        card_spec:\n          asset_path: assets/weather_current_result_card.json\n        payload:\n          request: \"{{in.input.metadata}}\"\n          result: \"{{node.call_weather.result.structured_content}}\"\n    routing:\n      - out: true\n"
+      },
+      {
+        "path": "flows/flow_get_weather.ygtc.resolve.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flow_get_weather.ygtc\",\n  \"nodes\": {\n    \"call_weather\": {\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/weatherapi_current.component.wasm\"\n      },\n      \"digest\": \"sha256:2c432c1c4a023b07526903a9ee3723b069ad3b30a19372ff33529c54ac6a210a\"\n    },\n    \"render_current_card\": {\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\"\n    }\n  }\n}\n"
+      },
+      {
+        "path": "flows/flow_get_weather.ygtc.resolve.summary.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"flow_get_weather.ygtc\",\n  \"nodes\": {\n    \"call_weather\": {\n      \"component_id\": \"weatherapi_current\",\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/weatherapi_current.component.wasm\"\n      },\n      \"digest\": \"sha256:2c432c1c4a023b07526903a9ee3723b069ad3b30a19372ff33529c54ac6a210a\",\n      \"manifest\": {\n        \"world\": \"greentic:component/component@0.6.0\",\n        \"version\": \"0.1.0\"\n      }\n    },\n    \"render_current_card\": {\n      \"component_id\": \"ai.greentic.component-adaptive-card\",\n      \"source\": {\n        \"kind\": \"local\",\n        \"path\": \"../components/adaptive-card/component_adaptive_card.wasm\"\n      },\n      \"digest\": \"sha256:092d799a88475e9c45e48e0d24b7cfd5873d0c2d96f8b6abdfc8275c27bff656\",\n      \"manifest\": {\n        \"world\": \"greentic:component/component@0.6.0\",\n        \"version\": \"0.1.0\"\n      }\n    }\n  }\n}"
+      },
+      {
+        "path": "flows/main.ygtc",
+        "content": "id: default\ntype: messaging\nstart: dispatch\nnodes:\n  dispatch:\n    flow.call:\n      flow_id: \"flow_{{in.input.metadata.operation}}\"\n      input: \"{{in}}\"\n    routing:\n      - out: true\n"
+      },
+      {
+        "path": "flows/main.ygtc.resolve.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"main.ygtc\",\n  \"nodes\": {\n    \"dispatch\": {\n      \"source\": {\n        \"kind\": \"repo\",\n        \"ref\": \"io.3bridges.components.flow@1.0.0\",\n        \"digest\": \"sha256:deadbeef\"\n      }\n    }\n  }\n}\n"
+      },
+      {
+        "path": "flows/main.ygtc.resolve.summary.json",
+        "content": "{\n  \"schema_version\": 1,\n  \"flow\": \"main.ygtc\",\n  \"nodes\": {\n    \"dispatch\": {\n      \"component_id\": \"flow.call\",\n      \"source\": {\n        \"kind\": \"repo\",\n        \"ref\": \"io.3bridges.components.flow@1.0.0\",\n        \"digest\": \"sha256:deadbeef\"\n      },\n      \"digest\": \"sha256:deadbeef\",\n      \"manifest\": {\n        \"world\": \"greentic:component/component@0.6.0\",\n        \"version\": \"0.1.0\"\n      }\n    }\n  }\n}\n"
+      }
+    ]
+  }
 }
