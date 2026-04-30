@@ -7,34 +7,34 @@
       "type": "TextBlock",
       "size": "Large",
       "weight": "Bolder",
-      "text": "{{name}}"
+      "text": "Initech Platform Upgrade"
     },
     {
       "type": "FactSet",
       "facts": [
         {
           "title": "Amount",
-          "value": "${{amount}}"
+          "value": "$120,000"
         },
         {
           "title": "Stage",
-          "value": "{{stage}}"
+          "value": "Proposal"
         },
         {
           "title": "Close Date",
-          "value": "{{close_date}}"
+          "value": "2026-05-31"
         },
         {
           "title": "Probability",
-          "value": "{{probability}}%"
+          "value": "60%"
         },
         {
           "title": "Owner",
-          "value": "{{owner}}"
+          "value": "Maarten Ectors"
         },
         {
           "title": "Last Activity",
-          "value": "{{last_activity}}"
+          "value": "2026-04-21 — Demo call (45 min)"
         }
       ]
     },
@@ -50,7 +50,7 @@
         {
           "type": "TextBlock",
           "wrap": true,
-          "text": "{{notes}}",
+          "text": "Customer is evaluating against two other vendors. Pricing review scheduled for next week. Champion: VP Engineering. Budget approved Q2.",
           "isSubtle": true
         }
       ]
@@ -67,7 +67,7 @@
           "type": "Input.ChoiceSet",
           "id": "new_stage",
           "style": "compact",
-          "value": "{{stage}}",
+          "value": "Proposal",
           "choices": [
             { "title": "Prospecting", "value": "Prospecting" },
             { "title": "Qualification", "value": "Qualification" },
@@ -93,7 +93,7 @@
           "type": "Input.Number",
           "id": "new_amount",
           "placeholder": "Enter new amount",
-          "value": "{{amount}}"
+          "value": "120000"
         }
       ]
     },
@@ -121,7 +121,7 @@
       "style": "positive",
       "data": {
         "action_id": "update_stage",
-        "opportunity_id": "{{opportunity_id}}"
+        "opportunity_id": "0061x000ABC003"
       }
     },
     {
@@ -129,7 +129,7 @@
       "title": "Update Amount",
       "data": {
         "action_id": "update_amount",
-        "opportunity_id": "{{opportunity_id}}"
+        "opportunity_id": "0061x000ABC003"
       }
     },
     {
@@ -137,7 +137,7 @@
       "title": "Add Note",
       "data": {
         "action_id": "add_note",
-        "opportunity_id": "{{opportunity_id}}"
+        "opportunity_id": "0061x000ABC003"
       }
     },
     {
@@ -145,14 +145,16 @@
       "title": "Schedule Meeting",
       "data": {
         "action_id": "schedule_meeting",
-        "opportunity_id": "{{opportunity_id}}"
+        "opportunity_id": "0061x000ABC003",
+        "routeToCardId": "meeting_card"
       }
     },
     {
       "type": "Action.Submit",
       "title": "Back to Pipeline",
       "data": {
-        "action_id": "back"
+        "action_id": "back",
+        "routeToCardId": "pipeline_card"
       }
     }
   ]

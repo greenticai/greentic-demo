@@ -24,7 +24,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "${{total_value}}",
+              "text": "$1,245,000",
               "weight": "Bolder",
               "size": "Medium"
             }
@@ -42,7 +42,7 @@
             },
             {
               "type": "TextBlock",
-              "text": "{{deal_count}}",
+              "text": "12",
               "weight": "Bolder",
               "size": "Medium"
             }
@@ -52,92 +52,264 @@
     },
     {
       "type": "Container",
+      "spacing": "Medium",
       "items": [
         {
-          "$data": "{{stages}}",
-          "type": "Container",
-          "spacing": "Medium",
-          "items": [
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Qualification",
+          "color": "Accent"
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
             {
-              "type": "TextBlock",
-              "weight": "Bolder",
-              "text": "{{stage_name}}",
-              "color": "Accent"
-            },
-            {
-              "type": "ColumnSet",
-              "columns": [
+              "type": "Column",
+              "width": "stretch",
+              "items": [
                 {
-                  "type": "Column",
-                  "width": "stretch",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "{{count}} deals",
-                      "isSubtle": true,
-                      "size": "Small"
-                    }
-                  ]
-                },
-                {
-                  "type": "Column",
-                  "width": "auto",
-                  "items": [
-                    {
-                      "type": "TextBlock",
-                      "text": "${{stage_value}}",
-                      "isSubtle": true,
-                      "size": "Small"
-                    }
-                  ]
+                  "type": "TextBlock",
+                  "text": "4 deals",
+                  "isSubtle": true,
+                  "size": "Small"
                 }
               ]
             },
             {
-              "type": "Container",
+              "type": "Column",
+              "width": "auto",
               "items": [
                 {
-                  "$data": "{{deals}}",
-                  "type": "Container",
-                  "style": "emphasis",
-                  "spacing": "Small",
-                  "items": [
-                    {
-                      "type": "ColumnSet",
-                      "columns": [
-                        {
-                          "type": "Column",
-                          "width": "stretch",
-                          "items": [
-                            {
-                              "type": "TextBlock",
-                              "weight": "Bolder",
-                              "text": "{{name}}",
-                              "size": "Small"
-                            },
-                            {
-                              "type": "TextBlock",
-                              "text": "${{amount}} | {{probability}}% | Close: {{close_date}}",
-                              "isSubtle": true,
-                              "size": "Small",
-                              "wrap": true
-                            }
-                          ]
-                        }
-                      ],
-                      "selectAction": {
-                        "type": "Action.Submit",
-                        "data": {
-                          "action_id": "view_deal",
-                          "opportunity_id": "{{id}}"
-                        }
-                      }
-                    }
-                  ]
+                  "type": "TextBlock",
+                  "text": "$320,000",
+                  "isSubtle": true,
+                  "size": "Small"
                 }
               ]
             }
           ]
+        },
+        {
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "weight": "Bolder",
+              "text": "Acme Corp Renewal",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "$80,000 | 25% | Close: 2026-06-30",
+              "isSubtle": true,
+              "size": "Small",
+              "wrap": true
+            }
+          ],
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "action_id": "view_deal",
+              "opportunity_id": "0061x000ABC001",
+              "routeToCardId": "deal_detail_card"
+            }
+          }
+        },
+        {
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "weight": "Bolder",
+              "text": "Globex Expansion",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "$95,000 | 30% | Close: 2026-07-15",
+              "isSubtle": true,
+              "size": "Small",
+              "wrap": true
+            }
+          ],
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "action_id": "view_deal",
+              "opportunity_id": "0061x000ABC002",
+              "routeToCardId": "deal_detail_card"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Proposal",
+          "color": "Accent"
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "5 deals",
+                  "isSubtle": true,
+                  "size": "Small"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "$565,000",
+                  "isSubtle": true,
+                  "size": "Small"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "weight": "Bolder",
+              "text": "Initech Platform Upgrade",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "$120,000 | 60% | Close: 2026-05-31",
+              "isSubtle": true,
+              "size": "Small",
+              "wrap": true
+            }
+          ],
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "action_id": "view_deal",
+              "opportunity_id": "0061x000ABC003",
+              "routeToCardId": "deal_detail_card"
+            }
+          }
+        },
+        {
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "weight": "Bolder",
+              "text": "Stark Industries License",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "$245,000 | 65% | Close: 2026-06-12",
+              "isSubtle": true,
+              "size": "Small",
+              "wrap": true
+            }
+          ],
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "action_id": "view_deal",
+              "opportunity_id": "0061x000ABC004",
+              "routeToCardId": "deal_detail_card"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "Bolder",
+          "text": "Negotiation",
+          "color": "Accent"
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "3 deals",
+                  "isSubtle": true,
+                  "size": "Small"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "$360,000",
+                  "isSubtle": true,
+                  "size": "Small"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "style": "emphasis",
+          "spacing": "Small",
+          "items": [
+            {
+              "type": "TextBlock",
+              "weight": "Bolder",
+              "text": "Wayne Enterprises Pilot",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "$180,000 | 80% | Close: 2026-05-20",
+              "isSubtle": true,
+              "size": "Small",
+              "wrap": true
+            }
+          ],
+          "selectAction": {
+            "type": "Action.Submit",
+            "data": {
+              "action_id": "view_deal",
+              "opportunity_id": "0061x000ABC005",
+              "routeToCardId": "deal_detail_card"
+            }
+          }
         }
       ]
     }
@@ -154,7 +326,8 @@
       "type": "Action.Submit",
       "title": "Back",
       "data": {
-        "action_id": "back"
+        "action_id": "back",
+        "routeToCardId": "welcome_card"
       }
     }
   ]
