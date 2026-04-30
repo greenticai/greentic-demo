@@ -72,7 +72,7 @@
           "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
         ],
         "mode": "create",
-        "output_dir": "./redbutton-demo-bundle",
+        "output_dir": "redbutton-demo-bundle",
         "remote_catalogs": [],
         "setup_answers": {},
         "setup_execution_intent": false,

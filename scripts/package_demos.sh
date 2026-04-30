@@ -73,6 +73,16 @@ rm -rf "$TMP_ROOT"
 mkdir -p "$TMP_ROOT"
 mkdir -p "$LOCAL_PACK_INPUT_DIR"
 
+# Pin the OCI pack cache to a fresh per-run directory so every bundle in
+# this CI run resolves `oci://…:latest` references against the same
+# snapshot. Without this, two bundles built in sequence could pick up
+# different `:latest` artifacts if an upstream tag rotated between
+# resolutions, or could reuse stale bytes from a previous run's cache.
+# The cache is a build cache only — wiping it costs at most one network
+# fetch per referenced pack within a run.
+export GREENTIC_PACK_CACHE_DIR="$TMP_ROOT/pack-cache"
+mkdir -p "$GREENTIC_PACK_CACHE_DIR"
+
 # Seed LOCAL_PACK_INPUT_DIR with committed packs before cleanup so that
 # pre-built packs without rebuild sources (e.g. cloud-deploy-demo-app.gtpack)
 # remain available for bundle creation.
@@ -110,6 +120,45 @@ run_bundle_build() {
             run_with_timeout "$WIZARD_TIMEOUT" cargo run -q -p greentic-setup --bin greentic-setup -- bundle build --bundle "$root" --out "$output" >/dev/null
         )
     fi
+}
+
+sync_adaptive_card_component_version() {
+    local pack_yaml="$1"
+
+    [ -f "$pack_yaml" ] || return 0
+
+    if ! grep -q 'id: ai\.greentic\.component-adaptive-card' "$pack_yaml"; then
+        perl -0pi -e 's/components:\s*(?:\[\])?\n/components:\n- id: ai.greentic.component-adaptive-card\n  version: 0.2.0\n  world: root:component\/root\n  supports:\n  - messaging\n  profiles:\n    default: default\n    supported:\n    - default\n  capabilities:\n    wasi:\n      random: false\n      clocks: false\n    host: {}\n  wasm: components\/ai.greentic.component-adaptive-card.wasm\n/s' "$pack_yaml"
+    fi
+
+    perl -0pi -e 's/(id: ai\.greentic\.component-adaptive-card\n\s+version: )(0\.1\.\d+|0\.2\.0)/${1}0.2.0/' "$pack_yaml"
+}
+
+apply_pack_overlay_from_answers() {
+    local build_answer="$1"
+    local crate_dir="$2"
+    local temp_pack_dir="$3"
+
+    [ -f "$build_answer" ] || return 0
+
+    local file_count component_count i rel_path source target
+    file_count="$(jq '.pack_overlay.files | length // 0' "$build_answer")"
+    for ((i = 0; i < file_count; i++)); do
+        rel_path="$(jq -r ".pack_overlay.files[$i].path" "$build_answer")"
+        [ -n "$rel_path" ] && [ "$rel_path" != "null" ] || continue
+        mkdir -p "$(dirname "$temp_pack_dir/$rel_path")"
+        jq -r ".pack_overlay.files[$i].content" "$build_answer" > "$temp_pack_dir/$rel_path"
+    done
+
+    component_count="$(jq '.pack_overlay.external_components | length // 0' "$build_answer")"
+    for ((i = 0; i < component_count; i++)); do
+        source="$(jq -r ".pack_overlay.external_components[$i].source" "$build_answer")"
+        target="$(jq -r ".pack_overlay.external_components[$i].target" "$build_answer")"
+        [ -n "$source" ] && [ "$source" != "null" ] || continue
+        [ -n "$target" ] && [ "$target" != "null" ] || continue
+        mkdir -p "$(dirname "$temp_pack_dir/$target")"
+        cp "$crate_dir/$source" "$temp_pack_dir/$target"
+    done
 }
 
 cat > "$DEFAULT_PACK_ANSWERS" <<'EOF'
@@ -477,6 +526,8 @@ for _gen_source in "${generated_pack_answers[@]}"; do
         cp -R "$source_components_dir/." "$temp_pack_dir/components/"
     fi
 
+    sync_adaptive_card_component_version "$temp_pack_dir/pack.yaml"
+
     if [ -n "$flow_answers" ] && [ -f "$flow_answers" ]; then
         if ! run_with_timeout "$WIZARD_TIMEOUT" greentic-flow wizard "$temp_pack_dir" --answers "$flow_answers" >/dev/null; then
             echo "Skipping $pack_name: flow wizard replay failed" >&2
@@ -487,6 +538,8 @@ for _gen_source in "${generated_pack_answers[@]}"; do
     if [ -d "$source_pack_overlay_dir" ]; then
         rsync -a --exclude 'dist/' "$source_pack_overlay_dir/." "$temp_pack_dir/"
     fi
+
+    apply_pack_overlay_from_answers "$crate_dir/build-answer.json" "$crate_dir" "$temp_pack_dir"
 
     if [ -d "$source_pack_overlay_dir/flows" ]; then
         source_flows_dir="$source_pack_overlay_dir/flows"
@@ -500,6 +553,9 @@ for _gen_source in "${generated_pack_answers[@]}"; do
         continue
     fi
 
+    sync_adaptive_card_component_version "$temp_pack_dir/pack.yaml"
+    apply_pack_overlay_from_answers "$crate_dir/build-answer.json" "$crate_dir" "$temp_pack_dir"
+
     # Restore committed resolve/summary files — the wizard's internal resolve
     # may overwrite them with empty entries when components are unavailable in CI.
     if [ -d "$source_flows_dir" ]; then
@@ -510,7 +566,11 @@ for _gen_source in "${generated_pack_answers[@]}"; do
     fi
 
     # Build separately after resolve files are restored.
-    if ! (cd "$temp_pack_dir" && run_with_timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null); then
+    if ! (
+        cd "$temp_pack_dir"
+        sync_adaptive_card_component_version pack.yaml
+        run_with_timeout "$WIZARD_TIMEOUT" greentic-pack build --in . >/dev/null
+    ); then
         echo "Skipping $pack_name: pack build failed after scaffold replay" >&2
         continue
     fi
@@ -646,5 +706,91 @@ done
 
 if [ "$missing_expected" -ne 0 ]; then
     echo "One or more expected demo artifacts were not produced." >&2
+    exit 1
+fi
+
+# Drift gate: every demo bundle in a single CI run must resolve each
+# provider pack to the same WASM bytes. Two bundles ending up with
+# different `messaging-webchat-gui` versions has happened before
+# (snapshot-at-build-time of `oci://…:latest`) and silently breaks
+# bundle-to-bundle parity. We compare per-provider pack sha256 across
+# all built bundles and fail loudly on divergence.
+detect_provider_drift() {
+    local drift_dir="$TMP_ROOT/drift-check"
+    rm -rf "$drift_dir"
+    mkdir -p "$drift_dir"
+
+    local bundles=()
+    while IFS= read -r b; do
+        bundles+=("$b")
+    done < <(find "$DEMOS_DIR" -mindepth 1 -maxdepth 1 -name '*.gtbundle' -print)
+
+    if [ "${#bundles[@]}" -lt 2 ]; then
+        return 0
+    fi
+
+    # `.gtbundle` is a Squashfs filesystem, not a ZIP. We need `unsquashfs`
+    # (from squashfs-tools) to read the inner `.gtpack` files. If it is not
+    # available, skip the drift gate with a clear warning rather than blocking
+    # the build — cache pinning above is the actual fix; this is verification.
+    if ! command -v unsquashfs >/dev/null 2>&1; then
+        echo "Warning: skipping provider drift check — unsquashfs not found." >&2
+        echo "         Install squashfs-tools to enable this verification gate." >&2
+        return 0
+    fi
+
+    local digests_file="$drift_dir/digests.tsv"
+    : > "$digests_file"
+
+    for bundle in "${bundles[@]}"; do
+        local bundle_name
+        bundle_name="$(basename "$bundle")"
+        local extract_dir="$drift_dir/$bundle_name"
+        rm -rf "$extract_dir"
+        if ! unsquashfs -no-progress -quiet -d "$extract_dir" "$bundle" >/dev/null 2>&1; then
+            echo "Warning: drift check could not extract $bundle_name" >&2
+            continue
+        fi
+        find "$extract_dir" -name '*.gtpack' -print 2>/dev/null | while read -r gtpack; do
+            local provider_name
+            provider_name="$(basename "$gtpack")"
+            local sha
+            sha="$(shasum -a 256 "$gtpack" | awk '{print $1}')"
+            printf '%s\t%s\t%s\n' "$provider_name" "$sha" "$bundle_name"
+        done >> "$digests_file"
+    done
+
+    if [ ! -s "$digests_file" ]; then
+        return 0
+    fi
+
+    local drift_report="$drift_dir/drift.txt"
+    : > "$drift_report"
+    awk -F'\t' '{print $1}' "$digests_file" | sort -u | while read -r provider; do
+        local distinct
+        distinct="$(awk -F'\t' -v p="$provider" '$1==p {print $2}' "$digests_file" | sort -u | wc -l | tr -d ' ')"
+        if [ "$distinct" -gt 1 ]; then
+            {
+                echo "Drift detected for $provider — bundles disagree on the cached artifact:"
+                awk -F'\t' -v p="$provider" '$1==p {printf "  %s  %s\n", $2, $3}' "$digests_file" | sort -u
+            } >> "$drift_report"
+        fi
+    done
+
+    if [ -s "$drift_report" ]; then
+        echo "" >&2
+        echo "Provider pack drift across bundles:" >&2
+        cat "$drift_report" >&2
+        echo "" >&2
+        echo "All bundles in one CI run must resolve each provider to the same artifact." >&2
+        echo "If an upstream :latest tag rotated mid-run, retry; otherwise pin the" >&2
+        echo "provider to a specific version in the offending bundle.yaml." >&2
+        return 1
+    fi
+
+    return 0
+}
+
+if ! detect_provider_drift; then
     exit 1
 fi

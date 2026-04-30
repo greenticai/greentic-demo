@@ -73,18 +73,6 @@ gtc setup ./supply-chain-demo-bundle --answers https://github.com/greenticai/gre
 gtc start ./supply-chain-demo-bundle
 ```
 
-### incident
-
-Outcome:
-- Runs an incident flow demo with adaptive-card collection and Better Stack incident creation.
-
-Run:
-```bash
-gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/incident-create-answers.json
-gtc setup ./incident-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/incident-setup-answers.json
-gtc start ./incident-demo-bundle
-```
-
 ### redbutton
 
 Outcome:
@@ -95,6 +83,13 @@ Run:
 gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/redbutton-create-answers.json
 gtc setup ./redbutton-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/redbutton-setup-answers.json
 gtc start ./redbutton-demo-bundle
+```
+
+To send a message to the webhook for testing:
+```bash
+curl -i -X POST http://127.0.0.1:8080/v1/events/ingress/greentic.events.webhook/default/default \
+  -H "content-type: application/json" \
+  -d '{"event":"red_button","source":"demo","severity":"critical"}'
 ```
 
 ### cloud-deploy-demo
