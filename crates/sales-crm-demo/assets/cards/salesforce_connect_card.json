@@ -32,7 +32,7 @@
       "facts": [
         {
           "title": "Provider",
-          "value": "{{provider}}"
+          "value": "Salesforce"
         },
         {
           "title": "Permissions",
