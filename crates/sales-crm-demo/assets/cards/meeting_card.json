@@ -23,7 +23,7 @@
           "type": "Input.Text",
           "id": "meeting_subject",
           "label": "Meeting Subject",
-          "placeholder": "Discovery call with {{prefill_contact}}",
+          "placeholder": "Discovery call with...",
           "isRequired": true,
           "errorMessage": "Subject is required"
         },
@@ -31,8 +31,7 @@
           "type": "Input.Text",
           "id": "contact_id",
           "label": "Contact / Lead Name",
-          "placeholder": "Search by name...",
-          "value": "{{prefill_contact}}"
+          "placeholder": "Search by name..."
         }
       ]
     },
