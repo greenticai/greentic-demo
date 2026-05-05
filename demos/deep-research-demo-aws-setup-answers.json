@@ -1,0 +1,49 @@
+{
+  "env": "dev",
+  "tenant": "demo",
+  "team": "default",
+  "platform_setup": {
+    "static_routes": {
+      "public_web_enabled": true,
+      "public_base_url": "${PUBLIC_BASE_URL}",
+      "public_surface_policy": "enabled"
+    },
+    "deployment_targets": [
+      {
+        "target": "runtime"
+      },
+      {
+        "target": "single-vm"
+      },
+      {
+        "target": "aws"
+      },
+      {
+        "target": "gcp"
+      },
+      {
+        "target": "azure"
+      }
+    ]
+  },
+  "setup_answers": {
+    "messaging-webchat-gui": {
+      "base_url": "${PUBLIC_BASE_URL}",
+      "jwt_signing_key": "deep-research-demo-cloud-signing-key",
+      "mode": "websocket",
+      "public_base_url": "${PUBLIC_BASE_URL}",
+      "route": "webchat",
+      "tenant_channel_id": "demo:webchat"
+    },
+    "state-redis": {
+      "redis_url": "${REDIS_URL}"
+    },
+    "state-memory": {},
+    "deep-research-demo": {
+      "provider": "openai",
+      "url": "https://api.openai.com/v1",
+      "model": "gpt-4o-mini",
+      "api_key_secret": "${OPENAI_API_KEY}"
+    }
+  }
+}
