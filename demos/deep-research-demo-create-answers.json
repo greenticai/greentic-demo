@@ -54,6 +54,13 @@
           },
           {
             "detected_kind": "oci",
+            "display_name": "Greentic State Redis (latest)",
+            "provider_id": "state-redis",
+            "reference": "oci://ghcr.io/greenticai/packs/state/state-redis:latest",
+            "version": "latest"
+          },
+          {
+            "detected_kind": "oci",
             "display_name": "Greentic State Memory (latest)",
             "provider_id": "state-memory",
             "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
@@ -62,6 +69,7 @@
         ],
         "extension_providers": [
           "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+          "oci://ghcr.io/greenticai/packs/state/state-redis:latest",
           "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
         ],
         "mode": "create",
