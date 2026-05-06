@@ -59,20 +59,20 @@
               "detected_kind": "oci",
               "display_name": "Greentic Events Webhook",
               "provider_id": "greentic.events.webhook",
-              "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic State Memory (latest)",
               "provider_id": "state-memory",
-              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable",
               "version": "latest"
             }
           ],
           "extension_providers": [
-            "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
-            "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+            "oci://ghcr.io/greenticai/packs/events/events-webhook:stable",
+            "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
           ],
           "mode": "create",
           "output_dir": "./redbutton-demo-bundle",

@@ -44,44 +44,44 @@
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Webchat (latest)",
               "provider_id": "greentic.messaging.webchat.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Slack (latest)",
               "provider_id": "greentic.messaging.slack.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Teams (latest)",
               "provider_id": "greentic.messaging.teams.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Webex (latest)",
               "provider_id": "greentic.messaging.webex.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic State Memory (latest)",
               "provider_id": "state-memory",
-              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable",
               "version": "latest"
             }
           ],
           "extension_providers": [
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
-            "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:stable",
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:stable",
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:stable",
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:stable",
+            "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
           ],
           "mode": "create",
           "output_dir": "./sales-crm-demo-bundle",
@@ -165,7 +165,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_meeting_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",
@@ -190,7 +190,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_deal_detail_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",
@@ -215,7 +215,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_pipeline_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",
@@ -240,7 +240,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_lead_form_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",
@@ -265,7 +265,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_salesforce_connect_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",
@@ -290,7 +290,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_welcome_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",

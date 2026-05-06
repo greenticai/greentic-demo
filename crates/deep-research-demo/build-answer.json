@@ -25,7 +25,7 @@
             "action": "add-step",
             "flow": "flows/main.ygtc",
             "step_id": "main_menu",
-            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
             "mode": "default",
             "answers": {
               "card_source": "asset",
@@ -52,7 +52,7 @@
             "flow": "flows/main.ygtc",
             "after": "main_menu",
             "step_id": "research_planner",
-            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:stable",
             "mode": "setup",
             "answers": {
               "provider": "ollama",
@@ -67,7 +67,7 @@
             "flow": "flows/main.ygtc",
             "after": "research_planner",
             "step_id": "show_research_plan",
-            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
             "mode": "default",
             "answers": {
               "card_source": "asset",
@@ -107,7 +107,7 @@
             "flow": "flows/main.ygtc",
             "after": "show_research_plan",
             "step_id": "research_analyst",
-            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:stable",
             "mode": "setup",
             "answers": {
               "provider": "ollama",
@@ -122,7 +122,7 @@
             "flow": "flows/main.ygtc",
             "after": "research_analyst",
             "step_id": "show_final_report",
-            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
             "mode": "default",
             "answers": {
               "card_source": "asset",
@@ -161,7 +161,7 @@
             "action": "update-step",
             "flow": "flows/main.ygtc",
             "step_id": "research_planner",
-            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:stable",
             "operation": "handle_message",
             "mode": "setup",
             "answers": {
@@ -202,7 +202,7 @@
             "action": "update-step",
             "flow": "flows/main.ygtc",
             "step_id": "show_research_plan",
-            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
             "mode": "default",
             "answers": {
               "card_source": "asset",
@@ -241,7 +241,7 @@
             "action": "update-step",
             "flow": "flows/main.ygtc",
             "step_id": "research_analyst",
-            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:latest",
+            "component": "oci://ghcr.io/greenticai/component/component-llm-openai:stable",
             "operation": "handle_message",
             "mode": "setup",
             "answers": {
@@ -282,7 +282,7 @@
             "action": "update-step",
             "flow": "flows/main.ygtc",
             "step_id": "main_menu",
-            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:latest",
+            "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
             "mode": "default",
             "answers": {
               "card_source": "asset",
