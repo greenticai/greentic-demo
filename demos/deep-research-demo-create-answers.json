@@ -43,35 +43,42 @@
         "capabilities": [
           "greentic.cap.bundle_assets.read.v1"
         ],
-        "cloud_deployer_target": "aws",
         "export_intent": false,
         "extension_provider_entries": [
           {
             "detected_kind": "oci",
             "display_name": "Greentic Messaging Webchat GUI (latest)",
             "provider_id": "greentic.messaging.webchat-gui.latest",
-            "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable",
+            "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
             "version": "latest"
           },
           {
             "detected_kind": "oci",
             "display_name": "Greentic State Redis (latest)",
             "provider_id": "state-redis",
-            "reference": "oci://ghcr.io/greenticai/packs/state/state-redis:stable",
+            "reference": "oci://ghcr.io/greenticai/packs/state/state-redis:latest",
             "version": "latest"
           },
           {
             "detected_kind": "oci",
             "display_name": "Greentic State Memory (latest)",
             "provider_id": "state-memory",
-            "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable",
+            "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+            "version": "latest"
+          },
+          {
+            "detected_kind": "oci",
+            "display_name": "Greentic Deploy AWS (latest)",
+            "provider_id": "greentic.deploy.aws.latest",
+            "reference": "oci://ghcr.io/greenticai/packs/deployer/greentic.deploy.aws:latest",
             "version": "latest"
           }
         ],
         "extension_providers": [
-          "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable",
-          "oci://ghcr.io/greenticai/packs/state/state-redis:stable",
-          "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
+          "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+          "oci://ghcr.io/greenticai/packs/state/state-redis:latest",
+          "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+          "oci://ghcr.io/greenticai/packs/deployer/greentic.deploy.aws:latest"
         ],
         "mode": "create",
         "output_dir": "deep-research-demo-bundle",
