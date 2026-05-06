@@ -43,6 +43,7 @@
         "capabilities": [
           "greentic.cap.bundle_assets.read.v1"
         ],
+        "cloud_deployer_target": "aws",
         "export_intent": false,
         "extension_provider_entries": [
           {

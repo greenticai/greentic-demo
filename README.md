@@ -104,6 +104,10 @@ gtc setup --no-ui ./cloud-deploy-demo-bundle --answers https://github.com/greent
 gtc start ./cloud-deploy-demo-bundle
 ```
 
+Notes:
+- This remains a minimal deployment smoke demo.
+- For the richer AWS-ready demo flow, use `deep-research-demo` below.
+
 ### weather-mcp-demo
 
 Outcome:
@@ -119,13 +123,20 @@ gtc start ./weather-mcp-demo-bundle
 ### deep-research-demo
 
 Outcome:
-- Runs a deep-research assistant with `Single Shot` and `Agentic` modes, adaptive-card planning, and a final report flow.
+- Runs a deep-research assistant with `Single Shot` and `Agentic` modes, adaptive-card planning, a final report flow, and an AWS-deployable bundle path.
 
-Run:
+Run locally:
 ```bash
 gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-create-answers.json
 gtc setup ./deep-research-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-setup-answers.json
 gtc start ./deep-research-demo-bundle
+```
+
+Run on AWS:
+```bash
+gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-create-answers.json
+gtc setup --no-ui ./deep-research-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-aws-setup-answers.json
+gtc start ./deep-research-demo-bundle --target aws
 ```
 
 Notes:
@@ -134,6 +145,7 @@ Notes:
 - If you want to use OpenAI instead, use the OpenAI-compatible base URL `https://api.openai.com/v1` during `gtc setup`.
 - You can create or manage your OpenAI API keys at `https://platform.openai.com/api-keys`.
 - If you want to use another OpenAI-compatible provider, supply that provider's compatible base URL and API key secret during `gtc setup`.
+- The AWS setup answers use the OpenAI path and expect runtime deployment variables such as `PUBLIC_BASE_URL` and `REDIS_URL` to be supplied during setup or deploy.
 
 ### telco-x-demo
 
