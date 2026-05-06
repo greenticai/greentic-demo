@@ -19,20 +19,20 @@
                 "bundle_name": "sales-crm-demo",
                 "export_intent": false,
                 "extension_provider_entries": [
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat GUI (latest)", "provider_id": "greentic.messaging.webchat-gui.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Slack (latest)", "provider_id": "greentic.messaging.slack.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Teams (latest)", "provider_id": "greentic.messaging.teams.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webex (latest)", "provider_id": "greentic.messaging.webex.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Telegram (latest)", "provider_id": "greentic.messaging.telegram.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic State Memory (latest)", "provider_id": "state-memory", "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest", "version": "latest"}
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat GUI (latest)", "provider_id": "greentic.messaging.webchat-gui.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Slack (latest)", "provider_id": "greentic.messaging.slack.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Teams (latest)", "provider_id": "greentic.messaging.teams.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webex (latest)", "provider_id": "greentic.messaging.webex.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Telegram (latest)", "provider_id": "greentic.messaging.telegram.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic State Memory (latest)", "provider_id": "state-memory", "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable", "version": "latest"}
                 ],
                 "extension_providers": [
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:latest",
-                    "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-slack:stable",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-teams:stable",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:stable",
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-telegram:stable",
+                    "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
                 ],
                 "mode": "create",
                 "output_dir": "sales-crm-demo-bundle",
