@@ -44,20 +44,20 @@
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Webchat (latest)",
               "provider_id": "greentic.messaging.webchat.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic State Memory (latest)",
               "provider_id": "state-memory",
-              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable",
               "version": "latest"
             }
           ],
           "extension_providers": [
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
-            "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:stable",
+            "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
           ],
           "mode": "create",
           "output_dir": "./quickstart-demo-bundle",
@@ -134,7 +134,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_welcome_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",
@@ -159,7 +159,7 @@
         "action": "add-step",
         "flow": "flows/main.ygtc",
         "step_id": "show_about_card",
-        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card@sha256:76fec97b35a31d062c9f7708add187bd69081d63c214e7dea5ccaeb947b9be12",
+        "component": "oci://ghcr.io/greenticai/components/component-adaptive-card:stable",
         "mode": "default",
         "answers": {
           "card_source": "asset",

@@ -44,20 +44,20 @@
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Webchat GUI (latest)",
               "provider_id": "greentic.messaging.webchat-gui.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic State Memory (latest)",
               "provider_id": "state-memory",
-              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable",
               "version": "latest"
             }
           ],
           "extension_providers": [
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
-            "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable",
+            "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
           ],
           "mode": "create",
           "output_dir": "./weather-mcp-demo-bundle",
