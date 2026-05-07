@@ -65,12 +65,20 @@
             "provider_id": "state-memory",
             "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
             "version": "latest"
+          },
+          {
+            "detected_kind": "oci",
+            "display_name": "Greentic Deploy AWS (latest)",
+            "provider_id": "greentic.deploy.aws.latest",
+            "reference": "oci://ghcr.io/greenticai/packs/deployer/greentic.deploy.aws:latest",
+            "version": "latest"
           }
         ],
         "extension_providers": [
           "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
           "oci://ghcr.io/greenticai/packs/state/state-redis:latest",
-          "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+          "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+          "oci://ghcr.io/greenticai/packs/deployer/greentic.deploy.aws:latest"
         ],
         "mode": "create",
         "output_dir": "deep-research-demo-bundle",

@@ -44,28 +44,28 @@
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Webchat (latest)",
               "provider_id": "greentic.messaging.webchat.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic Messaging Webex (latest)",
               "provider_id": "greentic.messaging.webex.latest",
-              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:stable",
               "version": "latest"
             },
             {
               "detected_kind": "oci",
               "display_name": "Greentic State Memory (latest)",
               "provider_id": "state-memory",
-              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest",
+              "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable",
               "version": "latest"
             }
           ],
           "extension_providers": [
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:latest",
-            "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:latest",
-            "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat:stable",
+            "oci://ghcr.io/greenticai/packs/messaging/messaging-webex:stable",
+            "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
           ],
           "mode": "create",
           "output_dir": "./incident-demo-bundle",

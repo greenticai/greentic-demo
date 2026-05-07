@@ -21,20 +21,20 @@
                 "bundle_name": "quickstart-event-demo",
                 "export_intent": false,
                 "extension_provider_entries": [
-                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat GUI", "provider_id": "greentic.messaging.webchat-gui.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Events Webhook", "provider_id": "greentic.events.webhook.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Events Timer", "provider_id": "greentic.events.timer.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-timer:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Events Email SendGrid", "provider_id": "greentic.events.email-sendgrid.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-email-sendgrid:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic Events SMS Twilio", "provider_id": "greentic.events.sms-twilio.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:latest", "version": "latest"},
-                    {"detected_kind": "oci", "display_name": "Greentic State Memory (latest)", "provider_id": "state-memory", "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:latest", "version": "latest"}
+                    {"detected_kind": "oci", "display_name": "Greentic Messaging Webchat GUI", "provider_id": "greentic.messaging.webchat-gui.latest", "reference": "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Events Webhook", "provider_id": "greentic.events.webhook.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-webhook:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Events Timer", "provider_id": "greentic.events.timer.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-timer:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Events Email SendGrid", "provider_id": "greentic.events.email-sendgrid.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-email-sendgrid:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic Events SMS Twilio", "provider_id": "greentic.events.sms-twilio.latest", "reference": "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:stable", "version": "latest"},
+                    {"detected_kind": "oci", "display_name": "Greentic State Memory (latest)", "provider_id": "state-memory", "reference": "oci://ghcr.io/greenticai/packs/state/state-memory:stable", "version": "latest"}
                 ],
                 "extension_providers": [
-                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:latest",
-                    "oci://ghcr.io/greenticai/packs/events/events-webhook:latest",
-                    "oci://ghcr.io/greenticai/packs/events/events-timer:latest",
-                    "oci://ghcr.io/greenticai/packs/events/events-email-sendgrid:latest",
-                    "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:latest",
-                    "oci://ghcr.io/greenticai/packs/state/state-memory:latest"
+                    "oci://ghcr.io/greenticai/packs/messaging/messaging-webchat-gui:stable",
+                    "oci://ghcr.io/greenticai/packs/events/events-webhook:stable",
+                    "oci://ghcr.io/greenticai/packs/events/events-timer:stable",
+                    "oci://ghcr.io/greenticai/packs/events/events-email-sendgrid:stable",
+                    "oci://ghcr.io/greenticai/packs/events/events-sms-twilio:stable",
+                    "oci://ghcr.io/greenticai/packs/state/state-memory:stable"
                 ],
                 "mode": "create",
                 "output_dir": "quickstart-event-demo-bundle",

@@ -104,6 +104,10 @@ gtc setup --no-ui ./cloud-deploy-demo-bundle --answers https://github.com/greent
 gtc start ./cloud-deploy-demo-bundle
 ```
 
+Notes:
+- This remains a minimal deployment smoke demo.
+- For the richer AWS-ready demo flow, use `deep-research-demo` below.
+
 ### weather-mcp-demo
 
 Outcome:
@@ -119,21 +123,35 @@ gtc start ./weather-mcp-demo-bundle
 ### deep-research-demo
 
 Outcome:
-- Runs a deep-research assistant with `Single Shot` and `Agentic` modes, adaptive-card planning, and a final report flow.
+- Runs a deep-research assistant with `Single Shot` and `Agentic` modes, adaptive-card planning, a final report flow, and an AWS-deployable bundle path.
 
-Run:
+Run locally:
 ```bash
 gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-create-answers.json
 gtc setup ./deep-research-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-setup-answers.json
 gtc start ./deep-research-demo-bundle
 ```
 
+Run on AWS:
+```bash
+export GREENTIC_DEPLOY_TERRAFORM_VAR_REMOTE_STATE_BACKEND=s3
+export GREENTIC_DEPLOY_BUNDLE_SOURCE="https://github.com/greenticai/greentic-demo/releases/download/v0.1.74/deep-research-demo.gtbundle?ts=1778100000"
+
+gtc wizard --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-create-answers.json
+gtc setup --no-ui ./deep-research-demo-bundle --answers https://github.com/greenticai/greentic-demo/releases/latest/download/deep-research-demo-aws-setup-answers.json
+gtc start ./deep-research-demo-bundle --target aws
+```
+
 Notes:
-- By default this demo is configured for a local Ollama endpoint at `http://127.0.0.1:11434/v1` with `llama3:8b`.
-- To use Ollama locally, download it from `https://ollama.com/download`, install it, then pull or run the model with `ollama run llama3:8b`.
-- If you want to use OpenAI instead, use the OpenAI-compatible base URL `https://api.openai.com/v1` during `gtc setup`.
+- The local setup path can be used with Ollama or another OpenAI-compatible endpoint during `gtc setup`.
+- To use Ollama locally, download it from `https://ollama.com/download`, install it, then pull or run the model you want and provide its base URL during `gtc setup`.
+- The AWS setup answers use the OpenAI path and expect `OPENAI_API_KEY` to be available during setup.
+- If you want to use OpenAI, use the OpenAI-compatible base URL `https://api.openai.com/v1` during `gtc setup`.
 - You can create or manage your OpenAI API keys at `https://platform.openai.com/api-keys`.
 - If you want to use another OpenAI-compatible provider, supply that provider's compatible base URL and API key secret during `gtc setup`.
+- For the current AWS path, `GREENTIC_DEPLOY_TERRAFORM_VAR_REMOTE_STATE_BACKEND=s3` is still required.
+- The current AWS workaround uses the versioned `GREENTIC_DEPLOY_BUNDLE_SOURCE` above so the deploy path does not depend on S3 bundle upload permissions.
+- The AWS setup answers still expect runtime deployment variables such as `PUBLIC_BASE_URL` and `REDIS_URL` to be supplied during setup or deploy.
 
 ### telco-x-demo
 
