@@ -1,36 +1,35 @@
 title: Deep Research Setup
-description: Configure the OpenAI-compatible endpoint used by the planner and analyst LLM components.
+description: Configure the DeepSeek (OpenAI-compatible) endpoint used by the planner and analyst LLM components.
 questions:
   - name: provider
     kind: string
     required: false
     title: LLM provider
-    help: Provider style for the OpenAI-compatible API. Use ollama for a local Ollama server.
-    default: ollama
-    placeholder: ollama
+    help: Provider style for the OpenAI-compatible API. Use "custom" for DeepSeek (any OpenAI-compatible endpoint); "ollama" for a local Ollama server.
+    default: custom
+    placeholder: custom
   - name: url
     kind: string
     required: false
     title: LLM API URL
-    help: Base URL for the OpenAI-compatible API. Use http://127.0.0.1:11434/v1 for Ollama or leave the default for OpenAI.
-    default: http://127.0.0.1:11434/v1
-    placeholder: http://127.0.0.1:11434/v1
+    help: Base URL for the OpenAI-compatible API. DeepSeek is https://api.deepseek.com/v1; use http://127.0.0.1:11434/v1 for Ollama.
+    default: https://api.deepseek.com/v1
+    placeholder: https://api.deepseek.com/v1
   - name: model
     kind: string
     required: false
     title: LLM model
-    help: Model name for the configured OpenAI-compatible API. For local Ollama, llama3:8b is a known-good default.
-    default: llama3:8b
-    placeholder: llama3:8b
+    help: Model name for the configured OpenAI-compatible API. DeepSeek chat is "deepseek-chat" (use "deepseek-reasoner" for R1).
+    default: deepseek-chat
+    placeholder: deepseek-chat
   - name: api_key_secret
     secret_key: api_key_secret
     kind: string
-    required: false
+    required: true
     secret: true
     title: LLM API key secret
-    help: Secret reference value passed through to the LLM component. For local Ollama, a dummy non-empty value is fine if the runtime still validates this field.
-    default: ollama-placeholder
-    placeholder: ollama-placeholder
+    help: DeepSeek API key (from platform.deepseek.com). Promoted to the target cloud secret manager at deploy time and resolved at runtime as the api_key_secret reference — never baked into the bundle. For keyless local Ollama any non-empty value works.
+    placeholder: sk-...
   - name: planner_system_prompt
     kind: string
     required: false

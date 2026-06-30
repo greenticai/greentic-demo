@@ -14,10 +14,9 @@
   },
   "setup_answers": {
     "deep-research-demo": {
-      "api_key_secret": "${OPENAI_API_KEY}",
-      "provider": "openai",
-      "model": "gpt-4o-mini",
-      "url": "https://api.openai.com/v1"
+      "provider": "custom",
+      "model": "deepseek-chat",
+      "url": "https://api.deepseek.com/v1"
     },
     "messaging-webchat-gui": {
       "base_url": "http://127.0.0.1:8080",

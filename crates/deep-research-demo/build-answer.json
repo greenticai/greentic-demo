@@ -55,10 +55,10 @@
             "component": "oci://ghcr.io/greenticai/component/component-llm-openai:stable",
             "mode": "setup",
             "answers": {
-              "provider": "ollama",
-              "base_url": "http://127.0.0.1:11434/v1",
+              "provider": "custom",
+              "base_url": "https://api.deepseek.com/v1",
               "endpoint_requires_api_key": false,
-              "default_model": ""
+              "default_model": "deepseek-chat"
             },
             "routing": "out"
           },
@@ -110,10 +110,10 @@
             "component": "oci://ghcr.io/greenticai/component/component-llm-openai:stable",
             "mode": "setup",
             "answers": {
-              "provider": "ollama",
-              "base_url": "http://127.0.0.1:11434/v1",
+              "provider": "custom",
+              "base_url": "https://api.deepseek.com/v1",
               "endpoint_requires_api_key": false,
-              "default_model": ""
+              "default_model": "deepseek-chat"
             },
             "routing": "out"
           },
@@ -166,20 +166,20 @@
             "mode": "setup",
             "answers": {
               "api_key_secret": "api_key_secret",
-              "provider": "ollama",
-              "base_url": "http://127.0.0.1:11434/v1",
+              "provider": "custom",
+              "base_url": "https://api.deepseek.com/v1",
               "endpoint_requires_api_key": false,
-              "default_model": ""
+              "default_model": "deepseek-chat"
             },
             "in_map": {
               "config": {
                 "api_key_secret": "api_key_secret",
-                "provider": "{{entry.input.metadata.provider}}",
-                "default_model": "{{entry.input.metadata.model}}",
-                "base_url": "{{entry.input.metadata.url}}"
+                "endpoint_requires_api_key": true,
+                "provider": "custom",
+                "base_url": "https://api.deepseek.com/v1",
+                "default_model": "deepseek-chat"
               },
               "input": {
-                "model": "{{entry.input.metadata.model}}",
                 "messages": [
                   {
                     "role": "system",
@@ -246,20 +246,20 @@
             "mode": "setup",
             "answers": {
               "api_key_secret": "api_key_secret",
-              "provider": "ollama",
-              "base_url": "http://127.0.0.1:11434/v1",
+              "provider": "custom",
+              "base_url": "https://api.deepseek.com/v1",
               "endpoint_requires_api_key": false,
-              "default_model": ""
+              "default_model": "deepseek-chat"
             },
             "in_map": {
               "config": {
                 "api_key_secret": "api_key_secret",
-                "provider": "{{entry.input.metadata.provider}}",
-                "default_model": "{{entry.input.metadata.model}}",
-                "base_url": "{{entry.input.metadata.url}}"
+                "endpoint_requires_api_key": true,
+                "provider": "custom",
+                "base_url": "https://api.deepseek.com/v1",
+                "default_model": "deepseek-chat"
               },
               "input": {
-                "model": "{{entry.input.metadata.model}}",
                 "messages": [
                   {
                     "role": "system",
